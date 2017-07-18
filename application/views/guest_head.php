@@ -120,7 +120,7 @@
                 <div class="col-md-4 mobile-nav pdl pdr">
                     <ul class="nav navbar-nav navbar-right secondary-nav">
                         <li class="active hidden-xs"><a href="#">About</a></li>
-                        <li><a href="<?php echo base_url(); ?>home/registration">Join Now !</a></li>
+                        <li class="active hidden-xs" ><a href="<?php echo base_url(); ?>home/registration">Join Now !</a></li>
                         <li><a href="<?php echo base_url(); ?>home/login">Login</a></li>
                         <li class="hidden-xs"><a href="#"><img src="<?php echo base_url(); ?>comp/img/search-icon.png" class="img-responsive" alt="Search"></a></li>
                     </ul>

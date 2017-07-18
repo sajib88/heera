@@ -1,3 +1,7 @@
+
+
+
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -40,66 +44,6 @@
     </a>
 </div>
 
-
-
-<header class="business-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12  text-center">
-                <h1 class="howworks">How it works</h1>
-
-
-            <div class="box-design">
-                <div  class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div  class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            </div>
-        </div>
-    </div>
-</header>
 
 
 <main class="main-wrapper">
