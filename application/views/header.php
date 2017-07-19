@@ -31,42 +31,42 @@
 
 
 <!--external css-->
-<link href="<?php echo base_url();?>script-assets/backend/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" media="all" type="text/css"  href="<?php echo base_url();?>script-assets/backend/css/style.css" />
+<link href="<?php echo base_url();?>/backend/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="all" type="text/css"  href="<?php echo base_url();?>/backend/css/style.css" />
     
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/bootstrap.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/bootstrap.css">
 
         <!-- Related styles of various javascript plugins -->
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/plugins.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/plugins.css">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" media="all" type="text/css" href="<?php echo base_url();?>script-assets/backend/css/main.css">
+        <link rel="stylesheet" media="all" type="text/css" href="<?php echo base_url();?>/backend/css/main.css">
 
         <!-- Load a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/themes.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/themes.css">
 
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/custom_trp.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/custom_trp.css">
         
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/TableTools.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/TableTools.css">
         
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/font-awesome/css/font-awesome.min.css">
         <!-- END Stylesheets -->
         
-        <link rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/font_style.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/backend/css/font_style.css">
 
-		<link href="<?php echo base_url();?>script-assets/backend/css/jquery-ui.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>/backend/css/jquery-ui.css" rel="stylesheet" />
 		
-		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/selectric.css">
-		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/bootstrap-multiselect.css">
-		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>script-assets/backend/css/daterangepicker-bs3.css">
+		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>/backend/css/selectric.css">
+		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>/backend/css/bootstrap-multiselect.css">
+		<link type="text/css" rel="stylesheet" href="<?php echo base_url();?>/backend/css/daterangepicker-bs3.css">
 		
 
         <!-- Modernizr (Browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support them) -->
-        <script src="<?php echo base_url();?>script-assets/backend/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-		<script src="<?php echo base_url();?>script-assets/backend/js/vendor/modernizr.custom.79639.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		<script src="<?php echo base_url();?>/backend/js/vendor/modernizr.custom.79639.js"></script>
         <!-- Excanvas for canvas support on IE8 -->
         <!--[if lte IE 8]><script src="../js/helpers/excanvas.min.js"></script><![endif]-->
         <!-- Bootstrap.js -->
@@ -79,22 +79,22 @@
         <script src="../backend/js/vendor/bootstrap.min.js"></script>
 
         <!-- Jquery plugins and custom javascript code -->
-        <script src="<?php echo base_url();?>script-assets/backend/js/plugins.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/main.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/custom_trp.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/jquery.printElement.min.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/ZeroClipboard.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/TableTools.js"></script>
-        <script src="<?php echo base_url();?>script-assets/backend/js/jquery.maskedinput.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/plugins.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/main.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/custom_trp.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/jquery.printElement.min.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/ZeroClipboard.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/TableTools.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/jquery.maskedinput.js"></script>
         
-		<script src="<?php echo base_url();?>script-assets/backend/js/calculator.js" type="text/javascript"></script>
+		<script src="<?php echo base_url();?>/backend/js/calculator.js" type="text/javascript"></script>
 	   <!-- <script src="../backend/js/flot/jquery.flot.js"></script> -->
 	   
-	   <script src="<?php echo base_url();?>script-assets/backend/js/jquery.selectric.js"></script>
-	   <script src="<?php echo base_url();?>script-assets/backend/js/bootstrap-multiselect.js"></script>
+	   <script src="<?php echo base_url();?>/backend/js/jquery.selectric.js"></script>
+	   <script src="<?php echo base_url();?>/backend/js/bootstrap-multiselect.js"></script>
 	   
-	   <script src="<?php echo base_url();?>script-assets/backend/js/moment.js"></script>
-	   <script src="<?php echo base_url();?>script-assets/backend/js/daterangepicker.js"></script>
+	   <script src="<?php echo base_url();?>/backend/js/moment.js"></script>
+	   <script src="<?php echo base_url();?>/backend/js/daterangepicker.js"></script>
            
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -349,7 +349,7 @@
 
                 <!-- User Menu -->
                 <li class="dropdown pull-right dropdown-user">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url();?>script-assets/backend/img/template/avatar.png" alt="avatar" class="avatar"><span>John Walter</span> <b class="caret"></b></a>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url();?>/backend/img/template/avatar.png" alt="avatar" class="avatar"><span>John Walter</span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!-- Just a button demostrating how loading of widgets could happen, check main.js- - uiDemo() -->
                         <li>
@@ -379,7 +379,7 @@
 <!--            {account_content}-->
                 <!-- Sidebar -->
                 <aside id="page-sidebar" class="collapse navbar-collapse navbar-main-collapse">
-                	<a href="index.php/admin/dashboard"  class=""><img alt="" style="margin-left: 16px; margin-top: 15px;" src="<?php echo base_url();?>script-assets/backend/img/admin_logo.png"></a>
+                	<a href="index.php/admin/dashboard"  class=""><img alt="" style="margin-left: 16px; margin-top: 15px;" src="<?php echo base_url();?>/backend/img/admin_logo.png"></a>
                     <!-- Sidebar search -->
                     <!--<form id="sidebar-search" action="page_search_results.html" method="post">
                         <div class="input-group">
