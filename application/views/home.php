@@ -13,8 +13,6 @@
 </header>
 
 
-
-
 <!--BG with 4 box -->
 <header class="business-header">
     <div class="container">
