@@ -29,6 +29,8 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 
+        
+     <!--external fauk css-->   
 
 <!--external css-->
 <link href="<?php echo base_url();?>/backend/css/font-awesome.css" rel="stylesheet" />
