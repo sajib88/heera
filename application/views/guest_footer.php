@@ -9,32 +9,32 @@
                             <div class="col-sm-4 pdl widget">
                                 <h3 class="entry-title">Get to know us</h3>
                                 <ul class="entry-list">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Our Mission</a></li>
-                                    <li><a href="#">Our Values</a></li>
-                                    <li><a href="#">How it Works</a></li>
-                                    <li><a href="#">FAQ's</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/about">About us</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/ourmission">Our Mission</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/ourvalues">Our Values</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/howitworks">How it Works</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/faq">FAQ's</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4 widget ">
                                 <h3 class="entry-title">Explore</h3>
                                 <ul class="entry-list">
-                                    <li><a href="#">Projects</a></li>
-                                    <li><a href="#">Communities</a></li>
-                                    <li><a href="#">Countries</a></li>
-                                    <li><a href="#">Activities</a></li>
-                                    <li><a href="#">Teams</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/projects">Projects</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/communities">Communities</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/countries">Countries</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/activities">Activities</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/teams">Teams</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4 widget pdr">
                                 <h3 class="entry-title">Resources</h3>
                                 <ul class="entry-list">
-                                    <li><a href="#">Borrow</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Partner with us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms of use</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/borrow">Borrow</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/contactus">Contact Us</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/blog">Blog</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/partnerwithus">Partner with us</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/privacypolicy">Privacy Policy</a></li>
+                                    <li><a href="<?php echo base_url(); ?>page/termofuse">Terms of use</a></li>
                                 </ul>
                             </div>
                         </div>
