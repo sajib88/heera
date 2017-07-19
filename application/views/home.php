@@ -1,97 +1,90 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
+<header class="top-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12  text-center ptop-300">
 
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" alt="Chania">
-            <div class="carousel-caption">
                 <h1>Give a Little Change a Lot. </h1>
-                <p>A loan of $1500 helps a member to buy more fertilizer to support her fariming, to get a higher yield</p>
+                <p>A loan of $1500 helps a member to buy more fertilizer to support<br> her fariming, to get a higher yield</p>
                 <input type="submit" value="Lend $25" class="btn   btn-yellow">
             </div>
         </div>
-
-        <div class="item">
-            <img src="<?php echo base_url(); ?>comp/img/slide2.png" alt="Chicago">
-            <div class="carousel-caption">
-                <h1>Give a Little Change a Lot.</h1>
-                <p>A loan of $1500 helps a member to buy more fertilizer to support her fariming, to get a higher yield</p>
-                <input type="submit" value="Lend $25" class="btn  btn-yellow">
-            </div>
-        </div>
-
-
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+</header>
 
 
 
+<!--BG with 4 box -->
 <header class="business-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-12  text-center">
-                <h1 class="howworks">How it works</h1>
+                <h1 class="ptop-30">How it works</h1>
 
-
+                <!--start box here -->
             <div class="box-design">
                 <div  class="row">
+                    <!-- box 1 -->
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h3 class="card-title text-left">Chosse a Borrower</h3>
+                                <p class="card-text text-left">
+                                    With supporting text below as</br>
+                                    a natural lead-in to additional</br>
+                                    content.</p>
+
                             </div>
                         </div>
                     </div>
+                    <!-- box 1 -->
+                    <!-- box 2 -->
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h3 class="card-title text-right">Make a loan</h3>
+                                <p class="card-text text-right">With supporting text below as</br>
+                                    a natural lead-in to additional</br>
+                                    content.</p>
+
                             </div>
                         </div>
                     </div>
+                    <!-- box 2 -->
                 </div>
+                <!-- image make center -->
+                <img src="<?php echo base_url(); ?>comp/img/round-box.png"  class="img-responsive center-block absulateimage" />
+                <!-- image make center -->
 
 
-
-                <div  class="row">
+                <div  class="row ptop-60">
+                    <!-- box 3 -->
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                                <h3 class="card-title text-left">Repeat !</h3>
+                                <p class="card-text text-left">With supporting text below as</br>
+                                    a natural lead-in to additional</br>
+                                    content.</p>
+
                             </div>
                         </div>
                     </div>
+                    <!-- box 3 -->
+                    <!-- box 4 -->
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title">Special title treatment</h3>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h3 class="card-title text-right">Get Paid</h3>
+                                <p class="card-text text-right">With supporting text below as</br>
+                                    a natural lead-in to additional</br>
+                                    content.</p>
+
                             </div>
                         </div>
                     </div>
+                    <!-- box 4 -->
                 </div>
 
             </div>
@@ -101,288 +94,416 @@
     </div>
 </header>
 
+<!--Start Lending style-->
+<div class="col-md-12">
 
-<main class="main-wrapper">
-    <section class="banner-wrapper">
+        <div class="newsletter-widget widget">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 pdl">
-                <!-- MAIN SLIDES -->
-                <div class="slider">
-                    <div data-index="1">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
-                    </div>
-                    <div data-index="2">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
-                    </div>
-                    <div data-index="3">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
-                    </div>
-                    <div data-index="4">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
-                    </div>
+
+                <div class="entry-head text-center">
+                    <h2>Start Lending</h2>
                 </div>
 
-                <!-- THUMBNAILS -->
-                <div class="slider-nav-thumbnails">
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-1.jpg" class="img-responsive" slide="slide_1">
-                    </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-2.jpg" class="img-responsive" slide="slide_2">
-                    </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-3.jpg" class="img-responsive" slide="slide_3">
-                    </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-4.jpg" class="img-responsive" slide="slide_4">
-                    </div>
+                <div class="col-md-7 col-md-offset-3">
+                <form class="form-inline">
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Search by Name Or Country">
+                    <button type="submit" class="btn btn-blue">Search</button>
+                </form>
                 </div>
-            </div>
-            <aside class="col-md-4 pdr">
-                <div class="lend-widget">
-                    <div class="entry-title">
-                        <h3 class="title">
-                            Give a Little. <br>
-                            Change a Lot.
-                        </h3>
-                        <div class="entry-meta row">
-                            <div class="author">
-                                <img src="<?php echo base_url(); ?>comp/img/author-pic.png" alt="author image">
-                                <span>By Rebecaa</span>
-                            </div>
-                            <div class="origin">
-                                <img src="<?php echo base_url(); ?>comp/img/india-flag.png" alt="india">
-                                India
-                            </div>
-                        </div>
-                    </div><!--entry title-->
-                    <div class="entry-content">
-                        <div class="progress-wrap">
-                            <h5>53% Funded</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 53%;">
-                                </div>
-                            </div>
-                            <div class="funded-wrap">
-                                <div class="amount-recieved">$786 Funded</div>
-                                <div class="total-amount">of $1500 Goal</div>
-                            </div>
-                            <div class="stats-wrap row">
-                                <div class="single-item col-xs-6 pdl pdr">
-                                    <span>21</span> Lenders
-                                </div>
-                                <div class="single-item col-xs-6  pdr">
-                                    <span>15</span> Days Left
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entry-footer">
-                        <form role="form" action="#">
-                            <div class="row">
-                                <div class="col-xs-5 pdl pdr item">
-                                    <select class="form-control">
-                                        <option value="">$25</option>
-                                        <option value="">$50</option>
-                                        <option value="">$100</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-7 pdr item">
-                                    <input type="submit" value="Lend Now" class="btn btn-big btn-yellow">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </aside>
+
+
         </div>
-        <div class="row">
-            <ul class="verified-list">
-                <li><img src="<?php echo base_url(); ?>comp/img/icons/icon-paper.png" alt="icon"> Verified Paperwork</li>
-                <li><img src="<?php echo base_url(); ?>comp/img/icons/icon-phone.png" alt="icon"> We had a Phone Conversation</li>
-                <li><img src="<?php echo base_url(); ?>comp/img/icons/icon-validate.png" alt="icon"> Funding is Validated</li>
-            </ul>
-        </div><!--verified wrap-->
-    </div>
+</div>
 
-</section><!-- banner wrapper -->
+<!--end Lending style-->
 
+
+
+<div class="col-md-12 text-center styletext">
+    <h5>or</h5>
+    <h4>Choose a Category</h4>
+   </div>
+
+<!--category with image-->
 <section class="content-wrapper">
     <div class="container">
+        <!--category first 5 image start-->
         <div class="row">
-            <div class="col-md-8 pdl">
-                <div class="tab-wrapper row">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab1" aria-controls="story" role="tab" data-toggle="tab">Gayatri's Story</a></li>
-                        <li role="presentation"><a href="#tab2" aria-controls="discussion" role="tab" data-toggle="tab">Discussion <span class="notification blue-notify">2</span></a></li>
-                        <li role="presentation"><a href="#tab3" aria-controls="backers" role="tab" data-toggle="tab">Backers</a></li>
-                        <li role="presentation"><a href="#tab4" aria-controls="updates" role="tab" data-toggle="tab">Updates <span class="notification yellow-notify">1</span></a></li>
-                    </ul>
+                <div class="col-md-1"></div>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="tab1">
-                            <div class="story-content">
-                                <div class="entry-head">
-                                    <h3 class="title">About this Project</h3>
-                                    <p class="description">A loan of $1500 helps a member to buy more fertilizer to support her fariming, to get a higher yield</p>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="cat-widget col-md-2">
+                        <div class="inner-item">
+                            <img src="<?php echo base_url(); ?>comp/img/women.jpg" alt="" class="img-responsive">
+                            <div class="carousel-caption">
+                                <h4>Women</h4>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="tab2">
-                            <h3 class="title">Share your thoughts</h3>
-                            <div class="panel panel-default text-center">
-                                <div class="panel-body">
-                                    Only Backers can posts comments. <a href="#">Log in</a>
-                                </div>
-                            </div>
-                            <div class="comment-wrapper">
-                                <div class="single-item">
-                                    <div class="entry-img"><img src="<?php echo base_url(); ?>comp/img/author-pic.png" alt=""></div>
-                                    <div class="entry-content">
-                                        <h4>Nick Says</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
-                                </div>
+                    </div><!--lender widget-->
 
-                                <div class="single-item">
-                                    <div class="entry-img"><img src="<?php echo base_url(); ?>comp/img/author-pic.png" alt=""></div>
-                                    <div class="entry-content">
-                                        <h4>Nick Says</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
-                                </div>
+                    <div class="cat-widget col-md-2">
 
-                            </div>
+                        <img src="<?php echo base_url(); ?>comp/img/agri.jpg" alt="test" class="img-responsive">
+
+                        <div class="carousel-caption">
+                            <h4>Agriculture</h4>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="tab3">
-                            <h3 class="title">Lenders and Lending Team</h3>
-                            <div class="lender-wrapper row">
-                                <div class="lender-widget col-md-4">
-                                    <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
-                                        <div class="entry-content">
-                                            <h4 class="title">Nick Yulman</h4>
-                                            <p>Funded 6 projects.</p>
-                                        </div>
-                                    </div>
-                                </div><!--lender widget-->
 
-                                <div class="lender-widget col-md-4">
-                                    <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
-                                        <div class="entry-content">
-                                            <h4 class="title">Olivia Rohan</h4>
-                                            <p>Funded 21 projects.</p>
-                                        </div>
-                                    </div>
-                                </div><!--lender widget-->
-
-                                <div class="lender-widget col-md-4">
-                                    <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
-                                        <div class="entry-content">
-                                            <h4 class="title">Sarvam Bodhi</h4>
-                                            <p>Funded 6 projects.</p>
-                                        </div>
-                                    </div>
-                                </div><!--lender widget-->
-                            </div><!--lender wrapper-->
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="tab4">
-                            <div class="timeline-wrapper">
-                                <div class="entry-head">
-                                    <h4 class="btn-blue">Project Uploaded</h4>
-                                    <p class="start-date">12 Feb 2017</p>
-                                </div>
-                                <section id="cd-timeline" class="cd-container">
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img">
-                                            <span></span>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p class="meta">Update:</p>
-                                            <p class="cd-date">21st April 2017</sp>
-                                            <h4>Project Funded</h4>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img">
-                                            <span></span>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p class="meta">Update:</p>
-                                            <p class="cd-date">24st April 2017</sp>
-                                            <h4>Project Funded</h4>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img">
-                                            <span></span>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p class="meta">Update:</p>
-                                            <p class="cd-date">30st April 2017</sp>
-                                            <h4>Project Funded</h4>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-
-
-                                </section> <!-- cd-timeline -->
-                            </div><!-- timeline wrapper -->
-                        </div>
                     </div>
 
-                </div>
-            </div>
-            <aside class="col-md-4 pdr">
-                <div class="detail-widget">
-                    <div class="entry-head">
-                        <h3>Loan details</h3>
-                    </div><!--entry head-->
-                    <div class="entry-content">
-                        <div class="entry-single">
-                            <p><span class="heading">Loan Period</span> 12 Months</p>
+                    <div class="cat-widget col-md-2">
+
+                        <img src="<?php echo base_url(); ?>comp/img/education.jpg" alt="test" class="img-responsive">
+
+                        <div class="carousel-caption">
+                            <h6>Education</h6>
                         </div>
-                        <div class="entry-single">
-                            <p><span class="heading">Repayment Schedule</span> Monthly</p>
+
+                    </div>
+
+
+
+                    <div class="cat-widget col-md-2">
+
+                        <img src="<?php echo base_url(); ?>comp/img/health.jpg" alt="test" class="img-responsive">
+
+                        <div class="carousel-caption">
+                            <h6> Health</h6>
                         </div>
-                        <div class="entry-single">
-                            <p><span class="heading">Disbursed Date</span> 21 April 2017</p>
+
+                    </div>
+                    <div class="cat-widget col-md-2">
+
+                        <img src="<?php echo base_url(); ?>comp/img/signleparents.jpg" alt="test" class="img-responsive">
+
+                        <div class="carousel-caption">
+                            <h6>Single parent</h6>
                         </div>
-                        <div class="entry-single">
-                            <p><span class="heading">Is Borrower Paying Interest?</span> No</p>
-                        </div>
-                        <div class="entry-single">
-                            <p><span class="heading">Currency Exchange Loss</span> Possible</p>
-                        </div>
-                    </div><!--entry content-->
-                </div>
-            </aside>
+
+                    </div>
+
+
+                    <div class="col-md-1"></div>
+
+
         </div>
-    </div><!--container-->
+        <!--category first 5 image end-->
+
+
+
+
+        <!--category 2nd 5 image start-->
+        <div class="row">
+
+            <div class="col-md-1"></div>
+
+            <div class="cat-widget col-md-2">
+                <div class="inner-item">
+                    <img src="<?php echo base_url(); ?>comp/img/social.jpg" alt="" class="img-responsive">
+                    <div class="carousel-caption">
+                        <h4>Social</h4>
+                    </div>
+                </div>
+            </div><!--lender widget-->
+
+            <div class="cat-widget col-md-2">
+
+                <img src="<?php echo base_url(); ?>comp/img/retail.jpg" alt="test" class="img-responsive">
+
+                <div class="carousel-caption">
+                    <h4>Retail</h4>
+                </div>
+
+            </div>
+
+            <div class="cat-widget col-md-2">
+
+                <img src="<?php echo base_url(); ?>comp/img/shelter.jpg" alt="test" class="img-responsive">
+
+                <div class="carousel-caption">
+                    <h6>shelter</h6>
+                </div>
+
+            </div>
+
+
+
+            <div class="cat-widget col-md-2">
+
+                <img src="<?php echo base_url(); ?>comp/img/food.jpg" alt="test" class="img-responsive">
+
+                <div class="carousel-caption">
+                    <h6>Food</h6>
+                </div>
+
+            </div>
+            <div class="cat-widget col-md-2">
+
+                <img src="<?php echo base_url(); ?>comp/img/allloan.jpg" alt="test" class="img-responsive">
+
+                <div class="carousel-caption">
+                    <h6>All Loans</h6>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-1"></div>
+            </div>
+    </div>
+    <!--category second 5 image end -------------------------------------------------------->
+
+
+    <!--get free with image-->
+    <div class="row ptop-50">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <h4>Heera.org does’t chnage any fees or commission and is a
+                one-to-one direct funding platform</h4>
+            <img src="<?php echo base_url(); ?>comp/img/dimond.jpg"  class="img-responsive center-block dimond ptop-20" />
+        </div>
+    </div>
+    <!--get free with image-->
+
+    <!--helpig-->
+    <div class="row ptop-80">
+        <div class="text-center helpig-hand">
+            <h2>Give a helpig hand. <span>See our causes</span></h2>
+
+        </div>
+    </div>
+    <!--helpig-->
+
+
+    <div class="ptop-30"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-sm-6 col-md-4 products">
+                    <div class="thumbnail" >
+                        <img src="<?php echo base_url(); ?>comp/img/project1.jpg" class="img-responsive circular--square ">
+                        <div class="caption pdr">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Help her with education</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <h5>Mike Thompsom</h5>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="country">
+                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        India
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="progress-bar" data-percentage="80">
+                                        <div class="blue bar"><span></span></div>
+                                        <div class="label"></div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                    <p class="text-left">RAISED</p>
+                                    <h4 class="text-left">$5300</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                    <p class="text-right">GOAL</p>
+                                    <h4 class="text-right">$10000</h4>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
+                                    </div>
+                                    <div class="pull-right">
+                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <p> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 products">
+                    <div class="thumbnail" >
+                        <img src="<?php echo base_url(); ?>comp/img/project2.jpg" class="img-responsive circular--square ">
+                        <div class="caption pdr">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Help her with education</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <h5>Mike Thompsom</h5>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="country">
+                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        India
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="progress-bar" data-percentage="30">
+                                        <div class="blue bar"><span></span></div>
+                                        <div class="label"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <p class="text-left">RAISED</p>
+                                        <h4 class="text-left">$5300</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <p class="text-right">GOAL</p>
+                                        <h4 class="text-right">$10000</h4>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
+                                    </div>
+                                    <div class="pull-right">
+                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <p> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 products">
+                    <div class="thumbnail" >
+                        <img src="<?php echo base_url(); ?>comp/img/project3.jpg" class="img-responsive circular--square ">
+                        <div class="caption pdr">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Help her with education</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <h5>Mike Thompsom</h5>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="country">
+                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        India
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <div class="progress-bar" data-percentage="60">
+                                        <div class="blue bar"><span></span></div>
+                                        <div class="label"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <p class="text-left">RAISED</p>
+                                        <h4 class="text-left">$5300</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <p class="text-right">GOAL</p>
+                                        <h4 class="text-right">$10000</h4>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
+                                    </div>
+                                    <div class="pull-right">
+                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <p> </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+
+                    <input value="Browse all causes" aria-labelledby="dropdownMenu3" class="btn btn-big btn-yellow" type="submit">
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
 </section>
+
+
+<section class="bottom-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12  text-center ptop-40">
+
+
+                <h1>Need a helping hand</h1>
+                <h3>Aapply for a Loan and Get funded</h3>
+                <input type="submit" value="Borrow Now" class="btn btn-midum  btn-yellow">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
 
 </main>

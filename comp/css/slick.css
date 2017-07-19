@@ -119,19 +119,55 @@
 
 @media (min-width: 1200px) {
 
-    .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-        display: block;
-        height: 450px;
-        line-height: 1;
-        margin: 0 auto;
-        max-width: 100%;
-        width: 100%;
-    }
+
+
     .howworks {padding-top: 50px;}
     .carousel-caption {padding-bottom:100px;}
+    .box-design {
+        margin-top: 40px;
+        padding: 40px;
+    }
+    .top-header{background-size: 100% 100%; !important;}
+    .absulateimage {position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 220px;
+        height: 220px;
+        margin-top: -30px; /* Half the height */
+        margin-left: -110px; /* Half the width */
+    }
 
-     }
 
+
+
+}
+
+
+.top-header {
+    height: 570px;
+    background: url('../img/slide1.jpg') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.bottom-banner{
+    height: 250px;
+    background: url('../img/bttom.jpg') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+}
+.bottom-banner h1 {font-size: 30px; color: #fff; font-weight: normal; }
+.bottom-banner h3 {font-size: 20px; color: #113058; font-weight: normal; }
+
+
+.top-header h1 {font-size: 42px; color: #fff; font-weight: normal; }
+.top-header p { color: #fff; font-weight: normal; }
+
+.ptop-300{padding-top:300px;}
 .business-header {
     height: 850px;
     background: url('../img/image-banner.jpg') center center no-repeat scroll;
@@ -140,14 +176,134 @@
     background-size: cover;
     -o-background-size: cover;
 }
+.right-header{
+
+    height: 850px;
+    background: url('../img/right-banner-bg.jpg') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+#rightHalf {
+    background: url('../img/right-banner-bg.jpg')
+    width: 100%;
+    position: absolute;
+    right: 0px;
+    height: 100%;
+}
 
 .box-design {
-    margin-top: 40px;
-    padding: 40px;
+
     background-color: rgba(255,255,255,0.9);
     filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1,startColorStr="#E6FFFFFF",endColorStr="#E6FFFFFF");
     -ms-filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1,startColorStr="#E6FFFFFF",endColorStr="#E6FFFFFF");
-    opacity: 0.8;
-    filter: alpha(opacity=85);
+    opacity: 0.9;
+    filter: alpha(opacity=95);
 
 }
+.ptop-10{padding-top:10px;}
+.ptop-20{padding-top:20px;}
+.ptop-30{padding-top:30px;}
+.ptop-40{padding-top:40px;}
+.ptop-50{padding-top:50px;}
+.ptop-60{padding-top:60px;}
+.ptop-70{padding-top:70px;}
+.ptop-80{padding-top:80px;}
+.ptop-90{padding-top:90px;}
+.ptop-100{padding-top:100px;}
+.ptop-120{padding-top:120px;}
+
+
+.cat-widget .carousel-caption {padding-bottom:70px;}
+.cat-widget {padding-top: 5px; padding-bottom: 0px;}
+.newsletter-widget h2 {font-size: 42px; color: #1570f4; font-weight: normal; margin-bottom: 30px;}
+.styletext h4 {font-size: 22px; color: #1570f4; font-weight: normal; margin-bottom: 30px;}
+.styletext h5 {font-size: 14px; color: #A6ACB8; font-weight: normal;  margin-bottom: 20px; margin-top: 20px;}
+.helpig-hand h2 {font-size: 22px;color: #1570f4; font-weight: normal; }
+.helpig-hand span {font-size: 22px;color: #113058; font-weight: normal; }
+
+.products h2 {font-size: 22px;color: #113058; font-weight: normal; }
+.products h5 {font-size: 15px;color: #1570f4; font-weight: normal; }
+.products h4 {font-size: 18px;color: #113058; font-weight: normal; }
+
+
+.products > .thumbnail {padding: 0px;}
+.country {padding-top: 10px; margin-bottom: 40px;}
+.country img {height: 20px;
+margin-right: 10px;}
+
+
+
+/* Main Progress Bar Container */
+.progress-bar {
+    position: relative;
+    display: block;
+    width: 90%;
+    height: 20px;
+    border-radius: 4px;
+    margin: 20px auto;
+    background: #E6E7E8;
+}
+
+/* Set Bar Colors */
+.bar.blue {
+    background: #1570f4;
+}
+.bar.red {
+    background: #F1553A;
+}
+
+/* Set Bar Properties */
+.bar {
+    position: absolute;
+    display: block;
+    height: 100%;
+    background: #FCB31C;
+    border-radius: 4px;
+    /* jQuery uses the .progress-bar data-percentage attribute to modify the .bar width property */
+    width: 0%;
+}
+
+/* Set Label Properties*/
+.label {
+    position: absolute;
+    display: block;
+    padding: 0px 10px;
+    height: 29px;
+    line-height: 30px;
+    bottom: 31px;
+    background: #1570f4;
+    font-size: 12px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #fff;
+
+    border-radius: 3px;
+    white-space: nowrap;
+    /* jQuery animates the opacity property to fade in the label*/
+    opacity: 0;
+    /*
+    left:/right: properties are set by jQuery.
+    They depend on data-percentage attributes of each .progress-bar <div>
+    */
+}
+
+/*
+Set Arrow Properties
+(arrows are attached to <span> tag within .bar <div>)
+*/
+.bar span:after {
+    transition : all .5s linear;
+    position: absolute;
+    display: block;
+    content:"";
+    width: 10px;
+    height: 8px;
+    transform: rotate(45deg);
+    background: #1570f4;
+    bottom: 29px;
+    right: 0%
+}
+

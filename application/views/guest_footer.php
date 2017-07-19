@@ -69,6 +69,41 @@
         <script src="<?php echo base_url(); ?>comp/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>comp/js/slick.min.js"></script>
         <script src="<?php echo base_url(); ?>comp/js/main.js"></script>
+
+        <script>
+            $(function () {
+                $('.progress-bar').each(function () {
+                    var t = $(this);
+                    var barPercentage = t.data('percentage');
+
+                    // add a div for the label text
+                    t.children('.label').append('<div class="label-text"></div>');
+
+                    // add some "gimme" percentage when data-percentage is <2
+                    if (parseInt((t.data('percentage')), 10) < 2) barPercentage = 2;
+
+                    // set up the left/right label flipping
+                    if (barPercentage > 50) {
+                        t.children('.label').css("right", (100 - barPercentage) + '%');
+                        t.children('.label').css("margin-right", "-10px");
+                    }
+                    if (barPercentage < 51) {
+                        t.children('.label').css("left", barPercentage + '%');
+                        t.children('.label').css("margin-left", "-20px");
+                    }
+
+                    // fill in bars and labels
+                    t.find('.label-text').text(t.attr('data-percentage') + '%');
+                    t.children('.bar').animate({
+                        width: barPercentage + '%'
+                    }, 500);
+                    t.children('.label').animate({
+                        opacity: 1
+                    }, 1000);
+                });
+            });
+
+        </script>
     </body>
 </html>
 
