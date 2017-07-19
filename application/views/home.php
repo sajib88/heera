@@ -297,7 +297,7 @@
                                 <div class="col-md-12">
 
                                     <div class="country">
-                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@
                                 <div class="col-md-12">
 
                                     <div class="country">
-                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
@@ -421,7 +421,7 @@
                                 <div class="col-md-12">
 
                                     <div class="country">
-                                        <img src="http://localhost/heera/comp/img/india-flag.png" alt="india">
+                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
