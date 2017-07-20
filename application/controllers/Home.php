@@ -25,9 +25,9 @@ class Home extends CI_Controller {
 
     }
 
-    public function login() {
+    public function login($msg='') {
 
-        if (check_login()) {
+          if (check_login()) {
             redirect('profile/dashboard');
         }
         $data['page_title'] = 'Login';
@@ -41,18 +41,35 @@ class Home extends CI_Controller {
 
             if ($this->form_validation->run()) {
                 $email = $this->input->post('email');
+                $username = $this->input->post('email');
                 $password = $this->input->post('password');
-                $password = md5($password);
 
-                if ($this->login_model->login($email, $password)) {
-                    if ($this->login_model->login1($email, $password)) {
-                        $this->session->set_flashdata('success_login', 'You have successfully login.');
-                        $redirect_link = base_url() . 'profile/dashboard';
-                        redirect($redirect_link);
-                    } else {
-                        $data['error'] = 'Warning! You have not activated it yet Or Your account has either been blocked';
+                if($this->login_model->chechUser($email,$username)){
+
+                    if ($this->login_model->login($email, $password)) {
+                        if ($this->login_model->login($email, $password)) {
+                            $this->session->set_flashdata('msg', '<div class="alert alert-success" id="success-alert">'.'You have successfully logged in.'.'</div>');
+                            //$this->session->set_flashdata('success_login', 'You have successfully login.');
+                            $redirect_link = base_url() . 'profile/dashboard';
+                            redirect($redirect_link);
+                        } else {
+                            $data['error'] = 'Warning! You have not activated it yet Or Your account has either been blocked';
+                        }
                     }
-                } else {
+                    elseif ($this->login_model->login1($username, $password))
+                    {
+                        if ($this->login_model->login1($username, $password)) {
+                            $this->session->set_flashdata('msg', '<div class="alert alert-success" id="success-alert">'.'You have successfully logged in.'.'</div>');
+                           // $this->session->set_flashdata('success_login', 'You have successfully login.');
+                            $redirect_link = base_url() . 'profile/dashboard';
+                            redirect($redirect_link);
+                        } else {
+                            $data['error'] = 'Warning! You have not activated it yet Or Your account has either been blocked';
+                        }
+                    }
+
+                }
+                else {
                     $data['error'] = "Login Failed!! Invalid username or password. (Type anything)";
                 }
             } else {
