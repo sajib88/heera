@@ -370,10 +370,5 @@
             </ul>
         </section>
         <!-- /.sidebar -->
-        
-        
-        
-        <div class="menu_divider">&nbsp;</div>
-       
       </aside>
  

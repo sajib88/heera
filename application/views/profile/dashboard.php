@@ -15,6 +15,7 @@
     <section class="content">
     
         <!-- Page Content -->
+    <div class="row">        
         <div id="page-content">
             <div class="dash-head">
                <h1><img src="<?php echo base_url();?>backend/img/clock.PNG" >Lender page</h1>
@@ -64,6 +65,6 @@
                 </section>
             </div>
         </div>
- 
+    </div> 
     </section>
 </div>
