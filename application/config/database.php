@@ -76,15 +76,15 @@ $query_builder = TRUE;
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $userName = 'root';
-    $pass = 'root';
-    $database = 'doctor';
+    $pass = '';
+    $database = 'heera';
 } 
 
 $db['default'] = array(
     'dsn' => '',
     'hostname' => 'localhost',
     'username' => 'root',
-    'password' => 'root',
+    'password' => '',
     'database' => 'heera',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
