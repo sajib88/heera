@@ -114,3 +114,25 @@ time.blue_green { background-color: #148aa5 }
     border-right: 1px solid #eee;
     color: #fff;
 }
+
+.skin-black-light .sidebar-menu > li.header {background: #353F53;
+    color: #66738F;
+}
+
+
+.skin-black-light .wrapper, .skin-black-light .main-sidebar, .skin-black-light .left-side {background:#353F51;}
+.skin-black-light .sidebar-menu > li > a {
+    color: #A0ABBF; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;
+}
+.skin-black-light .sidebar-menu > li:hover > a, .skin-black-light .sidebar-menu > li.active > a {
+    background: #2F3949; color:#D9DDE3; border-left:4px solid #53A9DF;
+}
+
+.sidebar-menu > li > a > .fa {color:#A0ABBF; }
+.skin-black-light .main-header > .navbar > .sidebar-toggle {background:#353F53;}
+
+@media only screen and (max-width: 600px) {
+    .skin-black-light .main-header > .logo {border-bottom: 1px solid #eee; background: #fff;}
+
+}
+
