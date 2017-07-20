@@ -38,6 +38,26 @@ class Login_model extends CI_Model {
             return FALSE;
         }
     }
+    
+    function verify_recovery_by_username($recovery_key)
+    {
+        if($recovery_key=='')
+            return 0;
+        else
+        {
+            $query = $this->db->get_where('users',array('recovery_key'=>$recovery_key));
+            return $query;
+        }
+    }
+    
+    function update_password($password)
+    {
+        $this->load->library('encrypt');
+        $user_name = $this->session->userdata('user_name');
+        $data['password'] = md5($password);
+        $data['recovery_key'] = '';
+        $this->db->update('users',$data,array('user_name'=>$user_name));
+    }
 
 }
 

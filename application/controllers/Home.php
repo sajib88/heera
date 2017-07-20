@@ -7,6 +7,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model('login_model');
         $this->load->helper('global');
+        $this->load->library('encrypt');
     }
 
     public function index() {
@@ -67,6 +68,68 @@ class Home extends CI_Controller {
         $this->load->view('login', $data);
         $this->load->view('guest_footer');
     }
+    
+    #confirmation email link points here
+    public function confirm($code='')
+    {
+
+        $res = confirm_email($code);
+
+        if($res==TRUE)
+        {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">'.'Email Confirmed. Now You can login '.'</div>');
+            redirect(base_url('home/login'));
+        }
+        else
+        {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger">'.'Email Confirmed failed'.'</div>');
+            redirect(base_url('home/login'));
+        }
+    }
+    
+    #get web admin name and email for email sending
+    public function get_admin_email_and_name()
+    {
+
+        $data['admin_email'] = 'heera.org@gmail.com';
+        $data['admin_name']  = 'Heera.Org';
+
+        return $data;
+    }
+    
+    #send a confirmation email with confirmation link
+    public function send_confirmation_email($data=array())
+    {
+        $val = $this->get_admin_email_and_name();       
+        $admin_email = $val['admin_email'];
+        $admin_name  = $val['admin_name'];        
+
+        $link = base_url('home/confirm'.'/'.$data['confirmation_key']);
+
+
+        //$this->load->model('admin/system_model');
+        $tmpl = get_email_tmpl_by_email_name('confirmation_email');
+        $subject = $tmpl->subject;
+        $subject = str_replace("#username",$data['user_name'],$subject);
+        $subject = str_replace("#activationlink",$link,$subject);
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+        $subject = str_replace("#useremail",$data['email'],$subject);
+
+
+        $body = $tmpl->body;
+        $body = str_replace("#username",$data['user_name'],$body);
+        $body = str_replace("#activationlink",$link,$body);
+        $body = str_replace("#webadmin",$admin_name,$body);
+        $body = str_replace("#useremail",$data['email'],$body);
+
+
+        $this->load->library('email');
+        $this->email->from($admin_email, $subject);
+        $this->email->to($data['email']);
+        $this->email->subject('Sign Up');
+        $this->email->message($body);
+        $this->email->send();
+    }
 
     public function registration() {
 
@@ -84,9 +147,10 @@ class Home extends CI_Controller {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]|is_unique[users.email]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
             $this->form_validation->set_rules('conf', 'Confirm Password', 'trim|required|matches[password]');
-
+            //$this->form_validation->set_rules('g-recaptcha-response', 'recaptcha validation', 'required|callback_validate_captcha');
+            //$this->form_validation->set_message('validate_captcha', 'Please check the the captcha form');
             if ($this->form_validation->run() == true) {
-
+                
                 $save['profession'] = $this->input->post('profession');
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
@@ -94,21 +158,28 @@ class Home extends CI_Controller {
                 $save['email'] = $this->input->post('email');
                 $save['password'] = md5($this->input->post('password'));
 
-                if ($this->upload->do_upload('image')) {
-                    $fileInfo = $this->upload->data();
-                    $save['file_name'] = $fileInfo['file_name'];
-                }
+                $save['confirmation_key'] 	= uniqid();
+                $save['confirmed'] 	= 0;
+                $save['status']     = 1;
+                
+
+                // if ($this->upload->do_upload('image')) {
+                //     $fileInfo = $this->upload->data();
+                //     $save['file_name'] = $fileInfo['file_name'];
+                // }
 
                 if ($this->global_model->insert('users', $save)) {
-                    $this->load->library('email');
-                    $this->email->from('shahinalomcse@gmail.com', 'All Doctors');
-                    $this->email->to('shahinalomcse@gmail.com');
+                    /*$this->load->library('email');
+                    $this->email->from('sajib@osourcebd.com', 'All Doctors');
+                    $this->email->to('sajib@osourcebd.com');
                     $this->email->subject('Activation Link');
                     $this->email->message('This is activation link for active user.');
                     $this->email->send();
                     $this->session->set_flashdata('success', 'Your account has been created and an activation link has been sent to the email address you entered. Note that you must activate the account by selecting the activation link when you get the email before you can login.');
-                    $redirect_link = base_url() . 'home/login';
-                    redirect($redirect_link);
+                    $redirect_link = base_url() . 'home/login';*/
+
+                    $this->send_confirmation_email($save);
+                    $this->session->set_flashdata('msg', 'Email send Successfully');
                 } else {
                     $this->session->set_flashdata('success', 'Something worng please try again.');
                 }
@@ -182,6 +253,146 @@ class Home extends CI_Controller {
             }
         }
         $this->load->view('forget_password', $data);
+    }
+    
+   
+    #reset password email link points here
+    function resetpassword($recovery_key='')
+    {
+
+        $query = $this->login_model->verify_recovery_by_username($recovery_key);
+
+        if($query->num_rows()>0)
+
+        {
+            $row = $query->row();
+
+            $this->session->set_userdata('user_id',$row->id);
+
+            $this->session->set_userdata('email',$row->email);
+
+            $this->session->set_userdata('user_name',$row->user_name);
+
+            $this->session->set_userdata('profession',$row->profession);
+
+            $this->session->set_userdata('recovery',"yes");
+
+            redirect(base_url('home/changepass'));
+
+        }
+
+        else
+
+        {
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-block">'.'password recovery link invalid'.'</div>');
+
+            redirect(base_url('home/forgotpassword'));
+
+        }
+
+    }
+    
+    function _send_recovery_email($data)
+
+    {
+        $val = $this->get_admin_email_and_name();
+
+        $admin_email = $val['admin_email'];
+
+        $admin_name  = $val['admin_name'];
+
+        $link = base_url('home/resetpassword').'/'.$data['recovery_key'];
+
+
+
+        $tmpl = get_email_tmpl_by_email_name('recovery_email');
+
+        $subject = $tmpl->subject;
+
+        $subject = str_replace("#username",$data['user_name'],$subject);
+
+        $subject = str_replace("#recoverylink",$link,$subject);
+
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+
+
+        $body = $tmpl->body;
+
+        $body = str_replace("#username",$data['user_name'],$body);
+
+        $body = str_replace("#recoverylink",$link,$body);
+
+        $body = str_replace("#webadmin",$admin_name,$body);
+
+
+
+        $this->load->library('email');
+
+        $this->email->from($admin_email, $subject);
+
+        $this->email->to($data['email']);
+
+        $this->email->subject($subject);
+
+        $this->email->message($body);
+
+        $this->email->send();
+
+    }
+    
+    #load forgot password view
+    function forgotpassword()
+    {
+        $this->load->view('guest_head');
+        $this->load->view('forgotpass_view');
+        $this->load->view('guest_footer.php');
+    }
+    
+    public function recoverpassword(){
+        $this->form_validation->set_rules('user_email', 'Email', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            redirect(base_url('home/forgotpassword'));
+        }
+        else
+        {
+            $user_email = $this->input->post('user_email');
+            $val = set_recovery_key($user_email);
+            $this->_send_recovery_email($val);
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">'.'Email is send to your inbox.Check your email.'.'</div>');
+            redirect(site_url('home/login'));
+        }
+    }
+    
+    function changepass()
+    {
+        $this->load->view('guest_head');
+        $this->load->view('changepass_view');
+        $this->load->view('guest_footer.php');
+    }
+    
+    #update password function
+    function update_password()
+    {
+        if($this->session->userdata('recovery')!='yes')
+        $this->form_validation->set_rules('current_password', 'current_password', 'required|callback_currentpass_check');
+        $this->form_validation->set_rules('new_password', 'new_password', 'required|matches[re_password]');
+        $this->form_validation->set_rules('re_password', 'confirm_password', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->changepass();
+        }
+        else
+        {
+            $password = $this->input->post('new_password');
+            $this->login_model->update_password($password);
+            $this->session->set_userdata('recovery',"no");
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">'.'Password changed successfully'.'</div>');
+            redirect(base_url('home/login'));
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-
+<div id="page-content">
 <div class="content-wrapper">
     <section class="content-header">
       <h1>
@@ -10,7 +10,7 @@
         <li><a href="#">Profile</a></li>
         <li class="active">Edit</li>
       </ol>
-</section>
+    </section>
     
    <section class="content">
       <div class="row">
@@ -18,12 +18,13 @@
     </div>
     <!-- /.row -->
     <div class="row">
+        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo base_url('profile/profile/index'); ?>">
         <div class="col-lg-6 ">
             <div class="panel panel-default box box-primary">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" method="post" enctype="multipart/form-data" action="<?php echo base_url('profile/profile/index'); ?>">
+                            
                                 <h3>Basic Information</h3>
                                 <div class="form-group">
                                     <label>User Name</label>
@@ -172,6 +173,32 @@
                             <div class="col-lg-10">
                                 <h3 class="page-header">Update Your Profile <small>Picture Now</small></h3>
                             </div>
+                            
+                            <div class="col-sm-6 col-md-5 thumbnail">
+
+
+
+
+
+
+                                <?php
+                                if($user_info['profilepicture'] == 0) {?>
+                                    <img src="<?php echo base_url() . '/assets/user-demo.jpg'?>" alt="" class="img-rounded img-responsive" />
+                                <?php }
+                                else {?>
+                                    <div class="thumbnail">
+
+
+
+                                        <img src="<?php echo base_url() . '/assets/file/' .$user_info['profilepicture']; ?>" alt=""  class="img-circle img-responsive" />
+                                    </div>
+                                <?php }
+                                ?>
+
+
+
+                            </div>
+                            
             <div class="form-group" id="profilepicture">
                 <label>Your Profile picture Format <small> jpg,gif,png format </small></label>
                 <input name="profilepicture" type="file">
@@ -186,7 +213,7 @@
     </div>
     <!-- /.container-fluid -->
 </div>
-
+</div>
 
 <script>
 

@@ -252,4 +252,90 @@ if (!function_exists('getImage')) {
 }
 
 
+if (!function_exists('get_email_tmpl_by_email_name')) {
+
+    function get_email_tmpl_by_email_name($name)
+    {
+        $CI = &get_instance();
+        $query = $CI->db->get_where('emailtmpl',array('email_name'=>$name));
+        if($query->num_rows()>0)
+        {
+            $row = $query->row();
+            $values = json_decode($row->values);
+            return $values;
+        }
+        else
+        {
+            $values = array('subject'=>'Subject Not found','body'=>'body not found');
+        }
+        return $values;
+    }
+
+}
+
+
+
+if (!function_exists('confirm_email')) {
+
+    function confirm_email($code)
+    {
+        $CI = &get_instance();
+        //$email = base64_decode($email);
+        $query = $CI->db->get_where('users',array('confirmation_key'=>$code));
+        if($query->num_rows()>0)
+        {
+            $CI->load->helper('date');
+            $datestring = "%Y-%m-%d %h:%i:00";
+            $time = time();
+
+            $data['confirmed'] = 1;
+            /*$data['confirmed_date'] = mdate($datestring, $time);*/
+            $data['confirmation_key'] = '';
+            $CI->db->update('users',$data,array('confirmation_key'=>$code));
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+}
+
+
+if (!function_exists('uploadConfiguration')) {
+    function uploadConfiguration() {
+        $CI = &get_instance();
+        $CI->load->library('upload');
+        $config['upload_path'] = '/assets/file/';
+        $config['allowed_types'] = '*';
+        $config['overwrite'] = FALSE;
+        $config['remove_spaces'] = TRUE;
+
+        //$config['max_size'] = '51200000';
+        $config['file_name'] =time();
+//        $config['max_width'] = '1024';
+//        $config['max_height'] = '768';
+        $CI->upload->initialize($config);
+    }
+
+}
+
+
+if (!function_exists('set_recovery_key')) {
+    function set_recovery_key($email){
+        $CI = &get_instance();
+        $recovery_key = uniqid();
+        $CI->db->update('users',array('recovery_key'=>$recovery_key),array('email'=>$email));
+
+        $query = $CI->db->get_where('users',array('email'=>$email));
+        $data = $query->row_array();
+        $data['recovery_key'] = $recovery_key;
+        //echo '<pre>';print_r($data);die;
+        return $data;
+
+    }
+}
+
+
 ?>

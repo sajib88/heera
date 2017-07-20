@@ -17,7 +17,9 @@ class Dashboard extends CI_Controller {
         $data['page_title'] = 'Dashboard';
         $data['tabActive'] = 'dashboard';
         $data['error'] = '';
-
+        
+        $data['photos'] = $this->global_model->count_row_where('photos', array('ref_name' => 'image_album'));
+        
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 

@@ -650,6 +650,7 @@ border:1px solid #C1D1E5; padding:6px 9px 3px;
 
 .dash-widget{
     max-width: 32%;
+    margin-top: 20px;
 }
 
 .dash-head h1{
@@ -682,6 +683,12 @@ border:1px solid #C1D1E5; padding:6px 9px 3px;
 .navbar.navbar-inverse .divider-vertical{
     border-right-color: rgba(199, 199, 199, 0.51);
     border-left-color: rgb(235, 241, 245);
+}
+
+.round-img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 

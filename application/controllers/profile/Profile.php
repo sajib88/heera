@@ -17,11 +17,13 @@ class Profile extends CI_Controller {
         $data['page_title'] = 'Profile';
         $data['tabActive'] = 'profile';
         $data['error'] = '';
+        
+        $data['photos'] = $this->global_model->count_row_where('photos', array('ref_name' => 'image_album'));
+        
         $loginId = $this->session->userdata('login_id');
-
+          
         if ($this->input->post()) {
-
-
+          
             $this->form_validation->set_rules('first_name', 'first name', 'trim|required');
             $this->form_validation->set_rules('last_name', 'last name', 'required');
             $this->form_validation->set_rules('pls', 'pls', 'trim');
@@ -32,7 +34,6 @@ class Profile extends CI_Controller {
 
             if ($this->form_validation->run() == true) {
 
-
                if($this->input->post('password')!= 0)
                 {
                     $psw = $this->input->post('password');
@@ -40,8 +41,6 @@ class Profile extends CI_Controller {
                     $save['password'] = $convertet;
                 }
                 else {}
-
-
 
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');

@@ -22,8 +22,8 @@
                         <div  class="form-group">
                                                 <label>Selects Your Type </label>
                                                 <select name="profession" class="form-control">
-                                                    <option value="4">Lender</option>
-                                                    <option value="8">Borrower</option>
+                                                    <option value="1">Lender</option>
+                                                    <option value="2">Borrower</option>
 
                                                 </select>
                                             </div></br>

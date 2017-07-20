@@ -385,6 +385,17 @@ class Global_model extends CI_Model {
         }
         //return $query;
     }
+    
+    ///// WHERE WITH COUNT THE ROW---- >>>>
+    public function count_row_where($table, $where) {
+        $query = $this->db->get_where($table, $where);
+        if ($query->result()) {
+            return $query->num_rows();
+        } else {
+            return false;
+        }
+    }
+
 
 
 

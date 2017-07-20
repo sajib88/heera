@@ -78,7 +78,7 @@
         <script>!window.jQuery && document.write(unescape('%3Cscript src="../backend/js/vendor/jquery-1.9.1.min.js"%3E%3C/script%3E'));</script>
           
 
-        <script src="../backend/js/vendor/bootstrap.min.js"></script>
+        <script src="<?php echo base_url();?>/backend/js/vendor/bootstrap.min.js"></script>
 
         <!-- Jquery plugins and custom javascript code -->
         <script src="<?php echo base_url();?>/backend/js/plugins.js"></script>
@@ -98,9 +98,7 @@
 	   <script src="<?php echo base_url();?>/backend/js/moment.js"></script>
 	   <script src="<?php echo base_url();?>/backend/js/daterangepicker.js"></script>
            
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       
    
    
    
@@ -244,9 +242,9 @@
                 <!-- Add .dropdown-left-responsive class to align the dropdown menu left (so its visible on mobile) -->
                 <li id="messages-widget" class="dropdown dropdown-left-responsive">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-envelope"></i>
+                        <i class=""><img src="<?php echo base_url();?>backend/img/dash/notify.png" /></i>
                         <!-- If the <span> element with .badge class has no content it will disappear (not in IE8 and below because of using :empty in CSS) -->
-                        <span class="badge badge-success">1</span>
+                        <span class="badge badge-danger">1</span>
                     </a>
                     <ul class="dropdown-menu pull-right widget">
                         <li class="widget-heading"><i class="icon-comment pull-right"></i>Latest Messages</li>
@@ -290,68 +288,22 @@
                     </ul>
                 </li>
                 <!-- END Messages Widget -->
-
-                <!--<li class="divider-vertical"></li>-->
-
-                <!-- Notifications Widget -->
-                <!-- Add .dropdown-center-responsive class to align the dropdown menu center (so its visible on mobile) -->
-                <!--<li id="notifications-widget" class="dropdown dropdown-center-responsive">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-flag"></i>
-                        <span class="badge badge-danger">1</span>
-                        <span class="badge badge-warning">2</span>
-                    </a>
-                    <ul class="dropdown-menu pull-right widget">
-                        <li class="widget-heading"><a href="javascript:void(0)" class="pull-right widget-link"><i class="icon-cog"></i></a><a href="javascript:void(0)" class="widget-link">System</a></li>
-                        <li>
-                            <ul>
-                                <li class="label label-danger">20 min ago</li>
-                                <li class="text-danger">Support system is down for maintenance!</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li class="label label-warning">3 hours ago</li>
-                                <li class="text-warning">PHP upgrade started!</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li class="label label-warning">5 hours ago</li>
-                                <li class="text-warning"><a href="javascript:void(0)" class="widget-link">1 support ticket</a> just opened!</li>
-                            </ul>
-                        </li>
-                        <li class="widget-heading"><a href="javascript:void(0)" class="pull-right widget-link"><i class="icon-bookmark"></i></a><a href="javascript:void(0)" class="widget-link">Project #3</a></li>
-                        <li>
-                            <ul>
-                                <li class="label label-success">3 weeks ago</li>
-                                <li class="text-success">Project #3 <a href="javascript:void(0)" class="widget-link">published</a> successfully!</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li class="label label-info">1 month ago</li>
-                                <li class="text-info">Milestone #3 achieved!</li>
-                                <li class="text-info"><a href="javascript:void(0)" class="widget-link">John Doe</a> joined the project!</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li class="label label-default">1 year ago</li>
-                                <li class="text-muted">This is an old notification</li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="text-center"><a href="javascript:void(0)">View All Notifications</a></li>
-                    </ul>
-                </li>-->
-                <!-- END Notifications Widget -->
-
                 <li class="divider-vertical"></li>
 
                 <!-- User Menu -->
                 <li class="dropdown pull-right dropdown-user">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url();?>/backend/img/template/avatar.png" alt="avatar" class="avatar"><span>John Walter</span> <b class="caret"></b></a>
+                    
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        <?php
+                        if($user_info['profilepicture'] == 0) {?>
+                            <img src="<?php echo base_url();?>/backend/img/template/user-demo.jpg" alt="avatar" class="avatar">
+                        <?php }
+                        else {?>
+                            <img src="<?php echo base_url() . '/assets/file/' .$user_info['profilepicture']; ?>" alt="" width="160" class="user-image round-img" />
+                        <?php }
+                        ?>
+                        <span><?php echo $user_info['user_name']; ?></span> <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <!-- Just a button demostrating how loading of widgets could happen, check main.js- - uiDemo() -->
                         <li>
@@ -360,14 +312,14 @@
                         <li class="divider"></li>
                         <li>
                             <!-- Modal div is at the bottom of the page before including javascript code -->
-                            <a href="#modal-user-settings" role="button" data-toggle="modal"><i class="icon-user"></i> User Profile</a>
+                            <a href="<?php echo base_url('profile/profile/index'); ?>" role="button" data-toggle="modal"><i class="icon-user"></i> User Profile</a>
                         </li>
                         <li>
                             <a href="javascript:void(0)"><i class="icon-wrench"></i> App Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="index.php/logout"><i class="icon-lock"></i> Log out</a>
+                            <a href="<?php echo base_url();?>home/log_out"><i class="icon-lock"></i> Log out</a>
                         </li>
                     </ul>
                 </li>
@@ -381,7 +333,7 @@
 <!--            {account_content}-->
                 <!-- Sidebar -->
                 <aside id="page-sidebar" class="collapse navbar-collapse navbar-main-collapse">
-                	<a href="index.php/admin/dashboard"  class=""><img alt="" style="margin-left: 16px; margin-top: 15px;" src="<?php echo base_url();?>/backend/img/admin_logo.png"></a>
+                    <a href="<?php echo base_url();?>profile/dashboard"  class=""><img alt="" style="margin-left: 16px; margin-top: 15px;" src="<?php echo base_url();?>/backend/img/admin_logo.png"></a>
                     <!-- Sidebar search -->
                     <!--<form id="sidebar-search" action="page_search_results.html" method="post">
                         <div class="input-group">
