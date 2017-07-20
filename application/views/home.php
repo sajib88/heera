@@ -125,6 +125,7 @@
 
 <!--category with image-->
 <section class="content-wrapper">
+    <div class="right-bg">
     <div class="container">
         <!--category first 5 image start-->
         <div class="row">
@@ -253,7 +254,7 @@
 
 
     <!--get free with image-->
-    <div class="row ptop-50">
+    <div class="row ptop-50 ">
         <div class="col-md-6 col-md-offset-3 text-center">
             <h4>Heera.org does’t chnage any fees or commission and is a
                 one-to-one direct funding platform</h4>
@@ -482,7 +483,7 @@
 
 
 
-
+    </div>
 
 </section>
 

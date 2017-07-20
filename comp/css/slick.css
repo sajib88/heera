@@ -191,7 +191,7 @@
 }
 .right-header{
 
-    height: 850px;
+    height: 250px;
     background: url('../img/right-banner-bg.jpg') center center no-repeat scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -364,4 +364,13 @@ hr {
     margin-right: auto;
     border-style: inset;
     border-width: 0px;
+}
+
+
+.right-bg{
+    background-image: url('../img/banner-right.png');
+    background-position: center right;
+    background-repeat: no-repeat;
+
+
 }
