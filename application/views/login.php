@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-8">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
+
                         <li class="active">Login</li>
                     </ol>
                 </div>
@@ -18,7 +18,18 @@
         </div>
     </div>
     <!--breadcrumbs end-->
-        
+
+
+
+       <main class="main-wrapper">
+
+
+           <section class="content-wrapper">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-md-12 pdl">
+                           <div class="tab-wrapper row">
+
          <!--container start-->
                     <?php
                         if (!empty($error)) {
@@ -30,36 +41,44 @@
                         }
                         ?>
     <div class="login-bg">
-        <div class="container">
+        <div class="container  col-md-7 col-md-offset-3">
              
             <div class="form-wrapper">
                 <form class="form-signin wow fadeInUp" method="post" action="<?php echo base_url('home/login'); ?>" role="form"> 
-            <h2 class="form-signin-heading">sign in now</h2>
+            <h2 class="form-signin-heading">Sign in now !</h2>
             <div class="login-wrap">
                  <fieldset>
-                <input type="text" class="form-control" name="email" type="email" placeholder="Email ID" autofocus>
-                <input type="password" class="form-control"   name="password" placeholder="Password" type="password" value="">
-                <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
-                    <span class="pull-right">
+
+                     <div class="form-group mb-10">
+                     <label for="login">Email / username</label>
+                         <input type="text" class="form-control" name="email" type="email" placeholder="Email / username" autofocus>
+
+                     </div>
+
+                     <div class="form-group mb-10">
+                         <label for="login">Password</label>
+                         <input type="password" class="form-control"   name="password" placeholder="Password" type="password" value="">
+
+                     </div>
+
+
+
+                     <div class="form-group mb-10 pull-right">
+                     <label class="checkbox">
+                       <input type="checkbox" value="remember-me"> Remember me
+                     </div>
+                     <span class="pull-left">
                         <a data-toggle="modal" href="<?php echo base_url('home/forgotpassword'); ?>"> Forgot Password?</a>
 
                     </span>
                 </label>
-                 <input type="submit" class="btn btn-lg btn-login btn-block" name="submit" value="Login" >
-                     </fieldset>
-                <p>or you can sign in via social network</p>
-                <div class="login-social-link">
-                    <a href="#" class="facebook">
-                        <i class="fa fa-facebook"></i>
-                        Facebook
-                    </a>
-                    <a href="#" class="twitter">
-                        <i class="fa fa-twitter"></i>
-                        Twitter
-                    </a>
-                </div>
-                <div class="registration">
+                 <input type="submit" class="btn btn-big btn-primary btn-block" name="submit" value="Login" >
+
+
+                 </fieldset>
+
+                <br>
+                <div class="registration form-group mb-10 ">
                     Don't have an account yet?
                     <a class="" href="<?php echo base_url('home/registration'); ?>">
                         Create an account
@@ -95,8 +114,18 @@
           </div>
         </div>
     </div>
+
+
+
     <!--container end-->
 
-        
 
 
+                           </div>
+                       </div>
+
+                   </div>
+               </div><!--container-->
+           </section>
+
+       </main>
