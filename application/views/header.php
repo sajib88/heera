@@ -77,7 +77,7 @@
               <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i>
+                        <img src="<?php echo base_url();?>/backend/img/dash/notify.png" />
                         <span class="label label-warning"><?php echo (!empty($doctor_appointment))?count($doctor_appointment):""?></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -106,7 +106,7 @@
 
                     <?php
                     if($user_info['profilepicture'] == 0) {?>
-                    <img src="<?php echo base_url(); ?>assets/user-demo.jpg" alt="" class="user-image" />
+                    <img src="<?php echo base_url(); ?>assets/user-demo.png" alt="" class="user-image" />
                     <?php }
                     else {?>
                     <img src="<?php echo base_url() . '/assets/file/' .$user_info['profilepicture']; ?>" alt="" width="160" class="user-image" />
@@ -121,7 +121,8 @@
 
                     <?php
                    if($user_info['profilepicture'] == 0) {?>
-                    <img src="<?php echo base_url(); ?>assets/user-demo.jpg" alt="" class="img-circle" />
+                    <img src="<?php echo base_url(); ?>assets/user-demo.png" alt="" class="img-circle" />
+                    <p>Please Upload a profile picture</p>
                     <?php }
                     else {?>
                     <img src="<?php echo base_url() . '/assets/file/' .$user_info['profilepicture']; ?>" alt="" width="160" class="img-circle" />

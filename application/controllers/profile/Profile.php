@@ -26,7 +26,7 @@ class Profile extends CI_Controller {
           
             $this->form_validation->set_rules('first_name', 'first name', 'trim|required');
             $this->form_validation->set_rules('last_name', 'last name', 'required');
-            $this->form_validation->set_rules('middle_name', 'middle name', 'required');
+            $this->form_validation->set_rules('middle_name', 'middle name');
 //            $this->form_validation->set_rules('pls', 'pls', 'trim');
 //            $this->form_validation->set_rules('npi', 'npi', 'trim');
 //            $this->form_validation->set_rules('pln', 'pln', 'trim');
@@ -42,7 +42,7 @@ class Profile extends CI_Controller {
                     $save['password'] = $convertet;
                 }
                 else {}
-
+                
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
                 $save['middle_name'] = $this->input->post('middle_name');
@@ -70,9 +70,7 @@ class Profile extends CI_Controller {
                     $this->global_model->insert('photos', $audo_data);
 
                     $save['profilepicture'] = $audo_data['name'];
-
                 }
-
                 if ($this->global_model->update('users', $save, array('id' => $loginId))) {
                     $this->session->set_flashdata('message', 'Update Success');
                     redirect('profile/profile');
@@ -81,7 +79,9 @@ class Profile extends CI_Controller {
                 echo validation_errors();
             }
         }
-
+        
+        
+        
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $countryInfo = $this->global_model->get_data('countries', array('id' => $data['user_info']['country']));
         $data['states'] = $this->global_model->get('states', array('country_id' => $countryInfo['id']));
