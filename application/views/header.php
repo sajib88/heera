@@ -77,7 +77,7 @@
               <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo base_url();?>/backend/img/dash/notify.png" />
+                        <img width="17" height="17" src="<?php echo base_url();?>/backend/img/dash/notify.png" />
                         <span class="label label-warning"><?php echo (!empty($doctor_appointment))?count($doctor_appointment):""?></span>
                     </a>
                     <ul class="dropdown-menu">

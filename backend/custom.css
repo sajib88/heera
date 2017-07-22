@@ -211,3 +211,11 @@ time.blue_green { background-color: #148aa5 }
 /* update profile css */
 
 
+.info-box-dash span img{ padding-left: 20px; padding-top: 20px;}
+.info-box-dash .info-box-content{ padding: 7px 9px;
+    margin-left: 131px;
+}
+.info-box-dash {min-height: 135px;}
+.info-box-dash h2{margin-top: 12px;
+    margin-bottom: 0px;
+}
