@@ -5,24 +5,24 @@
     <title> Heera.org : <?php echo!empty($page_title) ? $page_title : ''; ?> </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <link href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- FontAwesome 4.3.0 -->
     <link href="<?php echo base_url(); ?>backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url(); ?>backend/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>backend/dist/css/skins/skin-green-light.css" rel="stylesheet" type="text/css" />
 
 
     <link href="<?php echo base_url(); ?>backend/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-      
+
     <link href="<?php echo base_url(); ?>backend/custom.css" rel="stylesheet" type="text/css" />
        <!-- Time pick Css-->
-    
+
      <!-- jQuery UI 1.11.2 -->
     <!-- <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -41,7 +41,7 @@
     <script src="<?php echo base_url(); ?>backend/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="<?php echo base_url(); ?>backend/plugins/timepicker/bootstrap-timepicker.min.js"></script>
       <!-- jquery DATE + TIME -->
-  
+
     </head>
 
   <body class="skin-black-light sidebar-mini">
@@ -64,7 +64,7 @@
 
           // $this->load->database();
           // $this->load->model('global_model');
-            
+
           //   $loginId = $this->session->userdata('login_id');
           //   $data['doctor_appointment'] = $this->global_model->get('appointment', array('doctor_id' => $loginId, 'date' => date("Y-m-d")));
           //   echo '<pre>';
@@ -161,13 +161,14 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
                   </a>
                 </li>
-                
+
                 <?php if($user_info['profession'] == 1){?>
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
-                  </a>               
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>All Projects</a>
@@ -175,14 +176,15 @@
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
-                    </ul>                
+                    </ul>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-credit-card"></i>
                     <span>Payments</span>
-                  </a>               
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Transactions</a>
@@ -196,20 +198,21 @@
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Payment Methods</a>
                         </li>
-                    </ul>                
+                    </ul>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-list"></i>
                     <span>Repayment Schedule</span>
-                  </a>            
+                  </a>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="event"){echo "active";}?>">
                     <a href="#">
                       <i class="fa fa-cog"></i>
                       <span>Settings</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
 
                           <ul class="treeview-menu">
@@ -222,21 +225,21 @@
                           </ul>
 
                  </li>
-                 
+
                 <li class="treeview">
                         <a href="<?php echo base_url('/home/log_out'); ?>" >
-                        <i class="fa fa-sign-out text-red"></i>
+                        <i class="fa fa-sign-out "></i>
                         <span>Logout</span>
                     </a>
                 </li>
                 <?php } ?>
-                
+
                 <?php if($user_info['profession'] == 2){?>
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
-                  </a>               
+                  </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>My Projects</a>
@@ -250,28 +253,28 @@
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Closed</a>
                         </li>
-                    </ul>                
+                    </ul>
                 </li>
-                
+
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-list"></i>
                     <span>Repayment Schedule</span>
-                  </a>            
+                  </a>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-credit-card"></i>
                     <span>Payments</span>
-                  </a>               
+                  </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Transactions</a>
                         </li>
-                    </ul>                
+                    </ul>
                 </li>
-                
+
                 <li class="treeview <?php if($this->uri->segment(2)=="event"){echo "active";}?>">
                     <a href="#">
                       <i class="fa fa-cog"></i>
@@ -286,7 +289,7 @@
                          </li>
                     </ul>
                  </li>
-                 
+
                 <li class="treeview">
                         <a href="<?php echo base_url('/home/log_out'); ?>" >
                         <i class="fa fa-sign-out text-red"></i>
@@ -294,13 +297,13 @@
                     </a>
                 </li>
                 <?php } ?>
-                
+
                 <?php if($user_info['profession'] == 3){?>
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
-                  </a>               
+                  </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Open Projects</a>
@@ -320,30 +323,30 @@
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>New Project</a>
                         </li>
-                    </ul>                
+                    </ul>
                 </li>
-                
+
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-user-secret"></i>
                     <span>Lenders</span>
-                  </a>            
+                  </a>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-user-secret"></i>
                     <span>Borrowers</span>
-                  </a>               
+                  </a>
                 </li>
-                
+
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-credit-card"></i>
                     <span>Billing</span>
-                  </a>               
+                  </a>
                 </li>
-                
+
                 <li class="treeview <?php if($this->uri->segment(2)=="event"){echo "active";}?>">
                     <a href="#">
                       <i class="fa fa-cog"></i>
@@ -358,10 +361,10 @@
                          </li>
                     </ul>
                  </li>
-                 
+
                 <li class="treeview">
                         <a href="<?php echo base_url('/home/log_out'); ?>" >
-                        <i class="fa fa-sign-out text-red"></i>
+                        <i class="fa fa-sign-out "></i>
                         <span>Logout</span>
                     </a>
                 </li>
@@ -371,4 +374,3 @@
         </section>
         <!-- /.sidebar -->
       </aside>
- 

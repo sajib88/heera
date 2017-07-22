@@ -120,7 +120,10 @@ time.blue_green { background-color: #148aa5 }
 }
 
 
-.skin-black-light .wrapper, .skin-black-light .main-sidebar, .skin-black-light .left-side {background:#353F51;}
+.skin-black-light .wrapper, .skin-black-light .main-sidebar, .skin-black-light .left-side
+{
+    background:#353F51;
+}
 .skin-black-light .sidebar-menu > li > a {
     color: #A0ABBF; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;
 }
@@ -131,8 +134,19 @@ time.blue_green { background-color: #148aa5 }
 .sidebar-menu > li > a > .fa {color:#A0ABBF; }
 .skin-black-light .main-header > .navbar > .sidebar-toggle {background:#353F53;}
 
+/*CSS sub nav*/
+.skin-black-light .sidebar-menu > li > .treeview-menu {background:#353F53;}
+.skin-black-light .treeview-menu > li > a {color: #A0ABBF; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;}
+.skin-black-light .treeview-menu > li:hover > a, .skin-black-light .treeview-menu > li.active > a {
+    background: #2F3949; color:#D9DDE3;
+}
+
+/*CSS header*/
+.skin-black-light .content-header {padding: 30px 15px 30px 25px; background: #fff; border-bottom: 1px solid #eee }
+.content-wrapper, .right-side { background: #EBF1F5;}
+/*CSS FOR MOBILE*/
 @media only screen and (max-width: 600px) {
     .skin-black-light .main-header > .logo {border-bottom: 1px solid #eee; background: #fff;}
 
 }
-
+/*CSS FOR MOBILE*/

@@ -108,8 +108,8 @@ class Home extends CI_Controller {
     public function get_admin_email_and_name()
     {
 
-        $data['admin_email'] = 'heera.org@gmail.com';
-        $data['admin_name']  = 'Heera.Org';
+        $data['admin_email'] = 'info@advertbd.com';
+        $data['admin_name']  = 'Heera organization';
 
         return $data;
     }
@@ -186,14 +186,14 @@ class Home extends CI_Controller {
                 // }
 
                 if ($this->global_model->insert('users', $save)) {
-                    /*$this->load->library('email');
+                    $this->load->library('email');
                     $this->email->from('sajib@osourcebd.com', 'All Doctors');
                     $this->email->to('sajib@osourcebd.com');
                     $this->email->subject('Activation Link');
                     $this->email->message('This is activation link for active user.');
                     $this->email->send();
                     $this->session->set_flashdata('success', 'Your account has been created and an activation link has been sent to the email address you entered. Note that you must activate the account by selecting the activation link when you get the email before you can login.');
-                    $redirect_link = base_url() . 'home/login';*/
+                    $redirect_link = base_url() . 'home/login';
 
                     $this->send_confirmation_email($save);
                     $this->session->set_flashdata('msg', 'Email send Successfully');
