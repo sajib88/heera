@@ -26,11 +26,12 @@ class Profile extends CI_Controller {
           
             $this->form_validation->set_rules('first_name', 'first name', 'trim|required');
             $this->form_validation->set_rules('last_name', 'last name', 'required');
-            $this->form_validation->set_rules('pls', 'pls', 'trim');
-            $this->form_validation->set_rules('npi', 'npi', 'trim');
-            $this->form_validation->set_rules('pln', 'pln', 'trim');
+            $this->form_validation->set_rules('middle_name', 'middle name', 'required');
+//            $this->form_validation->set_rules('pls', 'pls', 'trim');
+//            $this->form_validation->set_rules('npi', 'npi', 'trim');
+//            $this->form_validation->set_rules('pln', 'pln', 'trim');
             $this->form_validation->set_rules('gender', 'gender', 'trim');
-            $this->form_validation->set_rules('phone', 'phone', 'trim');
+            $this->form_validation->set_rules('address', 'address', 'trim');
 
             if ($this->form_validation->run() == true) {
 
@@ -44,15 +45,19 @@ class Profile extends CI_Controller {
 
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
-                $save['plc'] = $this->input->post('plc');
-                $save['pls'] = $this->input->post('pls');
-                $save['npi'] = $this->input->post('npi');
-                $save['pln'] = $this->input->post('pln');
+                $save['middle_name'] = $this->input->post('middle_name');
+//                $save['plc'] = $this->input->post('plc');
+//                $save['pls'] = $this->input->post('pls');
+//                $save['npi'] = $this->input->post('npi');
+//                $save['pln'] = $this->input->post('pln');
                 $save['gender'] = $this->input->post('gender');
                 $save['country'] = $this->input->post('country');
                 $save['state'] = $this->input->post('state');
                 $save['city'] = $this->input->post('city');
                 $save['phone'] = $this->input->post('phone');
+                $save['dateofbirth'] = $this->input->post('dateofbirth');
+                $save['address'] = $this->input->post('address');
+                $save['aboutme'] = $this->input->post('aboutme');
 
 
                 uploadConfiguration();
