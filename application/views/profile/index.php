@@ -1,7 +1,3 @@
-<style type="text/css">
-    
-</style>
-
 <div id="page-content">
 <div class="content-wrapper">
     <section class="content-header">

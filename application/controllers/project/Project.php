@@ -148,7 +148,7 @@ class Project extends CI_Controller {
         //$data['main_cat'] = $this->global_model->get('classified_main_cat');
         $data['login_id'] = $loginId;
         $this->load->view('header', $data);
-        $this->load->view('products/add', $data);
+        $this->load->view('project/add', $data);
         $this->load->view('footer');
 
 
