@@ -44,38 +44,147 @@
         <?php echo form_error('name');?>
     </div>
 </div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <?php $v = (set_value('description')!='')?set_value('description'):'';?>
-        <label>Description<span class="error">*</span></label>
-        <textarea  name="description" class="form-control"><?php echo $v?></textarea>
-        <?php echo form_error('description');?>
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Type<span class="error">*</span></label><span id='type-error' class='error' for='type'></span>
 
-        <?php $types = array('For Sales','Exchange','Free','Urgent');?>
-        <select name="type" class="form-control chosen-select" id="type">
-            <option value="">Select Type</option>
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Purpose<span class="error">*</span></label><span id='type-error' class='error' for='type'></span>
+
+        <?php $types = array('1','2','3','4');?>
+        <select name="purposeID" class="form-control chosen-select" id="type">
+            <option value="">Select Purpose Type</option>
             <?php foreach ($types as $row) {?>
                 <option value="<?php echo $row;?>"><?php echo $row?></option>
             <?php }?>
         </select>
     </div>
 </div>
+
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Price<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
-        <input type="number" name="price"  class="form-control" id="price">
+        <?php $v = (set_value('short Description')!='')?set_value('shortDescription'):'';?>
+        <label>Short Description<span class="error">*</span></label>
+        <textarea  name="shortDescription" class="form-control"><?php echo $v?></textarea>
+        <?php echo form_error('shortDescription');?>
+    </div>
+</div>
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <?php $v = (set_value('detailsDescription')!='')?set_value('detailsDescription'):'';?>
+        <label>Details Description<span class="error">*</span></label>
+        <textarea  name="detailsDescription" class="form-control"><?php echo $v?></textarea>
+        <?php echo form_error('detailsDescription');?>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group" id="photo_id">
+        <label>Upload Image<span class="error">*</span></label><span id='picture1-error' class='error' for='picture1'></span>
+        <input class="btn btn-default" name="photo_primary" type="file">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group" id="photo_id">
+       <h2><label>Lending</label></h2>
     </div>
 </div>
 
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Special Price<span class="error">*</span></label><span id='special-price-error' class='error' for='special_price'></span>
-        <input type="number" name="special_price"  class="form-control"  id="special_price">
+        <label>Credit Score<span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+        <?php $types2 = array('A','A+','B','C','Y');?>
+        <select name="creditScore" class="form-control chosen-select" id="type">
+            <option value="">Select Credit Score</option>
+            <?php foreach ($types2 as $row) {?>
+                <option value="<?php echo $row;?>"><?php echo $row?></option>
+            <?php }?>
+        </select>
+    </div>
+</div>
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Loan Term<span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+        <?php $types3 = array('1 Year','2 Year','3 Year','4 Year','5 Year');?>
+        <select name="loanTerm" class="form-control chosen-select" id="type">
+            <option value="">Select Loan Term</option>
+            <?php foreach ($types3 as $row) {?>
+                <option value="<?php echo $row;?>"><?php echo $row?></option>
+            <?php }?>
+        </select>
+    </div>
+</div>
+
+
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+            <?php $types3 = array('1','2','3','4','5');?>
+            <select name="RepaymentScheduleID" class="form-control chosen-select" id="type">
+                <option value="">Select Loan Term</option>
+                <?php foreach ($types3 as $row) {?>
+                    <option value="<?php echo $row;?>"><?php echo $row?></option>
+                <?php }?>
+            </select>
+        </div>
+    </div>
+
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Needed Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
+        <input type="number" name="neededAmount"   step="0.01" class="form-control" id="neededAmount">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+        <?php $types4 = array('9','8','7','6','5');?>
+        <select name="paymentMethodID" class="form-control chosen-select" id="type">
+            <option value="">Select Loan Term</option>
+            <?php foreach ($types4 as $row) {?>
+                <option value="<?php echo $row;?>"><?php echo $row?></option>
+            <?php }?>
+        </select>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Interest Rate<span class="error">*</span></label><span id='special-price-error' class='error' for='special_price'></span>
+        <input type="number" name="interestRate"  class="form-control"  id="special_price">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
+
+        <input name="projectEndDate" type="text" class="form-control" id="datepicker">
+    </div>
+</div>
+
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label> Address 1</label>
+        <input name="address1" value="<?php echo '';?>"  class="form-control">
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="form-group">
+        <label> Address 2</label>
+        <input name="address2" value="<?php echo ''; ?>"  class="form-control">
     </div>
 </div>
 
@@ -111,80 +220,114 @@
 </div>
 <div class="col-lg-12">
     <div class="form-group">
-        <label>zip</label>
-        <input name="zip" value="<?php echo ''; ?>"  class="form-control">
+        <label>Feed URL</label>
+        <input name="feedURL" value="<?php echo ''; ?>"  class="form-control">
     </div>
 </div>
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Seller Address 1</label>
-        <input name="seller_address1" value="<?php echo '';?>"  class="form-control">
+        <label>Video URL</label>
+        <input name="videoURL" value="<?php echo ''; ?>"  class="form-control">
     </div>
 </div>
+
+
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Seller Address 2</label>
-        <input name="seller_address2" value="<?php echo ''; ?>"  class="form-control">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Seller Name</label>
-        <input name="seller_name" value="<?php echo '';?>" class="form-control" >
+        <label>Monthly Income<span class="error">*</span></label><span id='monthlyIncome-price-error' class='error' for='monthlyIncome'></span>
+        <input type="number" name="monthlyIncome"  class="form-control"  id="monthlyIncome">
     </div>
 </div>
 
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Seller Email</label>
-        <input name="seller_email" value="<?php echo '';?>" class="form-control" >
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Seller Website</label>
-        <input name="seller_website" value="<?php echo '';?>" class="form-control" >
+        <label>Total Expensese<span class="error">*</span></label><span id='totalExpenses-price-error' class='error' for='totalExpenses'></span>
+        <input type="number" name="totalExpenses"  class="form-control"  id="totalExpenses">
     </div>
 </div>
 
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Seller Phone</label>
-        <input name="seller_phone" type="tel" value="<?php echo '';?>" class="form-control" >
-    </div>
-</div>
+        <label>Home Ownership</label>
 
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Seller Fax</label>
-        <input name="seller_fax" value="<?php echo ''; ?>" class="form-control">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Profession<span class="error">*</span></label><span id='profession_view-error' class='error' for='profession_view'></span>
-        <select multiple name="profession_view[]" class="selectpicker form-control">
-            <option value="">All Profession</option>
-            <?php
-            if (is_array($profession)) {
-                foreach ($profession as $row) {
-                    ?>
-                    <option  value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
-                <?php
-                }
-            }
-            ?>
+        <?php $types4 = array('yes','no');?>
+        <select name="homeOwnership" class="form-control chosen-select" id="type">
+            <option value="">Select Loan Term</option>
+            <?php foreach ($types4 as $row) {?>
+                <option value="<?php echo $row;?>"><?php echo $row?></option>
+            <?php }?>
         </select>
     </div>
-
 </div>
+
 <div class="col-lg-12">
-    <div class="form-group" id="photo_id">
-        <label>Picture One<span class="error">*</span></label><span id='picture1-error' class='error' for='picture1'></span>
-        <input class="btn btn-default" name="photo_primary" type="file">
+    <div class="form-group">
+        <label>Length Of Employment</label>
+        <input type="number" name="lengthOfEmployment" value="<?php echo '';?>" class="form-control" >
     </div>
 </div>
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Debt To Income<span class="error">*</span></label><span id='debtToIncome-error' class='error' for='debtToIncome'></span>
+        <input type="number" name="debtToIncome"  class="form-control"  id="debtToIncome">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Employment Self Employment</label>
+        <input name="employmentSelfemployment" value="<?php echo '';?>" class="form-control" >
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Monthly Expenses<span class="error">*</span></label><span id='monthlyExpenses-error' class='error' for='monthlyExpenses'></span>
+        <input type="number" name="monthlyExpenses"  class="form-control"  id="monthlyExpenses">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Other Loan Repayment</label>
+        <input type="number" name="otherLoanRepayment"  class="form-control"  id="otherLoanRepayment">
+    </div>
+</div>
+
+
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Transport Charge</label>
+        <input type="number" name="transportCharge"  class="form-control"  id="transportCharge">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Insurance</label>
+        <input type="number" name="insurance"  class="form-control"  id="insurance" >
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Courses School Fees</label>
+        <input type="number" name="coursesSchoolFees"  class="form-control"  id="coursesSchoolFees">
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>TaxNIProvisions</label>
+        <input type="number" name="TaxNIProvisions"  class="form-control"  id="TaxNIProvisions">
+    </div>
+</div>
+
+
+
 <div class="col-lg-12">
     <div class="form-group">
         <label>Picture Two</label><span id='picture2-error' class='error' for='picture2'></span>
@@ -312,36 +455,61 @@
             name: {
                 required:true
             },
-            main_category:{
+            purposeID:{
                 required:true
             },
-            description:{
-                required:true
-            },
-            'profession_view[]':{
-                required:true
-            },
-            category:{
+            shortDescription:{
                 required:true
             },
 
-            type:{
+            creditScore:{
+               required:true
+              },
+
+            loanTerm:{
                 required:true
             },
+            RepaymentScheduleID:{
+                required:true
+            },
+            paymentMethodID:{
+                required:true
+            },
+
+
             country:{
                 required:true
             },
-            price:{
+            neededAmount:{
                 required:true,
                 number: true
             },
-            special_price:{
+            interestRate:{
                 required:true,
                 number: true
             },
+            monthlyIncome:{
+                required:true,
+                number: true
+            },
+
+            totalExpenses:{
+                required:true,
+                number: true
+            },
+
+            debtToIncome:{
+                required:true,
+                number: true
+            },
+
             city:{
                 required:true
 
+            },
+
+            monthlyExpenses:{
+                number: true
             },
 
 
@@ -375,32 +543,45 @@
         },
         messages:{
             name: {
-                required: "Product Name is Required",},
-
-            description: {
-                required: "Description is Required",},
-
-            category: {
-                required: "Classified Category is Required",},
-
-            type: {
-                required: "Type  is Required",
+                required: "Project Name is Required",
             },
+
+
+            shortDescription: {
+                required: "Short Description is Required",
+            },
+
 
             country: {
-                required: "Product Country is Required",
+                required: "Project Country is Important !",
             },
-            price: {
-                required: "Price is Required, 0-9 Number digit only allow",
+            neededAmount: {
+                required: "Needed Amount is Required, 0-9 Number digit only allow",
             },
             city: {
                 required: "City is Required",
             },
 
 
-            special_price: {
-                required: "Special Price is Required, 0-9 Number digit only allow",
+            interestRate: {
+                required: "Interest Rate Price is Required, 0-9 Number digit only allow",
             },
+
+            monthlyIncome: {
+                required: "Total Expenses is Required, 0-9 Number digit only allow",
+            },
+
+            totalExpenses: {
+                required: "Total Expenses is Required, 0-9 Number digit only allow",
+            },
+            debtToIncome: {
+                required: "Debt To Income is Required, 0-9 Number digit only allow",
+            },
+            monthlyExpenses: {
+                required: "0-9 Number digit only allow",
+            },
+
+
             'photo_primary':{
                 required : "<p class='text-danger'>Please upload atleast 1 photo</p>",
                 extension:"Only Image Format  file is allowed!"
@@ -430,25 +611,26 @@
 
 </script>
 
-<script>
+
+<script type="text/javascript">
 
 
-
-    function getSubCat(sel) {
-        var value = sel.value;
-        var base_url = '<?php echo base_url() ?>';
-        var da = {state: value};
-        $.ajax({
-            type: 'POST',
-            url: base_url + "classifieds/classifieds/getSubCatByAjax",
-            data: da,
-            dataType: "text",
-            success: function(resultData) {
-                $("#subcat").html(resultData);
-            }
+    jQuery(document).ready(function() {
+        //Date picker
+        $('#datepicker2').datepicker({
+            autoclose: true
+        });
+        $('#datepicker').datepicker({
+            autoclose: true
         });
 
-    }
+    });
+
+
+
+</script>
+
+<script>
 
     function getComboA(sel) {
         var value = sel.value;
@@ -456,7 +638,7 @@
         var da = {state: value};
         $.ajax({
             type: 'POST',
-            url: base_url + "public_web/publicweb/getStateByAjax",
+            url: base_url + "profile/profile/getStateByAjax",
             data: da,
             dataType: "text",
             success: function(resultData) {
