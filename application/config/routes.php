@@ -79,3 +79,8 @@ $route['ces/detail/(:any)'] = 'ces/ces_controller/detail/$1';
 
 //Public Search
 $route['publicsearch'] = 'doctor/docController/publicSearch';
+
+///// Projects
+$route['Project/project_details'] = 'Project/project/project_details';
+$route['Project/create'] = 'Project/project/create';
+$route['Project/allces'] = 'Project/project/allces';
