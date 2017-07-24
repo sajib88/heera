@@ -17,10 +17,10 @@
     <div class="col-lg-10">
         <div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success! New product  Add successfully.</strong>
+            <strong>Success! New Project  Add successfully.</strong>
         </div>
     </div>
-<?php } ?>
+<?php } $this->session->unset_userdata('message'); ?>
 
 <section class="content">
 <div class="row">
@@ -47,14 +47,20 @@
 
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Purpose<span class="error">*</span></label><span id='type-error' class='error' for='type'></span>
-
-        <?php $types = array('1','2','3','4');?>
-        <select name="purposeID" class="form-control chosen-select" id="type">
-            <option value="">Select Purpose Type</option>
-            <?php foreach ($types as $row) {?>
-                <option value="<?php echo $row;?>"><?php echo $row?></option>
-            <?php }?>
+        <label>Purpose<span class="error">*</span></label><span id='purposeID-error' class='error' for='purposeID'></span>
+        <select name="purposeID" id="purposeID" class="form-control">
+            <option value="">Select Please</option>
+            <?php
+            if (is_array($purpose)) {
+                foreach ($purpose as $purpose) {
+                    $sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
+                    ?>
+                    <option  value="<?php echo $purpose->purposeID; ?>" <?php echo $sel;?> ><?php echo $purpose->purposeTitle; ?></option>
+                <?php
+                }
+            }
+            ?>
+            <?php echo form_error('purposeID');?>
         </select>
     </div>
 </div>
@@ -110,7 +116,7 @@
     <div class="form-group">
         <label>Loan Term<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-        <?php $types3 = array('1 Year','2 Year','3 Year','4 Year','5 Year');?>
+        <?php $types3 = array('1 Year','2 Years','3 Years','4 Years','5 Years');?>
         <select name="loanTerm" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
             <?php foreach ($types3 as $row) {?>
@@ -125,13 +131,22 @@
         <div class="form-group">
             <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-            <?php $types3 = array('1','2','3','4','5');?>
-            <select name="RepaymentScheduleID" class="form-control chosen-select" id="type">
-                <option value="">Select Loan Term</option>
-                <?php foreach ($types3 as $row) {?>
-                    <option value="<?php echo $row;?>"><?php echo $row?></option>
-                <?php }?>
+            
+            
+            <select onchange="getComboA(this)" name="RepaymentScheduleID" id="RepaymentScheduleID" class="form-control">
+            <option value="">Select Please</option>
+            <?php
+            if (is_array($repaymentschedule)) {
+                foreach ($repaymentschedule as $repaymentschedule) {
+                    $sel = ($repaymentschedule->repaymentScheduleID == set_value('RepaymentScheduleID'))?'selected="selected"':'';
+                    ?>
+                    <option  value="<?php echo $repaymentschedule->repaymentScheduleID; ?>" <?php echo $sel;?> ><?php echo $repaymentschedule->repaymentScheduleTitle; ?></option>
+                <?php
+                }
+            }
+            ?>
             </select>
+            <?php echo form_error('RepaymentScheduleID');?>
         </div>
     </div>
 
@@ -148,10 +163,10 @@
     <div class="form-group">
         <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-        <?php $types4 = array('9','8','7','6','5');?>
+        <?php $typespmth = array('Fixed Funding','Flexible Funding');?>
         <select name="paymentMethodID" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
-            <?php foreach ($types4 as $row) {?>
+            <?php foreach ($typespmth as $row) {?>
                 <option value="<?php echo $row;?>"><?php echo $row?></option>
             <?php }?>
         </select>
@@ -192,7 +207,7 @@
     <div class="form-group">
         <label>Country<span class="error">*</span></label>
         <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
-            <option value="">Select</option>
+            <option value="">Select Please</option>
             <?php
             if (is_array($countries)) {
                 foreach ($countries as $country) {
@@ -250,7 +265,7 @@
     <div class="form-group">
         <label>Home Ownership</label>
 
-        <?php $types4 = array('yes','no');?>
+        <?php $types4 = array('Yes','No');?>
         <select name="homeOwnership" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
             <?php foreach ($types4 as $row) {?>

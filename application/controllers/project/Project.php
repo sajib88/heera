@@ -57,7 +57,8 @@ class Project extends CI_Controller {
                 $save['neededAmount'] = $postData['neededAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
-                $save['projectEndDate'] = $postData['projectEndDate'];
+                $date = date('Y-m-d', strtotime($postData['projectEndDate']));
+                $save['projectEndDate'] = $date;                
                 $save['address1'] = $postData['address1'];
                 $save['address2'] = $postData['address2'];
                 $save['city'] = $postData['city'];
@@ -90,7 +91,55 @@ class Project extends CI_Controller {
                 }
                 else {
 
-                }  
+                }
+                
+                if (isset($_FILES["photo_1"]["name"]) && $_FILES["photo_1"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo_1'] = $this->resizeimg->image_upload('photo_1', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo_2"]["name"]) && $_FILES["photo_2"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo_2'] = $this->resizeimg->image_upload('photo_2', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo_3"]["name"]) && $_FILES["photo_3"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo_3'] = $this->resizeimg->image_upload('photo_3', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo_4"]["name"]) && $_FILES["photo_4"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo_4'] = $this->resizeimg->image_upload('photo_4', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
                 
                 // print '<pre>';
                 // print_r($save);die;
@@ -105,6 +154,8 @@ class Project extends CI_Controller {
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
+        $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
         //$data['main_cat'] = $this->global_model->get('classified_main_cat');
         $data['login_id'] = $loginId;
         $this->load->view('header', $data);
@@ -146,7 +197,8 @@ class Project extends CI_Controller {
                 $save['neededAmount'] = $postData['neededAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
-                $save['projectEndDate'] = $postData['projectEndDate'];
+                $date = date('Y-m-d', strtotime($postData['projectEndDate']));
+                $save['projectEndDate'] = $date;
                 $save['address1'] = $postData['address1'];
                 $save['address2'] = $postData['address2'];
                 $save['city'] = $postData['city'];
@@ -197,7 +249,8 @@ class Project extends CI_Controller {
         $data['countries'] = $this->global_model->get('countries');
         $data['states'] = $this->global_model->get('states');
         $data['profession'] = $this->global_model->get('profession');
-        //$data['main_cat'] = $this->global_model->get('classified_main_cat');
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
+        $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
         $data['login_id'] = $loginId;
         $this->load->view('header', $data);
         $this->load->view('project/edit', $data);

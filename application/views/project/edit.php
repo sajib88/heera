@@ -17,10 +17,10 @@
     <div class="col-lg-10">
         <div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success! New product  Add successfully.</strong>
+            <strong>Success! Your Project Updated successfully.</strong>
         </div>
     </div>
-<?php } ?>
+<?php } $this->session->unset_userdata('message'); ?>
 
 <section class="content">
 <div class="row">
@@ -48,20 +48,15 @@
 <div class="col-lg-12">
     <div class="form-group">
         <label>Purpose<span class="error">*</span></label><span id='type-error' class='error' for='type'></span>
-        
-        <?php $types = array('1','2','3','4');
-            echo $editProject['purposeID'];
-            print_r($types);
-        ?>
         <select name="purposeID" class="form-control chosen-select" id="type">
             <option value="">Select Purpose Type</option>
             <?php
-                if (is_array($types) and (!empty($types))) {
-                    foreach ($types as $key=>$value) {
+                if (is_array($purpose) and (!empty($purpose))) {
+                    foreach ($purpose as $row) {
                         $v = (set_value('purposeID')!='')?set_value('purposeID'):$editProject['purposeID'];
-                        $sel = ($v == $value)?'selected="selected"':'';
+                        $sel = ($v == $row->purposeID)?'selected="selected"':'';
                         ?>
-                        <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                        <option  value="<?php echo $row->purposeID; ?>" <?php echo $sel;?>><?php echo $row->purposeTitle; ?></option>
                     <?php
                     }
                 }
@@ -136,7 +131,7 @@
     <div class="form-group">
         <label>Loan Term<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-        <?php $types3 = array('1 Year','2 Year','3 Year','4 Year','5 Year');?>
+        <?php $types3 = array('1 Year','2 Years','3 Years','4 Years','5 Years');?>
         
         <select name="loanTerm" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
@@ -160,17 +155,17 @@
         <div class="form-group">
             <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-            <?php $typesrp = array('1','2','3','4','5');?>
+           
             
             <select name="RepaymentScheduleID" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
                 <?php
-                    if (is_array($typesrp) and (!empty($types3))) {
-                        foreach ($typesrp as $key=>$value) {
+                    if (is_array($repaymentschedule) and (!empty($repaymentschedule))) {
+                        foreach ($repaymentschedule as $row) {
                             $v = (set_value('RepaymentScheduleID')!='')?set_value('RepaymentScheduleID'):$editProject['RepaymentScheduleID'];
-                            $sel = ($v == $value)?'selected="selected"':'';
+                            $sel = ($v == $row->repaymentScheduleID)?'selected="selected"':'';
                             ?>
-                            <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                            <option  value="<?php echo $row->repaymentScheduleID; ?>" <?php echo $sel;?>><?php echo $row->repaymentScheduleTitle; ?></option>
                         <?php
                         }
                     }
@@ -192,13 +187,13 @@
     <div class="form-group">
         <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-        <?php $types4 = array('9','8','7','6','5');?>
+        <?php $typespm = array('Fixed Funding','Flexible Funding');?>
         
          <select name="paymentMethodID" class="form-control chosen-select" id="type">
             <option value="">Select Loan Term</option>
                 <?php
-                    if (is_array($types4) and (!empty($types4))) {
-                        foreach ($types4 as $key=>$value) {
+                    if (is_array($typespm) and (!empty($typespm))) {
+                        foreach ($typespm as $key=>$value) {
                             $v = (set_value('paymentMethodID')!='')?set_value('paymentMethodID'):$editProject['paymentMethodID'];
                             $sel = ($v == $value)?'selected="selected"':'';
                             ?>
