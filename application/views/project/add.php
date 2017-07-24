@@ -14,7 +14,7 @@
     </section>
 
 <?php if($this->session->flashdata('message')){ ?>
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success! New Project  Add successfully.</strong>
@@ -341,6 +341,12 @@
     </div>
 </div>
 
+<div class="col-lg-12">
+    <div class="form-group">
+        <label>Picture Two</label><span id='picture2-error' class='error' for='picture2'></span>
+        <input class="btn btn-default" name="photo_2" type="file">
+    </div>
+</div>
 
 
 <div class="col-lg-12">

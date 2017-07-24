@@ -14,7 +14,7 @@
     </section>
 
 <?php if($this->session->flashdata('message')){ ?>
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success! Your Project Updated successfully.</strong>
