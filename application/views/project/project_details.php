@@ -4,6 +4,7 @@
         
         <?php 
             //print_r($projectData);
+        
         ?>
 
     <div class="container">
