@@ -82,5 +82,6 @@ $route['publicsearch'] = 'doctor/docController/publicSearch';
 
 ///// Projects
 $route['Project/project_details'] = 'Project/project/project_details';
-$route['Project/create'] = 'Project/project/add';
-$route['Project/allces'] = 'Project/project/allces';
+$route['Project/add'] = 'Project/project/add';
+$route['Project/all'] = 'project/Project/all/';
+$route['Project/edit/(:any)'] = 'project/Project/edit/$1';

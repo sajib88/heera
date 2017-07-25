@@ -174,19 +174,13 @@ class Project extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
         
          if($this->input->post()){
-            $postData = $this->input->post();
-            $this->form_validation->set_rules('name', 'name', 'required');
-            $this->form_validation->set_rules('shortDescription', 'shortDescription', 'required');
-            //$this->form_validation->set_rules('detailsDescription', 'detailsDescription', 'required');
-            $this->form_validation->set_rules('neededAmount', 'neededAmount', 'required');
-            $this->form_validation->set_rules('interestRate', 'interestRate', 'required');
-            $this->form_validation->set_rules('address1', 'address1', 'required');
-            $this->form_validation->set_rules('address2', 'address2', 'required');
-            $this->form_validation->set_rules('city', 'city', 'required');
-            $this->form_validation->set_rules('state', 'state', 'required');
-            $this->form_validation->set_rules('country', 'country', 'required');
 
-            if($this->form_validation->run() == true){
+            $postData = $this->input->post();
+
+
+
+
+
                 $save['name'] = $postData['name'];
                 $save['purposeID'] = $postData['purposeID'];
                 $save['shortDescription'] = $postData['shortDescription'];
@@ -237,10 +231,10 @@ class Project extends CI_Controller {
                 // print_r($save);die;
                 $id = $this->uri->segment('4');
                 if ($ref = $this->global_model->update('project', $save, array('projectID' => $id))) {
-                    $this->session->set_flashdata('message', 'Save Success');
+                    $this->session->set_flashdata('message', 'Update Your Project info...');
                 }
 
-            }
+
         }
         
         $id = $this->uri->segment('4');
@@ -256,7 +250,43 @@ class Project extends CI_Controller {
         $this->load->view('project/edit', $data);
         $this->load->view('footer');
     }
-    
+
+
+    public function all()
+    {
+        $table = 'project';
+        $data = array();
+        $data['page_title'] = 'All Project';
+        $loginId = $this->session->userdata('login_id');
+        $data['allprojects']  	 = $this->global_model->get($table);
+
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+        $this->load->view('header', $data);
+        $this->load->view('project/table_view', $data);
+        $this->load->view('footer');
+
+    }
+
+    public function detail(){
+        $data = array();
+
+        $data['page_title'] = 'Projects Detail';
+        $data['error'] = '';
+        $id = $this->uri->segment('4');
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $user_info = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $id));
+
+
+        $this->load->view('header', $data);
+        $this->load->view('project/projectdetail_view', $data);
+        $this->load->view('footer');
+
+
+    }
 
 
 

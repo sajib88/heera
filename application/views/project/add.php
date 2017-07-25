@@ -21,21 +21,21 @@
         </div>
     </div>
 <?php } $this->session->unset_userdata('message'); ?>
-
+    <form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/add'); ?>">
+        <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
 <section class="content">
 <div class="row">
-<div class="col-lg-7">
+<div class="col-md-6">
 <div class="box box-primary">
     <div class="box-header with-border">
-        <i class="fa fa-bullhorn"></i>
+        <i class="fa fa-th"></i>
 
-        <h3 class="box-title">Project Steps </h3>
+        <h3 class="box-title">Project Info </h3>
     </div>
 <div class="panel-body">
 <div class="row">
 <div class="col-lg-12">
-<form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/add'); ?>">
-<input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+
 <div class="col-lg-12">
     <div class="form-group">
         <?php $v = (set_value('name')!='')?set_value('name'):'';?>
@@ -91,255 +91,9 @@
     </div>
 </div>
 
-<div class="col-lg-12">
-    <div class="form-group" id="photo_id">
-       <h2><label>Lending</label></h2>
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Credit Score<span class="error">*</span></label><span id='type-error' class='error' ></span>
-
-        <?php $types2 = array('A','A+','B','C','Y');?>
-        <select name="creditScore" class="form-control chosen-select" id="type">
-            <option value="">Select Credit Score</option>
-            <?php foreach ($types2 as $row) {?>
-                <option value="<?php echo $row;?>"><?php echo $row?></option>
-            <?php }?>
-        </select>
-    </div>
-</div>
-
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Loan Term<span class="error">*</span></label><span id='type-error' class='error' ></span>
-
-        <?php $types3 = array('1 Year','2 Years','3 Years','4 Years','5 Years');?>
-        <select name="loanTerm" class="form-control chosen-select" id="type">
-            <option value="">Select Loan Term</option>
-            <?php foreach ($types3 as $row) {?>
-                <option value="<?php echo $row;?>"><?php echo $row?></option>
-            <?php }?>
-        </select>
-    </div>
-</div>
-
-
-    <div class="col-lg-12">
-        <div class="form-group">
-            <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
-
-            
-            
-            <select onchange="getComboA(this)" name="RepaymentScheduleID" id="RepaymentScheduleID" class="form-control">
-            <option value="">Select Please</option>
-            <?php
-            if (is_array($repaymentschedule)) {
-                foreach ($repaymentschedule as $repaymentschedule) {
-                    $sel = ($repaymentschedule->repaymentScheduleID == set_value('RepaymentScheduleID'))?'selected="selected"':'';
-                    ?>
-                    <option  value="<?php echo $repaymentschedule->repaymentScheduleID; ?>" <?php echo $sel;?> ><?php echo $repaymentschedule->repaymentScheduleTitle; ?></option>
-                <?php
-                }
-            }
-            ?>
-            </select>
-            <?php echo form_error('RepaymentScheduleID');?>
-        </div>
-    </div>
 
 
 
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Needed Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
-        <input type="number" name="neededAmount"   step="0.01" class="form-control" id="neededAmount">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
-
-        <?php $typespmth = array('Fixed Funding','Flexible Funding');?>
-        <select name="paymentMethodID" class="form-control chosen-select" id="type">
-            <option value="">Select Loan Term</option>
-            <?php foreach ($typespmth as $row) {?>
-                <option value="<?php echo $row;?>"><?php echo $row?></option>
-            <?php }?>
-        </select>
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Interest Rate<span class="error">*</span></label><span id='special-price-error' class='error' for='special_price'></span>
-        <input type="number" name="interestRate"  class="form-control"  id="special_price">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
-
-        <input name="projectEndDate" type="text" class="form-control" id="datepicker">
-    </div>
-</div>
-
-
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label> Address 1</label>
-        <input name="address1" value="<?php echo '';?>"  class="form-control">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label> Address 2</label>
-        <input name="address2" value="<?php echo ''; ?>"  class="form-control">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Country<span class="error">*</span></label>
-        <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
-            <option value="">Select Please</option>
-            <?php
-            if (is_array($countries)) {
-                foreach ($countries as $country) {
-                    $sel = ($country->id == set_value('country'))?'selected="selected"':'';
-                    ?>
-                    <option  value="<?php echo $country->id; ?>" <?php echo $sel;?> ><?php echo $country->name; ?></option>
-                <?php
-                }
-            }
-            ?>
-        </select>
-        <?php echo form_error('country');?>
-    </div>
-</div>
-<div class="col-lg-12">
-    <div id="result">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>City</label>
-        <input name="city" value="<?php echo '';?>" id="city" class="form-control">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Feed URL</label>
-        <input name="feedURL" value="<?php echo ''; ?>"  class="form-control">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Video URL</label>
-        <input name="videoURL" value="<?php echo ''; ?>"  class="form-control">
-    </div>
-</div>
-
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Monthly Income<span class="error">*</span></label><span id='monthlyIncome-price-error' class='error' for='monthlyIncome'></span>
-        <input type="number" name="monthlyIncome"  class="form-control"  id="monthlyIncome">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Total Expensese<span class="error">*</span></label><span id='totalExpenses-price-error' class='error' for='totalExpenses'></span>
-        <input type="number" name="totalExpenses"  class="form-control"  id="totalExpenses">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Home Ownership</label>
-
-        <?php $types4 = array('Yes','No');?>
-        <select name="homeOwnership" class="form-control chosen-select" id="type">
-            <option value="">Select Loan Term</option>
-            <?php foreach ($types4 as $row) {?>
-                <option value="<?php echo $row;?>"><?php echo $row?></option>
-            <?php }?>
-        </select>
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Length Of Employment</label>
-        <input type="number" name="lengthOfEmployment" value="<?php echo '';?>" class="form-control" >
-    </div>
-</div>
-
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Debt To Income<span class="error">*</span></label><span id='debtToIncome-error' class='error' for='debtToIncome'></span>
-        <input type="number" name="debtToIncome"  class="form-control"  id="debtToIncome">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Employment Self Employment</label>
-        <input name="employmentSelfemployment" value="<?php echo '';?>" class="form-control" >
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Monthly Expenses<span class="error">*</span></label><span id='monthlyExpenses-error' class='error' for='monthlyExpenses'></span>
-        <input type="number" name="monthlyExpenses"  class="form-control"  id="monthlyExpenses">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Other Loan Repayment</label>
-        <input type="number" name="otherLoanRepayment"  class="form-control"  id="otherLoanRepayment">
-    </div>
-</div>
-
-
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Transport Charge</label>
-        <input type="number" name="transportCharge"  class="form-control"  id="transportCharge">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Insurance</label>
-        <input type="number" name="insurance"  class="form-control"  id="insurance" >
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Courses School Fees</label>
-        <input type="number" name="coursesSchoolFees"  class="form-control"  id="coursesSchoolFees">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>TaxNIProvisions</label>
-        <input type="number" name="TaxNIProvisions"  class="form-control"  id="TaxNIProvisions">
-    </div>
-</div>
 
 <div class="col-lg-12">
     <div class="form-group">
@@ -362,56 +116,15 @@
     </div>
 </div>
 
-<div class="col-lg-12">
-    <div class="form-group" id="primary_file_id">
-        <label>File One<span class="error">*</span></label><span id='file1-error' class='error' for='file1'></span>
-        <input class="btn btn-default" name="primary_file" type="file">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group" id="file_2">
-        <label>File Two<span class="error">*</span></label><span id='file1-error' class='error' for='file1'></span>
-        <input class="btn btn-default" name="file_2" type="file">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Primary Sound</label><span id='primary_audio-error' class='error' for='audio'></span>
-        <input class="btn btn-default" name="primary_sound" type="file">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Sound</label><span id='audio-error' class='error' for='audio'></span>
-        <input class="btn btn-default" name="sound1" type="file">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Primary Videos</label><span id='primary_video-error' class='error' for='primary_video'></span>
-        <input class="btn btn-default" name="primary_video" type="file">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Videos1</label><span id='video1-error' class='error' for='video1_video'></span>
-        <input class="btn btn-default" name="video1" type="file">
-    </div>
-</div>
-
-
-
-<div class="col-lg-12">
-    <input type="submit" name="submit" class="btn btn-info" value="Save">
-    <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
-</div>
 
 
 
 
-</form>
+
+
+
+
+
 
 </div>
 </div>
@@ -421,46 +134,372 @@
 </div>
 <!-- /.panel -->
 </div>
-<div class="col-md-5 col-sm-6 col-xs-12">
+
+<div class="col-md-6">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <i class="fa fa-bullhorn"></i>
+            <i class="fa fa-building"></i>
 
-            <h3 class="box-title">Products Help</h3>
+            <h3 class="box-title">Lending</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <div class="callout bg-purple-active">
 
 
-                <p>
-                <ul>
-                    <li>Get FREE products from brands sampling to professionals</li>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- /Lending -->
 
-                    <li>Enjoy remarkable discounts, special offers and coupons on a variety of products</li>
+                        <div class="col-lg-12">
+                            <div class="form-group" id="photo_id">
+                                <h2><label>Lending</label></h2>
+                            </div>
+                        </div>
 
-                    <li>Easily find products using our quick search feature</li>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Credit Score<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-                    <li>Easily find products using our quick search feature</li>
+                                <?php $types2 = array('A','A+','B','C','Y');?>
+                                <select name="creditScore" class="form-control chosen-select" id="type">
+                                    <option value="">Select Credit Score</option>
+                                    <?php foreach ($types2 as $row) {?>
+                                        <option value="<?php echo $row;?>"><?php echo $row?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
 
-                    <li>View newly posted, Free, Discounted, Coupon, or retail priced products</li>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Loan Term<span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+                                <?php $types3 = array('1 Year','2 Years','3 Years','4 Years','5 Years');?>
+                                <select name="loanTerm" class="form-control chosen-select" id="type">
+                                    <option value="">Select Loan Term</option>
+                                    <?php foreach ($types3 as $row) {?>
+                                        <option value="<?php echo $row;?>"><?php echo $row?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
 
 
-                </ul>
-                </p>
-            </div>
-            <div class="callout callout-info">
-                <h4>More Help </h4>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
 
-                <p>Contact Us : <b> info@foralldoctors.com</b> </p>
+
+
+                                <select onchange="getComboA(this)" name="RepaymentScheduleID" id="RepaymentScheduleID" class="form-control">
+                                    <option value="">Select Please</option>
+                                    <?php
+                                    if (is_array($repaymentschedule)) {
+                                        foreach ($repaymentschedule as $repaymentschedule) {
+                                            $sel = ($repaymentschedule->repaymentScheduleID == set_value('RepaymentScheduleID'))?'selected="selected"':'';
+                                            ?>
+                                            <option  value="<?php echo $repaymentschedule->repaymentScheduleID; ?>" <?php echo $sel;?> ><?php echo $repaymentschedule->repaymentScheduleTitle; ?></option>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <?php echo form_error('RepaymentScheduleID');?>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Needed Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
+                                <input type="number" name="neededAmount"   step="0.01" class="form-control" id="neededAmount">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
+
+                                <?php $typespmth = array('Fixed Funding','Flexible Funding');?>
+                                <select name="paymentMethodID" class="form-control chosen-select" id="type">
+                                    <option value="">Select Loan Term</option>
+                                    <?php foreach ($typespmth as $row) {?>
+                                        <option value="<?php echo $row;?>"><?php echo $row?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Interest Rate<span class="error">*</span></label><span id='special-price-error' class='error' for='special_price'></span>
+                                <input type="number" name="interestRate"  class="form-control"  id="special_price">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
+
+                                <input name="projectEndDate" type="text" class="form-control" id="datepicker">
+                            </div>
+                        </div>
+
+                        <!-- /.Lending -->
+                    </div>
+                </div>
             </div>
 
         </div>
-        <!-- /.box-body -->
+
     </div>
 </div>
 
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-map-marker"></i>
+
+                <h3 class="box-title">Location</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- /Lending -->
+
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label> Address 1</label>
+                                    <input name="address1" value="<?php echo '';?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label> Address 2</label>
+                                    <input name="address2" value="<?php echo ''; ?>"  class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Country<span class="error">*</span></label>
+                                    <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
+                                        <option value="">Select Please</option>
+                                        <?php
+                                        if (is_array($countries)) {
+                                            foreach ($countries as $country) {
+                                                $sel = ($country->id == set_value('country'))?'selected="selected"':'';
+                                                ?>
+                                                <option  value="<?php echo $country->id; ?>" <?php echo $sel;?> ><?php echo $country->name; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                    <?php echo form_error('country');?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div id="result">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input name="city" value="<?php echo '';?>" id="city" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Feed URL</label>
+                                    <input name="feedURL" value="<?php echo ''; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Video URL</label>
+                                    <input name="videoURL" value="<?php echo ''; ?>"  class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <i class="fa fa-user"></i>
+
+                <h3 class="box-title">Personal Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- /Lending -->
+
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Monthly Income<span class="error">*</span></label><span id='monthlyIncome-price-error' class='error' for='monthlyIncome'></span>
+                                    <input type="number" name="monthlyIncome"  class="form-control"  id="monthlyIncome">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Total Expensese<span class="error">*</span></label><span id='totalExpenses-price-error' class='error' for='totalExpenses'></span>
+                                    <input type="number" name="totalExpenses"  class="form-control"  id="totalExpenses">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Home Ownership</label>
+
+                                    <?php $types4 = array('Yes','No');?>
+                                    <select name="homeOwnership" class="form-control chosen-select" id="type">
+                                        <option value="">Select Loan Term</option>
+                                        <?php foreach ($types4 as $row) {?>
+                                            <option value="<?php echo $row;?>"><?php echo $row?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Length Of Employment</label>
+                                    <input type="number" name="lengthOfEmployment" value="<?php echo '';?>" class="form-control" >
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Debt To Income<span class="error">*</span></label><span id='debtToIncome-error' class='error' for='debtToIncome'></span>
+                                    <input type="number" name="debtToIncome"  class="form-control"  id="debtToIncome">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Employment Self Employment</label>
+                                    <input name="employmentSelfemployment" value="<?php echo '';?>" class="form-control" >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Monthly Expenses<span class="error">*</span></label><span id='monthlyExpenses-error' class='error' for='monthlyExpenses'></span>
+                                    <input type="number" name="monthlyExpenses"  class="form-control"  id="monthlyExpenses">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Other Loan Repayment</label>
+                                    <input type="number" name="otherLoanRepayment"  class="form-control"  id="otherLoanRepayment">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Transport Charge</label>
+                                    <input type="number" name="transportCharge"  class="form-control"  id="transportCharge">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Insurance</label>
+                                    <input type="number" name="insurance"  class="form-control"  id="insurance" >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Courses School Fees</label>
+                                    <input type="number" name="coursesSchoolFees"  class="form-control"  id="coursesSchoolFees">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>TaxNIProvisions</label>
+                                    <input type="number" name="TaxNIProvisions"  class="form-control"  id="TaxNIProvisions">
+                                </div>
+                            </div>
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- /Lending -->
+
+
+                            <div class="col-lg-12 text-center">
+                                <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save">
+                                <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
+                            </div>
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
 </div>
+    </form>
 </section>
 
 </div>
@@ -534,7 +573,7 @@
             },
 
 
-            'photo_primary': {
+            'mainImage': {
                 required: true,
                 extension: "png,jpg,jpeg,gif,bmp"
             },
@@ -603,7 +642,7 @@
             },
 
 
-            'photo_primary':{
+            'mainImage':{
                 required : "<p class='text-danger'>Please upload atleast 1 photo</p>",
                 extension:"Only Image Format  file is allowed!"
             },

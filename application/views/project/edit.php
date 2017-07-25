@@ -36,6 +36,8 @@
 <div class="col-lg-12">
 <form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/edit/'. $editProject['projectID']); ?>">
 <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+
+
 <div class="col-lg-12">
     <div class="form-group">
         
@@ -484,7 +486,7 @@
         <div class="box-header with-border">
             <i class="fa fa-bullhorn"></i>
 
-            <h3 class="box-title">Products Help</h3>
+            <h3 class="box-title"> Help</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -493,15 +495,15 @@
 
                 <p>
                 <ul>
-                    <li>Get FREE products from brands sampling to professionals</li>
+                    <li>Easy to simple way edit your project info</li>
 
-                    <li>Enjoy remarkable discounts, special offers and coupons on a variety of products</li>
+                    <li>Chnage your Details</li>
 
-                    <li>Easily find products using our quick search feature</li>
+                    <li>Just save and update your projects Info</li>
 
-                    <li>Easily find products using our quick search feature</li>
+                    <li>Projects Submit admin will review </li>
 
-                    <li>View newly posted, Free, Discounted, Coupon, or retail priced products</li>
+                    <li>Projects Image you can chnage form edit panel</li>
 
 
                 </ul>
@@ -510,7 +512,7 @@
             <div class="callout callout-info">
                 <h4>More Help </h4>
 
-                <p>Contact Us : <b> info@foralldoctors.com</b> </p>
+                <p>Contact Us : <b> support@heera.org</b> </p>
             </div>
 
         </div>
