@@ -236,6 +236,21 @@ if (!function_exists('getProfessionById')) {
 
 }
 
+if (!function_exists('getRepaymentScheduleById')) {
+
+    function getRepaymentScheduleById($Id='') {
+        $CI = &get_instance();
+
+        $result = $CI->global_model->get_data('repaymentschedulelookup', array('repaymentScheduleID' => $Id));
+        if ($result['repaymentScheduleTitle']) {
+            return $result['repaymentScheduleTitle'];
+        } else {
+            return false;
+        }
+    }
+
+}
+
 if (!function_exists('getImage')) {
 
     function getImage($imageType='',$Id='') {

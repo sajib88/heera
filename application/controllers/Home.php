@@ -12,17 +12,49 @@ class Home extends CI_Controller {
 
     public function index() {
         $data = array();
-
+        
+        //$loginId = $this->session->userdata('login_id');
+        //$data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
+        
+        
+        $data['projectData'] = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
 
 
-        $this->load->view('guest_head');
+        $this->load->view('guest_head', $data);
         $this->load->view('home',$data);
         $this->load->view('guest_footer');
 
 
+    }
+    
+    public function listProject(){
+        $data = array();
+        
+        $data['projectData'] = $this->global_model->get('project');
+        
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/projectGrigView',$data);
+        $this->load->view('guest_footer');
+        
+    }
+    
+    public function singleview(){
+        $data = array();
+        
+        $id = $this->uri->segment('3');
+        $data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
+        $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
+        
+        
+        
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/project_details',$data);
+        $this->load->view('guest_footer');
+        
     }
 
     public function login($msg='') {

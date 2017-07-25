@@ -12,7 +12,6 @@
     </div>
 </header>
 
-
 <!--BG with 4 box -->
 <header class="business-header">
     <div class="container">
@@ -278,38 +277,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <?php if(is_array($projectData)){ ?>
+                <?php foreach($projectData as $row){?>
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
-                        <img src="<?php echo base_url(); ?>comp/img/project1.jpg" class="img-responsive circular--square ">
+                        <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Help her with education</h4>
+                                    <h4><?php echo substr($row->name, 0 , 50); ?></h4>
                                 </div>
                                 <div class="col-md-12">
                                     <h5>Mike Thompsom</h5>
                                 </div>
-
                                 <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                                    <p><?php echo substr($row->shortDescription, 0, 50); ?></p>
                                 </div>
-
                                 <div class="col-md-12">
-
                                     <div class="country">
                                         <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
-
                                 <div class="col-md-12">
-
                                     <div class="progress-bar" data-percentage="80">
                                         <div class="blue bar"><span></span></div>
                                         <div class="label"></div>
                                     </div>
-
-
                                 </div>
                                 <div class="col-md-12">
                                     <div class="pull-left">
@@ -318,7 +312,7 @@
                                     </div>
                                     <div class="pull-right">
                                     <p class="text-right">GOAL</p>
-                                    <h4 class="text-right">$10000</h4>
+                                    <h4 class="text-right"><?php echo '$'.$row->neededAmount; ?></h4>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -328,22 +322,21 @@
                                         <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
                                     </div>
                                     <div class="pull-right">
-                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
+                                        <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>" class="btn  btn-blue" type="submit">LEARN MORE</a>
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
                             <p> </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4 products">
+                <?php 
+                }
+                }   
+                ?>
+<!--                <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
-                        <img src="<?php echo base_url(); ?>comp/img/project2.jpg" class="img-responsive circular--square ">
+                        <img src="<?php //echo base_url(); ?>comp/img/project2.jpg" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
                                 <div class="col-md-12">
@@ -360,7 +353,7 @@
                                 <div class="col-md-12">
 
                                     <div class="country">
-                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
+                                        <img src="<?php //echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
@@ -404,7 +397,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
-                        <img src="<?php echo base_url(); ?>comp/img/project3.jpg" class="img-responsive circular--square ">
+                        <img src="<?php //echo base_url(); ?>comp/img/project3.jpg" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
                                 <div class="col-md-12">
@@ -421,7 +414,7 @@
                                 <div class="col-md-12">
 
                                     <div class="country">
-                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
+                                        <img src="<?php //echo base_url(); ?>/comp/img/india-flag.png" alt="india">
                                         India
                                     </div>
                                 </div>
@@ -462,12 +455,12 @@
                             <p> </p>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
 
                 <div class="col-md-12">
 
-                    <input value="Browse all causes" aria-labelledby="dropdownMenu3" class="btn btn-big btn-yellow" type="submit">
+                    <a href="<?php echo base_url();?>home/listProject" aria-labelledby="dropdownMenu3" class="btn btn-big btn-yellow">Browse all causes</a>
 
 
                 </div>

@@ -24,6 +24,7 @@ class Project extends CI_Controller {
         $this->load->view('guest_head');
         $this->load->view('project/project_details');
         $this->load->view('guest_footer');
+        
     }
 
 

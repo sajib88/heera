@@ -1,6 +1,10 @@
 
 <main class="main-wrapper">
     <section class="banner-wrapper">
+        
+        <?php 
+            //print_r($projectData);
+        ?>
 
     <div class="container">
         <div class="row">
@@ -37,8 +41,9 @@
                 <div class="lend-widget">
                     <div class="entry-title">
                         <h3 class="title">
-                            Give a Little. <br>
-                            Change a Lot.
+                            <?php 
+                               echo $projectData['name'];
+                            ?>                            
                         </h3>
                         <div class="entry-meta row">
                             <div class="author">
@@ -60,7 +65,7 @@
                             </div>
                             <div class="funded-wrap">
                                 <div class="amount-recieved">$786 Funded</div>
-                                <div class="total-amount">of $1500 Goal</div>
+                                <div class="total-amount">of <?php echo '$'.$projectData['neededAmount'];?> Goal</div>
                             </div>
                             <div class="stats-wrap row">
                                 <div class="single-item col-xs-6 pdl pdr">
@@ -121,20 +126,10 @@
                             <div class="story-content">
                                 <div class="entry-head">
                                     <h3 class="title">About this Project</h3>
-                                    <p class="description">A loan of $1500 helps a member to buy more fertilizer to support her fariming, to get a higher yield</p>
+                                    <p class="description"><?php echo $projectData['shortDescription'];?></p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p><?php echo $projectData['detailsDescription'];?></p>
+                                
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab2">
@@ -261,16 +256,33 @@
                     </div><!--entry head-->
                     <div class="entry-content">
                         <div class="entry-single">
-                            <p><span class="heading">Loan Period</span> 12 Months</p>
+                            <p><span class="heading">Loan Period</span> <?php echo $projectData['loanTerm'];?></p>
                         </div>
                         <div class="entry-single">
-                            <p><span class="heading">Repayment Schedule</span> Monthly</p>
+                            <p>
+                                <span class="heading">Repayment Schedule</span> 
+                                <?php 
+                                    
+                                    echo getRepaymentScheduleById($projectData['RepaymentScheduleID']);
+                                ?>
+                            </p>
                         </div>
                         <div class="entry-single">
-                            <p><span class="heading">Disbursed Date</span> 21 April 2017</p>
+                            <p><span class="heading">Disbursed Date</span> <?php echo $projectData['projectEndDate'];?> </p>
                         </div>
                         <div class="entry-single">
-                            <p><span class="heading">Is Borrower Paying Interest?</span> No</p>
+                            <p>
+                                <span class="heading">
+                                    Is Borrower Paying Interest?
+                                </span> 
+                                    <?php
+                                        if($projectData['interestRate'] <= 0){
+                                            echo 'No';                                       
+                                        }else{
+                                            echo $projectData['interestRate'].'%';
+                                        }
+                                    ?>
+                            </p>
                         </div>
                         <div class="entry-single">
                             <p><span class="heading">Currency Exchange Loss</span> Possible</p>
