@@ -61,7 +61,7 @@
                         <div class="card">
                             <div class="card-block">
 
-                                <h3 class="card-title text-left">Repeat !</h3>
+                                <h3 class="card-title text-left">Repeat</h3>
                                 <p class="card-text text-left">With supporting text below as</br>
                                     a natural lead-in to additional</br>
                                     content.</p>
@@ -129,7 +129,7 @@
         <!--category first 5 image start-->
         <div class="row">
                 <div class="col-md-1"></div>
-
+                
                     <div class="cat-widget col-md-2">
                         <div class="inner-item">
                             <img src="<?php echo base_url(); ?>comp/img/women.jpg" alt="" class="img-responsive">
@@ -172,10 +172,10 @@
                     </div>
                     <div class="cat-widget col-md-2">
 
-                        <img src="<?php echo base_url(); ?>comp/img/signleparents.jpg" alt="test" class="img-responsive">
+                        <img src="<?php echo base_url(); ?>comp/img/allloan.jpg" alt="test" class="img-responsive">
 
                         <div class="carousel-caption">
-                            <h6>Single parent</h6>
+                            <h6>All Loans</h6>
                         </div>
 
                     </div>
@@ -187,67 +187,6 @@
         </div>
         <!--category first 5 image end-->
 
-
-
-
-        <!--category 2nd 5 image start-->
-        <div class="row">
-
-            <div class="col-md-1"></div>
-
-            <div class="cat-widget col-md-2">
-                <div class="inner-item">
-                    <img src="<?php echo base_url(); ?>comp/img/social.jpg" alt="" class="img-responsive">
-                    <div class="carousel-caption">
-                        <h4>Social</h4>
-                    </div>
-                </div>
-            </div><!--lender widget-->
-
-            <div class="cat-widget col-md-2">
-
-                <img src="<?php echo base_url(); ?>comp/img/retail.jpg" alt="test" class="img-responsive">
-
-                <div class="carousel-caption">
-                    <h4>Retail</h4>
-                </div>
-
-            </div>
-
-            <div class="cat-widget col-md-2">
-
-                <img src="<?php echo base_url(); ?>comp/img/shelter.jpg" alt="test" class="img-responsive">
-
-                <div class="carousel-caption">
-                    <h6>shelter</h6>
-                </div>
-
-            </div>
-
-
-
-            <div class="cat-widget col-md-2">
-
-                <img src="<?php echo base_url(); ?>comp/img/food.jpg" alt="test" class="img-responsive">
-
-                <div class="carousel-caption">
-                    <h6>Food</h6>
-                </div>
-
-            </div>
-            <div class="cat-widget col-md-2">
-
-                <img src="<?php echo base_url(); ?>comp/img/allloan.jpg" alt="test" class="img-responsive">
-
-                <div class="carousel-caption">
-                    <h6>All Loans</h6>
-                </div>
-
-            </div>
-
-
-            <div class="col-md-1"></div>
-            </div>
     </div>
     <!--category second 5 image end -------------------------------------------------------->
 
@@ -281,7 +220,7 @@
                 <?php foreach($projectData as $row){?>
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
-                        <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
+                        <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" width="100%" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
                                 <div class="col-md-12">

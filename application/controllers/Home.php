@@ -34,7 +34,10 @@ class Home extends CI_Controller {
     public function listProject(){
         $data = array();
         
+        
+        
         $data['projectData'] = $this->global_model->get('project');
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         
         $this->load->view('guest_head', $data);
         $this->load->view('project/projectGrigView',$data);
@@ -55,6 +58,25 @@ class Home extends CI_Controller {
         $this->load->view('project/project_details',$data);
         $this->load->view('guest_footer');
         
+    }
+    
+    public function getPurpose(){
+        $data = array();
+        
+        if ($this->input->post('submit'))
+            $puposeList = array();
+            $puposeList['puposeList'] = $this->input->post('puposeList');
+            
+            //print_r($puposeList);
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
+        
+        
+        
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
+        
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/project_SearchView',$data);
+        $this->load->view('guest_footer');
     }
 
     public function login($msg='') {

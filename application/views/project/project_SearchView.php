@@ -61,7 +61,7 @@
                 <?php if(is_array($projectData)){ ?>
                 <?php foreach($projectData as $row){?>
                 <div class="col-sm-6 col-md-4 products">
-                    <div class="thumbnail" >
+                    <div class="thumbnail" >                       
                         <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
