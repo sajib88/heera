@@ -1,26 +1,4 @@
 
-
-       <!--breadcrumbs start-->
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-4">
-                    <h1>Login</h1>
-                </div>
-                <div class="col-lg-8 col-sm-8">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="#">Home</a></li>
-
-                        <li class="active">Login</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--breadcrumbs end-->
-
-
-
        <main class="main-wrapper">
 
 
@@ -50,8 +28,8 @@
                  <fieldset>
 
                      <div class="form-group mb-10">
-                     <label for="login">Email / username</label>
-                         <input type="text" class="form-control" name="email" type="email" placeholder="Email / username" autofocus>
+                     <label for="login">Email Id</label>
+                         <input type="text" class="form-control" name="email" type="email" placeholder="Email" autofocus>
 
                      </div>
 
@@ -72,12 +50,18 @@
 
                     </span>
                 </label>
+
                  <input type="submit" class="btn btn-big btn-primary btn-block" name="submit" value="Login" >
-
-
+                     <br> <br>
+                     <a href="#" class="btn btn-small  btn-fb">Facebook Login</a>
                  </fieldset>
 
                 <br>
+
+
+
+
+
                 <div class="registration form-group mb-10 ">
                     Don't have an account yet?
                     <a class="" href="<?php echo base_url('home/registration'); ?>">

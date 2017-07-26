@@ -122,13 +122,18 @@
                     <ul class="nav navbar-nav navbar-right secondary-nav">
                         
                         <li class="active hidden-xs"><a href="<?php echo base_url(); ?>page/about">About</a></li>
-                        
-                        <?php if($this->session->userdata('login_id')== false){ ?>                            
+                        <?php   $loginId = $this->session->userdata('login_id'); ?>
+                        <?php if($loginId == 0)
+                        {?>
                             <li class="active hidden-xs" ><a href="<?php echo base_url(); ?>home/registration">Join Now</a></li>
                             <li><a href="<?php echo base_url(); ?>home/login">Login</a></li>
-                        <?php }else{?>
+                        <?php
+                        }
+                        else{
+                            ?>
+                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Panel</a></li>
                             <li><a href="<?php echo base_url(); ?>home/log_out">Log out</a></li>
-                        <?php $this->session->unset_userdata('login_id'); }  ?>
+                        <?php  }  ?>
                         <li class="hidden-xs"><a href="#"><img src="<?php echo base_url(); ?>comp/img/search-icon.png" class="img-responsive" alt="Search"></a></li>
                     </ul>
                 </div>

@@ -113,7 +113,7 @@
                     <?php }
                     ?>
 
-                  <span class="hidden-xs"> <?php echo $user_info['user_name']; ?><?php //print_r($user_info);?></span>
+                  <span class="hidden-xs"> <?php echo $user_info['first_name']; ?><?php //print_r($user_info);?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -129,7 +129,7 @@
                     <?php }
                     ?>
                     <p>
-                      User Name :<?php echo $user_info['user_name']; ?>
+                      User Name :<?php echo $user_info['first_name']; ?>
 
                     </p>
                   </li>

@@ -17,8 +17,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12  text-center">
-                <h1 class="ptop-30">How it works</h1>
-
+                <h1 class="ptop-50">How it works</h1>
+                <div class="ptop-50"></div>
                 <!--start box here -->
             <div class="box-design">
                 <div  class="row">
@@ -95,6 +95,7 @@
 <!--Start Lending style-->
 <div class="col-md-12">
 
+    <div class="ptop-30"></div>
         <div class="newsletter-widget widget">
 
 
@@ -192,7 +193,7 @@
 
 
     <!--get free with image-->
-    <div class="row ptop-50 ">
+    <div class="row ptop-40 ">
         <div class="col-md-6 col-md-offset-3 text-center">
             <h4>Heera.org does’t chnage any fees or commission and is a
                 one-to-one direct funding platform</h4>
@@ -202,7 +203,7 @@
     <!--get free with image-->
 
     <!--helpig-->
-    <div class="row ptop-80">
+    <div class="row ptop-40">
         <div class="text-center helpig-hand">
             <h2>Give a helpig hand. <span>See our causes</span></h2>
 
@@ -211,7 +212,7 @@
     <!--helpig-->
 
 
-    <div class="ptop-30"></div>
+    <div class="ptop-40"></div>
 
     <div class="container">
         <div class="row">
@@ -273,128 +274,7 @@
                 }
                 }   
                 ?>
-<!--                <div class="col-sm-6 col-md-4 products">
-                    <div class="thumbnail" >
-                        <img src="<?php //echo base_url(); ?>comp/img/project2.jpg" class="img-responsive circular--square ">
-                        <div class="caption pdr">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Help her with education</h4>
-                                </div>
-                                <div class="col-md-12">
-                                    <h5>Mike Thompsom</h5>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="country">
-                                        <img src="<?php //echo base_url(); ?>/comp/img/india-flag.png" alt="india">
-                                        India
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="progress-bar" data-percentage="30">
-                                        <div class="blue bar"><span></span></div>
-                                        <div class="label"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <p class="text-left">RAISED</p>
-                                        <h4 class="text-left">$5300</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <p class="text-right">GOAL</p>
-                                        <h4 class="text-right">$10000</h4>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                                <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
-                                    </div>
-                                    <div class="pull-right">
-                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-                            <p> </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 products">
-                    <div class="thumbnail" >
-                        <img src="<?php //echo base_url(); ?>comp/img/project3.jpg" class="img-responsive circular--square ">
-                        <div class="caption pdr">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Help her with education</h4>
-                                </div>
-                                <div class="col-md-12">
-                                    <h5>Mike Thompsom</h5>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="country">
-                                        <img src="<?php //echo base_url(); ?>/comp/img/india-flag.png" alt="india">
-                                        India
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="progress-bar" data-percentage="60">
-                                        <div class="blue bar"><span></span></div>
-                                        <div class="label"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <p class="text-left">RAISED</p>
-                                        <h4 class="text-left">$5300</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <p class="text-right">GOAL</p>
-                                        <h4 class="text-right">$10000</h4>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-
-                                <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <input value="Lend $25" aria-labelledby="dropdownMenu3" class="btn  btn-yellow dropdown-toggle" type="submit">
-                                    </div>
-                                    <div class="pull-right">
-                                        <input value="LEARN MORE" class="btn  btn-blue" type="submit">
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-                            <p> </p>
-                        </div>
-                    </div>
-                </div>-->
 
 
                 <div class="col-md-12">

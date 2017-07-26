@@ -140,7 +140,7 @@
         padding: 40px;
     }
     .top-header {
-        height: 570px;
+        height: 540px;
         background: url('../img/slide1.jpg') center center no-repeat scroll;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -377,3 +377,10 @@ hr {
 
 
 }
+
+.btn-fb {
+    background-color:#3b5998;
+
+    color: #fff;
+}
+

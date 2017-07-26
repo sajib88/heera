@@ -1,19 +1,4 @@
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-sm-4">
-                <h1>Join Now </h1>
-            </div>
-            <div class="col-lg-8 col-sm-8">
-                <ol class="breadcrumb pull-right">
-                    <li><a href="#">Home</a></li>
 
-                    <li class="active">Register</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
     <!--breadcrumbs end-->
 <main class="main-wrapper">
 
@@ -38,6 +23,8 @@
            
                  <form class="form-signin wow fadeInUp" action="<?php echo base_url('home/registration'); ?>" method="post" enctype="multipart/form-data">
                 <h2 class="form-signin-heading">Register now</h2>
+                     <div class="pull-right"><a href="#" class="btn btn-small  btn-fb">Facebook Login</a></div>
+
                 <div class="login-wrap">
                     <p>Enter your  details</p>
                     

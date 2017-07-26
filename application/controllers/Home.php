@@ -8,13 +8,14 @@ class Home extends CI_Controller {
         $this->load->model('login_model');
         $this->load->helper('global');
         $this->load->library('encrypt');
+        $this->load->library('session');
     }
 
     public function index() {
         $data = array();
         
-        //$loginId = $this->session->userdata('login_id');
-        //$data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
@@ -83,7 +84,7 @@ class Home extends CI_Controller {
 
           if (check_login()) {
             redirect('profile/dashboard');
-        }
+          }
         $data['page_title'] = 'Login';
         $data['tabActive'] = 'login';
 
@@ -110,17 +111,7 @@ class Home extends CI_Controller {
                             $data['error'] = 'Warning! You have not activated it yet Or Your account has either been blocked';
                         }
                     }
-                    elseif ($this->login_model->login1($username, $password))
-                    {
-                        if ($this->login_model->login1($username, $password)) {
-                            $this->session->set_flashdata('msg', '<div class="alert alert-success" id="success-alert">'.'You have successfully logged in.'.'</div>');
-                           // $this->session->set_flashdata('success_login', 'You have successfully login.');
-                            $redirect_link = base_url() . 'profile/dashboard';
-                            redirect($redirect_link);
-                        } else {
-                            $data['error'] = 'Warning! You have not activated it yet Or Your account has either been blocked';
-                        }
-                    }
+
 
                 }
                 else {
@@ -214,7 +205,7 @@ class Home extends CI_Controller {
             $this->form_validation->set_rules('profession', 'profession', 'trim|required');
             $this->form_validation->set_rules('first_name', 'first name', 'trim');
             $this->form_validation->set_rules('last_name', 'last name', 'trim');
-            $this->form_validation->set_rules('user_name', 'user name', 'trim');
+           // $this->form_validation->set_rules('user_name', 'user name', 'trim');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]|is_unique[users.email]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
             $this->form_validation->set_rules('conf', 'Confirm Password', 'trim|required|matches[password]');
@@ -225,7 +216,7 @@ class Home extends CI_Controller {
                 $save['profession'] = $this->input->post('profession');
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
-                $save['user_name'] = $this->input->post('user_name');
+               // $save['user_name'] = $this->input->post('user_name');
                 $save['email'] = $this->input->post('email');
                 $save['password'] = md5($this->input->post('password'));
 

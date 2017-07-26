@@ -75,8 +75,8 @@ class Login_model extends CI_Model {
 
         $query = $this->db->select('*')
             ->from('users')
-            ->where('user_name',$username)
-            ->or_where("email",$email)
+            ->where("email",$email)
+            //->or_where("email",$email)
             ->get();
         $result = $query->row_array();
         if ($query->num_rows() > 0) {
