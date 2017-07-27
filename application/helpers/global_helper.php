@@ -251,6 +251,22 @@ if (!function_exists('getRepaymentScheduleById')) {
 
 }
 
+if (!function_exists('getpurposeById')) {
+
+    function getpurposeById($Id='') {
+        $CI = &get_instance();
+
+        $result = $CI->global_model->get_data('purpose_lookup', array('purposeID' => $Id));
+        if ($result['purposeTitle']) {
+            return $result['purposeTitle'];
+        } else {
+            return false;
+        }
+    }
+
+}
+
+
 if (!function_exists('getImage')) {
 
     function getImage($imageType='',$Id='') {

@@ -17,36 +17,111 @@
         .helpig-hand h2{
             font-size: 28px;
         }
+        .sho{
+            margin-left: 0px;
+        }
     }
     
     .cat_drop {
         display: block;
     }
     
+    .pdtb-20{
+        padding-top: 0px;
+        padding-bottom: 20px;
+        font-size: 20px;
+        line-height: 1.0000000;
+        color: #1570f4;
+    }
+    
+    .sho{
+        float: left;
+        width: 60px;
+       
+        font-size: 17px;
+        white-space: nowrap;
+        margin: 8px 2px 0px 14px;
+    }
+    
+    
+    
+    .sho2{
+        float: left;
+        width: 138px;
+        margin-left: 0px;
+        margin-top: 8px;
+        font-size: 18px;
+    }
+    
+    .form-control-search{
+        border: 1px solid #113058;
+        border-radius: 0px;
+        padding: 0px 2px;
+        width: 100%;
+        color: #113058;
+        font-size: 14px;
+        height: 38px;
+        box-shadow: none;
+        color: #113058;
+    }
+    
+    @media screen and (max-width: 600px) {
+        
+        .sho{
+            margin: 0px;
+        }
+        .sho2{
+            margin-top: 0px;
+        }
+    }
+    
 </style>
 
 <main class="main-wrapper">
+    
     <section class="content-wrapper">
-        <div class="row">
-                <div class="text-center helpig-hand">
-                   <h2>Give a helpig hand. <span>See our causes</span></h2>  
-                </div>
-                <div class="row">                        
-                    <div class="entry-footer cat_drop ">
-                        <div class="col-lg-6 col-md-offset-3">
+        <div class="row">            
+                <div class="row"> 
+                    
+                    <div class="entry-footer cat_drop col-md-offset-1">
+                        <div class="col-sm-1 sho pdl-20">Show</div> 
+                        <div class="col-lg-2  ">
+                            
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
-                                <select class="form-control" name="puposeList">
+                                <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
+                                    
+                                    <option value="">plese select category</option>
                                     <?php 
                                         if(!empty($purpose)){
                                             foreach($purpose as $row){
+                                            //$sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
                                     ?>
-                                           <option value="<?php echo $row->purposeID;?>"><?php echo $row->purposeTitle;?></option>     
+                                           <option value="<?php echo $row->purposeID;?>" <?php //echo $sel;?> ><?php echo $row->purposeTitle;?></option>     
                                     <?php  
                                             }
                                         }
                                     ?>
                                 </select>
-                                <input type="submit" value="Search" class="btn btn-big btn-yellow">
+                            </form>
+                        </div>                               
+                    </div>
+                    <div class="entry-footer cat_drop ">
+                        <div class="col-sm-1 sho2">projected in</div> 
+                        <div class="col-lg-2">
+                            <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                                <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
+                                    <option value="">plese select country</option>
+                                    <?php 
+                                        if(!empty($purpose)){
+                                            foreach($purpose as $row){
+                                            //$sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
+                                    ?>
+                                           <option value="<?php echo $row->purposeID;?>" <?php //echo $sel;?> ><?php echo $row->purposeTitle;?></option>     
+                                    <?php  
+                                            }
+                                        }
+                                    ?>
+                                </select>
                             </form>
                         </div>                               
                     </div>
@@ -58,8 +133,14 @@
         <div class="container">
             <div class="row">
                 <div class="bottom-gap">
+                    
                 <?php if(is_array($projectData)){ ?>
                 <?php foreach($projectData as $row){?>
+                    <div class="col-sm-12 pdtb-20">
+                    <?php 
+                        echo 'Category : '. getpurposeById($row->purposeID); echo '       Country : '. countryNameByID($row->country);
+                    ?>                        
+                    </div>                    
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >                       
                         <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
@@ -120,3 +201,14 @@
         </div>
     </section>
 </main>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+    $(function() {
+      $('#puposeList').change(function() {
+        //alert(1);
+        this.submit();
+      });
+    });
+</script>
