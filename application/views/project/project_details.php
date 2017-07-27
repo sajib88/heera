@@ -1,10 +1,10 @@
 
 <main class="main-wrapper">
     <section class="banner-wrapper">
-        
-        <?php 
+
+        <?php
             //print_r($projectData);
-        
+
         ?>
 
     <div class="container">
@@ -13,7 +13,7 @@
                 <!-- MAIN SLIDES -->
                 <div class="slider">
                     <div data-index="1">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
                     </div>
                     <div data-index="2">
                         <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
@@ -28,7 +28,7 @@
 
                 <!-- THUMBNAILS -->
                 <div class="slider-nav-thumbnails">
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-1.jpg" class="img-responsive" slide="slide_1">
+                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_1">
                     </div>
                     <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-2.jpg" class="img-responsive" slide="slide_2">
                     </div>
@@ -42,18 +42,27 @@
                 <div class="lend-widget">
                     <div class="entry-title">
                         <h3 class="title">
-                            <?php 
+                            <?php
                                echo $projectData['name'];
-                            ?>                            
+                            ?>
                         </h3>
                         <div class="entry-meta row">
                             <div class="author">
                                 <img src="<?php echo base_url(); ?>comp/img/author-pic.png" alt="author image">
-                                <span>By Rebecaa</span>
+                                <span><?php $data = get_data('users', array('id' =>  $projectData['userID']));
+                                    echo $data['first_name'];?></span>
                             </div>
                             <div class="origin">
-                                <img src="<?php echo base_url(); ?>comp/img/india-flag.png" alt="india">
-                                India
+
+                                <small>
+                                    <i class="glyphicon glyphicon-map-marker">
+                                    </i>
+                                    <cite title="state, country">
+                                        <?php echo $projectData['state']; ?>, <?php
+                                        $data = get_data('countries', array('id' => $projectData['country']));
+                                        echo $data['name'];
+                                        ?> </cite>
+                                </small>
                             </div>
                         </div>
                     </div><!--entry title-->
@@ -65,15 +74,27 @@
                                 </div>
                             </div>
                             <div class="funded-wrap">
-                                <div class="amount-recieved">$786 Funded</div>
+                                <div class="amount-recieved">$0 Funded</div>
                                 <div class="total-amount">of <?php echo '$'.$projectData['neededAmount'];?> Goal</div>
                             </div>
                             <div class="stats-wrap row">
                                 <div class="single-item col-xs-6 pdl pdr">
-                                    <span>21</span> Lenders
+                                    <span>5</span> Lenders
                                 </div>
                                 <div class="single-item col-xs-6  pdr">
-                                    <span>15</span> Days Left
+
+                                    <span>
+                                        <?php
+                                        $now = time(); // or your date as well
+                                        $your_date =  strtotime($projectData['projectEndDate']);
+                                        $datediff = $your_date - $now;
+                                        echo floor($datediff / (60 * 60 * 24));
+                                        ?>
+
+                                    </span> Days Left
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -130,7 +151,7 @@
                                     <p class="description"><?php echo $projectData['shortDescription'];?></p>
                                 </div>
                                 <p><?php echo $projectData['detailsDescription'];?></p>
-                                
+
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab2">
@@ -261,9 +282,9 @@
                         </div>
                         <div class="entry-single">
                             <p>
-                                <span class="heading">Repayment Schedule</span> 
-                                <?php 
-                                    
+                                <span class="heading">Repayment Schedule</span>
+                                <?php
+
                                     echo getRepaymentScheduleById($projectData['RepaymentScheduleID']);
                                 ?>
                             </p>
@@ -275,10 +296,10 @@
                             <p>
                                 <span class="heading">
                                     Is Borrower Paying Interest?
-                                </span> 
+                                </span>
                                     <?php
                                         if($projectData['interestRate'] <= 0){
-                                            echo 'No';                                       
+                                            echo 'No';
                                         }else{
                                             echo $projectData['interestRate'].'%';
                                         }

@@ -384,3 +384,8 @@ hr {
     color: #fff;
 }
 
+div.thumbnail:hover {
+    background:#fff;
+    box-shadow: 0 2px 8px #000000;
+
+}

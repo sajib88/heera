@@ -219,6 +219,9 @@
             <div class="col-md-12">
                 <?php if(is_array($projectData)){ ?>
                 <?php foreach($projectData as $row){?>
+
+
+                        <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>">
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
                         <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" width="100%" class="img-responsive circular--square ">
@@ -228,15 +231,25 @@
                                     <h4><?php echo substr($row->name, 0 , 50); ?></h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <h5>Mike Thompsom</h5>
+                                    <h5><?php $data = get_data('users', array('id' =>  $row->userID));
+                                        echo $data['first_name'];?></h5>
                                 </div>
                                 <div class="col-md-12">
                                     <p><?php echo substr($row->shortDescription, 0, 50); ?></p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="country">
-                                        <img src="<?php echo base_url(); ?>/comp/img/india-flag.png" alt="india">
-                                        India
+                                        <small>
+                                            <i class="glyphicon glyphicon-map-marker">
+                                            </i>
+                                            <cite title="state, country">
+                                                <?php echo $row->state; ?>, <?php
+                                                $data = get_data('countries', array('id' =>  $row->country));
+                                                echo $data['name'];
+                                                ?> </cite>
+
+
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -248,7 +261,7 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
                                     <p class="text-left">RAISED</p>
-                                    <h4 class="text-left">$5300</h4>
+                                    <h4 class="text-left">$0</h4>
                                     </div>
                                     <div class="pull-right">
                                     <p class="text-right">GOAL</p>
@@ -270,7 +283,8 @@
                         </div>
                     </div>
                 </div>
-                <?php 
+                        </a>
+                        <?php
                 }
                 }   
                 ?>
