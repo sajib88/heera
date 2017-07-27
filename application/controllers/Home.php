@@ -66,11 +66,21 @@ class Home extends CI_Controller {
         
         if ($this->input->post('submit'))
             $puposeList = array();
-        
             $puposeList['puposeList'] = $this->input->post('puposeList');
+            $puposeList['name'] = $this->input->post('searchByName');
+        
+            if($puposeList['puposeList'] = $this->input->post('puposeList')){
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
+            }
+            elseif($puposeList['name'] = $this->input->post('searchByName')){
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
+            } else {
+                $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
+            }
+            
             
             //print_r($puposeList);
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
+            
         
         $data['purpose'] = $this->global_model->get('purpose_lookup');
         
