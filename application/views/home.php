@@ -105,7 +105,7 @@
 
                 <div class="col-md-7 col-md-offset-3">
                 <form class="form-inline">
-                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Search by Name Or Country">
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Search by Name">
                     <button type="submit" class="btn btn-blue">Search</button>
                 </form>
                 </div>

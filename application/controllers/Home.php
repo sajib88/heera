@@ -36,7 +36,7 @@ class Home extends CI_Controller {
         $data = array();
         
         
-        
+        $data['countries'] = $this->global_model->get('countries');
         $data['projectData'] = $this->global_model->get('project');
         $data['purpose'] = $this->global_model->get('purpose_lookup');
         
@@ -66,12 +66,11 @@ class Home extends CI_Controller {
         
         if ($this->input->post('submit'))
             $puposeList = array();
+        
             $puposeList['puposeList'] = $this->input->post('puposeList');
             
             //print_r($puposeList);
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
-        
-        
         
         $data['purpose'] = $this->global_model->get('purpose_lookup');
         
