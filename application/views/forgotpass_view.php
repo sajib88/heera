@@ -18,7 +18,7 @@
         }
         ?>
         <div class="container v-center text-center">
-            <div class="row">
+            <div class="col-md-12">
                 <div class="col-lg-4 col-lg-push-4">
                     <div class="bordered-box rounded animated" data-animation="fadeInDown">
                         <h2>Recover</h2>
@@ -28,11 +28,11 @@
 
                             <div class="form-group mb-10">
                                 <label for="login">Email:</label>
-                                <input id="login" name="user_email"  placeholder="Email ID / User Name" type="text" class="form-control input-2">
+                                <input id="login" name="user_email"  placeholder="Email ID" type="text" class="form-control input-2">
                             </div>                            
 
                             <input type="submit" class="btn btn-filled btn-primary btn-block" name="submit" value="Recover" >
-
+                            <br>
                         </form>
 
                     </div>

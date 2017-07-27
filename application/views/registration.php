@@ -45,9 +45,7 @@
                     <div class="form-group mb-10">
                     <input required  type="email" name="email" class="form-control" placeholder="Your E-mail" autofocus="">
                     </div>
-                    <div class="form-group mb-10">
-                        <input required="" type="text" name="user_name" class="form-control" placeholder="User Name" autofocus="">
-                    </div>
+
                     <div class="form-group mb-10">
                         <input  required="" type="password" name="password" class="form-control" placeholder="Password" autofocus="">
                     </div>

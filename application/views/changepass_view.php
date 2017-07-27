@@ -18,7 +18,7 @@
         }
         ?>
         <div class="container v-center text-center">
-            <div class="row">
+            <div class="col-md-12">
                 <div class="col-lg-4 col-lg-push-4">
                     <div class="bordered-box rounded animated" data-animation="fadeInDown">
                         <h2>Recover</h2>
@@ -49,7 +49,8 @@
                             </div>
 
                             <input type="submit" class="btn btn-filled btn-primary btn-block" name="submit" value="save" >
-
+                            <br>
+<
                         </form>
 
 
