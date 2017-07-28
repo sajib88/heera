@@ -110,9 +110,9 @@ time.blue_green { background-color: #148aa5 }
 .skin-black-light .treeview-menu > li > a {border-bottom: 1px solid #f0f0f0;}
 
 .skin-black-light .main-header > .navbar > .sidebar-toggle {
-    background: #23527c;
+    background: #fff;
     border-right: 1px solid #eee;
-    color: #fff;
+    color: #000;
 }
 
 .skin-black-light .sidebar-menu > li.header {background: #353F53;
@@ -132,7 +132,7 @@ time.blue_green { background-color: #148aa5 }
 }
 
 .sidebar-menu > li > a > .fa {color:#A0ABBF; }
-.skin-black-light .main-header > .navbar > .sidebar-toggle {background:#353F53;}
+
 
 /*CSS sub nav*/
 .skin-black-light .sidebar-menu > li > .treeview-menu {background:#353F53;}
@@ -219,3 +219,9 @@ time.blue_green { background-color: #148aa5 }
 .info-box-dash h2{margin-top: 12px;
     margin-bottom: 0px;
 }
+
+.gap {border:1px solid #2F3949; border-width:2px 0 0; margin-bottom:30px; }
+
+.gap2 {border:1px solid #2F3949; border-width:2px 0 0; margin-top:30px; }
+
+.main-header .navbar .nav > li > a > .label {font-size:11px; top:5px;}

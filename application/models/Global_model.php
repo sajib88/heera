@@ -225,7 +225,7 @@ class Global_model extends CI_Model {
             ->join('photos','photos.ref_id=classified.id','left')
             ->group_by('classified.id')
             ->get();
-       return $get_data;
+        return $get_data;
     }
     public function  get_classified_data_edit($user_id){
         $get_data=$this->db->select('classified.*,classified.id as classified_id,classified.phone as classified_phone,audio.*,files.*,photos.name as photo_name,video.*,users.*')
@@ -252,6 +252,14 @@ class Global_model extends CI_Model {
         if (!empty($data['state'])) {
 
             $this->db->like('state', $data['state']);
+        }
+        if (!empty($data['purposeID'])) {
+
+            $this->db->like('purposeID', $data['purposeID']);
+        }
+        if (!empty($data['name'])) {
+
+            $this->db->like('name', $data['name']);
         }
 
         if (!empty($data['city'])) {
@@ -385,7 +393,7 @@ class Global_model extends CI_Model {
         }
         //return $query;
     }
-    
+
     ///// WHERE WITH COUNT THE ROW---- >>>>
     public function count_row_where($table, $where) {
         $query = $this->db->get_where($table, $where);
@@ -395,9 +403,61 @@ class Global_model extends CI_Model {
             return false;
         }
     }
-    
-    
-   
+
+    public function get_profile_search_data($table, $data, $limit = FALSE, $order_by = FALSE) {
+        $this->db->select('*')->from($table);
+
+        if (!empty($data['country'])) {
+
+            $this->db->like('country', $data['country']);
+        }
+        if (!empty($data['state'])) {
+
+            $this->db->like('state', $data['state']);
+        }
+
+        if (!empty($data['city'])) {
+
+            $this->db->like('city', $data['city']);
+        }
+        if (!empty($data['profession'])) {
+
+            $this->db->like('profession', $data['profession']);
+        }
+
+        if (!empty($data['name'])) {
+
+            $this->db->like('name', $data['name']);
+        }
+
+        if (!empty($data['purposeID'])) {
+
+            $this->db->where('purposeID', $data['purposeID']);
+        }
+
+        if (!empty($limit)) {
+
+            $this->db->limit($limit['limit'], $limit['start']);
+        }
+
+        if (!empty($order_by)) {
+            $this->db->order_by($order_by['filed'], $order_by['order']);
+        }
+
+        $query = $this->db->get();
+
+        //echo $this->db->last_query();exit();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
+
+
+
 
 
 }

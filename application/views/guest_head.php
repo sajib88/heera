@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>comp/css/slick.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>comp/css/slick-theme.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>comp/css/main.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>comp/font-awesome/css/font-awesome.min.css">
 
     <script src="<?php echo base_url(); ?>comp/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>

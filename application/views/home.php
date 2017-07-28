@@ -104,10 +104,10 @@
                 </div>
 
                 <div class="col-md-7 col-md-offset-3">
-                <form class="form-inline">
-                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Search by Name">
-                    <button type="submit" class="btn btn-blue">Search</button>
-                </form>
+                    <form class="form-inline" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                        <input type="text" name="searchByName" class="form-control" id="exampleInputEmail2" placeholder="Search by Name">
+                        <button type="submit" class="btn btn-blue">Search</button>
+                    </form>
                 </div>
 
 
@@ -130,7 +130,7 @@
         <!--category first 5 image start-->
         <div class="row">
                 <div class="col-md-1"></div>
-                
+
                     <div class="cat-widget col-md-2">
                         <div class="inner-item">
                             <img src="<?php echo base_url(); ?>comp/img/women.jpg" alt="" class="img-responsive">
@@ -203,7 +203,7 @@
     <!--get free with image-->
 
     <!--helpig-->
-    <div class="row ptop-40">
+    <div class="row ptop-20">
         <div class="text-center helpig-hand">
             <h2>Give a helpig hand. <span>See our causes</span></h2>
 
@@ -253,7 +253,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="progress-bar" data-percentage="80">
+                                    <div class="progress-bar" data-percentage="0">
                                         <div class="blue bar"><span></span></div>
                                         <div class="label"></div>
                                     </div>
@@ -286,7 +286,7 @@
                         </a>
                         <?php
                 }
-                }   
+                }
                 ?>
 
 

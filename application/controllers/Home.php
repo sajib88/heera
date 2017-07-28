@@ -60,30 +60,30 @@ class Home extends CI_Controller {
         $this->load->view('guest_footer');
         
     }
-    
+
     public function getPurpose(){
         $data = array();
-        
+
         if ($this->input->post('submit'))
             $puposeList = array();
-            $puposeList['puposeList'] = $this->input->post('puposeList');
-            $puposeList['name'] = $this->input->post('searchByName');
-        
-            if($puposeList['puposeList'] = $this->input->post('puposeList')){
+        $puposeList['puposeList'] = $this->input->post('puposeList');
+        $puposeList['name'] = $this->input->post('searchByName');
+
+        if($puposeList['puposeList'] = $this->input->post('puposeList')){
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
-            }
-            elseif($puposeList['name'] = $this->input->post('searchByName')){
+        }
+        elseif($puposeList['name'] = $this->input->post('searchByName')){
             $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
-            } else {
-                $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
-            }
-            
-            
-            //print_r($puposeList);
-            
-        
+        } else {
+            $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
+        }
+
+
+        //print_r($puposeList);
+
+
         $data['purpose'] = $this->global_model->get('purpose_lookup');
-        
+
         $this->load->view('guest_head', $data);
         $this->load->view('project/project_SearchView',$data);
         $this->load->view('guest_footer');

@@ -15,14 +15,15 @@
                     <div data-index="1">
                         <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
                     </div>
+
                     <div data-index="2">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
                     </div>
                     <div data-index="3">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
                     </div>
                     <div data-index="4">
-                        <img src="<?php echo base_url(); ?>comp/img/slide1.jpg" class="img-responsive" alt="One">
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
                     </div>
                 </div>
 
@@ -30,11 +31,11 @@
                 <div class="slider-nav-thumbnails">
                     <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_1">
                     </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-2.jpg" class="img-responsive" slide="slide_2">
+                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_2">
                     </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-3.jpg" class="img-responsive" slide="slide_3">
+                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_3">
                     </div>
-                    <div class="item"><img src="<?php echo base_url(); ?>comp/img/thumbs/thumb-4.jpg" class="img-responsive" slide="slide_4">
+                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_4">
                     </div>
                 </div>
             </div>
@@ -68,7 +69,7 @@
                     </div><!--entry title-->
                     <div class="entry-content">
                         <div class="progress-wrap">
-                            <h5>53% Funded</h5>
+                            <h5>0% Funded</h5>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 53%;">
                                 </div>
@@ -79,7 +80,7 @@
                             </div>
                             <div class="stats-wrap row">
                                 <div class="single-item col-xs-6 pdl pdr">
-                                    <span>5</span> Lenders
+                                    <span>0</span> Lenders
                                 </div>
                                 <div class="single-item col-xs-6  pdr">
 
@@ -110,7 +111,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-7 pdr item">
-                                    <input type="submit" value="Lend Now" class="btn btn-big btn-yellow">
+                                    <input type="submit" value="Lend Now" class="btn btn-mid btn-yellow">
                                 </div>
                             </div>
                         </form>

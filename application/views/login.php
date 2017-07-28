@@ -19,13 +19,21 @@
                         }
                         ?>
     <div class="login-bg">
-        <div class="container  col-md-7 col-md-offset-3">
+        <div class="container col-md-4 col-md-offset-4">
              
             <div class="form-wrapper">
                 <form class="form-signin wow fadeInUp" method="post" action="<?php echo base_url('home/login'); ?>" role="form"> 
-            <h2 class="form-signin-heading">Sign in now !</h2>
+
             <div class="login-wrap">
                  <fieldset>
+                     <div class="form-group mb-10">
+                    <a href="#" class="btn btn-small btn-block btn-fb"><i class="pull-cnter fa fa-facebook"></i>&nbsp &nbsp Facebook Login</a>
+                         </br> </br>
+                         <div class="hr-text">
+                             <hr>
+                             <span>or</span>
+                         </div>
+                     </div>
 
                      <div class="form-group mb-10">
                      <label for="login">Email Id</label>
@@ -51,9 +59,8 @@
                     </span>
                 </label>
 
-                 <input type="submit" class="btn btn-big btn-primary btn-block" name="submit" value="Login" >
-                     <br> <br>
-                     <a href="#" class="btn btn-small  btn-fb">Facebook Login</a>
+                 <input type="submit" class="btn btn-mid btn-primary btn-block" name="submit" value="Login" >
+
                  </fieldset>
 
                 <br>

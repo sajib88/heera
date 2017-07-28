@@ -375,11 +375,16 @@ hr {
     background-position: center right;
     background-repeat: no-repeat;
 
-
+    background-position-y: 410px;
 }
 
 .btn-fb {
     background-color:#3b5998;
+
+    color: #fff;
+}
+.btn-fb:hover {
+
 
     color: #fff;
 }
@@ -389,3 +394,34 @@ div.thumbnail:hover {
     box-shadow: 0 2px 8px #000000;
 
 }
+
+.hr-text hr {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.hr-text span {
+    background-color: #fff;
+    display: block;
+    left: 50%;
+    margin-left: -25px;
+    position: absolute;
+    text-align: center;
+    top: 60px;
+    width: 50px;
+}
+
+.newsletter-widget input[type="text"]{
+    background: #dae1e7;
+    height: 42px;
+    width: 66%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 15px;
+    font-family: 'gotham book';
+    color: #113058;
+    border: none;
+    float: left;
+}
+

@@ -10,7 +10,7 @@
                     <div class="tab-wrapper row">
     <!--container start-->
     <div class="registration-bg">
-        <div class="container  col-md-7 col-md-offset-3">
+        <div class="container col-md-4 col-md-offset-4">
                 <?php
                     if (!empty($error)) {
                         showErrorMessage($error);
@@ -22,8 +22,17 @@
                     ?>
            
                  <form class="form-signin wow fadeInUp" action="<?php echo base_url('home/registration'); ?>" method="post" enctype="multipart/form-data">
-                <h2 class="form-signin-heading">Register now</h2>
-                     <div class="pull-right"><a href="#" class="btn btn-small  btn-fb">Facebook Login</a></div>
+
+
+                     <div class="form-group mb-10">
+                         <a href="#" class="btn btn-small btn-block btn-fb"><i class="pull-cnter fa fa-facebook"></i>&nbsp &nbsp Facebook Login</a>
+                         </br> </br>
+                         <div class="hr-text">
+                             <hr>
+                             <span>or</span>
+                         </div>
+                     </div>
+
 
                 <div class="login-wrap">
                     <p>Enter your  details</p>
@@ -58,7 +67,7 @@
                     </label>
                     </div>
                     <div class="form-group mb-10">
-                    <input type="submit" name="submit" class="btn btn-big btn-yellow btn-block" value="Submit">
+                    <input type="submit" name="submit" class="btn btn-mid btn-yellow btn-block" value="Submit">
                     </div>
                     <div class="registration">
                         Already Registered ?

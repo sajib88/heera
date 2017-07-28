@@ -5,11 +5,11 @@
     .products > .thumbnail{
         margin-bottom: 60px;
     }
-    
+
     .helpig-hand{
         margin-top: -28px;
     }
-    
+
     .helpig-hand h2{
         font-size: 40px;
     }
@@ -21,11 +21,11 @@
             margin-left: 0px;
         }
     }
-    
+
     .cat_drop {
         display: block;
     }
-    
+
     .pdtb-20{
         padding-top: 0px;
         padding-bottom: 20px;
@@ -33,18 +33,18 @@
         line-height: 1.0000000;
         color: #1570f4;
     }
-    
+
     .sho{
         float: left;
         width: 60px;
-       
+
         font-size: 17px;
         white-space: nowrap;
         margin: 8px 2px 0px 14px;
     }
-    
-    
-    
+
+
+
     .sho2{
         float: left;
         width: 50px;
@@ -52,7 +52,7 @@
         margin-top: 8px;
         font-size: 18px;
     }
-    
+
     .form-control-search{
         border: 1px solid #113058;
         border-radius: 0px;
@@ -64,9 +64,9 @@
         box-shadow: none;
         color: #113058;
     }
-    
+
     @media screen and (max-width: 600px) {
-        
+
         .sho{
             margin: 0px;
         }
@@ -74,73 +74,73 @@
             margin-top: 0px;
         }
     }
-    
+
 </style>
 
 <main class="main-wrapper">
-    
+
     <section class="content-wrapper">
-        <div class="row">            
-                <div class="row"> 
-                    
+        <div class="row">
+                <div class="row">
+
                     <div class="entry-footer cat_drop col-md-offset-1">
-                        <div class="col-sm-1 sho pdl-20">Show</div> 
+                        <div class="col-sm-1 sho pdl-20">Show</div>
                         <div class="col-lg-2  ">
-                            
+
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
                                 <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
-                                    
+
                                     <option value="">plese select category</option>
-                                    <?php 
+                                    <?php
                                         if(!empty($purpose)){
                                             foreach($purpose as $row){
                                             //$sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
                                     ?>
-                                           <option value="<?php echo $row->purposeID;?>" <?php //echo $sel;?> ><?php echo $row->purposeTitle;?></option>     
-                                    <?php  
+                                           <option value="<?php echo $row->purposeID;?>" <?php //echo $sel;?> ><?php echo $row->purposeTitle;?></option>
+                                    <?php
                                             }
                                         }
                                     ?>
                                 </select>
                             </form>
-                        </div>                               
+                        </div>
                     </div>
                     <div class="entry-footer cat_drop ">
-                        <div class="col-sm-1 sho2">Sort</div> 
+                        <div class="col-sm-1 sho2">Sort</div>
                         <div class="col-lg-2">
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
                                 <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
-                                    <option value="">Trending now</option>
-                                    <option value="">Amount: low to high</option>
-                                    <option value="">Amount: high to low</option>
-                                    <option value="">Expiring soon</option>
-                                    <option value="">Loan length</option>
-                                    <option value="">Most recent</option>
-                                    <option value="">Random</option>
-                                   
+                                    <option value="1">Trending now</option>
+                                    <option value="2">Amount: low to high</option>
+                                    <option value="3">Amount: high to low</option>
+                                    <option value="4">Expiring soon</option>
+                                    <option value="5">Loan length</option>
+                                    <option value="6">Most recent</option>
+                                    <option value="7">Random</option>
+
                                 </select>
                             </form>
-                        </div>                               
+                        </div>
                     </div>
-                </div>            
+                </div>
             </div>
-        
+
         <div class="ptop-30"></div>
-        
+
         <div class="container">
             <div class="row">
                 <div class="bottom-gap">
-                    
+
                 <?php if(is_array($projectData)){ ?>
                 <?php foreach($projectData as $row){?>
                     <div class="col-sm-12 pdtb-20">
-                    <?php 
+                    <?php
                         echo 'Category : '. getpurposeById($row->purposeID); echo '       Country : '. countryNameByID($row->country);
-                    ?>                        
+                    ?>
                     </div>
                     <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>">
                 <div class="col-sm-6 col-md-4 products">
-                    <div class="thumbnail" >                       
+                    <div class="thumbnail" >
                         <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
                         <div class="caption pdr">
                             <div class="row">
@@ -170,7 +170,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="progress-bar" data-percentage="80">
+                                    <div class="progress-bar" data-percentage="0">
                                         <div class="blue bar"><span></span></div>
                                         <div class="label"></div>
                                     </div>
@@ -178,7 +178,7 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
                                     <p class="text-left">RAISED</p>
-                                    <h4 class="text-left">$5300</h4>
+                                    <h4 class="text-left">$0</h4>
                                     </div>
                                     <div class="pull-right">
                                     <p class="text-right">GOAL</p>
@@ -201,9 +201,9 @@
                     </div>
                 </div>
                     </a>
-                <?php 
+                <?php
                 }
-                }   
+                }
                 ?>
                 </div>
             </div>

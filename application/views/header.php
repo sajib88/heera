@@ -75,13 +75,23 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
+                <?php if($user_info['profession'] == 1){?>
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-money"></i>
+                        <span class="label label-success">Credit = $100</span>
+                    </a>
+
+                </li>
+                <?php }else{}?>
+
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img width="17" height="17" src="<?php echo base_url();?>/backend/img/dash/notify.png" />
                         <span class="label label-warning"><?php echo (!empty($doctor_appointment))?count($doctor_appointment):""?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?php echo (!empty($doctor_appointment))?count($doctor_appointment):""?> appointment</li>
+                        <li class="header">You have No<?php echo (!empty($doctor_appointment))?count($doctor_appointment):""?> Message</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -101,6 +111,13 @@
                         <li class="footer"><a href="<?php echo base_url('doctor/docController/allappointment')?>">View all</a></li>
                     </ul>
                 </li>
+
+
+
+
+
+
+
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -144,6 +161,12 @@
                       <a href="<?php echo base_url('home/log_out'); ?>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
+
+
+
+
+
+
                 </ul>
               </li>
             </ul>
@@ -172,7 +195,7 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>All Projects</a>
+                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
@@ -233,6 +256,18 @@
                         <span>Logout</span>
                     </a>
                 </li>
+
+                <div class="gap"> </div>
+
+                    <li class="header">
+
+
+                        <span class="btn btn-block bg-olive btn-flat btn-lg"> <i class="fa fa-plus"></i> ADD FUND</span>
+
+                    </li>
+                <div class="gap2"> </div>
+
+
                 <?php } ?>
 
                 <?php if($user_info['profession'] == 2){?>
@@ -307,10 +342,10 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Open Projects</a>
+                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
+                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
                         </li>
                          <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Active Projects</a>
@@ -322,21 +357,21 @@
                             <a href="#"><i class="fa fa-circle-o"></i>Closed Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>New Project</a>
+                            <a href="<?php echo base_url('project/project/add'); ?>"><i class="fa fa-plus"></i>New Project</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
-                    <i class="fa fa-user-secret"></i>
+                    <i class="fa  fa-child"></i>
                     <span>Lenders</span>
                   </a>
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
-                    <i class="fa fa-user-secret"></i>
+                    <i class="fa fa-briefcase"></i>
                     <span>Borrowers</span>
                   </a>
                 </li>
