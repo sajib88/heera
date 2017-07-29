@@ -408,60 +408,42 @@
 </div>
 
 
-
 <div class="col-lg-12">
     <div class="form-group">
         <label>Picture Two</label><span id='picture2-error' class='error' for='picture2'></span>
-        <input class="btn btn-default" name="photo_2" type="file">
+        <input class="btn btn-default" name="photo1" type="file">
     </div>
+    <?php if (!empty($editProject['photo1'])) { ?>
+        <div class="col-lg-6 pull-right">
+            <img src="<?php echo base_url() . '/assets/file/project/' .$editProject['photo1']; ?>" alt="" width="100" class="img-circle img-responsive" />
+        </div>
+    <?php }
+    ?>
 </div>
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Picture Three</label><span id='picture3-error' class='error' for='picture3'></span>
-        <input class="btn btn-default" name="photo_3" type="file">
+        <label>Picture Three</label><span id='picture2-error' class='error' for='picture2'></span>
+        <input class="btn btn-default" name="photo2" type="file">
     </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group" id="primary_file_id">
-        <label>File One<span class="error">*</span></label><span id='file1-error' class='error' for='file1'></span>
-        <input class="btn btn-default" name="primary_file" type="file">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group" id="file_2">
-        <label>File Two<span class="error">*</span></label><span id='file1-error' class='error' for='file1'></span>
-        <input class="btn btn-default" name="file_2" type="file">
-    </div>
+    <?php if (!empty($editProject['photo2'])) { ?>
+        <div class="col-lg-6 pull-right">
+            <img src="<?php echo base_url() . '/assets/file/project/' .$editProject['photo2']; ?>" alt="" width="100" class="img-circle img-responsive" />
+        </div>
+    <?php }
+    ?>
 </div>
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Primary Sound</label><span id='primary_audio-error' class='error' for='audio'></span>
-        <input class="btn btn-default" name="primary_sound" type="file">
+        <label>Picture Four</label><span id='picture3-error' class='error' for='picture3'></span>
+        <input class="btn btn-default" name="photo3" type="file">
     </div>
+    <?php if (!empty($editProject['photo3'])) { ?>
+        <div class="col-lg-6 pull-right">
+            <img src="<?php echo base_url() . '/assets/file/project/' .$editProject['photo3']; ?>" alt="" width="100" class="img-circle img-responsive" />
+        </div>
+    <?php }
+    ?>
 </div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Sound</label><span id='audio-error' class='error' for='audio'></span>
-        <input class="btn btn-default" name="sound1" type="file">
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Primary Videos</label><span id='primary_video-error' class='error' for='primary_video'></span>
-        <input class="btn btn-default" name="primary_video" type="file">
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <div class="form-group">
-        <label>Videos1</label><span id='video1-error' class='error' for='video1_video'></span>
-        <input class="btn btn-default" name="video1" type="file">
-    </div>
-</div>
-
-
 
 <div class="col-lg-12">
     <input type="submit" name="submit" class="btn btn-info" value="Save">

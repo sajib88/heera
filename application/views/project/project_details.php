@@ -1,4 +1,11 @@
-
+<style type="text/css">
+    .slick-slide img{
+        height: 532px;
+    }
+    .banner-wrapper .slider-nav-thumbnails .item img{
+        height: 115px;
+    }
+</style>
 <main class="main-wrapper">
     <section class="banner-wrapper">
 
@@ -12,30 +19,49 @@
             <div class="col-md-8 pdl">
                 <!-- MAIN SLIDES -->
                 <div class="slider">
-                    <div data-index="1">
-                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
+                     <div data-index="1">
+                        <?php if(!empty($projectData['mainImage'])){ ?>
+                            <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php }else{} ?>
                     </div>
-
                     <div data-index="2">
-                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php if(!empty($projectData['photo1'])){ ?>
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo1']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php }else{} ?>
                     </div>
                     <div data-index="3">
-                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php if(!empty($projectData['photo2'])){ ?>
+                            <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo2']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php }else{} ?>
                     </div>
                     <div data-index="4">
-                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php if(!empty($projectData['photo3'])){ ?>
+                            <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo3']; ?>" width="100%" class="img-responsive" alt="One">
+                        <?php }else{} ?>
                     </div>
                 </div>
 
                 <!-- THUMBNAILS -->
                 <div class="slider-nav-thumbnails">
-                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_1">
+                   <div class="item">
+                        <?php if(!empty($projectData['mainImage'])){ ?>
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_1">
+                         <?php }else{} ?>
                     </div>
-                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_2">
+                    <div class="item">
+                        <?php if(!empty($projectData['photo1'])){ ?>
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo1']; ?>" class="img-responsive" slide="slide_2">
+                        <?php }else{} ?>
                     </div>
-                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_3">
+                    <div class="item">
+                        <?php if(!empty($projectData['photo2'])){ ?>
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo2']; ?>" class="img-responsive" slide="slide_3">
+                        <?php }else{} ?>
                     </div>
-                    <div class="item"><img src="<?php echo base_url().'assets/file/project/'.$projectData['mainImage']; ?>" class="img-responsive" slide="slide_4">
+                    <div class="item">
+                        <?php if(!empty($projectData['photo3'])){ ?>
+                        <img src="<?php echo base_url().'assets/file/project/'.$projectData['photo3']; ?>" class="img-responsive" slide="slide_4">
+                        <?php }else{} ?>
                     </div>
                 </div>
             </div>

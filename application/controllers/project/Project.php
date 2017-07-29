@@ -32,6 +32,7 @@ class Project extends CI_Controller {
         $data = array();
         $data['page_title'] = 'Project';
         $data['error'] = '';
+        $this->load->library('Resizeimg');
         $loginId = $this->session->userdata('login_id');
 
         if($this->input->post()){
@@ -94,49 +95,37 @@ class Project extends CI_Controller {
 
                 }
                 
-                if (isset($_FILES["photo_1"]["name"]) && $_FILES["photo_1"]["name"] != '') {
+                if (isset($_FILES["photo1"]["name"]) && $_FILES["photo1"]["name"] != '') {
                 $this->PATH = './assets/file/project';
                 $photo_name = time();
                 if (!file_exists($this->PATH)) {
                     mkdir($this->PATH, 0777, true);
                 }
-                $save['photo_1'] = $this->resizeimg->image_upload('photo_1', $this->PATH, 'size[300,300]', '', $photo_name);
+                $save['photo1'] = $this->resizeimg->image_upload('photo1', $this->PATH, 'size[300,300]', '', $photo_name);
                 }
                 else {
 
                 }
                 
-                if (isset($_FILES["photo_2"]["name"]) && $_FILES["photo_2"]["name"] != '') {
+                if (isset($_FILES["photo2"]["name"]) && $_FILES["photo2"]["name"] != '') {
                 $this->PATH = './assets/file/project';
                 $photo_name = time();
                 if (!file_exists($this->PATH)) {
                     mkdir($this->PATH, 0777, true);
                 }
-                $save['photo_2'] = $this->resizeimg->image_upload('photo_2', $this->PATH, 'size[300,300]', '', $photo_name);
+                $save['photo2'] = $this->resizeimg->image_upload('photo2', $this->PATH, 'size[300,300]', '', $photo_name);
                 }
                 else {
 
                 }
                 
-                if (isset($_FILES["photo_3"]["name"]) && $_FILES["photo_3"]["name"] != '') {
+                if (isset($_FILES["photo3"]["name"]) && $_FILES["photo3"]["name"] != '') {
                 $this->PATH = './assets/file/project';
                 $photo_name = time();
                 if (!file_exists($this->PATH)) {
                     mkdir($this->PATH, 0777, true);
                 }
-                $save['photo_3'] = $this->resizeimg->image_upload('photo_3', $this->PATH, 'size[300,300]', '', $photo_name);
-                }
-                else {
-
-                }
-                
-                if (isset($_FILES["photo_4"]["name"]) && $_FILES["photo_4"]["name"] != '') {
-                $this->PATH = './assets/file/project';
-                $photo_name = time();
-                if (!file_exists($this->PATH)) {
-                    mkdir($this->PATH, 0777, true);
-                }
-                $save['photo_4'] = $this->resizeimg->image_upload('photo_4', $this->PATH, 'size[300,300]', '', $photo_name);
+                $save['photo3'] = $this->resizeimg->image_upload('photo3', $this->PATH, 'size[300,300]', '', $photo_name);
                 }
                 else {
 
@@ -171,16 +160,12 @@ class Project extends CI_Controller {
         $data = array();
         $data['page_title'] = 'Edit Project';
         $data['error'] = '';       
-        
+        $this->load->library('Resizeimg');
         $loginId = $this->session->userdata('login_id');
         
          if($this->input->post()){
 
             $postData = $this->input->post();
-
-
-
-
 
                 $save['name'] = $postData['name'];
                 $save['purposeID'] = $postData['purposeID'];
@@ -223,6 +208,42 @@ class Project extends CI_Controller {
                     mkdir($this->PATH, 0777, true);
                 }
                 $save['mainImage'] = $this->resizeimg->image_upload('mainImage', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo1"]["name"]) && $_FILES["photo1"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo1'] = $this->resizeimg->image_upload('photo1', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo2"]["name"]) && $_FILES["photo2"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo2'] = $this->resizeimg->image_upload('photo2', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+                
+                if (isset($_FILES["photo3"]["name"]) && $_FILES["photo3"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo3'] = $this->resizeimg->image_upload('photo3', $this->PATH, 'size[300,300]', '', $photo_name);
                 }
                 else {
 

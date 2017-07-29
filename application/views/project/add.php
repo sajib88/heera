@@ -98,21 +98,21 @@
 <div class="col-lg-12">
     <div class="form-group">
         <label>Picture Two</label><span id='picture2-error' class='error' for='picture2'></span>
-        <input class="btn btn-default" name="photo_2" type="file">
+        <input class="btn btn-default" name="photo1" type="file">
     </div>
 </div>
 
 
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Picture Two</label><span id='picture2-error' class='error' for='picture2'></span>
-        <input class="btn btn-default" name="photo_2" type="file">
+        <label>Picture Three</label><span id='picture2-error' class='error' for='picture2'></span>
+        <input class="btn btn-default" name="photo2" type="file">
     </div>
 </div>
 <div class="col-lg-12">
     <div class="form-group">
-        <label>Picture Three</label><span id='picture3-error' class='error' for='picture3'></span>
-        <input class="btn btn-default" name="photo_3" type="file">
+        <label>Picture Four</label><span id='picture3-error' class='error' for='picture3'></span>
+        <input class="btn btn-default" name="photo3" type="file">
     </div>
 </div>
 

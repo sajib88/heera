@@ -84,7 +84,7 @@
                 <div class="row">
 
                     <div class="entry-footer cat_drop col-md-offset-1">
-                        <div class="col-sm-1 sho pdl-20">Show</div>
+                        <div class="col-sm-1 sho pdl-20">Category</div>
                         <div class="col-lg-2  ">
 
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
@@ -109,6 +109,7 @@
                         <div class="col-sm-1 sho2">Sort</div>
                         <div class="col-lg-2">
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                                <input type="hidden" name="searchByName" />
                                 <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
                                     <option value="1">Trending now</option>
                                     <option value="2">Amount: low to high</option>
@@ -131,7 +132,7 @@
             <div class="row">
                 <div class="bottom-gap">
 
-                <?php if(is_array($projectData)){ ?>
+                <?php if(!empty($projectData)){ ?>
                 <?php foreach($projectData as $row){?>
                     <div class="col-sm-12 pdtb-20">
                     <?php
@@ -203,7 +204,11 @@
                     </a>
                 <?php
                 }
-                }
+                }else{
+                    if(!empty($this->session->flashdata('msg_search'))){
+                        echo '<div class="alert alert-danger" id="success-alert">No search found</div>';                        
+                    }
+                }   
                 ?>
                 </div>
             </div>

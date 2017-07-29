@@ -33,7 +33,7 @@ class Resizeimg {
             log_message ( 'debug', 'MY File Processing Class Initialized' );
         }
 
-    public $path ='./assets/file/blog';
+    public $path ='./assets/file/project';
 
     public function make_upload($fieldName, $path, $type, $file_name, $width = 0, $height = 0) {
         $config['file_name'] = $file_name;
