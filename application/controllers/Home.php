@@ -19,8 +19,8 @@ class Home extends CI_Controller {
         
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
-        
-        
+
+        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '5', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['projectData'] = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
 

@@ -128,58 +128,36 @@
     <div class="right-bg">
     <div class="container">
         <!--category first 5 image start-->
+
+
+
         <div class="row">
                 <div class="col-md-1"></div>
 
+
+            <?php if(is_array($category)){ ?>
+                <?php foreach($category as $row){
+                    //print_r($row);
+                    ?>
                     <div class="cat-widget col-md-2">
                         <div class="inner-item">
-                            <img src="<?php echo base_url(); ?>comp/img/women.jpg" alt="" class="img-responsive">
+                           <a href="<?php echo base_url('home/getPurpose/'.$row->purposeID);?>">
+                            <img  src="<?php echo base_url().'assets/file/category/'.$row->purposeImage; ?>" alt="" class="img-responsive rounded">
                             <div class="carousel-caption">
-                                <h4>Women</h4>
+                                <h4><?php echo substr($row->purposeTitle, 0, 50); ?></h4>
                             </div>
+                           </a>
                         </div>
-                    </div><!--lender widget-->
-
-                    <div class="cat-widget col-md-2">
-
-                        <img src="<?php echo base_url(); ?>comp/img/agri.jpg" alt="test" class="img-responsive">
-
-                        <div class="carousel-caption">
-                            <h4>Agriculture</h4>
-                        </div>
-
                     </div>
 
-                    <div class="cat-widget col-md-2">
-
-                        <img src="<?php echo base_url(); ?>comp/img/education.jpg" alt="test" class="img-responsive">
-
-                        <div class="carousel-caption">
-                            <h6>Education</h6>
-                        </div>
-
-                    </div>
+                    <?php
+                }
+            }
+            ?>
 
 
 
-                    <div class="cat-widget col-md-2">
 
-                        <img src="<?php echo base_url(); ?>comp/img/health.jpg" alt="test" class="img-responsive">
-
-                        <div class="carousel-caption">
-                            <h6> Health</h6>
-                        </div>
-
-                    </div>
-                    <div class="cat-widget col-md-2">
-
-                        <img src="<?php echo base_url(); ?>comp/img/allloan.jpg" alt="test" class="img-responsive">
-
-                        <div class="carousel-caption">
-                            <h6>All Loans</h6>
-                        </div>
-
-                    </div>
 
 
                     <div class="col-md-1"></div>

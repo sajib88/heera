@@ -425,3 +425,5 @@ div.thumbnail:hover {
     float: left;
 }
 
+.rounded {border-radius:6px;}
+
