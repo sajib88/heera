@@ -225,3 +225,6 @@ time.blue_green { background-color: #148aa5 }
 .gap2 {border:1px solid #2F3949; border-width:2px 0 0; margin-top:30px; }
 
 .main-header .navbar .nav > li > a > .label {font-size:11px; top:5px;}
+
+.amount {font-weight: bolder; font-size: 16px;}
+.bg-fund{background-color: #5ABF8C; color: #fff;}

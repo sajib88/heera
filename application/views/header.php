@@ -78,8 +78,8 @@
                 <?php if($user_info['profession'] == 1){?>
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-money"></i>
-                        <span class="label label-success">Credit = $100</span>
+                        <div class="amount" style="position: relative;"> <i class="fa fa-money"></i>  $100.00</div>
+
                     </a>
 
                 </li>
@@ -262,7 +262,7 @@
                     <li class="header">
 
 
-                        <span class="btn btn-block bg-olive btn-flat btn-lg"> <i class="fa fa-plus"></i> ADD FUND</span>
+                        <span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS</span>
 
                     </li>
                 <div class="gap2"> </div>
