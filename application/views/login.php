@@ -50,14 +50,14 @@
 
 
                      <div class="form-group mb-10 pull-right">
-                     <label class="checkbox">
+
                        <input type="checkbox" value="remember-me"> Remember me
                      </div>
-                     <span class="pull-left">
+                     <div class=" form-group mb-10 pull-left">
                         <a data-toggle="modal" href="<?php echo base_url('home/forgotpassword'); ?>"> Forgot Password?</a>
 
-                    </span>
-                </label>
+                    </div>
+
 
                  <input type="submit" class="btn btn-mid btn-primary btn-block" name="submit" value="Login" >
 

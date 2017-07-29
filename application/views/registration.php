@@ -35,16 +35,16 @@
 
 
                 <div class="login-wrap">
-                    <p>Enter your  details</p>
+
                     
                         <div  class="form-group">
-                                                <label>Select Lender or Borrower Type </label>
+                                                <p>Select  Type </p>
                                                 <select name="profession" class="form-control">
                                                     <option value="1">Lender</option>
                                                     <option value="2">Borrower</option>
 
                                                 </select>
-                                            </div></br>
+                                            </div>
                     <div class="form-group mb-10">
                         <input required=""  type="text" name="first_name" class="form-control" placeholder="First Name" autofocus="">
                      </div>
@@ -58,16 +58,14 @@
                     <div class="form-group mb-10">
                         <input  required="" type="password" name="password" class="form-control" placeholder="Password" autofocus="">
                     </div>
+
                     <div class="form-group mb-10">
-                        <input   required type="password" name="conf" class="form-control" placeholder="Confirm Password" autofocus="">
-                    </div>
-                    <div class="form-group mb-10">
-                    <label class="checkbox">
+
                         <input required="" type="checkbox" value="agree this condition"> I agree to the Terms of condition and Privacy Policy
-                    </label>
+
                     </div>
                     <div class="form-group mb-10">
-                    <input type="submit" name="submit" class="btn btn-mid btn-yellow btn-block" value="Submit">
+                    <input type="submit" name="submit" class="btn btn-mid btn-yellow btn-block" value="Sign Up">
                     </div>
                     <div class="registration">
                         Already Registered ?

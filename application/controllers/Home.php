@@ -222,7 +222,7 @@ class Home extends CI_Controller {
            // $this->form_validation->set_rules('user_name', 'user name', 'trim');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]|is_unique[users.email]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-            $this->form_validation->set_rules('conf', 'Confirm Password', 'trim|required|matches[password]');
+            //$this->form_validation->set_rules('conf', 'Confirm Password', 'trim|required|matches[password]');
             //$this->form_validation->set_rules('g-recaptcha-response', 'recaptcha validation', 'required|callback_validate_captcha');
             //$this->form_validation->set_message('validate_captcha', 'Please check the the captcha form');
             if ($this->form_validation->run() == true) {
