@@ -155,7 +155,16 @@
             }
             ?>
 
-
+            <div class="cat-widget col-md-2">
+                <div class="inner-item">
+                    <a href="<?php echo base_url('home/getPurpose/');?>">
+                        <img  src="<?php echo base_url().'assets/file/category/cat-5.jpg' ?>" alt="" class="img-responsive rounded">
+                        <div class="carousel-caption">
+                            <h4>All LOANS</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
 
 

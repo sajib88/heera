@@ -253,7 +253,7 @@ select.form-control {
   .header-wrapper .pdr {
     padding-right: 0px; }
   .header-wrapper .navbar-brand {
-    height: 84px;
+    height: auto;
     padding: 23px 15px;
     margin-right: 40px; }
 
