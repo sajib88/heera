@@ -61,11 +61,11 @@ class Home extends CI_Controller {
         
     }
 
-    public function getPurpose(){
+    public function getPurpose($id=''){
         $data = array();
-
+        //echo $id;
        if ($this->input->post('submit'))
-            $puposeList = array();
+        $puposeList = array();
         $puposeList['puposeList'] = $this->input->post('puposeList');
         $puposeList['name'] = $this->input->post('searchByName');
 
@@ -74,7 +74,12 @@ class Home extends CI_Controller {
         }
         elseif($puposeList['name'] = $this->input->post('searchByName')){
             $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
-        }else{
+        }elseif(!empty ($id)){
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
+        }elseif($puposeList['puposeList'] or $puposeList['name'] or $id == NULL){
+            $data['projectData'] = $this->global_model->get('project');
+        }          
+        else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
         }
 
@@ -85,7 +90,7 @@ class Home extends CI_Controller {
         $data['purpose'] = $this->global_model->get('purpose_lookup');
 
         $this->load->view('guest_head', $data);
-        $this->load->view('project/project_SearchView',$data);
+        $this->load->view('project/project_SearchView',$data, $puposeList);
         $this->load->view('guest_footer');
     }
 

@@ -36,15 +36,18 @@
 
     .sho{
         float: left;
-        width: 60px;
-
+        width: 90px;
         font-size: 17px;
         white-space: nowrap;
         margin: 8px 2px 0px 14px;
     }
-
-
-
+    .sho3{
+        float: left;
+        width: 150px;
+        font-size: 17px;
+        white-space: nowrap;
+        margin: 8px 2px 0px 14px;
+    }
     .sho2{
         float: left;
         width: 50px;
@@ -70,6 +73,9 @@
         .sho{
             margin: 0px;
         }
+        .sho3{
+            margin: 0px;
+        }
         .sho2{
             margin-top: 0px;
         }
@@ -88,6 +94,7 @@
                         <div class="col-lg-2  ">
 
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                                <input type="hidden" name="purposeID" />
                                 <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
 
                                     <option value="">plese select category</option>
@@ -102,6 +109,15 @@
                                         }
                                     ?>
                                 </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="entry-footer cat_drop ">
+                        <div class="col-sm-1 sho3">Search by Name</div>
+                        <div class="col-lg-2">
+                            <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                                
+                                <input type="text" onchange="this.form.submit()" value="<?php echo $this->input->post('searchByName');?>" name="searchByName" class="form-control" id="exampleInputEmail2" placeholder="Search by Name" /> 
                             </form>
                         </div>
                     </div>
@@ -123,6 +139,7 @@
                             </form>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -133,13 +150,8 @@
                 <div class="bottom-gap">
 
                 <?php if(!empty($projectData)){ ?>
-                <?php foreach($projectData as $row){?>
-                    <div class="col-sm-12 pdtb-20">
-                    <?php
-                        echo 'Category : '. getpurposeById($row->purposeID); echo '       Country : '. countryNameByID($row->country);
-                    ?>
-                    </div>
-                    <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>">
+                <?php foreach($projectData as $row){?>                    
+                   <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>"> 
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
                         <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
@@ -201,7 +213,7 @@
                         </div>
                     </div>
                 </div>
-                    </a>
+                  </a>  
                 <?php
                 }
                 }else{
@@ -210,6 +222,7 @@
                     }
                 }   
                 ?>
+                
                 </div>
             </div>
         </div>

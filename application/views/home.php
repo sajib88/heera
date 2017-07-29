@@ -271,7 +271,7 @@
 
                 <div class="col-md-12">
 
-                    <a href="<?php echo base_url();?>home/listProject" aria-labelledby="dropdownMenu3" class="btn btn-big btn-yellow">Browse all causes</a>
+                    <a href="<?php echo base_url();?>home/getPurpose" aria-labelledby="dropdownMenu3" class="btn btn-big btn-yellow">Browse all causes</a>
 
 
                 </div>
