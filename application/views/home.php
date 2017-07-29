@@ -26,7 +26,7 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title text-left">Chosse a Borrower</h3>
+                                <h3 class="card-title text-left">Choose a Borrower</h3>
                                 <p class="card-text text-left">
                                     With supporting text below as</br>
                                     a natural lead-in to additional</br>
@@ -74,7 +74,7 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title text-right">Get Paid</h3>
+                                <h3 class="card-title text-right">Get Repaid</h3>
                                 <p class="card-text text-right">With supporting text below as</br>
                                     a natural lead-in to additional</br>
                                     content.</p>
@@ -160,7 +160,7 @@
                     <a href="<?php echo base_url('home/getPurpose/');?>">
                         <img  src="<?php echo base_url().'assets/file/category/cat-5.jpg' ?>" alt="" class="img-responsive rounded">
                         <div class="carousel-caption">
-                            <h4>All LOANS</h4>
+                            <h4>All Loans</h4>
                         </div>
                     </a>
                 </div>
@@ -182,7 +182,7 @@
     <!--get free with image-->
     <div class="row ptop-40 ">
         <div class="col-md-6 col-md-offset-3 text-center">
-            <h4>Heera.org does’t chnage any fees or commission and is a
+            <h4>Heera.org does’t charge any fees or commission and is a
                 one-to-one direct funding platform</h4>
             <img src="<?php echo base_url(); ?>comp/img/dimond.jpg"  class="img-responsive center-block dimond ptop-20" />
         </div>

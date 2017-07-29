@@ -23,7 +23,7 @@ print_r($allpersonals);die;*/
             <small>List of Active Projects</small>
         </h1>
         <ol class="breadcrumb">
-            <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-olive btn-flat"> <i class="fa fa-plus"></i> New Submitted Project</span></a>
+            <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-plus"></i>Add  New Project</span></a>
         </ol>
     </section>
     <section class="content">
