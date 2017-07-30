@@ -262,7 +262,7 @@
                     <li class="header">
 
 
-                        <span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS</span>
+                        <a href="<?php echo base_url('fund/Fund/addfund');?>"><span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS</span></a>
 
                     </li>
                 <div class="gap2"> </div>
