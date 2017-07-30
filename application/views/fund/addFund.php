@@ -33,7 +33,7 @@
                                 <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addfund'); ?>">
                                     
                                     <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
-                                    <input type="number" name="currentAmount" value="<?php echo $user_info['inAmount']; ?>">
+                                    <input type="hidden" name="currentAmount" value="<?php echo $user_info['inAmount']; ?>">
                                     
                                 <div class="col-lg-12">
                                     <div class="form-group">                                  
