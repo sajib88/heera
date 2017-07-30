@@ -78,7 +78,11 @@
                 <?php if($user_info['profession'] == 1){?>
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="amount" style="position: relative;"> <span class="text-info"> <i class="fa fa-money"></i> $100.00</span> </div>
+                        <div class="amount" style="position: relative;"> 
+                            <span class="text-info"> <i class="fa fa-money"></i> 
+                                $<?php if($user_info['inAmount']>= 0){echo $user_info['inAmount'];}else{echo '0.00';}?>
+                            </span> 
+                        </div>
 
                     </a>
 
