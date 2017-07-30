@@ -17,7 +17,7 @@
         </div>
     </div>
 <?php } $this->session->unset_userdata('message'); ?>
-
+<br><br><br>
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
