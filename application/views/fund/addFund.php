@@ -31,15 +31,15 @@
                             </div>
                             <div id="paypal-form" class="col-lg-12" hidden="true">
                                 <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addfund'); ?>">
-                                    <input type="hidden" name="projectID" value="2" />
+                                    
                                     <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
-                                    <input type="hidden" name="currentAmount" value="<?php echo $user_info['fundedAmount']; ?>">
+                                    <input type="number" name="currentAmount" value="<?php echo $user_info['inAmount']; ?>">
                                     
                                 <div class="col-lg-12">
                                     <div class="form-group">                                  
                                             
                                             <label>Amount<span class="error">*</span></label>
-                                            <input name="fundedAmount" type="number" id="inAmount" placeholder="Amount"  class="form-control">
+                                            <input name="inAmount" type="number" id="inAmount" placeholder="Amount"  class="form-control">
                                         
                                     </div>
                                 </div>
@@ -174,14 +174,14 @@
 <script type="application/javascript">
     $('#paypalform').validate({
         rules: {
-            fundedAmount: {
+            inAmount: {
                 required:true,
                 number: true
                 
             }
         },
         messages:{
-            fundedAmount: {
+            inAmount: {
                 required: "Amount is Required",
             }
         }

@@ -274,15 +274,16 @@ class Project extends CI_Controller {
     }
 
 
-    public function all($status='')
+    public function all()
     {
         
         $table = 'project';
         $data = array();
         $data['page_title'] = 'All Project';
         $loginId = $this->session->userdata('login_id');
-        //print_r($status);
+        
         $data['allprojects'] = $this->global_model->get($table);
+        
 
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
