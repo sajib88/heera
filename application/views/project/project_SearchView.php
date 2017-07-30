@@ -46,7 +46,7 @@
         width: 150px;
         font-size: 17px;
         white-space: nowrap;
-        margin: 8px 2px 0px 14px;
+        margin: 8px 2px 0px 0px;
     }
     .sho2{
         float: left;
@@ -101,9 +101,9 @@
                                     <?php
                                         if(!empty($purpose)){
                                             foreach($purpose as $row){
-                                            //$sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
+                                            $sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
                                     ?>
-                                           <option value="<?php echo $row->purposeID;?>" <?php //echo $sel;?> ><?php echo $row->purposeTitle;?></option>
+                                           <option value="<?php echo $row->purposeID;?>" <?php echo $sel;?> ><?php echo $row->purposeTitle;?></option>
                                     <?php
                                             }
                                         }
