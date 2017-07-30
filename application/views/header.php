@@ -335,6 +335,9 @@
                 <?php } ?>
 
                 <?php if($user_info['profession'] == 3){?>
+<!--                <pre>
+                    <?php //print_r($allprojects);?>
+                </pre>-->
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
@@ -342,7 +345,7 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
+                            <a href="<?php echo base_url('project/project/all/'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
