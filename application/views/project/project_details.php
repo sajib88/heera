@@ -17,6 +17,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 pdl">
+
+<?php
+
+print_r($totallander);
+
+?>
+
                 <!-- MAIN SLIDES -->
                 <div class="slider">
                      <div data-index="1">
@@ -127,20 +134,80 @@
                         </div>
                     </div>
                     <div class="entry-footer">
-                        <form role="form" action="#">
+
                             <div class="row">
                                 <div class="col-xs-5 pdl pdr item">
-                                    <select class="form-control">
-                                        <option value="">$25</option>
-                                        <option value="">$50</option>
-                                        <option value="">$100</option>
+                                    <select name="fundedAmount" class="form-control">
+                                        <option value="25">$25</option>
+                                        <option value="50">$50</option>
+                                        <option value="100">$100</option>
                                     </select>
                                 </div>
+
+                                <?php   $loginId = $this->session->userdata('login_id'); ?>
+                                <?php if($loginId == 0)
+                                {?>
+
                                 <div class="col-xs-7 pdr item">
-                                    <input type="submit" value="Lend Now" class="btn btn-mid btn-yellow">
+                                    <a href="<?php echo base_url(); ?>home/login"  class="btn btn-mid btn-yellow">Lend Now</a>
                                 </div>
+                                    <?php
+                                }
+                                else{
+                                ?>
+
+                                    <div class="col-xs-7 pdr item">
+                                        <input type="submit" value="Lend Now" data-toggle="modal" data-target="#myModal" class="btn btn-mid btn-yellow">
+                                    </div>
+
+                                <?php  }  ?>
+
+
+
+
+
+                                <!-- Modal -->
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h3 id="myModalLabel">Funded Amount </h3> <h5> Total Amount - <?php echo $totalamount = $user_info['inAmount'];?></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="myForm" method="post" action="<?php echo base_url('home/singleview/'.$projectData['projectID']); ?>" >
+
+
+                                                    <input name="projectid" type="hidden" value="<?php echo $projectData['projectID']?>" id="myField">
+                                                    <div class="form-group">
+                                                        <p>Select  Amount </p>
+                                                        <select name="outAmount" class="form-control">
+                                                            <option value="25">$25</option>
+                                                            <option value="50">$50</option>
+                                                            <option value="100">$100</option>
+
+                                                        </select>
+                                                    </div>
+
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                                        <button class="btn btn-primary">Lend Now</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
-                        </form>
+
                     </div>
                 </div>
             </aside>

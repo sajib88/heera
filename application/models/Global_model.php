@@ -176,6 +176,30 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function get_data_join($table, $join_table, $join_on, $where = false, $all = false) {
+        $this->db->select('*')->from($table);
+
+        $this->db->join($join_table, $join_table . '.' . $join_on . ' = ' . $table . '.' . $join_on);
+
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+
+        $query = $this->db->get();
+
+
+
+
+
+
+        if ($query->result()) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
+
     /**
      * @param $table
      * @param $where
