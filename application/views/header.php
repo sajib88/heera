@@ -348,20 +348,20 @@
                     <span>Projects</span>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
+                        <li class="<?php if($this->uri->segment(2)=="project"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/project/all/1'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
+                        <li class="<?php if($this->uri->segment(2)=="project"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/project/all/2'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
                         </li>
                          <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Active Projects</a>
+                            <a href="<?php echo base_url('project/project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                            <a href="<?php echo base_url('project/project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Closed Projects</a>
+                            <a href="<?php echo base_url('project/project/all/5'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="<?php echo base_url('project/project/add'); ?>"><i class="fa fa-plus"></i>New Project</a>

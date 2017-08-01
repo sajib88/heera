@@ -19,10 +19,11 @@ print_r($allpersonals);die;*/
 
 <div class="content-wrapper">
     
+    
 
     <section class="content-header">
         <h1>
-            All Projects
+            <?php echo $page_title;?>
             <small>List of Active Projects</small>
         </h1>
         <ol class="breadcrumb">
@@ -30,16 +31,33 @@ print_r($allpersonals);die;*/
         </ol>
     </section>
     <section class="content">
-
+        <?php if(!empty($this->session->flashdata('message'))){?>
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong><?php echo $this->session->flashdata('message'); ?></strong>
+                </div>
+            </div>
+        <?php } ?>
+        <?php  $this->session->unset_userdata('message'); ?>
+        <?php if(!empty($this->session->flashdata('error'))){?>
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong><?php echo $this->session->flashdata('error'); ?></strong>
+                </div>
+            </div>
+        <?php } ?>
+        <?php  $this->session->unset_userdata('error'); ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">List All My Projects </h3>
+                        <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
                     </div>
                     <div class="box-body no-padding">
-                        <?php if(count($allprojects)<=0){?>
-                            <div class="alert alert-info">No Personal</div>
+                        <?php if(empty($allprojects)){?>
+                        <div class="alert alert-info text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 
@@ -59,11 +77,7 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
                                         <th class="numeric"><?php echo 'Status';?></th>
-
-
-                                        <th class="numeric"><?php echo 'Edit';?></th>
-                                        <th class="numeric"><?php echo 'View';?></th>
-                                        <th class="numeric"><?php echo 'Change Status';?></th>
+                                        <th class="numeric"><?php echo 'Action';?></th>
 
 
                                     </tr>
@@ -87,14 +101,29 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->status); ?></span></td>
 
-                                                <td data-title="<?php echo 'Edit'; ?>" class="numeric"><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>" class="btn btn-block btn-primary"> Edit</a></td>
-                                                <td data-title="<?php echo 'Detail'; ?>" class="numeric"><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>" class="btn btn-block btn-success"> View</a></td>
-                                                <td data-title="<?php echo 'Status'; ?>" class="numeric"><a data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>" class="btn btn-block btn-dropbox changeStatus"> Change Status</a></td>
+                                               
+                                                <td data-title="<?php echo 'Action'; ?>" class="numeric">
+                                                   <div class="btn-group">
+                                                        <button type="button" class="btn btn-success">Action</button>
+                                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                                          <span class="caret"></span>
+                                                          <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>                                                           
+                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>                                                          
+                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>                                                                                                             
+                                                        </ul>
+                                                    </div> 
+                                                </td>
 
                                             </tr>
                                             <?php $i++;
                                         }
-                                    }?>
+                                    }else{
+                                        echo 'No data Found';
+                                    }
+?>
                                     </tbody>
                                 </table>
                             </div>
@@ -102,27 +131,26 @@ print_r($allpersonals);die;*/
                     </div>
                     
                 </div>
-                <div id="lodingState">
-    
-                </div>
+                
             </div>
         </div>
 
     </section>
 </div>
 
+<div id="lodingState">
+    
+</div>
+
 <div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+     
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Project Status</h4>                
             </div>
-            <?php if($this->session->flashdata('message')){ ?>
-                <div class="col-lg-12">
-                    <?php echo $message;?>
-                </div>
-            <?php } $this->session->unset_userdata('message'); ?>
+            
 
             <form role="form" name="update_status_frm" method="post" id="update_status_frm" enctype="multipart/form-data"
                   action="#">
@@ -149,7 +177,7 @@ print_r($allpersonals);die;*/
                                         foreach ($project_status as $project_status) {
                                             $sel = ($project_status->statusID == set_value('statusID'))?'selected="selected"':'';
                                             ?>
-                                            <option  value="<?php echo $project_status->statusID; ?>" <?php echo $sel;?> ><?php echo $project_status->statusTitle; ?></option>
+                                <option class="stat" data-statas="<?php echo $project_status->statusID; ?>" value="<?php echo $project_status->statusID; ?>" <?php echo $sel;?> ><?php echo $project_status->statusTitle; ?></option>
                                             <?php
                                         }
                                     }
@@ -162,12 +190,15 @@ print_r($allpersonals);die;*/
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-danger" type="button">Cancel</button>
                     
-                    <a  class="btn  btn-success loadingStaate">Submit</a>
+<!--                    <a  class="btn  btn-success loadingStaate">Submit</a>-->
+                            <?php $id = $this->uri->segment('4');?>
+                    <input class="btn  btn-success close-modal" data-stat="<?php echo $id; ?>" type="submit" id="loadingStaate" name="loginStatus" value="Submit">
                 </div>
                 
             </form>
         </div>
     </div>
+   
 </div>
 
 
@@ -206,26 +237,36 @@ $('.changeStatus').click(function(){
     });       
 });
 
-$('.loadingStaate').click(function(){
+$("#update_status_frm").submit(function(e){
     
+    e.preventDefault();
+    var $form = $(this);
     var base_url = '<?php echo base_url() ?>';
    
-    var id=$(this).data('id');
+    //var id=$('.stat').data('statas');
+    var id = $("#statusID").val();
     var data = $("#update_status_frm").serialize();
+    
+    // check if the input is valid
+    if(! $form.valid()) return false;
     $.ajax({
         type: 'POST',
         url: base_url + "project/Project/updateStatus/",
         data: data,
         //datatype: "json",
-        success: function(msg){            
+        success: function(msg){  console.log(msg);          
             if(msg == 'success'){               
                 // show success meessage
-                $('#myModal').hide();
-                $('#lodingState').html('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
+                //$('#myModal').attr('aria-hidden', 'true');     
+                //$('.close-modal').;  
+               
+                window.location.href=base_url + "project/Project/all/"+id;
+                
                 
             }else{
                 // show error meessage
-                $('#myModal').hide();
+                window.location.href=base_url + "project/Project/all/";
+                 
             }
             //console.log(msg);
 //            var repData = JSON.parse(rsp);
@@ -233,15 +274,17 @@ $('.loadingStaate').click(function(){
 //            $('#statusID').val(repData['status']);
 //            $('#projectID').val(repData['projectID']); 
         }
-    });       
+    });  
+    
 });
+
 
 
 
 </script>
 
 <script type="application/javascript">
-    $('#post').validate({
+    $('#update_status_frm').validate({
         rules: {
             status: {
                 required:true,
