@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>comp/font-awesome/css/font-awesome.min.css">
 
     <script src="<?php echo base_url(); ?>comp/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="<?php echo base_url(); ?>comp/js/vendor/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 8]>

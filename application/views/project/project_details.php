@@ -19,8 +19,8 @@
             <div class="col-md-8 pdl">
 
 <?php
-
-print_r($totallander);
+echo $projectData['projectID'];
+//print_r($totallander);
 
 ?>
 
@@ -157,7 +157,12 @@ print_r($totallander);
                                 ?>
 
                                     <div class="col-xs-7 pdr item">
-                                        <input type="submit" value="Lend Now" data-toggle="modal" data-target="#myModal" class="btn btn-mid btn-yellow">
+
+                                        <a href="#" type="button" id="callbutton" data-toggle="modal" data-target="#myModal" class="btn btn-mid btn-yellow clickajaxbutton">Lend Now</a>
+
+
+
+
                                     </div>
 
                                 <?php  }  ?>
@@ -167,46 +172,40 @@ print_r($totallander);
 
 
                                 <!-- Modal -->
+
                                 <div id="myModal" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
-
-                                        <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h3 id="myModalLabel">Funded Amount </h3> <h5> Total Amount - <?php echo $totalamount = $user_info['inAmount'];?></h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Lend Now</h4>
+                                                <h6>Total Balance :  $<?php echo $user_info['inAmount']; ?></h6>
+
+
                                             </div>
                                             <div class="modal-body">
-                                                <form id="myForm" method="post" action="<?php echo base_url('home/singleview/'.$projectData['projectID']); ?>" >
-
-
-                                                    <input name="projectid" type="hidden" value="<?php echo $projectData['projectID']?>" id="myField">
-                                                    <div class="form-group">
-                                                        <p>Select  Amount </p>
-                                                        <select name="outAmount" class="form-control">
-                                                            <option value="25">$25</option>
-                                                            <option value="50">$50</option>
-                                                            <option value="100">$100</option>
-
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="modal-footer">
-                                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                                        <button class="btn btn-primary">Lend Now</button>
-                                                    </div>
-                                                </form>
+                                                <div id="showcal"></div>
                                             </div>
 
                                         </div>
-
                                     </div>
                                 </div>
 
 
 
+
                             </div>
+
+
+
+
+
+
+
+
+
+
+
 
                     </div>
                 </div>
@@ -411,3 +410,38 @@ print_r($totallander);
 </section>
 
 </main>
+
+
+<input type="hidden" id='pid' data-project='<?php echo $projectData['projectID']; ?>'></input>
+<script>
+
+
+    var pid = document.getElementById('pid');
+    var sendpid = pid.getAttribute('data-project');
+
+    $(document).ready(function() {
+            var base_url = '<?php echo base_url() ?>';
+            $('#myModal').on('shown.bs.modal', function () {
+                var id=sendpid;
+                $.ajax({
+                    type: 'GET',
+                    url: base_url + "home/ajaxlender/"+id, //this file has the calculator function code
+                    //data: id,
+                    success:function(data){
+                        $('#showcal').html(data);
+                    }
+                });
+            });
+
+    });
+
+
+
+
+
+
+
+
+
+
+</script>
