@@ -32,7 +32,7 @@ print_r($allpersonals);die;*/
     </section>
     <section class="content">
         <?php if(!empty($this->session->flashdata('message'))){?>
-            <div class="col-lg-12">
+            <div class="col-lg-12 msg-hide">
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong><?php echo $this->session->flashdata('message'); ?></strong>
@@ -41,7 +41,7 @@ print_r($allpersonals);die;*/
         <?php } ?>
         <?php  $this->session->unset_userdata('message'); ?>
         <?php if(!empty($this->session->flashdata('error'))){?>
-            <div class="col-lg-12">
+            <div class="col-lg-12 msg-hide">
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong><?php echo $this->session->flashdata('error'); ?></strong>
@@ -57,7 +57,7 @@ print_r($allpersonals);die;*/
                     </div>
                     <div class="box-body no-padding">
                         <?php if(empty($allprojects)){?>
-                        <div class="alert alert-info text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
+                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 
@@ -300,6 +300,10 @@ $("#update_status_frm").submit(function(e){
 
 </script>
 
-   
+<script type="application/javascript">
+
+setTimeout(function(){$('.msg-hide').fadeOut('slow');}, 3000);
+
+</script> 
 
 
