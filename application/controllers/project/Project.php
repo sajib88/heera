@@ -274,9 +274,8 @@ class Project extends CI_Controller {
     }
 
 
-    public function all()
-    {
-        
+    public function all($id='')
+    {        
         $table = 'project';
         $data = array();
         $data['page_title'] = 'All Project';
@@ -284,7 +283,7 @@ class Project extends CI_Controller {
         
         $data['allprojects'] = $this->global_model->get($table);
         
-
+        $data['project_status'] = $this->global_model->get('project_status_lookup');
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
@@ -292,6 +291,39 @@ class Project extends CI_Controller {
         $this->load->view('project/table_view', $data);
         $this->load->view('footer');
 
+    }
+    
+    public function getStatus($projectID){
+        $data = array();
+        //$id = $this->input->post('status');
+        $projectDetails = $this->global_model->get_data('project', array('projectID' => $projectID));
+        $returnArr['projectID'] = $projectDetails['projectID'];
+        $returnArr['name'] = $projectDetails['name'];
+        $returnArr['status'] = $projectDetails['status'];
+        echo json_encode($returnArr);
+       // print_r($projectDetails);
+        
+        exit;
+    }
+    
+    public function updateStatus(){
+        
+        $status['status'] = $this->input->post('status');
+        $status['projectID'] = $this->input->post('projectID');    
+
+        $ref = $this->global_model->update('project', $status, array('projectID' => $this->input->post('projectID'))); 
+        if( $ref ){
+            // add flash data
+            // Your project save successfully
+            echo "success";
+        }else{
+            echo "error";
+            // project status not saved. Please try again.
+        }
+        redirect(base_url('project/project/all'));
+        
+        
+         
     }
 
     public function detail(){

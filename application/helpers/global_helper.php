@@ -144,6 +144,8 @@ if (!function_exists('countryNameByID')) {
 
 }
 
+
+
 if (!function_exists('getStatesByCountry')) {
 
     function getStatesByCountry($personalId) {
@@ -235,6 +237,22 @@ if (!function_exists('getProfessionById')) {
     }
 
 }
+
+if (!function_exists('getStatusById')) {
+
+    function getStatusById($Id='') {
+        $CI = &get_instance();
+
+        $result = $CI->global_model->get_data('project_status_lookup', array('statusID' => $Id));
+        if ($result['statusTitle']) {
+            return $result['statusTitle'];
+        } else {
+            return false;
+        }
+    }
+
+}
+
 
 if (!function_exists('getRepaymentScheduleById')) {
 
