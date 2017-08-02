@@ -527,7 +527,19 @@ class Global_model extends CI_Model {
         //return $query;
     }
 
-
+    public function total_funded($table, $where)
+    {
+        $this->db->select_sum('fundedAmount');
+        $this->db->from($table);
+        //$this->db->where('dates BETWEEN DATE_ADD(NOW(), INTERVAL -7 DAY) AND NOW() ');
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
 
 

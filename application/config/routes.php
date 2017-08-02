@@ -81,7 +81,9 @@ $route['ces/detail/(:any)'] = 'ces/ces_controller/detail/$1';
 $route['publicsearch'] = 'doctor/docController/publicSearch';
 
 ///// Projects
-$route['Project/project_details'] = 'Project/project/project_details';
-$route['Project/add'] = 'Project/project/add';
-$route['Project/all'] = 'project/Project/all/';
-$route['Project/edit/(:any)'] = 'project/Project/edit/$1';
+$route['project/project_details'] = 'project/project/project_details';
+$route['project/add'] = 'project/project/add';
+$route['project/all'] = 'project/Project/all/';
+$route['project/edit/(:any)'] = 'project/Project/edit/$1';
+$route['project/all/(:any)'] = 'project/project/all/$1';
+$route['Lendars/alllendars'] = 'lendars/Lendars/alllendars';
