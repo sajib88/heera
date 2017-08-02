@@ -199,7 +199,7 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="all"){echo "active";}?>">
-                            <a href="<?php echo base_url('Project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                            <a href="<?php echo base_url('project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
@@ -373,7 +373,7 @@
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="alllendars"){echo "active";}?>">
-                  <a href="<?php echo base_url('Lendars/alllendars'); ?>" >
+                  <a href="<?php echo base_url('lendars/alllendars'); ?>" >
                     <i class="fa  fa-child"></i>
                     <span>Lenders</span>
                   </a>

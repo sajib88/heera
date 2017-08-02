@@ -58,19 +58,31 @@ class Profile extends CI_Controller {
                 $save['dateofbirth'] = $this->input->post('dateofbirth');
                 $save['address'] = $this->input->post('address');
                 $save['aboutme'] = $this->input->post('aboutme');
-
-
-                uploadConfiguration();
-                if ($this->upload->do_upload('profilepicture')) {
-                    $fileInfo = $this->upload->data();
-                    // $audo_data['ref_id'] = $insertedId;
-                    $audo_data['ref_id'] = $loginId;
-                    $audo_data['ref_name'] = 'profilepic';
-                    $audo_data['name'] = $fileInfo['file_name'];
-                    $this->global_model->insert('photos', $audo_data);
-
-                    $save['profilepicture'] = $audo_data['name'];
+                
+                if (isset($_FILES["profilepicture"]["name"]) && $_FILES["profilepicture"]["name"] != '') {
+                $this->PATH = './assets/file/';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
                 }
+                $save['profilepicture'] = $this->resizeimg->image_upload('profilepicture', $this->PATH, 'size[300,300]', '', $photo_name);
+                }
+                else {
+
+                }
+
+//
+//                uploadConfiguration();
+//                if ($this->upload->do_upload('profilepicture')) {
+//                    $fileInfo = $this->upload->data();
+//                    // $audo_data['ref_id'] = $insertedId;
+//                    $audo_data['ref_id'] = $loginId;
+//                    $audo_data['ref_name'] = 'profilepic';
+//                    $audo_data['name'] = $fileInfo['file_name'];
+//                    $this->global_model->insert('photos', $audo_data);
+//
+//                    $save['profilepicture'] = $audo_data['name'];
+//                }
                 if ($this->global_model->update('users', $save, array('id' => $loginId))) {
                     $this->session->set_flashdata('message', 'Update Success');
                     redirect('profile/profile');

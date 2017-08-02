@@ -92,3 +92,6 @@ $route['project/all/(:any)'] = 'project/project/all/$1';
 $route['fund/addfund'] = 'fund/Fund/addfund';
 $route['fund/withdraw'] = 'fund/Fund/withdraw';
 $route['fund/transactions'] = 'fund/Fund/transactions';
+
+////lenders
+$route['lendars/alllendars'] = 'lendars/Lendars/alllendars';
