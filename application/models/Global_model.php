@@ -145,6 +145,36 @@ class Global_model extends CI_Model {
         }
     }
 
+    //// total amount
+    public function total_sum($table, $where)
+    {
+        $this->db->select_sum('fundedAmount');
+        $this->db->from($table);
+        //$this->db->where('dates BETWEEN DATE_ADD(NOW(), INTERVAL -7 DAY) AND NOW() ');
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function total_sum_amount($table, $where)
+    {
+        $this->db->select_sum('fundedAmount');
+        $this->db->from($table);
+        //$this->db->where('dates BETWEEN DATE_ADD(NOW(), INTERVAL -7 DAY) AND NOW() ');
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
     /**
      * @param      $table
      * @param      $join_table
@@ -156,12 +186,13 @@ class Global_model extends CI_Model {
      */
     public function get_with_join($table, $join_table, $join_on, $where = false, $all = false) {
         $this->db->select('*')->from($table);
-
+        $this->db->select_sum('fundedAmount');
         $this->db->join($join_table, $join_table . '.' . $join_on . ' = ' . $table . '.' . $join_on);
 
         if (!empty($where)) {
             $this->db->where($where);
         }
+        $this->db->group_by('fundedAmount');
 
         $query = $this->db->get();
 
@@ -188,16 +219,13 @@ class Global_model extends CI_Model {
         $query = $this->db->get();
 
 
-
-
-
-
         if ($query->result()) {
             return $query->row_array();
         } else {
             return false;
         }
     }
+
 
 
     /**
@@ -417,6 +445,25 @@ class Global_model extends CI_Model {
         }
         //return $query;
     }
+
+
+    public function count_row_funded($table, $where) {
+
+
+        $query = $this->db
+            ->select('fundedBy, count(fundedBy) AS num_of_time')
+            ->group_by('fundedBy')
+            ->order_by('num_of_time', 'desc')
+            ->get($table, 10);
+        if ($query->result()) {
+            return $query->num_rows();
+        } else {
+            return false;
+        }
+    }
+
+
+
 
     ///// WHERE WITH COUNT THE ROW---- >>>>
     public function count_row_where($table, $where) {

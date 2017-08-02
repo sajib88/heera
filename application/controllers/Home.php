@@ -21,8 +21,8 @@ class Home extends CI_Controller {
         $data['profession'] = $this->global_model->get('profession');
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
-        $data['projectData'] = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
+        $data['projectData'] = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
 
         $this->load->view('guest_head', $data);
@@ -58,7 +58,11 @@ class Home extends CI_Controller {
         $data['totalfundrise'] = $this->global_model->get('project_fund_history');
         /// total  lander for this project
 
-        $data['totallander'] = $this->global_model->count_row_where('project_fund_history', array('projectID' => $id));
+        /// TOTAL FUNDED PROJECT
+        $data['totalfundget'] =$this->global_model->total_sum('project_fund_history', array('projectID'=>$id));
+
+        /// Total lander
+        $data['totallander'] = $this->global_model->count_row_funded('project_fund_history', array('projectID' => $id));
        /// $data['joins'] = $this->global_model->get_data_join('project', 'project_fund_history', 'projectID', 'project.projectID = project_fund_history.projectID', true);
 
         $loginId = $this->session->userdata('login_id');

@@ -10,19 +10,22 @@
     <section class="banner-wrapper">
 
         <?php
-            //print_r($projectData);
+
+
+        $x = $totalWidth = $totalfundget[0]->fundedAmount;
+        $y =  $percentage = $projectData['neededAmount'];
+
+        $percent = $x/$y;
+        $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
 
         ?>
+
 
     <div class="container">
         <div class="row">
             <div class="col-md-8 pdl">
 
-<?php
-echo $projectData['projectID'];
-//print_r($totallander);
 
-?>
 
                 <!-- MAIN SLIDES -->
                 <div class="slider">
@@ -102,18 +105,20 @@ echo $projectData['projectID'];
                     </div><!--entry title-->
                     <div class="entry-content">
                         <div class="progress-wrap">
-                            <h5>0% Funded</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 53%;">
+                            <h5><?php echo $percent_friendly; ?>% Funded</h5>
+
+                                <div class="progress-bar" data-percentage="<?php echo $percent_friendly; ?>">
+                                    <div class="blue bar"><span></span></div>
+                                    <div class="label"></div>
                                 </div>
-                            </div>
+
                             <div class="funded-wrap">
-                                <div class="amount-recieved">$0 Funded</div>
+                                <div class="amount-recieved">$<?php echo  $totalfundget[0]->fundedAmount; ?> Funded</div>
                                 <div class="total-amount">of <?php echo '$'.$projectData['neededAmount'];?> Goal</div>
                             </div>
                             <div class="stats-wrap row">
                                 <div class="single-item col-xs-6 pdl pdr">
-                                    <span>0</span> Lenders
+                                    <span><?php echo $totallander;?></span> Lenders
                                 </div>
                                 <div class="single-item col-xs-6  pdr">
 
