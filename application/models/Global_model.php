@@ -12,41 +12,7 @@ class Global_model extends CI_Model {
      *
      * @return mixed
      */
-    public function get_product($table, $brand_id = false, $model = false, $keyword = false, $limit = FALSE, $order_by = FALSE) {
-        $this->db->select('*')->from($table);
 
-        if (!empty($brand_id)) {
-
-            $this->db->where('brand_id', $brand_id);
-        }
-        if (!empty($model)) {
-
-            $this->db->like('name', $model, 'both');
-        }
-
-        if (!empty($keyword)) {
-
-            $this->db->like('title', $keyword, 'both');
-        }
-        if (!empty($limit)) {
-
-            $this->db->limit($limit['limit'], $limit['start']);
-        }
-
-        if (!empty($order_by)) {
-            $this->db->order_by($order_by['filed'], $order_by['order']);
-        }
-
-        $query = $this->db->get();
-
-        //$this->db->last_query();
-
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return false;
-        }
-    }
 
     public function insert($table, $data) {
         $this->db->insert($table, $data);
@@ -265,140 +231,7 @@ class Global_model extends CI_Model {
         }
     }
 
-    public function  get_classified_data($user_id){
-        $get_data=$this->db->select('classified.*,classified.id as classified_id,classified.phone as classified_phone,audio.*,files.*,photos.name as photo_name,video.*,users.*')
-            ->from('classified')
-            ->where('classified.user_id',$user_id)
-            ->join('users','users.id =classified.user_id','left')
-            ->join('classified_main_cat','classified_main_cat.id =classified.main_cat','left')
-            ->join('audio','audio.ref_id=classified.id','left')
-            ->join('video','video.ref_id=classified.id','left')
-            ->join('files','files.ref_id=classified.id','left')
-            ->join('photos','photos.ref_id=classified.id','left')
-            ->group_by('classified.id')
-            ->get();
-        return $get_data;
-    }
-    public function  get_classified_data_edit($user_id){
-        $get_data=$this->db->select('classified.*,classified.id as classified_id,classified.phone as classified_phone,audio.*,files.*,photos.name as photo_name,video.*,users.*')
-            ->from('classified')
-            ->where('classified.id ',$user_id)
-            ->join('users','users.id =classified.user_id','left')
-            ->join('classified_main_cat','classified_main_cat.id =classified.main_cat','left')
-            ->join('audio','audio.ref_id=classified.id','left')
-            ->join('video','video.ref_id=classified.id','left')
-            ->join('files','files.ref_id=classified.id','left')
-            ->join('photos','photos.ref_id=classified.id','left')
-            ->group_by('classified.id')
-            ->get();
-        return $get_data;
-    }
 
-    public function get_personal_search_data($table, $data, $limit = FALSE, $order_by = FALSE) {
-        $this->db->select('*')->from($table);
-
-        if (!empty($data['country'])) {
-
-            $this->db->where('country', $data['country']);
-        }
-        if (!empty($data['state'])) {
-
-            $this->db->like('state', $data['state']);
-        }
-        if (!empty($data['purposeID'])) {
-
-            $this->db->like('purposeID', $data['purposeID']);
-        }
-        if (!empty($data['name'])) {
-
-            $this->db->like('name', $data['name']);
-        }
-
-        if (!empty($data['city'])) {
-
-            $this->db->like('city', $data['city']);
-        }
-        if (!empty($data['profession'])) {
-
-            $this->db->like('profession', $data['profession']);
-        }
-        if (!empty($data['maritalstatus'])) {
-
-            $this->db->like('maritalstatus', $data['maritalstatus']);
-        }
-        if (!empty($data['lang'])) {
-
-            $this->db->like('lang', $data['lang']);
-        }
-        if (!empty($limit)) {
-
-            $this->db->limit($limit['limit'], $limit['start']);
-        }
-
-        if (!empty($order_by)) {
-            $this->db->order_by($order_by['filed'], $order_by['order']);
-        }
-
-        $query = $this->db->get();
-
-        //echo $this->db->last_query();
-
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return false;
-        }
-        //return $query;
-    }
-
-    public function get_ces_search_data($table, $data, $limit = FALSE, $order_by = FALSE) {
-        $this->db->select('*')->from($table);
-
-        if (!empty($data['country'])) {
-
-            $this->db->where('country', $data['country']);
-        }
-        if (!empty($data['state'])) {
-
-            $this->db->like('state', $data['state']);
-        }
-
-        if (!empty($data['postcode'])) {
-
-            $this->db->like('postcode', $data['postcode']);
-        }
-        if (!empty($data['profession'])) {
-
-            $this->db->like('profession', $data['profession']);
-        }
-        if (!empty($data['business_name'])) {
-
-            $this->db->like('business_name', $data['business_name']);
-        }
-        if (!empty($data['business_phone'])) {
-
-            $this->db->like('business_phone', $data['business_phone']);
-        }
-        if (!empty($limit)) {
-
-            $this->db->limit($limit['limit'], $limit['start']);
-        }
-
-        if (!empty($order_by)) {
-            $this->db->order_by($order_by['filed'], $order_by['order']);
-        }
-
-        $query = $this->db->get();
-
-        //echo $this->db->last_query();
-
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return false;
-        }
-        //return $query;
-    }
 
 
     public function getStateByAjax() {
@@ -410,41 +243,7 @@ class Global_model extends CI_Model {
         exit;
     }
 
-    public function getPublicSearchData($data, $limit = FALSE, $order_by = FALSE) {
-        $this->db->select('*')->from($data['table']);
 
-        if (!empty($data['country'])) {
-
-            $this->db->where('country', $data['country']);
-        }
-        if (!empty($data['state'])) {
-
-            $this->db->like('state', $data['state']);
-        }
-
-        if (!empty($data['profession'])) {
-
-            $this->db->like('profession', $data['profession']);
-        }
-        if (!empty($limit)) {
-
-            $this->db->limit($limit['limit'], $limit['start']);
-        }
-        if (!empty($order_by)) {
-            $this->db->order_by($order_by['filed'], $order_by['order']);
-        }
-
-        $query = $this->db->get();
-
-        //echo $this->db->last_query();
-
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return false;
-        }
-        //return $query;
-    }
 
 
     public function count_row_funded($table, $where) {

@@ -65,7 +65,7 @@ $route['pub/viewedit'] = 'public_web/publicweb/viewForEdit';
 $route['pub/details'] = 'public_web/publicweb/view';
 
 
-///ces Route set
+///EXAMPLE
 $route['ces/add'] = 'ces/ces_controller/index';
 $route['ces/create'] = 'ces/ces_controller/create';
 $route['ces/allces'] = 'ces/ces_controller/allces';
@@ -74,14 +74,20 @@ $route['ces/updateCES'] = 'ces/ces_controller/updateCES';
 $route['ces/grid'] = 'ces/ces_controller/grid';
 $route['ces/search'] = 'ces/ces_controller/search/$1';
 $route['ces/detail/(:any)'] = 'ces/ces_controller/detail/$1';
+///EXAMPLE
 
 
 
-//Public Search
-$route['publicsearch'] = 'doctor/docController/publicSearch';
 
 ///// Projects
-$route['Project/project_details'] = 'Project/project/project_details';
-$route['Project/add'] = 'Project/project/add';
-$route['Project/all'] = 'project/Project/all/';
-$route['Project/edit/(:any)'] = 'project/Project/edit/$1';
+$route['project/project_details'] = 'project/project/project_details';
+$route['project/add'] = 'project/project/add';
+$route['project/all'] = 'project/Project/all/';
+$route['project/edit/(:any)'] = 'project/Project/edit/$1';
+
+
+
+///// FUnd
+$route['fund/addfund'] = 'fund/Fund/addfund';
+$route['fund/withdraw'] = 'fund/Fund/withdraw';
+$route['fund/transactions'] = 'fund/Fund/transactions';

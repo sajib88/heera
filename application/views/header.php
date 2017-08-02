@@ -191,15 +191,15 @@
                 </li>
 
                 <?php if($user_info['profession'] == 1){?>
-                <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(1)=="project"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                        <li class="<?php if($this->uri->segment(2)=="all"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
@@ -207,21 +207,21 @@
                     </ul>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(1)=="fund"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-credit-card"></i>
                     <span>Payments</span>
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Transactions</a>
+                        <li class="<?php if($this->uri->segment(2)=="transactions"){echo "active";}?>">
+                            <a href="<?php echo base_url('fund/transactions'); ?>"><i class="fa fa-circle-o"></i>Transactions</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Add Funds</a>
+                        <li class="<?php if($this->uri->segment(2)=="addfund"){echo "active";}?>">
+                            <a href="<?php echo base_url('fund/addfund'); ?>"><i class="fa fa-circle-o"></i>Add Funds</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Withdraw Funds</a>
+                        <li class="<?php if($this->uri->segment(2)=="withdraw"){echo "active";}?>">
+                            <a href="<?php echo base_url('fund/withdraw'); ?>"><i class="fa fa-circle-o"></i>Withdraw Funds</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Payment Methods</a>
