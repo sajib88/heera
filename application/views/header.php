@@ -342,35 +342,35 @@
 <!--                <pre>
                     <?php //print_r($allprojects);?>
                 </pre>-->
-                <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(1)=="project"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="project"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/1'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="1"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/1'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="project"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/2'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="2"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
                         </li>
-                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active Projects</a>
+                         <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/all/5'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="5"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all//5'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/project/add'); ?>"><i class="fa fa-plus"></i>New Project</a>
+                        <li class="<?php if($this->uri->segment(2)=="add"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/add'); ?>"><i class="fa fa-plus"></i>New Project</a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                  <a href="#" >
+                <li class="treeview <?php if($this->uri->segment(2)=="alllendars"){echo "active";}?>">
+                  <a href="<?php echo base_url('Lendars/alllendars'); ?>" >
                     <i class="fa  fa-child"></i>
                     <span>Lenders</span>
                   </a>

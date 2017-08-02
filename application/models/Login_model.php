@@ -10,8 +10,11 @@ class Login_model extends CI_Model {
     //// Login by email
     public function login($userEmail, $password) {
         $password = $this->chechpassword($userEmail, $password);
+        
         $query = $this->db->get_where('users', array('email' => $userEmail, 'password' => $password, 'status' => 1,'confirmed' => 1));
         $result = $query->row_array();
+        $time['lastLogin'] = date('Y-m-d h:i:sa');        
+        $this->global_model->update('users', $time, array('user_name' => $result['user_name']));        
         if ($query->num_rows() > 0) {
             $this->session->set_userdata(array('login_id' => $result['id'], 'user_type' => $result['profession'], 'user_name' => $result['user_name']));
             return TRUE;

@@ -280,8 +280,8 @@ class Project extends CI_Controller {
         if($id == ''){
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'All Project';
-            $data['no_data'] = 'No Project Not Found.';
+            $data['page_title'] = 'All Projects';
+            $data['no_data'] = 'No Project Found.';
             $loginId = $this->session->userdata('login_id');
 
             $data['allprojects'] = $this->global_model->get($table);
@@ -297,7 +297,7 @@ class Project extends CI_Controller {
         }elseif($id == 1){
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'Open Project';
+            $data['page_title'] = 'Open Projects';
             $data['no_data'] = 'Any Open Project Not Found.';
             $loginId = $this->session->userdata('login_id');
 
@@ -313,7 +313,7 @@ class Project extends CI_Controller {
         }elseif ($id == 2) {
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'New Submited Project';
+            $data['page_title'] = 'New Submited Projects';
             $data['no_data'] = 'Any New Submited Project Not Found.';
             $loginId = $this->session->userdata('login_id');
 
@@ -329,7 +329,7 @@ class Project extends CI_Controller {
         }elseif ($id == 3) {
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'Active Project';
+            $data['page_title'] = 'Active Projects';
             $data['no_data'] = 'Any Active Project Not Found.';
             $loginId = $this->session->userdata('login_id');
 
@@ -345,7 +345,7 @@ class Project extends CI_Controller {
         }elseif ($id == 4) {
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'Funded Project';
+            $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';
             $loginId = $this->session->userdata('login_id');
 
@@ -361,7 +361,7 @@ class Project extends CI_Controller {
         }elseif ($id == 5) {
             $table = 'project';
             $data = array();
-            $data['page_title'] = 'Closed Project';
+            $data['page_title'] = 'Closed Projects';
             $data['no_data'] = 'Any Closed Project Not Found.';
             $loginId = $this->session->userdata('login_id');
 

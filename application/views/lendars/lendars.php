@@ -1,17 +1,11 @@
 <style type="text/css">
-    
+/*    .no-padding{
+        padding: 7px !important;
+    }
+    .sorting1{
+        display: none;
+    }*/
 </style>
-<?php
-/**
- * Created by PhpStorm.
- * User: ALAM
- * Date: 10-Dec-16
- * Time: 2:17 AM
- */
-/*print '<pre>';
-print_r($allpersonals);die;*/
-?>
-
 
 
 
@@ -27,7 +21,7 @@ print_r($allpersonals);die;*/
     <section class="content-header">
         <h1>
             <?php echo $page_title;?>
-            
+            <small>List of Active Projects</small>
         </h1>
         <ol class="breadcrumb">
             <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-plus"></i>Add  New Project</span></a>
@@ -59,7 +53,7 @@ print_r($allpersonals);die;*/
                         <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
                     </div>
                     <div class="box-body no-padding">
-                        <?php if(empty($allprojects)){?>
+                        <?php if(empty($lendars)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
@@ -70,39 +64,43 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric">#</th>
 
-                                        <th class="numeric"><?php echo 'Project Name';?></th>
+                                        <th class="numeric"><?php echo 'Lendar Name';?></th>
 
-                                        <th class="numeric"><?php echo 'Borrower Name';?></th>
+                                        <th class="numeric"><?php echo 'Join Date';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
+                                        <th class="numeric"><?php echo 'Last Active Date';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                        <th class="numeric"><?php echo 'Total Funded';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Funded By';?></th>
-                                        <th class="numeric"><?php echo 'Status';?></th>
+                                        <th class="numeric"><?php echo 'Total Credit';?></th>
+                                        <th class="numeric"><?php echo 'Total Repaid';?></th>
                                         <th class="sorting1"><?php echo 'Action';?></th>
 
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if(!empty($allprojects)) {
+                                    <?php if(!empty($lendars)) {
                                         $i = 1;
-                                        foreach ($allprojects as $row) { ?>
+                                        foreach ($lendars as $row) {                                            //print_r($row);die; ?>
+                                        
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Project Name'; ?>"
-                                                    class="numeric"><?php echo $row->name; ?></td>
-                                                <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
-                                                <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->neededAmount; ?></span></td>
-                                                <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
-                                                <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
-                                                <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->status); ?></span></td>
+                                                <td data-title="<?php echo 'Lendar Name'; ?>"
+                                                    class="numeric"><?php echo $row->user_name; ?></td>
+                                                <td data-title="<?php echo 'Join Date'; ?>"
+                                                    class="numeric"><span class="label label-success"><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
+                                                </td>                                               </td>
+                                                <td data-title="<?php echo 'Last Active Date'; ?>"
+                                                    class="numeric"><span class="label label-info"><?php echo date("d-m-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
+                                                </td>
+                                                <td data-title="<?php echo 'Total Funded'; ?>"
+                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
+                                                    class="numeric"><span class="label label-warning"><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                <td data-title="<?php echo 'Total Credit'; ?>"
+                                                    class="numeric"><span class="label bg-purple"><?php echo '$'.$row->inAmount; ?></span></td>
+                                                <td data-title="<?php echo 'Total Repaid'; ?>"
+                                                    class="numeric"><span class="label bg-purple"><?php echo 'Total Repaid'; ?></span></td>
 
                                                
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric">
@@ -113,9 +111,9 @@ print_r($allpersonals);die;*/
                                                           <span class="sr-only">Toggle Dropdown</span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>                                                           
-                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>                                                          
-                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>                                                                                                             
+                                                          <li><a href="#">All projects funded</a></li>                                                           
+                                                          <li><a href="<?php //echo base_url('project/Project/detail/' . $row->projectID); ?>">Lender Profile</a></li>                                                          
+                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php //echo $row->projectID; ?>">Billing Information</a></li>                                                                                                             
                                                         </ul>
                                                     </div> 
                                                 </td>
