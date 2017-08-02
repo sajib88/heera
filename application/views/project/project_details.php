@@ -10,9 +10,7 @@
     <section class="banner-wrapper">
 
         <?php
-
-
-        $x = $totalWidth = $totalfundget[0]->fundedAmount;
+        $x = $totalWidth = $projectData['totalRaisedAmount'];
         $y =  $percentage = $projectData['neededAmount'];
 
         $percent = $x/$y;
@@ -113,12 +111,12 @@
                                 </div>
 
                             <div class="funded-wrap">
-                                <div class="amount-recieved">$<?php echo  $totalfundget[0]->fundedAmount; ?> Funded</div>
+                                <div class="amount-recieved">$<?php echo  $projectData['totalRaisedAmount']; ?> Funded</div>
                                 <div class="total-amount">of <?php echo '$'.$projectData['neededAmount'];?> Goal</div>
                             </div>
                             <div class="stats-wrap row">
                                 <div class="single-item col-xs-6 pdl pdr">
-                                    <span><?php echo $totallander;?></span> Lenders
+                                    <span><?= $totallander;?></span> Lenders
                                 </div>
                                 <div class="single-item col-xs-6  pdr">
 

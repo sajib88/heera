@@ -22,7 +22,13 @@ class Home extends CI_Controller {
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
 
-        $data['projectData'] = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
+        $projectData = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
+
+
+        foreach ($projectData as $proData){
+            $proData->totalRaisedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
+        }
+        $data['projectData'] = $projectData;
 
 
         $this->load->view('guest_head', $data);
@@ -51,15 +57,17 @@ class Home extends CI_Controller {
         
         $id = $this->uri->segment('3');
         /// project data get url
-        $data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
+        $projectData = $this->global_model->get_data('project', array('projectID'=>$id));
+
+        /// Add TOTAL FUNDED amount into main array
+        $projectData['totalRaisedAmount'] = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectData['projectID']));
+        $data['projectData'] = $projectData;
+
         /// payment shedule
         $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
         /// Total Fund collect
         $data['totalfundrise'] = $this->global_model->get('project_fund_history');
         /// total  lander for this project
-
-        /// TOTAL FUNDED PROJECT
-        $data['totalfundget'] =$this->global_model->total_sum('project_fund_history', array('projectID'=>$id));
 
         /// Total lander
         $data['totallander'] = $this->global_model->count_row_funded('project_fund_history', array('projectID' => $id));

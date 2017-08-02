@@ -1,4 +1,3 @@
-
 <header class="top-header">
     <div class="container">
         <div class="row">
@@ -245,14 +244,11 @@
                                 <div class="col-md-12">
                                     <div class="progress-bar" data-percentage="<?php
 
-                                    $data = $this->global_model->total_sum('project_fund_history', array('projectID' => $row->projectID));
-
-
-                                    $x = $totalWidth =  $data[0]->fundedAmount;
+                                    $x = $totalWidth =  $row->totalRaisedAmount;
                                     $y =  $percentage = $row->neededAmount;
 
                                     $percent = $x/$y;
-                                   echo $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
+                                    echo $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
 
                                     ?>">
                                         <div class="blue bar"><span></span></div>
@@ -264,8 +260,7 @@
                                     <p class="text-left">RAISED</p>
                                     <h4 class="text-left"><h4>$<?php
 
-                                            $data = $this->global_model->total_sum('project_fund_history', array('projectID' => $row->projectID));
-                                            echo $data[0]->fundedAmount;
+                                            echo $row->totalRaisedAmount;
                                             ?>
 
                                         </h4>

@@ -191,7 +191,7 @@
                 </li>
 
                 <?php if($user_info['profession'] == 1){?>
-                <li class="treeview <?php if($this->uri->segment(1)=="project"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(1)=="Project"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
@@ -199,7 +199,7 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="all"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                            <a href="<?php echo base_url('Project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
                             <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
@@ -279,6 +279,7 @@
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
+                      <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
@@ -307,6 +308,7 @@
                   <a href="#" >
                     <i class="fa fa-credit-card"></i>
                     <span>Payments</span>
+                      <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
@@ -319,6 +321,7 @@
                     <a href="#">
                       <i class="fa fa-cog"></i>
                       <span>Settings</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(3)=="index"){echo "active";}?>">
@@ -332,7 +335,7 @@
 
                 <li class="treeview">
                         <a href="<?php echo base_url('/home/log_out'); ?>" >
-                        <i class="fa fa-sign-out text-red"></i>
+                        <i class="fa fa-sign-out"></i>
                         <span>Logout</span>
                     </a>
                 </li>

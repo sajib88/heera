@@ -120,7 +120,8 @@ class Global_model extends CI_Model {
         $this->db->where($where);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            return $query->result();
+            $result = $query->result();
+            return $result[0]->fundedAmount;
         } else {
             return false;
         }
@@ -250,12 +251,14 @@ class Global_model extends CI_Model {
 
 
         $query = $this->db
-            ->select('fundedBy, count(fundedBy) AS num_of_time')
-            ->group_by('fundedBy')
-            ->order_by('num_of_time', 'desc')
-            ->get($table, 10);
+            ->select('fundedBy, count(fundedBy) AS totalLander')
+            ->where($where)
+            ->group_by('projectID')
+            ->get($table);
+            $res = $query->result();
+
         if ($query->result()) {
-            return $query->num_rows();
+            return $res[0]->totalLander;
         } else {
             return false;
         }
