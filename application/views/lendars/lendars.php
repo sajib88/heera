@@ -101,21 +101,9 @@
                                                     class="numeric"><span class="label bg-purple"><?php echo '$'.$row->inAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
                                                     class="numeric"><span class="label bg-purple"><?php echo 'Total Repaid'; ?></span></td>
-
-                                               
-                                                <td data-title="<?php echo 'Action'; ?>" class="numeric">
-                                                   <div class="btn-group">
-                                                        <button type="button" class="btn btn-success">Action</button>
-                                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                                          <span class="caret"></span>
-                                                          <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="#">All projects funded</a></li>                                                           
-                                                          <li><a href="<?php //echo base_url('project/Project/detail/' . $row->projectID); ?>">Lender Profile</a></li>                                                          
-                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php //echo $row->projectID; ?>">Billing Information</a></li>                                                                                                             
-                                                        </ul>
-                                                    </div> 
+                                                
+                                                <td data-title="<?php echo 'View'; ?>" class="numeric">
+                                                    <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
                                                 </td>
 
                                             </tr>
@@ -143,60 +131,23 @@
     
 </div>
 
-<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1"  id="myModal" class="modal fade">
      
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Project Status</h4>                
+                <h4 class="modal-title">Lendars Deatails</h4>                
             </div>
             
-
-            <form role="form" name="update_status_frm" method="post" id="update_status_frm" enctype="multipart/form-data"
-                  action="#">
-
                 <div class="modal-body">
-                    <input name="projectID" id="projectID" value="" type="hidden" class="form-control">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Project Name<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
-                            <p id="pojectID">
-                               
-                            </p>
-                                
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Status<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
-                            <select name="status" id="statusID" class="form-control">
-                                <option value="">Status Select</option>
-                                <?php
-                                    if (is_array($project_status)) {
-                                        foreach ($project_status as $project_status) {
-                                            $sel = ($project_status->statusID == set_value('statusID'))?'selected="selected"':'';
-                                            ?>
-                                <option class="stat" data-statas="<?php echo $project_status->statusID; ?>" value="<?php echo $project_status->statusID; ?>" <?php echo $sel;?> ><?php echo $project_status->statusTitle; ?></option>
-                                            <?php
-                                        }
-                                    }
-                                ?>
-                            </select>  
-                        </div>
-                    </div> 
+                    <div id="lendarDeatails"></div>
                 </div>
 
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-danger" type="button">Cancel</button>
-                    
-<!--                    <a  class="btn  btn-success loadingStaate">Submit</a>-->
-                            <?php $id = $this->uri->segment('4');?>
-                    <input class="btn  btn-success close-modal" data-stat="<?php echo $id; ?>" type="submit" id="loadingStaate" name="loginStatus" value="Submit">
+                    <button data-dismiss="modal" class="btn btn-danger pull-left" type="button">Cancel</button>
                 </div>
-                
-            </form>
+            
         </div>
     </div>
    
@@ -277,6 +228,17 @@ $("#update_status_frm").submit(function(e){
         }
     });  
     
+});
+
+$('.allFundedProject').click(function(){
+    
+    
+   
+    var id=$(this).data('id');
+           
+        var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/" +id; //append id at end
+        $("#lendarDeatails").load(site_url);
+           
 });
 
 
