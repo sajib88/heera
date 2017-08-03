@@ -265,6 +265,24 @@ class Global_model extends CI_Model {
     }
 
 
+    public function count_row__project($table, $where) {
+
+
+        $query = $this->db
+            ->select('fundedBy, count(projectID) AS totaproject')
+            ->where($where)
+            ->group_by('fundedBy')
+            ->get($table);
+        $res = $query->result();
+
+        if ($query->result()) {
+            return $res[0]->totaproject;
+        } else {
+            return false;
+        }
+    }
+
+
 
 
     ///// WHERE WITH COUNT THE ROW---- >>>>

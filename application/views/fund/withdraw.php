@@ -1,8 +1,8 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Withdraw Fund
-            <small>Withdraw Transfer Panel</small>
+            <i class="fa fa-credit-card"></i>  Withdraw Fund
+
         </h1>
         <ol class="breadcrumb">
             <span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-money"></i>&nbsp; &nbsp; Current Balance : $<?php if($user_info['inAmount']>= 0){echo $user_info['inAmount'];}else{echo '0.00';}?> </span></a>
@@ -12,13 +12,33 @@
     
     
     <section class="content">
-        <div class="row">           
-            <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <i class="fa fa-th"></i>
                         <h3 class="box-title">Withdraw Fund </h3>
                     </div>
+
+                    <?php if(!empty($this->session->flashdata('message'))){?>
+                        <div class="col-lg-12 msg-hide">
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><?php echo $this->session->flashdata('message'); ?></strong>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php  $this->session->unset_userdata('message'); ?>
+                    <?php if(!empty($this->session->flashdata('error'))){?>
+                        <div class="col-lg-12 msg-hide">
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong><?php echo $this->session->flashdata('error'); ?></strong>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php  $this->session->unset_userdata('error'); ?>
+
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
@@ -28,7 +48,7 @@
                                 </div>
                             </div>
                             <div id="paypal-form" class="col-lg-12" hidden="true">
-                                <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/withdraw'); ?>">
+                                <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/withdraw'); ?>">
                                     <?php $totalampount = $user_info['inAmount']; ?>
                                     <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
                                     <input type="hidden" name="currentAmount" value="<?php echo $totalampount; ?>">
@@ -189,8 +209,8 @@
         rules: {
             outAmount: {
                 required:true,
-                number: true
-                
+                number: true,
+                max: '<?php echo $totalampount; ?>'
             }
         },
         messages:{

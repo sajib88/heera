@@ -34,9 +34,13 @@ class Fund extends CI_Controller {
                 $credit['inAmount'] = $credit['inAmount'] += $save['inAmount'] = $postData['inAmount'];
                 if ($ref = $this->global_model->insert('lander_transaction_history', $save)) {
                         if($ref = $this->global_model->update('users', $credit, array('id' => $loginId))){
-                        $this->session->set_flashdata('message', 'Save Success');
-                        redirect(base_url('fund/transactions'));
+
+
+                        $this->session->set_flashdata('message', 'Add Fund under your Credit balance');
                     }
+                }
+                else{
+                    $this->session->set_flashdata('error', 'error found !');
                 }
             }
             
@@ -94,15 +98,21 @@ class Fund extends CI_Controller {
                 $save['transactionReason'] = 'withdraw funds';
                 $save['userID'] = $loginId;
                 $save['transactionDateTime'] =  date('Y-m-d H:i:s');
+                $save['transactionStatus'] =  'pending';
 
 
                 $credit['inAmount'] = $postData['currentAmount'];
                 $credit['inAmount'] = $credit['inAmount'] -= $save['outAmount'] = $postData['outAmount'];
                 if ($ref = $this->global_model->insert('lander_transaction_history', $save)) {
-                    if($ref = $this->global_model->update('users', $credit, array('id' => $loginId))){
-                        $this->session->set_flashdata('message', 'Save Success');
-                        redirect(base_url('fund/transactions'));
-                    }
+
+                    $this->session->set_flashdata('message', 'Your withdraw amount review by admin');
+//                    if($ref = $this->global_model->update('users', $credit, array('id' => $loginId))){
+//                        $this->session->set_flashdata('message', 'Save Success');
+//                        redirect(base_url('fund/transactions'));
+//                    }
+                }
+                else {
+                    $this->session->set_flashdata('error', 'error found !');
                 }
             }
 
@@ -119,6 +129,59 @@ class Fund extends CI_Controller {
 
 
     }
+
+    public function addMethod() {
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        if($this->input->post()){
+            $postData = $this->input->post();
+
+            if($postData == true){
+                $loginId = $this->session->userdata('login_id');
+
+                $save['userID'] = $loginId;
+                $save['selectPaymentType'] = empty($postData['selectPaymentType']) ? NULL : $postData['selectPaymentType'];;
+                $save['methodName'] = empty($postData['methodName']) ? NULL : $postData['methodName'];
+                $save['cardType'] = empty($postData['cardType']) ? NULL : $postData['cardType'];
+                $save['firstName'] = empty($postData['firstName']) ? NULL : $postData['firstName'];
+                $save['lastName'] = empty($postData['lastName']) ? NULL : $postData['lastName'];
+                $save['cardNumber'] = empty($postData['cardNumber']) ? NULL : $postData['cardNumber'];
+                $save['cvv'] = empty($postData['cvv']) ? NULL : $postData['cvv'];
+                $save['expireDate'] = empty($postData['expireDate']) ? NULL : $postData['expireDate'];
+                $save['expireMonth'] = empty($postData['expireMonth']) ? NULL : $postData['expireMonth'];
+                $save['expireYear'] = empty($postData['expireYear']) ? NULL : $postData['expireYear'];
+                $save['status'] =  1;
+                $save['isPrimary'] = empty($postData['isPrimary']) ? '0' : $postData['isPrimary'];
+
+                if ($ref = $this->global_model->insert('payment_methods', $save)) {
+
+                        $this->session->set_flashdata('message', 'Added New Payment Method');
+
+                }
+                else{
+                    $this->session->set_flashdata('error', 'error found !');
+                }
+            }
+
+        }
+
+        $data['login_id'] = $loginId;
+
+        /// list of payment mehtod
+        $data['listpaymethod'] = $this->global_model->get('payment_methods', array('userID' => $loginId));
+
+
+        $this->load->view('header', $data);
+        $this->load->view('fund/payMethodadd', $data);
+        $this->load->view('footer');
+
+
+    }
+
+
 
 
 

@@ -19,7 +19,7 @@ print_r($allpersonals);die;*/
 
     <section class="content-header">
         <h1>
-            Transactions
+            <i class="fa fa-credit-card"></i> Transactions
             <small>List of All Transactions</small>
         </h1>
         <ol class="breadcrumb">
@@ -66,19 +66,6 @@ print_r($allpersonals);die;*/
                                     <?php if(!empty($allTransactions)) {
                                         $i = 1;
                                         foreach ($allTransactions as $row) {
-
-                                            if($row->inAmount != '0' )
-                                            {
-
-                                                $class = "label-success";
-                                            }
-                                            elseif($row->outAmount != '0')
-                                            {
-                                                $class = "label-danger";
-                                            }
-
-                                            else{}
-
                                             ?>
 
 
@@ -88,13 +75,36 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Transaction Reason'; ?>"
                                                     class="numeric"><?php echo $row->transactionReason; ?></td>
                                                 <td data-title="<?php echo 'Transaction Date & Time'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->transactionDateTime; ?></span></td>
+                                                    class="numeric"><?php
+                                                    $phpdate = strtotime( $row->transactionDateTime);
+                                                   echo  $mysqldate = date( 'Y-m-d | H:i:s', $phpdate );
+                                                    ?></td>
                                                 <td data-title="<?php echo 'Amount in'; ?>"
-                                                    class="numeric"><span class="label <?php echo $class; ?>"><?php echo $row->inAmount; ?></span></td>
+                                                    class="numeric"><?php echo $row->inAmount; ?></td>
                                                 <td data-title="<?php echo 'Amount out'; ?>"
-                                                    class="numeric"><span class="label <?php echo $class; ?>"><?php echo $row->outAmount; ?></span></td>
+                                                    class="numeric"><?php echo $row->outAmount; ?></td>
+
+                                                <?php
+                                                $status = $row->transactionStatus;
+                                                if($status == 'done')
+                                                {
+                                                    $classname="label-info";
+
+                                                }
+
+                                                elseif($status == 'pending')
+                                                {
+                                                    $classname="label-warning";
+
+                                                }
+
+                                                else {
+
+                                                }
+
+                                                ?>
                                                 <td data-title="<?php echo 'transactionStatus'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo $row->transactionStatus; ?></span></td>
+                                                    class="numeric"><span class="label <?= $classname; ?> "><?php echo $row->transactionStatus; ?></span></td>
 
 
 
