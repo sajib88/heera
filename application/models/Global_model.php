@@ -116,7 +116,6 @@ class Global_model extends CI_Model {
     {
         $this->db->select_sum('fundedAmount');
         $this->db->from($table);
-        //$this->db->where('dates BETWEEN DATE_ADD(NOW(), INTERVAL -7 DAY) AND NOW() ');
         $this->db->where($where);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -256,6 +255,24 @@ class Global_model extends CI_Model {
             ->group_by('projectID')
             ->get($table);
             $res = $query->result();
+
+        if ($query->result()) {
+            return $res[0]->totalLander;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function funded_by_users($table, $where) {
+
+
+        $query = $this->db
+            ->select('fundedAmount, count(fundedAmount) AS totalLander')
+            ->where($where)
+            ->group_by('fundedAmount')
+            ->get($table);
+        $res = $query->result();
 
         if ($query->result()) {
             return $res[0]->totalLander;

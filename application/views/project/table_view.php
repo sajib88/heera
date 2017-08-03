@@ -113,11 +113,11 @@ print_r($allpersonals);die;*/
                                                           <span class="sr-only">Toggle Dropdown</span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>                                                           
-                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>                                                          
-                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>                                                                                                             
+                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>
+                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>
+                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>
                                                         </ul>
-                                                    </div> 
+                                                    </div>
                                                 </td>
 
                                             </tr>

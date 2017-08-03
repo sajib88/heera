@@ -4,9 +4,7 @@
             <i class="fa fa-credit-card"></i> Add Fund
 
         </h1>
-        <ol class="breadcrumb">
-            <span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-money"></i>&nbsp; &nbsp; Current Balance : $<?php if($user_info['inAmount']>= 0){echo $user_info['inAmount'];}else{echo '0.00';}?> </span></a>
-        </ol>
+
     </section>
 
 
@@ -41,7 +39,7 @@
 
                     <div class="panel-body">
                         <div class="row">
-<!
+
                             <div id="paypal-form" class="col-lg-12" hidden="true">
                                 <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addfund'); ?>">
                                     

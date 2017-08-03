@@ -20,11 +20,9 @@ print_r($allpersonals);die;*/
     <section class="content-header">
         <h1>
             <i class="fa fa-credit-card"></i> Transactions
-            <small>List of All Transactions</small>
+
         </h1>
-        <ol class="breadcrumb">
-            <span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-money"></i>&nbsp; &nbsp; Current Balance : $<?php if($user_info['inAmount']>= 0){echo $user_info['inAmount'];}else{echo '0.00';}?> </span></a>
-        </ol>
+
     </section>
     <section class="content">
 
@@ -50,11 +48,11 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Transaction Date & Time';?></th>
 
-                                        <th class="numeric"><?php echo 'inAmount';?></th>
+                                        <th class="numeric"><?php echo 'In Amount';?></th>
 
-                                        <th class="numeric"><?php echo 'outAmount';?></th>
+                                        <th class="numeric"><?php echo 'Out Amount';?></th>
 
-                                        <th class="numeric"><?php echo 'transactionStatus';?></th>
+                                        <th class="numeric"><?php echo 'Status';?></th>
 
 
 
@@ -85,26 +83,11 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><?php echo $row->outAmount; ?></td>
 
                                                 <?php
-                                                $status = $row->transactionStatus;
-                                                if($status == 'done')
-                                                {
-                                                    $classname="label-info";
 
-                                                }
-
-                                                elseif($status == 'pending')
-                                                {
-                                                    $classname="label-warning";
-
-                                                }
-
-                                                else {
-
-                                                }
 
                                                 ?>
                                                 <td data-title="<?php echo 'transactionStatus'; ?>"
-                                                    class="numeric"><span class="label <?= $classname; ?> "><?php echo $row->transactionStatus; ?></span></td>
+                                                    class="numeric"><?php echo $row->transactionStatus; ?></td>
 
 
 

@@ -4,9 +4,7 @@
             <i class="fa fa-credit-card"></i>  Payment Methods
 
         </h1>
-        <ol class="breadcrumb">
-            <span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-money"></i>&nbsp; &nbsp; Current Balance : $<?php if($user_info['inAmount']>= 0){echo $user_info['inAmount'];}else{echo '0.00';}?> </span></a>
-        </ol>
+
     </section>
     
     

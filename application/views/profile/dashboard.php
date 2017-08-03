@@ -5,14 +5,14 @@
     <section class="content-header">
         <h1>
             <i class="fa fa-dashboard"></i>  Dashboard
-        <small>Panel</small>
+
       </h1>
 
     </section>
 
     <!-- Main content -->
     <section class="content">
-    
+
         <!-- Page Content -->
         <?php if($user_info['profession'] == 1){?>
     <div class="row">        
@@ -75,57 +75,83 @@
 
     </section>
 
+
     <section class="content">
 
-
-                <div class="box box-info">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Recent Application</h3>
-
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="table-responsive">
-                            <table class="table no-margin">
-                                <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Item</th>
-                                    <th>Status</th>
-                                    <th>Popularity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                    <td>Call of Duty IV</td>
-                                    <td><span class="label label-success">Shipped</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">OR1848</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                    </td>
-                                </tr>
+                    <div class="box-body no-padding">
+                        <?php if(empty($getanderproject)){?>
+                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
+                        <?php }else{?>
+                            <div id="no-more-tables">
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
+                                <table class="table table-hover" id="js_personal_table">
+                                    <thead>
+                                    <tr>
+
+                                        <th class="numeric">#</th>
+
+                                        <th class="numeric"><?php echo 'Project Name';?></th>
+
+                                        <th class="numeric"><?php echo 'Borrower Name';?></th>
+
+                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
+
+                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+
+                                        <th class="numeric"><?php echo 'Amount Funded By';?></th>
+                                        <th class="numeric"><?php echo 'Status';?></th>
+                                        <th class="sorting1"><?php echo 'Action';?></th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if(!empty($getanderproject)) {
+                                        $i = 1;
+                                                foreach ($getanderproject as $row) {
+
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+                                                <td data-title="<?php echo 'Project Name'; ?>"
+                                                    class="numeric"><?php echo $row->projectID; ?></td>
+                                                <td data-title="<?php echo 'Borrower Name'; ?>"
+                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
+                                                <td data-title="<?php echo 'Amount Needed'; ?>"
+                                                    class="numeric"><span class="label label-info"><?php echo $row->fundedAmount; ?></span></td>
+                                                <td data-title="<?php echo 'Amount Collected'; ?>"
+                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
+                                                <td data-title="<?php echo 'Amount Funded By'; ?>"
+                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
+                                                <td data-title="<?php echo 'Status'; ?>"
+                                                    class="numeric"><span class="label bg-purple"><?php echo ""  ?></span></td>
+
+
+
+
+                                            </tr>
+                                            <?php $i++;
+                                        }
+                                    }else{
+                                        echo 'No data Found';
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php }?>
                     </div>
-                    <!-- /.box-body -->
-
 
                 </div>
 
-
-
+            </div>
+        </div>
 
     </section>
 
