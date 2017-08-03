@@ -50,10 +50,10 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">List All <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
+                        <h3 class="box-title"> <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> List</h3>
                     </div>
                     <div class="box-body no-padding">
-                        <?php if(empty($lendars)){?>
+                        <?php if(empty($borrowers)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
@@ -64,13 +64,14 @@
 
                                         <th class="numeric">#</th>
 
-                                        <th class="numeric"><?php echo 'Lendar Name';?></th>
+                                        <th class="numeric"><?php echo 'Borrowers Name';?></th>
 
                                         <th class="numeric"><?php echo 'Join Date';?></th>
 
                                         <th class="numeric"><?php echo 'Last Active Date';?></th>
+                                        <th class="numeric"><?php echo 'Project Qty';?></th>
 
-                                        <th class="numeric"><?php echo 'Total Funded';?></th>
+                                        <th class="numeric"><?php echo 'Amount Received';?></th>
 
                                         <th class="numeric"><?php echo 'Total Credit';?></th>
                                         <th class="numeric"><?php echo 'Total Repaid';?></th>
@@ -80,9 +81,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if(!empty($lendars)) {
+                                    <?php if(!empty($borrowers)) {
                                         $i = 1;
-                                        foreach ($lendars as $row) {                                            //print_r($row);die; ?>
+                                        foreach ($borrowers as $row) {                                            //print_r($row);die; ?>
                                         
                                             <tr>
                                                 <td><?php echo $i; ?></td>
@@ -94,7 +95,10 @@
                                                 <td data-title="<?php echo 'Last Active Date'; ?>"
                                                     class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
                                                 </td>
-                                                <td data-title="<?php echo 'Total Funded'; ?>"
+                                                
+                                                <td data-title="<?php echo 'Project Qty'; ?>"
+                                                    class="numeric"><span><?php echo count_project($row->id); ?></span></td>
+                                                <td data-title="<?php echo 'Amount Received'; ?>"
                                                     <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
                                                     class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                 <td data-title="<?php echo 'Total Credit'; ?>"
@@ -141,13 +145,12 @@
             </div>
             
                 <div class="modal-body">
-                    <div id="lendarDeatails"></div>
+                    <div id="borrowerDeatails"></div>
                 </div>
 
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-danger pull-left" type="button">Cancel</button>
-                </div>
-            
+                </div>            
         </div>
     </div>
    
@@ -231,14 +234,9 @@ $("#update_status_frm").submit(function(e){
 });
 
 $('.allFundedProject').click(function(){
-    
-    
-   
     var id=$(this).data('id');
-           
-        var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/" +id; //append id at end
-        $("#lendarDeatails").load(site_url);
-           
+        var site_url = "<?php echo base_url('borrowers/Borrowers/allFundedProject/'); ?>/" +id; //append id at end
+        $("#borrowerDeatails").load(site_url);
 });
 
 

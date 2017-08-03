@@ -93,5 +93,8 @@ $route['fund/addfund'] = 'fund/Fund/addfund';
 $route['fund/withdraw'] = 'fund/Fund/withdraw';
 $route['fund/transactions'] = 'fund/Fund/transactions';
 
-////lenders
+/// lenders list from admin
 $route['lendars/alllendars'] = 'lendars/Lendars/alllendars';
+
+/// borrower list from admin
+$route['borrowers/allborrowers'] = 'borrowers/borrowers/allBorrowers';

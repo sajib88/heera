@@ -55,6 +55,20 @@ if (!function_exists('row_count')) {
 
 }
 
+if (!function_exists('count_project')) {
+
+     function count_project($cid) {
+        $CI = &get_instance();
+        $CI->db->select('*');
+        $CI->db->where('userID',$cid);
+        return $query = $CI->db->count_all_results('project');
+        //return count($query);
+        
+        
+    }
+
+}
+
 if (!function_exists('categoryNameByID')) {
 
     function categoryNameByID($cid) {
