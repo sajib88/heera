@@ -19,28 +19,33 @@ class Dashboard extends CI_Controller {
         $data['error'] = '';
 
         $loginId = $this->session->userdata('login_id');
-        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $user_info= $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 
         ///// For lender purpuse code
         $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
 
 
-        //// Project funded by login user
-        $projectDatafund = $this->global_model->get('project');
 
-        foreach ($projectDatafund as $proData){
-            //$proData->totalRaisedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
 
-            //print_r($proData);
-           // echo $proData->projectID;
+
+        if($user_info['profession'] == 1){
+
+            //// Funded get table
+            $landerfundloop  = $this->global_model->get('project_fund_history', array('fundedBy' => $loginId ));
+            foreach ($landerfundloop as $landerfund){
+                /// get id from loop
+                $projectid=$landerfund->projectID;
+                $landerfund->fundedAmount;
+                $landerfund->fundedBy= $this->global_model->get('project', array('projectID' => $projectid));
+
+            }
+
+
+            $data['getanderproject'] = $this->global_model->get('project_fund_history', array('fundedBy' => $loginId));
+        }else {
+
         }
 
-        $data['projectData'] = $projectDatafund;
-
-        //print_r($projectDatafund);
-
-        $data['projectfunded'] = $this->global_model->get('project_fund_history', array('fundedBy'=>$loginId));
-//echo $projectDatafund[0]->projectFundID;
 
         $this->load->view('header', $data);
         $this->load->view('profile/dashboard', $data);
