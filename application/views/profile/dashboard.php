@@ -86,7 +86,7 @@
                     </div>
                     <div class="box-body no-padding">
                         <?php if(empty($getanderproject)){?>
-                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
+                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 

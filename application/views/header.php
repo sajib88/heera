@@ -379,8 +379,8 @@
                   </a>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                  <a href="#" >
+                <li class="treeview <?php if($this->uri->segment(2)=="allborrowers"){echo "active";}?>">
+                  <a href="<?php echo base_url('borrowers/allborrowers'); ?>" >
                     <i class="fa fa-briefcase"></i>
                     <span>Borrowers</span>
                   </a>
