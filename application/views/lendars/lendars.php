@@ -1,10 +1,11 @@
 <style type="text/css">
-/*    .no-padding{
-        padding: 7px !important;
+    .no-padding {
+        padding: 10px !important;
     }
-    .sorting1{
+    
+    table.dataTable thead > tr > th:last-child:after{
         display: none;
-    }*/
+    }
 </style>
 
 
@@ -74,7 +75,7 @@
 
                                         <th class="numeric"><?php echo 'Total Credit';?></th>
                                         <th class="numeric"><?php echo 'Total Repaid';?></th>
-                                        <th class="sorting1"><?php echo 'Action';?></th>
+                                        <th class="sort numeric"><?php echo 'View';?></th>
 
 
                                     </tr>
@@ -92,7 +93,7 @@
                                                     class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
                                                 </td>                                               </td>
                                                 <td data-title="<?php echo 'Last Active Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
+                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->lastLogin)); ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Total Funded'; ?>"
                                                     <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
@@ -100,7 +101,7 @@
                                                 <td data-title="<?php echo 'Total Credit'; ?>"
                                                     class="numeric"><span><?php echo '$'.$row->inAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
-                                                    class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
+                                                    class="numeric"><span><?php echo '$0.00'; ?></span></td>
                                                 
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>

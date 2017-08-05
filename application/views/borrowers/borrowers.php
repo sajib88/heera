@@ -1,10 +1,10 @@
 <style type="text/css">
-/*    .no-padding{
-        padding: 7px !important;
+    .no-padding {
+        padding: 10px !important;
     }
-    .sorting1{
-        display: none;
-    }*/
+    table.dataTable thead > tr > th:last-child:after{
+            display: none;
+    }
 </style>
 
 
@@ -69,12 +69,13 @@
                                         <th class="numeric"><?php echo 'Join Date';?></th>
 
                                         <th class="numeric"><?php echo 'Last Active Date';?></th>
+                                        
                                         <th class="numeric"><?php echo 'Project Qty';?></th>
 
                                         <th class="numeric"><?php echo 'Amount Received';?></th>
 
-                                        <th class="numeric"><?php echo 'Total Credit';?></th>
                                         <th class="numeric"><?php echo 'Total Repaid';?></th>
+                                        
                                         <th class="sorting1"><?php echo 'Action';?></th>
 
 
@@ -101,8 +102,7 @@
                                                 <td data-title="<?php echo 'Amount Received'; ?>"
                                                     <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
                                                     class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
-                                                <td data-title="<?php echo 'Total Credit'; ?>"
-                                                    class="numeric"><span><?php echo '$'.$row->inAmount; ?></span></td>
+                                                
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
                                                     class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
                                                 
