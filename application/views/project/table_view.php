@@ -92,15 +92,15 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
+                                                    class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->neededAmount; ?></span></td>
+                                                    class="numeric"><span><?php echo $row->neededAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><span><?php echo "0.00"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
+                                                    class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->status); ?></span></td>
+                                                    class="numeric"><span><?php echo getStatusById($row->status); ?></span></td>
 
                                                
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric">
