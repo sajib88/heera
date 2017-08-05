@@ -40,7 +40,7 @@
                     <div class="panel-body">
                         <div class="row">
 
-                            <div id="paypal-form" class="col-lg-12" hidden="true">
+                            <div id="paypal-form" class="col-lg-12" >
                                 <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addfund'); ?>">
                                     
                                     <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">

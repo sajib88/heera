@@ -26,12 +26,10 @@ print_r($allpersonals);die;*/
 
     <section class="content-header">
         <h1>
-            <?php echo $page_title;?>
+            <i class="fa fa-tasks"></i>  <?php echo $page_title;?>
             
         </h1>
-        <ol class="breadcrumb">
-            <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-plus"></i>Add  New Project</span></a>
-        </ol>
+
     </section>
     <section class="content">
         <?php if(!empty($this->session->flashdata('message'))){?>
@@ -56,7 +54,7 @@ print_r($allpersonals);die;*/
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header">
-                        <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
+                        <h3 class="box-title">List of All Projects</h3>
                     </div>
                     <div class="box-body">
                         <?php if(empty($allprojects)){?>
@@ -64,7 +62,7 @@ print_r($allpersonals);die;*/
                         <?php }else{?>
                             <div id="no-more-tables">
 
-                                <table class="table table-hover" id="js_personal_table">
+                                <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
                                     <thead>
                                     <tr>
 
@@ -94,13 +92,13 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
+                                                    class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->neededAmount; ?></span></td>
+                                                    class="numeric"><span><?php echo $row->neededAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><span><?php echo "0.00"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
+                                                    class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->statusID); ?></span></td>
 

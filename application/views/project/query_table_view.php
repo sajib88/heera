@@ -1,11 +1,17 @@
 <style type="text/css">
-    .no-padding {
-        padding: 10px !important;
-    }
-    table.dataTable thead > tr > th:last-child:after{
-            display: none;
-    }
+    
 </style>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ALAM
+ * Date: 10-Dec-16
+ * Time: 2:17 AM
+ */
+/*print '<pre>';
+print_r($allpersonals);die;*/
+?>
+
 
 
 
@@ -20,12 +26,10 @@
 
     <section class="content-header">
         <h1>
-            <?php echo $page_title;?>
+            <i class="fa fa-tasks"></i>  <?php echo $page_title;?>
             
         </h1>
-        <ol class="breadcrumb">
-            <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-plus"></i>Add  New Project</span></a>
-        </ol>
+
     </section>
     <section class="content">
         <?php if(!empty($this->session->flashdata('message'))){?>
@@ -50,65 +54,56 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title"> <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> List</h3>
+                        <h3 class="box-title">List of All Projects</h3>
                     </div>
                     <div class="box-body no-padding">
-                        <?php if(empty($borrowers)){?>
+                        <?php if(empty($allprojects)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 
-                                <table class="table table-hover" id="js_personal_table">
+                                <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
                                     <thead>
                                     <tr>
 
                                         <th class="numeric">#</th>
 
-                                        <th class="numeric"><?php echo 'Borrowers Name';?></th>
+                                        <th class="numeric"><?php echo 'Project Name';?></th>
 
-                                        <th class="numeric"><?php echo 'Join Date';?></th>
+                                        <th class="numeric"><?php echo 'Borrower Name';?></th>
 
-                                        <th class="numeric"><?php echo 'Last Active Date';?></th>
-                                        
-                                        <th class="numeric"><?php echo 'Project Qty';?></th>
+                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Received';?></th>
+                                        <th class="numeric"><?php echo 'Funded Amount';?></th>
 
-                                        <th class="numeric"><?php echo 'Total Repaid';?></th>
-                                        
-                                        <th class="sorting1"><?php echo 'Action';?></th>
+                                        <th class="numeric"><?php echo 'Amount Funded By';?></th>
+                                        <th class="numeric"><?php echo 'Status';?></th>
+
 
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if(!empty($borrowers)) {
+                                    <?php if(!empty($allprojects)) {
                                         $i = 1;
-                                        foreach ($borrowers as $row) {                                            //print_r($row);die; ?>
-                                        
+                                        foreach ($allprojects as $row) {
+                                            $data = get('project_fund_history', array('projectID' => $row->projectID));
+                                           // print_r($data);
+                                            ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Lendar Name'; ?>"
-                                                    class="numeric"><?php echo $row->user_name; ?></td>
-                                                <td data-title="<?php echo 'Join Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
-                                                </td>                                               </td>
-                                                <td data-title="<?php echo 'Last Active Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
-                                                </td>
-                                                
-                                                <td data-title="<?php echo 'Project Qty'; ?>"
-                                                    class="numeric"><span><?php echo count_project($row->id); ?></span></td>
-                                                <td data-title="<?php echo 'Amount Received'; ?>"
-                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
-                                                    class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
-                                                
-                                                <td data-title="<?php echo 'Total Repaid'; ?>"
-                                                    class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
-                                                
-                                                <td data-title="<?php echo 'View'; ?>" class="numeric">
-                                                    <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
-                                                </td>
+                                                <td data-title="<?php echo 'Project Name'; ?>"
+                                                    class="numeric"><?php echo $row->name; ?></td>
+                                                <td data-title="<?php echo 'Borrower Name'; ?>"
+                                                    class="numeric"><?php echo "Borrower Name"; ?></td>
+                                                <td data-title="<?php echo 'Amount Needed'; ?>"
+                                                    class="numeric"><?php echo $row->neededAmount; ?></td>
+                                                <td data-title="<?php echo 'Funded Amount'; ?>"
+                                                    class="numeric"><?php  echo $data[0]->fundedAmount; ?></td>
+                                                <td data-title="<?php echo 'Amount Funded By'; ?>"
+                                                    class="numeric"><?php echo "Name of founder"; ?></td>
+                                                <td data-title="<?php echo 'Status'; ?>"
+                                                    class="numeric"><?php echo getStatusById($row->status); ?></td>
 
                                             </tr>
                                             <?php $i++;
@@ -135,22 +130,60 @@
     
 </div>
 
-<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1"  id="myModal" class="modal fade">
+<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
      
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Lendars Deatails</h4>                
+                <h4 class="modal-title">Project Status</h4>                
             </div>
             
+
+            <form role="form" name="update_status_frm" method="post" id="update_status_frm" enctype="multipart/form-data"
+                  action="#">
+
                 <div class="modal-body">
-                    <div id="borrowerDeatails"></div>
+                    <input name="projectID" id="projectID" value="" type="hidden" class="form-control">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Project Name<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
+                            <p id="pojectID">
+                               
+                            </p>
+                                
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Status<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
+                            <select name="status" id="statusID" class="form-control">
+                                <option value="">Status Select</option>
+                                <?php
+                                    if (is_array($project_status)) {
+                                        foreach ($project_status as $project_status) {
+                                            $sel = ($project_status->statusID == set_value('statusID'))?'selected="selected"':'';
+                                            ?>
+                                <option class="stat" data-statas="<?php echo $project_status->statusID; ?>" value="<?php echo $project_status->statusID; ?>" <?php echo $sel;?> ><?php echo $project_status->statusTitle; ?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>  
+                        </div>
+                    </div> 
                 </div>
 
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-danger pull-left" type="button">Cancel</button>
-                </div>            
+                    <button data-dismiss="modal" class="btn btn-danger" type="button">Cancel</button>
+                    
+<!--                    <a  class="btn  btn-success loadingStaate">Submit</a>-->
+                            <?php $id = $this->uri->segment('4');?>
+                    <input class="btn  btn-success close-modal" data-stat="<?php echo $id; ?>" type="submit" id="loadingStaate" name="loginStatus" value="Submit">
+                </div>
+                
+            </form>
         </div>
     </div>
    
@@ -231,12 +264,6 @@ $("#update_status_frm").submit(function(e){
         }
     });  
     
-});
-
-$('.allFundedProject').click(function(){
-    var id=$(this).data('id');
-        var site_url = "<?php echo base_url('borrowers/Borrowers/allFundedProject/'); ?>/" +id; //append id at end
-        $("#borrowerDeatails").load(site_url);
 });
 
 

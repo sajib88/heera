@@ -71,7 +71,7 @@
 
         </div>
     </div>
-        <?php }?>
+
 
     </section>
 
@@ -82,7 +82,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
+                        <h3 class="box-title">Chart with Funded Projects</h3>
                     </div>
                     <div class="box-body no-padding">
                         <?php if(empty($getanderproject)){?>
@@ -106,7 +106,7 @@
 
                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
                                         <th class="numeric"><?php echo 'Status';?></th>
-                                        <th class="sorting1"><?php echo 'Action';?></th>
+
 
 
                                     </tr>
@@ -116,21 +116,24 @@
                                         $i = 1;
                                                 foreach ($getanderproject as $row) {
 
+                                                    $data = get_data('project', array('projectID' => $row->projectID));
+
                                             ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
                                                 <td data-title="<?php echo 'Project Name'; ?>"
-                                                    class="numeric"><?php echo $row->projectID; ?></td>
+                                                    class="numeric"><?php echo $data['name']; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
-                                                <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->fundedAmount; ?></span></td>
+                                                    class="numeric"><?php echo "Borrower Name"; ?></td>
+
+                                                <td data-title="<?php echo "neededAmount"; ?>"
+                                                    class="numeric"><?php echo $data['neededAmount']; ?></td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><?php echo $row->fundedAmount; ?></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
+                                                    class="numeric"><?php echo $user_info['first_name']; ?></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo ""  ?></span></td>
+                                                    class="numeric"><?php echo 'Active'; ?></td>
 
 
 
@@ -154,6 +157,8 @@
         </div>
 
     </section>
+
+    <?php }?>
 
 
 </div>

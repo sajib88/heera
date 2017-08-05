@@ -6,6 +6,9 @@
         width: 190px;
         margin: 0px auto;
     }
+    table.dataTable thead > tr > th:last-child:after{
+        display: none;
+    }
 </style>
 <?php //print_r($lendarDetails);?>
 <section class="content">
@@ -181,7 +184,7 @@
                                                     class="numeric"><span><?php echo $row->loanTerm; ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Goal'; ?>"
-                                                    class="numeric"><span><?php echo $row->neededAmount; ?></span>
+                                                    class="numeric"><span><?php echo '$'.$row->neededAmount; ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Project End Date'; ?>"
                                                     class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->projectEndDate)); ?></span>

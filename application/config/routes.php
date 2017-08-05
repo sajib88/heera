@@ -87,11 +87,15 @@ $route['project/add'] = 'project/project/add';
 $route['project/all'] = 'project/Project/all/';
 $route['project/edit/(:any)'] = 'project/Project/edit/$1';
 $route['project/all/(:any)'] = 'project/project/all/$1';
+$route['project/landerproject/(:any)'] = 'project/project/landerproject/$1';
+
+
 
 ///// FUnd
 $route['fund/addfund'] = 'fund/Fund/addfund';
 $route['fund/withdraw'] = 'fund/Fund/withdraw';
 $route['fund/transactions'] = 'fund/Fund/transactions';
+$route['fund/addMethod'] = 'fund/Fund/addMethod';
 
 /// lenders list from admin
 $route['lendars/alllendars'] = 'lendars/Lendars/alllendars';

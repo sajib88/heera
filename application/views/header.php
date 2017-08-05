@@ -198,11 +198,11 @@
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="all"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="landerproject"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                        <li class="<?php if($this->uri->segment(2)=="landerproject"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/landerproject/3'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
                     </ul>
                 </li>
@@ -223,8 +223,8 @@
                         <li class="<?php if($this->uri->segment(2)=="withdraw"){echo "active";}?>">
                             <a href="<?php echo base_url('fund/withdraw'); ?>"><i class="fa fa-circle-o"></i>Withdraw Funds</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Payment Methods</a>
+                        <li class="<?php if($this->uri->segment(2)=="addMethod"){echo "active";}?>">
+                            <a href="<?php echo base_url('fund/addMethod'); ?>"><i class="fa fa-circle-o"></i>Payment Methods</a>
                         </li>
                     </ul>
                 </li>

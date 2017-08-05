@@ -9,11 +9,11 @@
 print_r($allpersonals);die;*/
 ?>
 
+<style>
 
+    #no-more-tables {padding-top:20px; padding-left: px; padding-right: 2px;}
+</style>
 
-
-<link href="<?php echo base_url('backend/plugins/datatables/dataTables.bootstrap.css');?>" rel="stylesheet">
-<link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
 
 <div class="content-wrapper">
 
@@ -38,7 +38,7 @@ print_r($allpersonals);die;*/
                         <?php }else{?>
                             <div id="no-more-tables">
 
-                                <table class="table table-hover" id="js_personal_table">
+                                <table class="table table-striped table-bordered dataTable no-footer" id="js_personal_table">
                                     <thead>
                                     <tr>
 
@@ -114,10 +114,17 @@ print_r($allpersonals);die;*/
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 
+
+
+
+<link href="<?php echo base_url('backend/plugins/datatables/dataTables.bootstrap.css');?>" rel="stylesheet">
+<link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
+
 <script type="text/javascript">
     $(document).ready(function(){
-        var personaltable = document.getElementById("js_personal_table");
-        $(personaltable).dataTable();
+
+
+        $('#js_personal_table').DataTable();
     });
 </script>
 

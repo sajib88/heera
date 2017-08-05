@@ -339,3 +339,5 @@ time.blue_green { background-color: #148aa5 }
     border-top: 1px solid rgba(0,0,0,0);
     border-top-color : rgba(0,0,0,0);
 }
+
+#no-more-tables {padding-top:20px; padding-left: 2px; padding-right: 2px;}
