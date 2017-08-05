@@ -54,11 +54,11 @@ print_r($allpersonals);die;*/
         <?php  $this->session->unset_userdata('error'); ?>
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
+                <div class="box box-default">
                     <div class="box-header">
                         <h3 class="box-title">List All My <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> </h3>
                     </div>
-                    <div class="box-body no-padding">
+                    <div class="box-body">
                         <?php if(empty($allprojects)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
@@ -102,7 +102,7 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->status); ?></span></td>
+                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->statusID); ?></span></td>
 
                                                
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric">

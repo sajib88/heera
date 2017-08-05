@@ -184,7 +184,7 @@ class Home extends CI_Controller {
         $puposeList['puposeList'] = $this->input->post('puposeList');
         $puposeList['name'] = $this->input->post('searchByName');
 
-        if($puposeList['puposeList'] = $this->input->post('puposeList')){
+        if($puposeList['puposeList'] == $this->input->post('puposeList')){
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
         }
         elseif($puposeList['name'] = $this->input->post('searchByName')){
