@@ -69,6 +69,7 @@
         <script src="<?php echo base_url(); ?>comp/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>comp/js/slick.min.js"></script>
         <script src="<?php echo base_url(); ?>comp/js/main.js"></script>
+        <script src="<?php echo base_url(); ?>backend/plugins/datepicker/bootstrap-datepicker.js"></script>
 
         <script>
             $(function () {
@@ -104,6 +105,20 @@
             });
 
         </script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                //Date picker
+                $('#datepicker2').datepicker({
+                    autoclose: true
+                });
+                $('#datepicker').datepicker({
+                    autoclose: true
+                });
+
+            });
+        </script>
     </body>
 </html>
 
+
+ 
