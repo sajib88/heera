@@ -285,7 +285,7 @@ class Project extends CI_Controller {
             $loginId = $this->session->userdata('login_id');
 
             $data['allprojects'] = $this->global_model->get($table);
-
+            $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
             $data['project_status'] = $this->global_model->get('project_status_lookup');
 
             $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
@@ -430,6 +430,61 @@ class Project extends CI_Controller {
         $this->load->view('footer');
 
 
+    }
+
+
+    public function landerproject($id='')
+    {
+        //echo $id;die;
+        if ($id == 3) {
+            $table = 'project';
+            $data = array();
+            $data['page_title'] = 'Active Projects';
+            $data['no_data'] = 'Any Active Project Not Found.';
+            $loginId = $this->session->userdata('login_id');
+
+            $data['allprojects'] = $this->global_model->get($table, array('projectID' => $loginId));
+
+            $data['project_status'] = $this->global_model->get('project_status_lookup');
+
+            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+            $data['login_id'] = $loginId;
+            $this->load->view('header', $data);
+            $this->load->view('project/query_table_view', $data);
+            $this->load->view('footer');
+        }elseif ($id == 4) {
+            $table = 'project';
+            $data = array();
+            $data['page_title'] = 'Funded Projects';
+            $data['no_data'] = 'Any Funded Project Not Found.';
+            $loginId = $this->session->userdata('login_id');
+
+            $data['allprojects'] = $this->global_model->get($table);
+
+            $data['project_status'] = $this->global_model->get('project_status_lookup');
+
+            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+            $data['login_id'] = $loginId;
+            $this->load->view('header', $data);
+            $this->load->view('project/query_table_view', $data);
+            $this->load->view('footer');
+        }elseif ($id == 5) {
+            $table = 'project';
+            $data = array();
+            $data['page_title'] = 'Closed Projects';
+            $data['no_data'] = 'Any Closed Project Not Found.';
+            $loginId = $this->session->userdata('login_id');
+
+            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
+
+            $data['project_status'] = $this->global_model->get('project_status_lookup');
+
+            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+            $data['login_id'] = $loginId;
+            $this->load->view('header', $data);
+            $this->load->view('project/query_table_view', $data);
+            $this->load->view('footer');
+        }
     }
 
 

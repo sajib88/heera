@@ -185,7 +185,7 @@
                                 <div class="col-md-12">
                                     <div class="progress-bar" data-percentage="<?php
 
-                                    $data = $this->global_model->total_sum('project_fund_history', array('projectID' => $row->projectID));
+                                    $data = $this->global_model->total_sum_amount('project_fund_history', array('projectID' => $row->projectID));
 
 
                                     $x = $totalWidth =  $data[0]->fundedAmount;
@@ -203,7 +203,7 @@
                                     <div class="pull-left">
                                     <p class="text-left">RAISED</p>
                                     <h4 class="text-left">$<?php
-                                        $data = $this->global_model->total_sum('project_fund_history', array('projectID' => $row->projectID));
+                                        $data = $this->global_model->total_sum_amount('project_fund_history', array('projectID' => $row->projectID));
                                         if($data[0]->fundedAmount == 0){
                                             echo "0";
                                         }else{

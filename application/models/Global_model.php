@@ -127,7 +127,23 @@ class Global_model extends CI_Model {
     }
 
 
+    //// total amount
+    public function total_amount_collected($table, $where)
+    {
+        $this->db->select_sum('fundedAmount');
+        $this->db->from($table);
+        $this->db->where($where);
+        $query = $this->db->get();
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
+
+    /// for get amount - view code
     public function total_sum_amount($table, $where)
     {
         $this->db->select_sum('fundedAmount');

@@ -74,11 +74,11 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                        <th class="numeric"><?php echo 'Funded Amount';?></th>
 
                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
                                         <th class="numeric"><?php echo 'Status';?></th>
-                                        <th class="sorting1"><?php echo 'Action';?></th>
+
 
 
                                     </tr>
@@ -86,37 +86,24 @@ print_r($allpersonals);die;*/
                                     <tbody>
                                     <?php if(!empty($allprojects)) {
                                         $i = 1;
-                                        foreach ($allprojects as $row) { ?>
+                                        foreach ($allprojects as $row) {
+                                            $data = get('project_fund_history', array('projectID' => $row->projectID));
+                                           // print_r($data);
+                                            ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label label-success"><?php echo "Borrower Name"; ?></span></td>
+                                                    class="numeric"><?php echo "Borrower Name"; ?></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span class="label label-info"><?php echo $row->neededAmount; ?></span></td>
-                                                <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span class="label label-warning"><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><?php echo $row->neededAmount; ?></td>
+                                                <td data-title="<?php echo 'Funded Amount'; ?>"
+                                                    class="numeric"><?php  echo $data[0]->fundedAmount; ?></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo "Name of founder"; ?></span></td>
+                                                    class="numeric"><?php echo "Name of founder"; ?></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->status); ?></span></td>
-
-                                               
-                                                <td data-title="<?php echo 'Action'; ?>" class="numeric">
-                                                   <div class="btn-group">
-                                                        <button type="button" class="btn btn-success">Action</button>
-                                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                                          <span class="caret"></span>
-                                                          <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>
-                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>
-                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
+                                                    class="numeric"><?php echo getStatusById($row->status); ?></td>
 
                                             </tr>
                                             <?php $i++;

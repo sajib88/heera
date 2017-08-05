@@ -1,15 +1,11 @@
 <div id="page-content">
 <div class="content-wrapper">
     <section class="content-header">
-      <h1>
-        Profile Edit
-        <small>Modify Your Profile Information</small>
+      <h1><i class="fa fa-cog"></i>
+        Profile Mange
+
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Profile</a></li>
-        <li class="active">Edit</li>
-      </ol>
+
     </section>
     
    <section class="content">
@@ -57,8 +53,21 @@
                     <label>About Me<span class="error">*</span></label><span id='aboutme' class='error' for='aboutme'></span>
                     <textarea  name="aboutme" class="form-control"><?php echo $user_info['aboutme']; ?></textarea>
                 </div>
-                <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger rite'));?>
-                <input type="submit" name="submit" class="btn btn-success" value="Update">
+
+                <div class="form-group">
+                    <label>Recurring Subscription</label>
+
+                    <input id="craditcard" type="radio" name="recurringSubscription" value="<?php echo $user_info['recurringSubscription']; ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>Auto Lending </label>
+
+                    <input id="craditcard" type="radio" name="autoLending " value="<?php echo $user_info['autoLending']; ?>">
+                </div>
+
+
+
               </div>
           </div>
           <!-- /.box -->
@@ -148,7 +157,36 @@
                 </div>
             </div>
           </div>
-        </div>    
+        </div>
+
+
+            <div class="col-md-12">
+                <div class="box box-primary">
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <!-- /Lending -->
+
+
+                                    <div class="col-lg-12 text-center">
+                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Update">
+                                        <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
+                                    </div>
+
+                                    <!-- /.Lending -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
     </form>
         <!-- /.col-lg-12 -->
     </div>
