@@ -115,8 +115,13 @@ time.blue_green { background-color: #148aa5 }
     color: #000;
 }
 
-.skin-black-light .sidebar-menu > li.header {background: #353F53;
+.skin-black-light .sidebar-menu > li.header {
+    background: #353F53;
     color: #66738F;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 19px;
+    padding-top: 20px;
 }
 
 
@@ -125,10 +130,17 @@ time.blue_green { background-color: #148aa5 }
     background:#353F51;
 }
 .skin-black-light .sidebar-menu > li > a {
-    color: #A0ABBF; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;
+    color: #A0ABC1; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;
+    font-size: 15px;
+    font-weight: bold;
+
 }
 .skin-black-light .sidebar-menu > li:hover > a, .skin-black-light .sidebar-menu > li.active > a {
-    background: #2F3949; color:#D9DDE3; border-left:4px solid #53A9DF;
+    background: #2F3949; border-left:4px solid #53A9DF;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: bold;
+
 }
 
 .sidebar-menu > li > a > .fa {color:#A0ABBF; }
@@ -136,9 +148,12 @@ time.blue_green { background-color: #148aa5 }
 
 /*CSS sub nav*/
 .skin-black-light .sidebar-menu > li > .treeview-menu {background:#353F53;}
-.skin-black-light .treeview-menu > li > a {color: #A0ABBF; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51;}
+.skin-black-light .treeview-menu > li > a {color: #A0ABC1; border-bottom: none; text-transform: uppercase; border-left:4px solid #353F51; font-weight: bold;
+    font-size: 15px
+}
 .skin-black-light .treeview-menu > li:hover > a, .skin-black-light .treeview-menu > li.active > a {
-    background: #2F3949; color:#D9DDE3;
+    background: #2F3949; color:#FFF; font-size: 15px;
+    font-weight: bold;
 }
 
 /*CSS header*/
@@ -164,12 +179,16 @@ time.blue_green { background-color: #148aa5 }
         border-top: none;
     }
     .box-header{
-        background: #f6fafe;
+        background: #F5F9FD;
     }
     
     .box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title{
-        line-height: 2;
-        margin-left: 20px;
+        line-height: 40px;
+        margin-left: 10px;
+        color: #8a95a7;
+        font-size: 15px;
+        font-weight: bold;
+
     }
     
     .title-icon{
@@ -291,6 +310,34 @@ time.blue_green { background-color: #148aa5 }
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+}
+
+.content-header > h1 {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.content {
+    padding-left: 25px;
+}
+
+.box {
+    border-radius: 4px;
+}
+
+.box-header{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.box-body{
+    padding: 15px;
+}
+
+.box-default{
+    box-shadow: 0 0 1px 1px #EFEFEF;
+    border-top: 1px solid rgba(0,0,0,0);
+    border-top-color : rgba(0,0,0,0);
 }
 
 #no-more-tables {padding-top:20px; padding-left: 2px; padding-right: 2px;}
