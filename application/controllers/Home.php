@@ -178,34 +178,34 @@ class Home extends CI_Controller {
 
     public function getPurpose($id=''){
         $data = array();
-        //echo $id;
-       if ($this->input->post('submit'))
+        //echo $id;die;
+       
         $puposeList = array();
         $puposeList['puposeList'] = $this->input->post('puposeList');
         $puposeList['name'] = $this->input->post('searchByName');
 
-        if($puposeList['puposeList'] == $this->input->post('puposeList')){
+        if(!empty($puposeList['puposeList'])){
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
         }
-        elseif($puposeList['name'] = $this->input->post('searchByName')){
+        elseif(!empty ($puposeList['name'])){
             $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
         }elseif(!empty ($id)){
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
         }elseif($puposeList['puposeList'] or $puposeList['name'] or $id == NULL){
             $data['projectData'] = $this->global_model->get('project');
-        }          
-        else{
+        }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
-        }
+        }               
+        
 
 
         //print_r($puposeList);
 
-
+        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
 
         $this->load->view('guest_head', $data);
-        $this->load->view('project/project_SearchView',$data, $puposeList);
+        $this->load->view('project/project_SearchView',$data);
         $this->load->view('guest_footer');
     }
 
@@ -254,8 +254,8 @@ class Home extends CI_Controller {
         //Warning
         //Login error! You have not activated your account.
         //Login denied! Your account has either been blocked or you have not activated it yet.
-
-        $this->load->view('guest_head');
+        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
+        $this->load->view('guest_head', $data);
         $this->load->view('login', $data);
         $this->load->view('guest_footer');
     }
@@ -596,6 +596,7 @@ class Home extends CI_Controller {
             $saveUser['email'] = empty($postData['email']) ? NULL : $postData['email'];
             $saveUser['phone'] = empty($postData['phone']) ? NULL : $postData['phone'];
             $saveUser['country'] = empty($postData['country']) ? NULL : $postData['country'];
+            $saveUser['profession'] = '2';
             
             $save['purposeID'] = empty($postData['purposeID']) ? NULL : $postData['purposeID'];
             $save['name'] = empty($postData['name']) ? NULL : $postData['name'];
@@ -622,13 +623,16 @@ class Home extends CI_Controller {
         $data['profession'] = $this->global_model->get('profession');
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         
-        $this->load->view('guest_head');
+        $this->load->view('guest_head', $data);
         $this->load->view('borrow', $data);
         $this->load->view('guest_footer.php');
     }
     
     function thankyou(){
-        $this->load->view('guest_head');
+        $data = array();
+        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
+        
+        $this->load->view('guest_head',$data);
         $this->load->view('thankyou');
         $this->load->view('guest_footer.php');
     }

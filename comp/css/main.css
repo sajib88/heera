@@ -917,8 +917,13 @@ select.form-control {
 /*# sourceMappingURL=main.css.map */
 
 .header-wrapper .mega-menu{
-    width: 350px;
-    padding: 14px 3px;
+    width: 180px;
+    padding: 15px 30px;
+}
+
+.header-wrapper .mega-menu .item{
+    width: 100%;
+    float: left;
 }
 
 .con-hieght{
