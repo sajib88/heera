@@ -287,6 +287,7 @@ class Project extends CI_Controller {
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
+        $data['count'] = $this->global_model->count_row_where($table, array('statusID' => NULL));
 
         //echo $id;die;
         if($id == ''){
@@ -295,7 +296,7 @@ class Project extends CI_Controller {
             $data['no_data'] = 'No Project Found.';
 
             $data['allprojects'] = $this->global_model->get($table, array('statusID' => NULL));
-            $data['count'] = $this->global_model->count_row_where($table, array('statusID' => NULL));
+            
             //print_r($data['count']);die;
         
         }elseif($id == 1){

@@ -22,6 +22,8 @@ class Lendars extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
 
         $data['lendars'] = $this->global_model->get('users', array('profession' => '1'));
+        
+        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;

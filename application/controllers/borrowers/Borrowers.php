@@ -21,7 +21,7 @@ class Borrowers extends CI_Controller {
         $data['page_title'] = 'All Borrowers';
         $data['no_data'] = 'No Project Not Found.';
         $loginId = $this->session->userdata('login_id');
-
+        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
         $data['borrowers'] = $this->global_model->get('users', array('profession' => '2'));
         
         //print_r($data['lendars']);
