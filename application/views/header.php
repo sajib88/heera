@@ -231,8 +231,8 @@
                         <li class="<?php if($this->uri->segment(2)=="withdraw"){echo "active";}?>">
                             <a href="<?php echo base_url('fund/withdraw'); ?>"><i class="fa fa-circle-o"></i>Withdraw Funds</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="addMethod"){echo "active";}?>">
-                            <a href="<?php echo base_url('fund/addMethod'); ?>"><i class="fa fa-circle-o"></i>Payment Methods</a>
+                        <li class="<?php if($this->uri->segment(2)=="listofPayment"){echo "active";}?>">
+                            <a href="<?php echo base_url('fund/listofPayment'); ?>"><i class="fa fa-circle-o"></i>Payment Methods</a>
                         </li>
                     </ul>
                 </li>
@@ -244,7 +244,7 @@
                   </a>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(2)=="event"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(2)=="addMethod"){echo "active";}?>">
                     <a href="#">
                       <i class="fa fa-cog"></i>
                       <span>Settings</span>
@@ -255,8 +255,8 @@
                               <li class="<?php if($this->uri->segment(3)=="index"){echo "active";}?>">
                                   <a href="<?php echo base_url('profile/profile/index');?>"><i class="fa fa-circle-o"></i>User Profile</a>
                               </li>
-                              <li class="<?php if($this->uri->segment(3)=="viewall"){echo "active";}?>">
-                               <a href="#"><i class="fa fa-circle-o"></i>Payment Options</a>
+                              <li class="<?php if($this->uri->segment(2)=="addMethod"){echo "active";}?>">
+                               <a href="<?php echo base_url('fund/addMethod'); ?>"><i class="fa fa-circle-o"></i>Payment Options</a>
                                </li>
                           </ul>
 

@@ -45,6 +45,8 @@ class Fund extends CI_Controller {
             }
             
         }
+
+        $data['listpaymethod'] = $this->global_model->get_data('payment_methods', array('userID' => $loginId ));
         
         $data['login_id'] = $loginId;
         $data['countries'] = $this->global_model->get('countries');
@@ -82,7 +84,7 @@ class Fund extends CI_Controller {
 
     public function withdraw() {
         $data = array();
-
+        $data['page_title'] = 'withdraw';
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 
@@ -121,7 +123,7 @@ class Fund extends CI_Controller {
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
 
-
+        $data['listpaymethod'] = $this->global_model->get_data('payment_methods', array('userID' => $loginId ));
 
         $this->load->view('header', $data);
         $this->load->view('fund/withdraw', $data);
@@ -132,7 +134,7 @@ class Fund extends CI_Controller {
 
     public function addMethod() {
         $data = array();
-
+        $data['page_title'] = 'Add Payment Method';
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 
@@ -143,16 +145,22 @@ class Fund extends CI_Controller {
                 $loginId = $this->session->userdata('login_id');
 
                 $save['userID'] = $loginId;
-                $save['selectPaymentType'] = empty($postData['selectPaymentType']) ? NULL : $postData['selectPaymentType'];;
-                $save['methodName'] = empty($postData['methodName']) ? NULL : $postData['methodName'];
-                $save['cardType'] = empty($postData['cardType']) ? NULL : $postData['cardType'];
-                $save['firstName'] = empty($postData['firstName']) ? NULL : $postData['firstName'];
-                $save['lastName'] = empty($postData['lastName']) ? NULL : $postData['lastName'];
-                $save['cardNumber'] = empty($postData['cardNumber']) ? NULL : $postData['cardNumber'];
-                $save['cvv'] = empty($postData['cvv']) ? NULL : $postData['cvv'];
-                $save['expireDate'] = empty($postData['expireDate']) ? NULL : $postData['expireDate'];
-                $save['expireMonth'] = empty($postData['expireMonth']) ? NULL : $postData['expireMonth'];
-                $save['expireYear'] = empty($postData['expireYear']) ? NULL : $postData['expireYear'];
+                $save['selectPaymentType'] = empty($postData['selectPaymentType']) ? NULL : $postData['selectPaymentType'];
+                $save['paypalemail'] = empty($postData['paypalemail']) ? 0 : $postData['paypalemail'];
+                $save['cardType'] = empty($postData['cardType']) ? 0 : $postData['cardType'];
+                $save['firstName'] = empty($postData['firstName']) ? 0 : $postData['firstName'];
+                $save['lastName'] = empty($postData['lastName']) ? 0 : $postData['lastName'];
+                $save['cardNumber'] = empty($postData['cardNumber']) ? 0 : $postData['cardNumber'];
+                $save['cvv'] = empty($postData['cvv']) ? 0 : $postData['cvv'];
+                $save['expireDate'] = empty($postData['expireDate']) ? 0 : $postData['expireDate'];
+                $save['expireMonth'] = empty($postData['expireMonth']) ? 0 : $postData['expireMonth'];
+                $save['expireYear'] = empty($postData['expireYear']) ? 0 : $postData['expireYear'];
+                $save['bankName'] = empty($postData['bankName']) ? 0 : $postData['bankName'];
+                $save['routhingNumber'] = empty($postData['routhingNumber']) ? 0 : $postData['routhingNumber'];
+                $save['accountNumber'] = empty($postData['accountNumber']) ? 0 : $postData['accountNumber'];
+                $save['debitCardNumber'] = empty($postData['debitCardNumber']) ? 0 : $postData['debitCardNumber'];
+                $save['useFor'] = empty($postData['useFor']) ? 0 : $postData['useFor'];
+
                 $save['status'] =  1;
                 $save['isPrimary'] = empty($postData['isPrimary']) ? '0' : $postData['isPrimary'];
 
@@ -182,11 +190,113 @@ class Fund extends CI_Controller {
     }
 
 
+    //// for remove
+    public function delete()
+    {
+
+        $id = $this->uri->segment('4');
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+
+        if ($ref = $this->global_model->delete('payment_methods', array('paymentMethodID' => $id))) {
+
+            $this->session->set_flashdata('message', 'Delete successfully!');
+            redirect('fund/listofPayment');
+
+        }
+        else{
+            $this->session->set_flashdata('error', 'error found !');
+        }
+
+
+
+
+    }
+
+
+    public function listofPayment(){
+        $data = array();
+
+        $id = $this->uri->segment('3');
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        $data['listpaymethod'] = $this->global_model->get('payment_methods', array('userID' => $loginId ));
+
+
+
+
+        $this->load->view('header', $data);
+        $this->load->view('fund/listallpayment', $data);
+        $this->load->view('footer');
+
+
+    }
+    public function editpayment(){
+        $data = array();
+        $data['page_title'] = 'Update Payment Method';
+        $id = $this->uri->segment('3');
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 
 
 
 
 
+        if($this->input->post()){
+            $postData = $this->input->post();
+
+            if($postData == true){
+                $loginId = $this->session->userdata('login_id');
+
+                $save['userID'] = $loginId;
+                $save['selectPaymentType'] = empty($postData['selectPaymentType']) ? NULL : $postData['selectPaymentType'];
+                $save['paypalemail'] = empty($postData['paypalemail']) ? 0 : $postData['paypalemail'];
+                $save['cardType'] = empty($postData['cardType']) ? 0 : $postData['cardType'];
+                $save['firstName'] = empty($postData['firstName']) ? 0 : $postData['firstName'];
+                $save['lastName'] = empty($postData['lastName']) ? 0 : $postData['lastName'];
+                $save['cardNumber'] = empty($postData['cardNumber']) ? 0 : $postData['cardNumber'];
+                $save['cvv'] = empty($postData['cvv']) ? 0 : $postData['cvv'];
+                $save['expireDate'] = empty($postData['expireDate']) ? 0 : $postData['expireDate'];
+                $save['expireMonth'] = empty($postData['expireMonth']) ? 0 : $postData['expireMonth'];
+                $save['expireYear'] = empty($postData['expireYear']) ? 0 : $postData['expireYear'];
+                $save['bankName'] = empty($postData['bankName']) ? 0 : $postData['bankName'];
+                $save['routhingNumber'] = empty($postData['routhingNumber']) ? 0 : $postData['routhingNumber'];
+                $save['accountNumber'] = empty($postData['accountNumber']) ? 0 : $postData['accountNumber'];
+                $save['debitCardNumber'] = empty($postData['debitCardNumber']) ? 0 : $postData['debitCardNumber'];
+                $save['useFor'] = empty($postData['useFor']) ? 0 : $postData['useFor'];
+                $save['status'] =  1;
+                $save['isPrimary'] = empty($postData['isPrimary']) ? '0' : $postData['isPrimary'];
+
+
+                if ($postData['isPrimary'] == 1){
+                    $test['isPrimary'] = 1;
+                    $ref = $this->global_model->update('payment_methods', $test, array('userID' => $loginId));
+                }
+                else {
+
+                }
+                if ($ref = $this->global_model->update('payment_methods', $save, array('paymentMethodID' => $id))) {
+                    $this->session->set_flashdata('message', 'Update Your Payment method');
+                }
+                else{
+                    $this->session->set_flashdata('error', 'error found !');
+                }
+            }
+
+        }
+
+        $data['editpayment'] = $this->global_model->get_data('payment_methods', array('paymentMethodID' => $id ));
+
+        $this->load->view('header', $data);
+        $this->load->view('fund/editMethod', $data);
+        $this->load->view('footer');
+
+
+    }
 
 
 

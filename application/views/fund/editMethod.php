@@ -1,7 +1,8 @@
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            <i class="fa fa-credit-card"></i>  Payment Methods
+            <i class="fa fa-credit-card"></i> Update Payment Methods
 
         </h1>
 
@@ -28,56 +29,53 @@
     
     <section class="content">
         <div class="row">
+            <?php  //print_r($editpayment);
+            $typepay= $editpayment['selectPaymentType'];
+            ?>
 
 
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <i class="fa fa-th"></i>
-                        <h3 class="box-title">Add New Payment Methods </h3>
+                        <h3 class="box-title">Update Your Payment Methods </h3>
                     </div>
 
 
 
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group input-group">
-                                   <span class="input-group-addon"> <input id="paypal"  type="radio" name="selectPaymentType" checked value="PayPal" onclick="javascript:showHidePaymentMethodPanel('paypal-form')"> PayPal </span>
-                                   <span class="input-group-addon"> <input id="craditcard" type="radio" name="selectPaymentType" value="Credit Card" onclick="javascript:showHidePaymentMethodPanel('craditcard-form')"> CraditCard</span>
-                                   <span class="input-group-addon"> <input id="carddebit" type="radio" name="selectPaymentType" value="Debit Card" onclick="javascript:showHidePaymentMethodPanel('debitcard-form')"> Debit Card</span>
-                                   <span class="input-group-addon"> <input id="bank" type="radio" name="selectPaymentType" value="Direct Deposit" onclick="javascript:showHidePaymentMethodPanel('bank-form')"> Direct Deposit</span>
-                                   <span class="input-group-addon"> <input id="check" type="radio" name="selectPaymentType" value="Check" onclick="javascript:showHidePaymentMethodPanel('check-form')"> Check</span>
-                                </div>
-                            </div>
-                                <!--Paypal form -->
+
+                            <!--Paypal form -->
+                            <?php if($typepay == 'PayPal') {?>
+
                             <div id="paypal-form" class="col-lg-12">
-                                <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addMethod'); ?>">
+                                <form id="paypalform" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/edit/'.$editpayment['paymentMethodID'] ); ?>">
                                     <?php $totalampount = $user_info['inAmount']; ?>
-                                    <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+                                    <input type="hidden" name="login_id" value="<?php echo $user_info['id']; ?>">
                                     <input id="paypal" type="hidden" name="selectPaymentType" value="PayPal">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                                 <label>Your Paypal Email Address <span class="error">*</span></label>
-                                                <input name="paypalemail" type="email" id="paypalemail" placeholder="paypal email address"  class="form-control">
+                                                <input name="paypalemail" type="email" id="methodName" placeholder="paypal email address" value="<?php echo $editpayment['paypalemail']; ?>"  class="form-control">
 
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
-
+                                            <input id="isPrimary" type="checkbox"  <?php if($editpayment['isPrimary'] == 1){echo "checked";} else { }?> name="isPrimary" value="1">
+                                            <label>Primary Payment Method</label>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <small>Use For</small>
                                         <div class="form-group">
-                                            <input id="useFor" type="radio" name="useFor" value="Add Fund">
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Add Fund'){echo " checked='checked'";} else { }?>  type="radio" name="useFor" value="Add Fund">
                                             <label>Add Fund</label>
-                                            </br>
-                                            <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                           <br>
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Withdrowal'){echo " checked='checked'";} else { }?> type="radio" name="useFor" value="Withdrowal">
                                             <label>Withdrowal Fund</label>
 
                                         </div>
@@ -85,7 +83,7 @@
 
 
                                 <div class="col-lg-12 text-center">
-                                    <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
+                                    <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
                                     <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                 </div>
 
@@ -94,15 +92,17 @@
                                 </form>    
                             </div>
                             <!--Paypal form -->
-
+                            <?php }
+                            elseif($typepay == 'Credit Card') {?>
                             <!--creditcard form -->
-                            <div id="craditcard-form" class="col-lg-12" hidden="true">
-                                <form id="creditCard"  role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addMethod'); ?>">
+                            <div id="craditcard-form" class="col-lg-12">
+                                <form id="creditCard"  role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/edit/'.$editpayment['paymentMethodID'] ); ?>">
                                     <input type="hidden" name="selectPaymentType" value="Credit Card">
+                                    <input type="hidden" name="login_id" value="<?php echo $user_info['id']; ?>">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>First Name<span class="error">*</span></label>
-                                            <input name="firstName" type="text" id="firstName" placeholder="First Name"  class="form-control">
+                                            <input name="firstName" value="<?php echo $editpayment['firstName']; ?>" type="text" id="firstName"  class="form-control">
 
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Last Name<span class="error">*</span></label>
-                                            <input name="lastName" type="text" id="lastName" placeholder="Last Name"  class="form-control">
+                                            <input name="lastName" value="<?php echo $editpayment['lastName']; ?>" type="text" id="lastName" placeholder="Last Name"  class="form-control">
 
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Credit Type</label>
-                                            <input name="cardType" type="text" id="cardType" placeholder="Master/visa/Amex"  class="form-control">
+                                            <input name="cardType" value="<?php echo $editpayment['cardType']; ?>" type="text" id="cardType" placeholder="Master/visa/Amex"  class="form-control">
 
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group"> 
                                                 <label>Credit Card Number<span class="error">*</span></label>
-                                                <input name="cardNumber" type="text" id="cardNumber" placeholder="Credit Card Number"  class="form-control">
+                                                <input name="cardNumber" value="<?php echo $editpayment['cardNumber']; ?>" type="text" id="cardNumber" placeholder="Credit Card Number"  class="form-control">
 
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                                 <label><span class="error">*</span></label>
                                                 <label>Expiration Date<span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
 
-                                                <input name="expireDate" type="text" id="expireDate" class="form-control" placeholder="03">
+                                                <input name="expireDate" value="<?php echo $editpayment['expireDate']; ?>" type="text" id="expireDate" class="form-control" placeholder="03">
 
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                             <label><span class="error">*</span></label>
                                             <label> Month<span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
 
-                                            <input name="expireMonth" type="text" id="expireMonth" class="form-control" placeholder="12">
+                                            <input name="expireMonth" value="<?php echo $editpayment['expireMonth']; ?>" type="text" id="expireMonth" class="form-control" placeholder="12">
 
                                         </div>
                                     </div>
@@ -157,7 +157,7 @@
                                             <label><span class="error">*</span></label>
                                             <label> Year<span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
 
-                                            <input name="expireYear" type="text" id="expireYear" class="form-control" placeholder="2019">
+                                            <input name="expireYear" value="<?php echo $editpayment['expireYear']; ?>"  type="text" id="expireYear" class="form-control" placeholder="2019">
 
                                         </div>
                                     </div>
@@ -165,75 +165,76 @@
                                     <div class="col-lg-12">
                                         <div class="form-group"> 
                                                 <label>CVV Code<span class="error">*</span></label>
-                                                <input name="cvv" type="text" id="cvv" placeholder="CVV Code" class="form-control">
+                                                <input name="cvv" value="<?php echo $editpayment['cvv']; ?>" type="text" id="cvvCode" placeholder="CVV Code" class="form-control">
 
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
-
+                                            <input id="isPrimary" type="checkbox"  <?php if($editpayment['isPrimary'] == 1){echo "checked";} else { }?> name="isPrimary" value="1">
+                                            <label>Primary Payment Method</label>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <small>Use For</small>
                                         <div class="form-group">
-                                            <input id="useFor" type="radio" name="useFor" value="Add Fund">
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Add Fund'){echo " checked='checked'";} else { }?>  type="radio" name="useFor" value="Add Fund">
                                             <label>Add Fund</label>
-                                            </br>
-                                            <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <br>
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Withdrowal'){echo " checked='checked'";} else { }?> type="radio" name="useFor" value="Withdrowal">
                                             <label>Withdrowal Fund</label>
 
                                         </div>
                                     </div>
 
-
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Update">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
                                 </form>    
                             </div>
+                            <!--creditcard form -->
+                            <?php }
+                            elseif($typepay == 'Debit Card') {?>
 
                             <!--debitcard form -->
-                            <div id="debitcard-form" class="col-lg-12" hidden="true">
-                                <form id="debitCardvalidation" name="debitCardvalidation" role="form" method="post"   action="<?php echo base_url('fund/Fund/addMethod'); ?>">
+                            <div id="debitcard-form" class="col-lg-12" >
+                                <form id="debitCardvalidation" name="debitCardvalidation" role="form" method="post"   action="<?php echo base_url('fund/edit/'.$editpayment['paymentMethodID'] ); ?>">
                                     <?php $totalampount = $user_info['inAmount']; ?>
-                                    <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+                                    <input type="hidden" name="login_id" value="<?php echo $user_info['inAmount']; ?>">
                                     <input id="Debit" type="hidden" name="selectPaymentType" value="Debit Card">
 
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Your Debit Card Number <span class="error">*</span></label>
-                                            <input name="debitCardNumber" type="number" id="debitCardNumber" placeholder="Debit Card Number"  class="form-control">
+                                            <input name="debitCardNumber" value="<?php echo $editpayment['debitCardNumber']; ?>" type="number" id="debitCardNumber" placeholder="Debit Card Number"  class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
-
+                                            <input id="isPrimary" type="checkbox"  <?php if($editpayment['isPrimary'] == 1){echo "checked";} else { }?> name="isPrimary" value="1">
+                                            <label>Primary Payment Method</label>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <small>Use For</small>
                                         <div class="form-group">
-                                            <input id="useFor" type="radio" name="useFor" value="Add Fund">
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Add Fund'){echo " checked='checked'";} else { }?>  type="radio" name="useFor" value="Add Fund">
                                             <label>Add Fund</label>
-                                            </br>
-                                            <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <br>
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Withdrowal'){echo " checked='checked'";} else { }?> type="radio" name="useFor" value="Withdrowal">
                                             <label>Withdrowal Fund</label>
 
                                         </div>
                                     </div>
 
-
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -242,13 +243,13 @@
                                 </form>
                             </div>
                             <!--debitcard form -->
-
+                            <?php }
+                            elseif($typepay == 'Direct Deposit') {?>
                             <!--Bank form -->
-
-                            <div id="bank-form" class="col-lg-12" hidden="true">
-                                <form id="bankvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addMethod'); ?>">
+                            <div id="bank-form" class="col-lg-12" >
+                                <form id="bankvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/edit/'.$editpayment['paymentMethodID'] ); ?>">
                                     <?php $totalampount = $user_info['inAmount']; ?>
-                                    <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+                                    <input type="hidden" name="login_id" value="<?php echo $user_info['inAmount']; ?>">
                                     <input type="hidden" name="selectPaymentType" value="Direct Deposit">
 
 
@@ -258,7 +259,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Bank Name<span class="error">*</span></label>
-                                            <input name="bankName" type="text" id="bankName" placeholder="Bank Name"  class="form-control">
+                                            <input name="bankName" type="text" value="<?php echo $editpayment['bankName']; ?>" id="bankName" placeholder="Bank Name"  class="form-control">
 
                                         </div>
                                     </div>
@@ -269,7 +270,7 @@
                                             <label><span class="error">*</span></label>
                                             <label>Account Number <span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
 
-                                            <input name="accountNumber" id="accountNumber" type="text" class="form-control" placeholder="AccountNumber">
+                                            <input name="accountNumber" value="<?php echo $editpayment['accountNumber']; ?>"  id="accountNumber" type="text" class="form-control" placeholder="AccountNumber">
 
                                         </div>
                                     </div>
@@ -279,7 +280,7 @@
                                             <label><span class="error">*</span></label>
                                             <label>Routhing Number <span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
 
-                                            <input name="routhingNumber" id="routhingNumber" type="text" class="form-control" placeholder="Routhing Number">
+                                            <input name="routhingNumber" value="<?php echo $editpayment['routhingNumber']; ?>" id="routhingNumber" type="text" class="form-control" placeholder="Routhing Number">
 
                                         </div>
                                     </div>
@@ -288,26 +289,25 @@
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
-
+                                            <input id="isPrimary" type="checkbox"  <?php if($editpayment['isPrimary'] == 1){echo "checked";} else { }?> name="isPrimary" value="1">
+                                            <label>Primary Payment Method</label>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <small>Use For</small>
                                         <div class="form-group">
-                                            <input id="useFor" type="radio" name="useFor" value="Add Fund">
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Add Fund'){echo " checked='checked'";} else { }?>  type="radio" name="useFor" value="Add Fund">
                                             <label>Add Fund</label>
-                                            </br>
-                                            <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <br>
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Withdrowal'){echo " checked='checked'";} else { }?> type="radio" name="useFor" value="Withdrowal">
                                             <label>Withdrowal Fund</label>
 
                                         </div>
                                     </div>
 
-
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -316,45 +316,46 @@
                                 </form>
                             </div>
                             <!--Bank form -->
+                            <?php }
+                            elseif($typepay == 'Check') {?>
                             <!--check form -->
+                            <div id="check-form" class="col-lg-12">
+                                <form id="checkvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/edit/'.$editpayment['paymentMethodID'] ); ?>">
 
-                            <div id="check-form" class="col-lg-12" hidden="true">
-                                <form id="checkvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('fund/Fund/addMethod'); ?>">
-
-                                    <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
+                                    <input type="hidden" name="login_id" value="<?php echo $user_info['inAmount']; ?>">
                                     <input type="hidden" name="selectPaymentType" value="Check">
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Your Select  Check Payment Method</label>
+                                            <label>Your Select  Check Payment Method </label>
                                             <input  name="selectPaymentType" type="hidden" value="Check" id="methodName" placeholder="Debit Card Number"  class="form-control">
                                         </div>
                                     </div>
 
-
-
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
-
+                                            <input id="isPrimary" type="checkbox"  <?php if($editpayment['isPrimary'] == 1){echo "checked";} else { }?> name="isPrimary" value="1">
+                                            <label>Primary Payment Method</label>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <small>Use For</small>
                                         <div class="form-group">
-                                            <input id="useFor" type="radio" name="useFor" value="Add Fund">
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Add Fund'){echo " checked='checked'";} else { }?>  type="radio" name="useFor" value="Add Fund">
                                             <label>Add Fund</label>
-                                            </br>
-                                            <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <br>
+                                            <input id="useFor" <?php if($editpayment['useFor'] == 'Withdrowal'){echo " checked='checked'";} else { }?> type="radio" name="useFor" value="Withdrowal">
                                             <label>Withdrowal Fund</label>
 
                                         </div>
                                     </div>
 
 
+
+
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -363,7 +364,7 @@
                                 </form>
                             </div>
                             <!--check form -->
-
+                            <?php }?>
 
 
                             
@@ -373,11 +374,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
 
 </div>
 
@@ -449,7 +445,7 @@
                 required:true,
                 number: true
             },
-            cvv:{
+            cvvCode:{
                 required:true
             },
             useFor: {
@@ -464,7 +460,7 @@
             expirationDate: {
                 required: "Expiration Date is Required",
             },
-            cvv: {
+            cvvCode: {
                 required: "CVV Code is Important !",
             },
             useFor: {
@@ -479,7 +475,7 @@
 <script type="application/javascript">
     $('#paypalform').validate({
         rules: {
-            paypalemail: {
+            methodName: {
                 required:true,
                 email: true
             },
@@ -490,7 +486,7 @@
             }
         },
         messages:{
-            paypalemail: {
+            methodName: {
                 required: "Email Required",
             },
 

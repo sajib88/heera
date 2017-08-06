@@ -36,7 +36,9 @@
                         </div>
                     <?php } ?>
                     <?php  $this->session->unset_userdata('error'); ?>
+                    <?php
 
+                    if($listpaymethod['userID'] != 0){?>
                     <div class="panel-body">
                         <div class="row">
 
@@ -66,6 +68,27 @@
                             
                         </div>
                     </div>
+                    <?php }else{ ?>
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-lg-12 direct-chat-danger" >
+
+                                <div class="pad margin no-print">
+                                    <div class="callout callout-danger" style="margin-bottom: 0!important;">
+                                        <h4><i class="fa fa-info"></i> Note:</h4>
+                                        You do not select any payment method. <a href="<?php echo base_url('fund/addMethod'); ?>">Click here  add payment method now.</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                        <?php }?>
+
+
                 </div>  
             </div>
         </div>
