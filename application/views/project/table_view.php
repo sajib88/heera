@@ -149,16 +149,18 @@ print_r($allpersonals);die;*/
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Project Status</h4>                
+                <h4 class="modal-title"><i class="fa fa-tasks"></i> &nbsp; Update Project Status</h4>
             </div>
             
 
-            <form role="form" name="update_status_frm" method="post" id="update_status_frm" enctype="multipart/form-data"
-                  action="#">
+            <form role="form" name="update_status_frm" method="post" id="update_status_frm" enctype="multipart/form-data" action="#">
 
                 <div class="modal-body">
+                    <div class="col-md-12 no-padding" >
+                        <section class="panel">
+                            <div class="panel-body">
                     <input name="projectID" id="projectID" value="" type="hidden" class="form-control">
-                    <div class="col-lg-12">
+
                         <div class="form-group">
                             <label>Project Name<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
                             <p id="pojectID">
@@ -166,9 +168,9 @@ print_r($allpersonals);die;*/
                             </p>
                                 
                         </div>
-                    </div>
+
                     
-                    <div class="col-lg-12">
+
                         <div class="form-group">
                             <label>Status<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
                             <select name="status" id="statusID" class="form-control">
@@ -185,15 +187,25 @@ print_r($allpersonals);die;*/
                                 ?>
                             </select>  
                         </div>
-                    </div> 
+                            </div>
+                        </section>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-danger" type="button">Cancel</button>
-                    
-<!--                    <a  class="btn  btn-success loadingStaate">Submit</a>-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button data-dismiss="modal" class="btn btn-danger btn-lg pull-left" type="button">
+                                <i class="fa fa-undo"></i> &nbsp; &nbsp; Cancel</button>
+                        </div>
+                        <div class="col-md-6">
                             <?php $id = $this->uri->segment('4');?>
-                    <input class="btn  btn-success close-modal" data-stat="<?php echo $id; ?>" type="submit" id="loadingStaate" name="loginStatus" value="Submit">
+                            <button class="btn  btn-success  btn-lg" data-stat="<?php echo $id; ?>" id="loadingStaate" name="loginStatus" type="submit">
+                                <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
+
+                        </div>
+                    </div>
+
                 </div>
                 
             </form>
@@ -211,8 +223,16 @@ print_r($allpersonals);die;*/
 
 <script type="text/javascript">
     $(document).ready(function(){
-        var personaltable = document.getElementById("js_personal_table");
-        $(personaltable).dataTable();
+        //var personaltable = document.getElementById("js_personal_table");
+        $('#js_personal_table').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+
+        });
     });
 </script>
 
