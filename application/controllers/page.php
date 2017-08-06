@@ -12,8 +12,10 @@ class Page extends CI_Controller {
 
 
     public function about() {
+        $data = array();
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
 
-        $this->load->view('guest_head');
+        $this->load->view('guest_head', $data);
         $this->load->view('pages/about');
         $this->load->view('guest_footer');
     }

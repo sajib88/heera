@@ -53,35 +53,21 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav primary-nav">
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lend <i class="fa fa-angle-down"></i></a>
+                                        <a href="<?php echo base_url();?>home/getPurpose" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lend <i class="fa fa-angle-down"></i></a>
                                         <div class="dropdown-menu mega-menu">
                                             <div class="row">
-                                                <div class="col-sm-6 entry-single item">
+                                                <div class="col-sm-12 entry-single item">
                                                     <h4 class="title">Categories</h4>
                                                     <ul class="entry-list">
-                                                        <li><a href="">Woman</a></li>
-                                                        <li><a href="">Agriculture</a></li>
-                                                        <li><a href="">Education</a></li>
-                                                        <li><a href="">Health</a></li>
-                                                        <li><a href="">Single Parents</a></li>
-                                                        <li><a href="">Social</a></li>
-                                                        <li><a href="">Retail</a></li>
-                                                        <li><a href="">Shelter</a></li>
-                                                        <li><a href="">Food</a></li>
-                                                        <li><a href="">All Loans</a></li>
+                                                        <?php if(is_array($purpose)){ ?>
+                                                        <?php foreach($purpose as $row){
+                                                            //print_r($row);
+                                                            ?>
+                                                        <li><a href="<?php echo base_url('home/getPurpose/'.$row->purposeID);?>"><?php echo substr($row->purposeTitle, 0, 50); ?></a></li>
+                                                        <?php }}?>
+                                                        <li><a href="<?php echo base_url();?>home/getPurpose">All Loans</a></li>
                                                     </ul>
-                                                </div>
-                                                <div class="col-sm-6 item">
-                                                    <h4 class="title">Top Countries</h4>
-                                                    <ul class="entry-list">
-                                                        <li><a href="">India</a></li>
-                                                        <li><a href="">South Africa</a></li>
-                                                        <li><a href="">South America</a></li>
-                                                        <li><a href="">Nepal</a></li>
-                                                        <li><a href="">China</a></li>
-                                                        <li><a href="">Indonesia</a></li>
-                                                    </ul>
-                                                </div>
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </li>
@@ -107,7 +93,7 @@
                         }
                         else{
                             ?>
-                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Panel</a></li>
+                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Dashboard</a></li>
                             <li><a href="<?php echo base_url(); ?>home/log_out">Log out</a></li>
                         <?php  }  ?>
                         <li class="hidden-xs"><a href="#"><img src="<?php echo base_url(); ?>comp/img/search-icon.png" class="img-responsive" alt="Search"></a></li>

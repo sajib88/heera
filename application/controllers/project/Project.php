@@ -81,7 +81,7 @@ class Project extends CI_Controller {
                 $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
                 $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
                 $save['userID'] = $loginId;
-                $save['statusID'] = 1;
+                $save['statusID'] = NULL;
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';
@@ -291,10 +291,12 @@ class Project extends CI_Controller {
         //echo $id;die;
         if($id == ''){
 
-            $data['page_title'] = 'All Projects';
+            $data['page_title'] = 'New Submitted Projects';
             $data['no_data'] = 'No Project Found.';
 
-            $data['allprojects'] = $this->global_model->get($table);
+            $data['allprojects'] = $this->global_model->get($table, array('statusID' => NULL));
+            $data['count'] = $this->global_model->count_row_where($table, array('statusID' => NULL));
+            //print_r($data['count']);die;
         
         }elseif($id == 1){
 
@@ -303,8 +305,8 @@ class Project extends CI_Controller {
 
         }elseif ($id == 2) {
 
-            $data['page_title'] = 'New Submited Projects';
-            $data['no_data'] = 'Any New Submited Project Not Found.';
+            $data['page_title'] = 'Not Funded Projects';
+            $data['no_data'] = 'Any Not Funded Project Not Found.';
 
         }elseif ($id == 3) {
 
@@ -317,6 +319,26 @@ class Project extends CI_Controller {
             $data['no_data'] = 'Any Funded Project Not Found.';
 
         }elseif ($id == 5) {
+
+            $data['page_title'] = 'Partial Repaid Projects';
+            $data['no_data'] = 'Any Partial Repaid Project Not Found.'; 
+        }elseif ($id == 6) {
+
+            $data['page_title'] = 'Repaid Projects';
+            $data['no_data'] = 'Any Repaid Project Not Found.';
+        }elseif ($id == 7) {
+
+            $data['page_title'] = 'Defaulted Projects';
+            $data['no_data'] = 'Any Defaulted Project Not Found.';
+        }elseif ($id == 8) {
+
+            $data['page_title'] = 'Loaned Projects';
+            $data['no_data'] = 'Any Loaned Project Not Found.';
+        }elseif ($id == 9) {
+
+            $data['page_title'] = 'Repayment Progress Projects';
+            $data['no_data'] = 'Any Repayment Progress Project Not Found.';
+        }elseif ($id == 10) {
 
             $data['page_title'] = 'Closed Projects';
             $data['no_data'] = 'Any Closed Project Not Found.';
@@ -418,7 +440,15 @@ class Project extends CI_Controller {
         $this->load->view('project/query_table_view', $data);
         $this->load->view('footer');
     }
-
+    
+    public function getStateByAjax() {
+        $data = array();
+        $id = $this->input->post('state');
+        $states = $this->global_model->get('states', array('country_id' => $id));
+        $data['states'] = $states;
+        echo $this->load->view('state', $data, TRUE);
+        exit;
+    }
 
 
 
