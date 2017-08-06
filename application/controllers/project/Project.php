@@ -81,7 +81,7 @@ class Project extends CI_Controller {
                 $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
                 $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
                 $save['userID'] = $loginId;
-                $save['status'] = 1;
+                $save['statusID'] = 1;
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';
@@ -199,7 +199,7 @@ class Project extends CI_Controller {
                 $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
                 $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
                 $save['userID'] = $loginId;
-                $save['status'] = 1;
+                $save['statusID'] = 1;
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';
@@ -275,106 +275,56 @@ class Project extends CI_Controller {
 
 
     public function all($id='')
-    {        
+    {
+        $table = 'project';
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+        $data['allprojects'] = $this->global_model->get($table, array('statusID' => $id));
+
+        $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
+        $data['project_status'] = $this->global_model->get('project_status_lookup');
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+
         //echo $id;die;
         if($id == ''){
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'All Projects';
             $data['no_data'] = 'No Project Found.';
-            $loginId = $this->session->userdata('login_id');
 
             $data['allprojects'] = $this->global_model->get($table);
-            $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         
         }elseif($id == 1){
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Open Projects';
             $data['no_data'] = 'Any Open Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 2) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'New Submited Projects';
             $data['no_data'] = 'Any New Submited Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 3) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Active Projects';
             $data['no_data'] = 'Any Active Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 4) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 5) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Closed Projects';
             $data['no_data'] = 'Any Closed Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
-
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/table_view', $data);
-            $this->load->view('footer');
         }
+
+        $this->load->view('header', $data);
+        $this->load->view('project/table_view', $data);
+        $this->load->view('footer');
     }
     
     public function getStatus($projectID){
@@ -383,7 +333,7 @@ class Project extends CI_Controller {
         $projectDetails = $this->global_model->get_data('project', array('projectID' => $projectID));
         $returnArr['projectID'] = $projectDetails['projectID'];
         $returnArr['name'] = $projectDetails['name'];
-        $returnArr['status'] = $projectDetails['status'];
+        $returnArr['status'] = $projectDetails['statusID'];
         echo json_encode($returnArr);
        // print_r($projectDetails);
         
@@ -392,7 +342,7 @@ class Project extends CI_Controller {
     
     public function updateStatus(){
         
-        $status['status'] = $this->input->post('status');
+        $status['statusID'] = $this->input->post('status');
         $status['projectID'] = $this->input->post('projectID');    
 
         $ref = $this->global_model->update('project', $status, array('projectID' => $this->input->post('projectID'))); 
@@ -435,56 +385,38 @@ class Project extends CI_Controller {
 
     public function landerproject($id='')
     {
+        $table = 'project';
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+
+        $data['allprojects'] = $this->global_model->get($table, array('projectID' => $loginId));
+
+        $data['project_status'] = $this->global_model->get('project_status_lookup');
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+
         //echo $id;die;
         if ($id == 3) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Active Projects';
             $data['no_data'] = 'Any Active Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table, array('projectID' => $loginId));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/query_table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 4) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
 
-            $data['allprojects'] = $this->global_model->get($table);
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/query_table_view', $data);
-            $this->load->view('footer');
         }elseif ($id == 5) {
-            $table = 'project';
-            $data = array();
+
             $data['page_title'] = 'Closed Projects';
             $data['no_data'] = 'Any Closed Project Not Found.';
-            $loginId = $this->session->userdata('login_id');
-
-            $data['allprojects'] = $this->global_model->get($table, array('status' => $id));
-
-            $data['project_status'] = $this->global_model->get('project_status_lookup');
-
-            $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-            $data['login_id'] = $loginId;
-            $this->load->view('header', $data);
-            $this->load->view('project/query_table_view', $data);
-            $this->load->view('footer');
         }
+
+        $this->load->view('header', $data);
+        $this->load->view('project/query_table_view', $data);
+        $this->load->view('footer');
     }
 
 

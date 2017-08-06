@@ -103,7 +103,7 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><?php echo "Name of founder"; ?></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><?php echo getStatusById($row->status); ?></td>
+                                                    class="numeric"><?php echo getStatusById($row->statusID); ?></td>
 
                                             </tr>
                                             <?php $i++;

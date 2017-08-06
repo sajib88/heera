@@ -10,6 +10,8 @@
     <link href="<?php echo base_url(); ?>backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Data Tables-->
+    <link href="<?php echo base_url(); ?>backend/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -31,7 +33,13 @@
 
     <script src="<?php echo base_url(); ?>backend/js/jQuery-2.1.4.min.js"></script>
     <script src="<?php echo base_url(); ?>backend/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>backend/plugins/fastclick/fastclick.js"></script>
+    <!-- DataTables-->
+      <script src="<?php echo base_url(); ?>backend/plugins/datatables/jquery.dataTables.min.js"></script>
+      <script src="<?php echo base_url(); ?>backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
     <script src="<?php echo base_url(); ?>backend/dist/js/app.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>backend/dist/js/demo.js" type="text/javascript"></script>
        <!-- jquery validation -->
    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/additional-methods.js" ></script>
