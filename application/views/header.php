@@ -356,27 +356,36 @@
                 <li class="treeview <?php if($this->uri->segment(1)=="project"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
-                    <span>Projects</span>
+                    <span>Projects <?php if(!empty($count)){ echo '('.$count.')';}else{}?></span>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(3)=="1"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/1'); ?>"><i class="fa fa-circle-o"></i>Open Projects</a>
+                        <li class="<?php if($this->uri->segment(3)==""){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects<?php if(!empty($count)){ echo '('.$count.')';}else{}?></a>
+                        </li>
+                        <li class="<?php if($this->uri->segment(3)=="8"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/8'); ?>"><i class="fa fa-circle-o"></i>Loaned Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="2"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects</a>
-                        </li>
-                         <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active Projects</a>
+                            <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>Not Funded Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
+                        <li class="<?php if($this->uri->segment(3)=="9"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/9'); ?>"><i class="fa fa-circle-o"></i>Repayment Progress</a>
+                        </li>
                         <li class="<?php if($this->uri->segment(3)=="5"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all//5'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
+                            <a href="<?php echo base_url('project/all//5'); ?>"><i class="fa fa-circle-o"></i>Partial Repaid Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="add"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/add'); ?>"><i class="fa fa-plus"></i>New Project</a>
+                        <li class="<?php if($this->uri->segment(3)=="6"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all//6'); ?>"><i class="fa fa-circle-o"></i>Repaid Projects</a>
                         </li>
+                        <li class="<?php if($this->uri->segment(3)=="7"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all//7'); ?>"><i class="fa fa-circle-o"></i>Defaulted Projects</a>
+                        </li>
+                        <li class="<?php if($this->uri->segment(3)=="10"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all//10'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
+                        </li>                        
                     </ul>
                 </li>
 
@@ -422,6 +431,17 @@
                         <span>Logout</span>
                     </a>
                 </li>
+                
+                 <div class="gap"> </div>
+
+                    <li class="header">
+
+
+                        <a href="<?php echo base_url('project/add');?>"><span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT</span></a>
+
+                    </li>
+                <div class="gap2"> </div>
+                
                 <?php } ?>
 
             </ul>

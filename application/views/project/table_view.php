@@ -1,5 +1,7 @@
 <style type="text/css">
-    
+    .label{
+        color: #333;
+    }
 </style>
 <?php
 /**
@@ -26,7 +28,7 @@ print_r($allpersonals);die;*/
 
     <section class="content-header">
         <h1>
-            <i class="fa fa-tasks"></i>  <?php echo $page_title;?>
+            <i class="fa fa-tasks"></i>  <?php if(!empty($page_title)){ echo $page_title;} else {}?>
             
         </h1>
 
@@ -58,7 +60,7 @@ print_r($allpersonals);die;*/
                     </div>
                     <div class="box-body">
                         <?php if(empty($allprojects)){?>
-                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
+                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data;}else{}?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 
@@ -102,7 +104,7 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->statusID); ?></span></td>
+                                                    class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>" > View </a>
                                                 </td>
@@ -155,6 +157,7 @@ print_r($allpersonals);die;*/
                         <section class="panel">
                             <div class="panel-body">
                     <input name="projectID" id="projectID" value="" type="hidden" class="form-control">
+                    <input name="statusID" id="statusID" value="" type="hidden" class="form-control">
 
                         <div class="form-group">
                             <label>Project Name<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
@@ -260,9 +263,9 @@ $("#update_status_frm").submit(function(e){
     var base_url = '<?php echo base_url() ?>';
    
     //var id=$('.stat').data('statas');
-    var id = $("#statusID").val();
+    var id = $("#statusID").val();    
     var data = $("#update_status_frm").serialize();
-    
+    var statusID = $("#statusID").val();
     // check if the input is valid
     if(! $form.valid()) return false;
     $.ajax({
@@ -276,7 +279,7 @@ $("#update_status_frm").submit(function(e){
                 //$('#myModal').attr('aria-hidden', 'true');     
                 //$('.close-modal').;  
                
-                window.location.href=base_url + "project/Project/all/"+id;
+                window.location.href=base_url + "project/Project/all/"+statusID;
                 
                 
             }else{
