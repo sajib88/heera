@@ -78,7 +78,7 @@
                                             echo "Secondary";
                                         } ?></td>
                                     <td><?php echo $row->status; ?></td>
-                                    <td><a   class="btn  btn-primary"  href="<?php echo base_url('fund/Fund/editpayment/' . $row->paymentMethodID); ?>">Edit</a></td>
+                                    <td><a   class="btn  btn-primary"  href="<?php echo base_url('fund/edit/' . $row->paymentMethodID); ?>">Edit</a></td>
                                     <td><a class="btn  btn-danger" href="<?php echo base_url('fund/Fund/delete/' . $row->paymentMethodID); ?>">Delete</a></td>
 
 

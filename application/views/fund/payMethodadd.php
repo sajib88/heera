@@ -59,31 +59,33 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                                 <label>Your Paypal Email Address <span class="error">*</span></label>
-                                                <input name="paypalemail" type="email" id="methodName" placeholder="paypal email address"  class="form-control">
+                                                <input name="paypalemail" type="email" id="paypalemail" placeholder="paypal email address"  class="form-control">
 
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Make this Primary</label>
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
+                                            <label>Primary Payment Method ?</label>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-
-                                            <label>Add Fund Use For Payment</label>
                                             <input id="useFor" type="radio" name="useFor" value="Add Fund">
-                                            <label>Withdrowal Use For Payment</label>
+                                            <label>Add Fund</label>
+                                            </br>
                                             <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <label>Withdrowal Fund</label>
+
                                         </div>
                                     </div>
 
 
                                 <div class="col-lg-12 text-center">
-                                    <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
+                                    <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
                                     <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                 </div>
 
@@ -168,25 +170,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Make this Primary</label>
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
+                                            <label>Primary Payment Method ?</label>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-
-                                            <label>Add Fund Use For Payment</label>
                                             <input id="useFor" type="radio" name="useFor" value="Add Fund">
-                                            <label>Withdrowal Use For Payment</label>
+                                            <label>Add Fund</label>
+                                            </br>
                                             <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <label>Withdrowal Fund</label>
+
                                         </div>
                                     </div>
+
 
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Add Card Number">
+                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
                                 </form>    
@@ -207,25 +212,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Make this Primary</label>
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
+                                            <label>Primary Payment Method ?</label>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-
-                                            <label>Add Fund Use For Payment</label>
                                             <input id="useFor" type="radio" name="useFor" value="Add Fund">
-                                            <label>Withdrowal Use For Payment</label>
+                                            <label>Add Fund</label>
+                                            </br>
                                             <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <label>Withdrowal Fund</label>
+
                                         </div>
                                     </div>
+
 
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -278,25 +286,28 @@
 
 
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Make this Primary</label>
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
+                                            <label>Primary Payment Method ?</label>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-
-                                            <label>Add Fund Use For Payment</label>
                                             <input id="useFor" type="radio" name="useFor" value="Add Fund">
-                                            <label>Withdrowal Use For Payment</label>
+                                            <label>Add Fund</label>
+                                            </br>
                                             <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <label>Withdrowal Fund</label>
+
                                         </div>
                                     </div>
+
 
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -320,28 +331,30 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+
+
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label>Make this Primary</label>
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
+                                            <label>Primary Payment Method ?</label>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
-
-                                            <label>Add Fund Use For Payment</label>
                                             <input id="useFor" type="radio" name="useFor" value="Add Fund">
-                                            <label>Withdrowal Use For Payment</label>
+                                            <label>Add Fund</label>
+                                            </br>
                                             <input id="useFor" type="radio" name="useFor" value="Withdrowal">
+                                            <label>Withdrowal Fund</label>
+
                                         </div>
                                     </div>
-
-
 
 
                                     <div class="col-lg-12 text-center">
-                                        <input type="submit" name="submit" class="btn btn-info margin-r-5" value="Save Now">
+                                        <input type="submit" name="submit" class="btn btn-success margin-r-5" value="Save Now">
                                         <?php echo anchor('profile/dashboard',"Cancel",array('class' => 'btn btn-danger'));?>
                                     </div>
 
@@ -466,7 +479,7 @@
 <script type="application/javascript">
     $('#paypalform').validate({
         rules: {
-            methodName: {
+            paypalemail: {
                 required:true,
                 email: true
             },
@@ -477,7 +490,7 @@
             }
         },
         messages:{
-            methodName: {
+            paypalemail: {
                 required: "Email Required",
             },
 

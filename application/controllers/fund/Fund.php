@@ -237,7 +237,7 @@ class Fund extends CI_Controller {
     public function editpayment(){
         $data = array();
         $data['page_title'] = 'Update Payment Method';
-        $id = $this->uri->segment('4');
+        $id = $this->uri->segment('3');
 
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
