@@ -398,3 +398,7 @@ label {
 .no-right-padding{
     padding-right: 0px;
 }
+
+.modal-title{
+    margin: auto 18px;
+}

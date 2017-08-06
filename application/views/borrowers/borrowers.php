@@ -20,12 +20,10 @@
 
     <section class="content-header">
         <h1>
-            <?php echo $page_title;?>
+           <i class="fa fa-briefcase"></i> <?php echo $page_title;?>
             
         </h1>
-        <ol class="breadcrumb">
-            <a href="<?php echo base_url('project/project/add'); ?>"><span class="btn btn-block bg-fund btn-flat"> <i class="fa fa-plus"></i>Add  New Project</span></a>
-        </ol>
+        
     </section>
     <section class="content">
         <?php if(!empty($this->session->flashdata('message'))){?>
@@ -50,7 +48,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title"> <?php if(!empty($page_title)){echo $page_title;}else{    echo '';}?> List</h3>
+                        <h3 class="box-title"> List of All Borrowers </h3>
                     </div>
                     <div class="box-body no-padding">
                         <?php if(empty($borrowers)){?>
