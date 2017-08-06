@@ -85,6 +85,84 @@ class Home extends CI_Controller {
         
     }
 
+    public function checkout(){
+        $data = array();
+
+
+        if($this->input->post()) {
+            $postData = $this->input->post();
+            if (isset($_SESSION['deliverdata'])) {
+                $_SESSION['deliverdata'][$this->input->post('pid')] = array(
+                    'lendAmount' => $this->input->post('lendAmount')
+                );
+            } else {
+                $deliveryData[$this->input->post('pid')] = array(
+                    'lendAmount' => $this->input->post('lendAmount')
+                );
+                $this->session->set_userdata('deliverdata', $deliveryData);         #to set the session with the above array
+            }
+
+            ///unset($_SESSION['deliverdata']['pid']);
+            ### for retrieving the session values ###
+            $myLend = $this->session->userdata('deliverdata');          #will return the whole array
+
+
+            if (!empty($myLend)) {
+                foreach ($myLend as $projectID => $selectedAmount) {
+                    $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
+                    $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
+                }
+
+            } else {
+
+            }
+
+        }
+        else {
+            //redirect('home/checkout');
+            redirect(base_url().'home/index');
+        }
+
+
+        //////////////////////////////// remove by id session value
+        if($this->input->post()) {
+            $postData = $this->input->post();
+            if ($this->input->post('updatecart') == 99){
+
+                 echo $pid = $this->input->post('pid');
+                 echo $fundedAmount = $this->input->post('lendAmount');
+                //print_r($data['selectedProjects']);
+                unset($_SESSION['deliverdata'][$pid]);
+                unset($_SESSION['deliverdata']);
+
+                echo "<pre>";
+                print_r($this->session->all_userdata());
+                echo "</pre>";
+
+
+            }
+
+        }
+
+        echo "<pre>";
+        print_r($this->session->all_userdata());
+        echo "</pre>";
+        $data['selectedProjects'] = $projectDeatils;
+
+        ### for retrieving any single element from the session ###
+       // $userid         = $this->session->userdata['deliverdata']['User_ID'];
+
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/checkout',$data);
+        $this->load->view('guest_footer');
+
+    }
+
 
     public function ajaxlender(){
         $data = array();
@@ -389,6 +467,7 @@ class Home extends CI_Controller {
         $this->session->unset_userdata('login_id');
         $this->session->unset_userdata('user_type');
         $this->session->set_flashdata('logu_out_message', 'You have successful log out!');
+        $this->session->sess_destroy();
         $redirect_link = base_url('home/login');
         redirect($redirect_link);
     }

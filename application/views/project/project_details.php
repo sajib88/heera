@@ -139,18 +139,18 @@
                     <div class="entry-footer">
 
                             <div class="row">
-                                <div class="col-xs-5 pdl pdr item">
-                                    <select name="fundedAmount" class="form-control">
-                                        <option value="25">$25</option>
-                                        <option value="50">$50</option>
-                                        <option value="100">$100</option>
-                                    </select>
-                                </div>
+
 
                                 <?php   $loginId = $this->session->userdata('login_id'); ?>
                                 <?php if($loginId == 0)
-                                {?>
-
+                                { echo "no user id";?>
+                                    <div class="col-xs-5 pdl pdr item">
+                                        <select name="fundedAmount" class="form-control">
+                                            <option value="25">$25</option>
+                                            <option value="50">$50</option>
+                                            <option value="100">$100</option>
+                                        </select>
+                                    </div>
                                 <div class="col-xs-7 pdr item">
                                     <a href="<?php echo base_url(); ?>home/login"  class="btn btn-mid btn-yellow">Lend Now</a>
                                 </div>
@@ -159,14 +159,27 @@
                                 else{
                                 ?>
 
-                                    <div class="col-xs-7 pdr item">
 
-                                        <a href="#" type="button" id="callbutton" data-toggle="modal" data-target="#myModal" class="btn btn-mid btn-yellow clickajaxbutton">Lend Now</a>
+                                        <form id="bankvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('home/checkout'); ?>">
+                                            <?php $totalampount = $user_info['inAmount']; ?>
+                                            <input type="hidden" name="login_id" value="<?php echo $loginId; ?>">
+                                            <input type="hidden" name="pid" value="<?php echo  $projectData['projectID']; ?>">
 
 
+                                            <div class="col-xs-5 pdl pdr item">
+                                                <select name="lendAmount" class="form-control">
+                                                    <option value="25">$25</option>
+                                                    <option value="50">$50</option>
+                                                    <option value="100">$100</option>
+                                                </select>
+                                            </div>
 
+                                            <div class="col-xs-7 pdr item">
+                                                <input type="submit" name="submit" class="btn btn-mid btn-yellow" value="Lend Now">
 
-                                    </div>
+                                            </div>
+
+                                        </form>
 
                                 <?php  }  ?>
 
