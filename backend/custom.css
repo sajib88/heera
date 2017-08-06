@@ -398,3 +398,9 @@ label {
 .no-right-padding{
     padding-right: 0px;
 }
+
+.content-header > div > h1 {
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0px;
+}
