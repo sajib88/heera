@@ -21,7 +21,7 @@ class Home extends CI_Controller {
         $data['profession'] = $this->global_model->get('profession');
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
-
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         $projectData = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
 
@@ -76,7 +76,7 @@ class Home extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $totalamount = $data['user_info']['inAmount'];
-
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
 
         
         $this->load->view('guest_head', $data);
@@ -201,7 +201,6 @@ class Home extends CI_Controller {
 
         //print_r($puposeList);
 
-        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
 
         $this->load->view('guest_head', $data);
@@ -254,7 +253,7 @@ class Home extends CI_Controller {
         //Warning
         //Login error! You have not activated your account.
         //Login denied! Your account has either been blocked or you have not activated it yet.
-        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         $this->load->view('guest_head', $data);
         $this->load->view('login', $data);
         $this->load->view('guest_footer');
@@ -378,9 +377,9 @@ class Home extends CI_Controller {
                 $data['error'] = validation_errors();
             }
         }
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
 
-
-        $this->load->view('guest_head');
+        $this->load->view('guest_head', $data);
         $this->load->view('registration', $data);
         $this->load->view('guest_footer');
     }
@@ -535,7 +534,9 @@ class Home extends CI_Controller {
     #load forgot password view
     function forgotpassword()
     {
-        $this->load->view('guest_head');
+        $data = array();
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
+        $this->load->view('guest_head', $data);
         $this->load->view('forgotpass_view');
         $this->load->view('guest_footer.php');
     }
@@ -559,7 +560,9 @@ class Home extends CI_Controller {
     
     function changepass()
     {
-        $this->load->view('guest_head');
+        $data = array();
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
+        $this->load->view('guest_head', $data);
         $this->load->view('changepass_view');
         $this->load->view('guest_footer.php');
     }
@@ -621,8 +624,7 @@ class Home extends CI_Controller {
          
         $data['countries'] = $this->global_model->get('countries');
         $data['profession'] = $this->global_model->get('profession');
-        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
-        
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         $this->load->view('guest_head', $data);
         $this->load->view('borrow', $data);
         $this->load->view('guest_footer.php');
@@ -630,8 +632,7 @@ class Home extends CI_Controller {
     
     function thankyou(){
         $data = array();
-        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
-        
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         $this->load->view('guest_head',$data);
         $this->load->view('thankyou');
         $this->load->view('guest_footer.php');

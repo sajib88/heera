@@ -59,8 +59,8 @@
                                                 <div class="col-sm-12 entry-single item">
                                                     <h4 class="title">Categories</h4>
                                                     <ul class="entry-list">
-                                                        <?php if(is_array($category)){ ?>
-                                                        <?php foreach($category as $row){
+                                                        <?php if(is_array($purpose)){ ?>
+                                                        <?php foreach($purpose as $row){
                                                             //print_r($row);
                                                             ?>
                                                         <li><a href="<?php echo base_url('home/getPurpose/'.$row->purposeID);?>"><?php echo substr($row->purposeTitle, 0, 50); ?></a></li>
