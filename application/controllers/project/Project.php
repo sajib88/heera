@@ -418,7 +418,15 @@ class Project extends CI_Controller {
         $this->load->view('project/query_table_view', $data);
         $this->load->view('footer');
     }
-
+    
+    public function getStateByAjax() {
+        $data = array();
+        $id = $this->input->post('state');
+        $states = $this->global_model->get('states', array('country_id' => $id));
+        $data['states'] = $states;
+        echo $this->load->view('state', $data, TRUE);
+        exit;
+    }
 
 
 

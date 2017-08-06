@@ -53,7 +53,7 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav primary-nav">
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lend <i class="fa fa-angle-down"></i></a>
+                                        <a href="<?php echo base_url();?>home/getPurpose" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lend <i class="fa fa-angle-down"></i></a>
                                         <div class="dropdown-menu mega-menu">
                                             <div class="row">
                                                 <div class="col-sm-12 entry-single item">
@@ -93,7 +93,7 @@
                         }
                         else{
                             ?>
-                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Panel</a></li>
+                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Dashboard</a></li>
                             <li><a href="<?php echo base_url(); ?>home/log_out">Log out</a></li>
                         <?php  }  ?>
                         <li class="hidden-xs"><a href="#"><img src="<?php echo base_url(); ?>comp/img/search-icon.png" class="img-responsive" alt="Search"></a></li>

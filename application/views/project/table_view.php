@@ -78,7 +78,9 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
                                         <th class="numeric"><?php echo 'Status';?></th>
-                                        <th class="sorting1"><?php echo 'Action';?></th>
+                                        <th class="numeric"><?php echo 'View';?></th>
+                                        <th class="numeric"><?php echo 'Edit';?></th>
+                                        <th class="numeric"><?php echo 'Change Status';?></th>
 
 
                                     </tr>
@@ -101,21 +103,14 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label bg-purple"><?php echo getStatusById($row->statusID); ?></span></td>
-
-                                               
-                                                <td data-title="<?php echo 'Action'; ?>" class="numeric">
-                                                   <div class="btn-group">
-                                                        <button type="button" class="btn btn-success">Action</button>
-                                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                                          <span class="caret"></span>
-                                                          <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                          <li><a href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>">Edit</a></li>
-                                                          <li><a href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">View</a></li>
-                                                          <li><a class="changeStatus" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a></li>
-                                                        </ul>
-                                                    </div>
+                                                <td data-title="<?php echo 'View'; ?>" class="numeric">
+                                                    <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>" > View </a>
+                                                </td>
+                                                <td data-title="<?php echo 'Edit'; ?>" class="numeric">
+                                                    <a class="btn btn-block btn-success" href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>" > Edit </a>
+                                                </td>
+                                                <td data-title="<?php echo 'Change Status'; ?>" class="numeric">
+                                                    <a class="changeStatus btn btn-block btn-dropbox" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a> 
                                                 </td>
 
                                             </tr>
