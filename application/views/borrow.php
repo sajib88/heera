@@ -68,8 +68,8 @@
                                     <select required="" name="purposeID" class="form-control">
                                        <option value="">Select Purpose</option>
                                         <?php
-                                        if (is_array($category)) {
-                                            foreach ($category as $category) {
+                                        if (is_array($purpose)) {
+                                            foreach ($purpose as $category) {
                                                 ?>
                                                 <option value="<?php echo $category->purposeID; ?>"><?php echo $category->purposeTitle; ?></option>
                                                 <?php
