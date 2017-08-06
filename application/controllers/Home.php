@@ -585,5 +585,52 @@ class Home extends CI_Controller {
             redirect(base_url('home/login'));
         }
     }
+    
+    public function borrow(){
+        $data = array();
+        
+        if ($this->input->post()) {
+            $postData = $this->input->post();
+            $saveUser['first_name'] = empty($postData['first_name']) ? NULL : $postData['first_name'];
+            $saveUser['dateofbirth'] = empty($postData['dateofbirth']) ? NULL : $postData['dateofbirth'];
+            $saveUser['email'] = empty($postData['email']) ? NULL : $postData['email'];
+            $saveUser['phone'] = empty($postData['phone']) ? NULL : $postData['phone'];
+            $saveUser['country'] = empty($postData['country']) ? NULL : $postData['country'];
+            
+            $save['purposeID'] = empty($postData['purposeID']) ? NULL : $postData['purposeID'];
+            $save['name'] = empty($postData['name']) ? NULL : $postData['name'];
+            $save['neededAmount'] = empty($postData['neededAmount']) ? NULL : $postData['neededAmount'];
+            
+            if(!empty($this->input->post('email'))){
+                $ref = $this->global_model->get('users', array('email'=>$this->input->post('email'), 'profession' => '2'));                
+                if(!empty($ref)){
+                 $save['userID'] = $ref[0]->id;      
+                }
+            }
+             if (!empty($save['userID'])) {
+                 $this->global_model->insert('project', $save);
+                 redirect('home/thankyou');
+             } else {
+                 $userID = $this->global_model->insert('users', $saveUser);                 
+                 $save['userID'] = $userID;                 
+                 $this->global_model->insert('project', $save);
+                redirect('home/thankyou');
+             }
+        }
+         
+        $data['countries'] = $this->global_model->get('countries');
+        $data['profession'] = $this->global_model->get('profession');
+        $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
+        
+        $this->load->view('guest_head');
+        $this->load->view('borrow', $data);
+        $this->load->view('guest_footer.php');
+    }
+    
+    function thankyou(){
+        $this->load->view('guest_head');
+        $this->load->view('thankyou');
+        $this->load->view('guest_footer.php');
+    }
 
 }

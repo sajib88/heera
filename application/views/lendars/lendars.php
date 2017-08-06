@@ -88,7 +88,7 @@
                                             <tr>
                                                 <td><?php echo $i; ?></td>
                                                 <td data-title="<?php echo 'Lendar Name'; ?>"
-                                                    class="numeric"><?php echo $row->user_name; ?></td>
+                                                    class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Join Date'; ?>"
                                                     class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
                                                 </td>                                               </td>
@@ -231,19 +231,11 @@ $("#update_status_frm").submit(function(e){
     
 });
 
-$('.allFundedProject').click(function(){
-    
-    
-   
-    var id=$(this).data('id');
-           
-        var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/" +id; //append id at end
-        $("#lendarDeatails").load(site_url);
-           
+$('.allFundedProject').click(function(){ 
+    var id=$(this).data('id');           
+        var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/"+id; //append id at end
+        $("#lendarDeatails").load(site_url);           
 });
-
-
-
 
 </script>
 

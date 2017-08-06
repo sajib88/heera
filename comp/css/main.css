@@ -916,6 +916,51 @@ select.form-control {
 
 /*# sourceMappingURL=main.css.map */
 
+.header-wrapper .mega-menu{
+    width: 350px;
+    padding: 14px 3px;
+}
 
+.con-hieght{
+    height: 380px;
+}
+
+
+
+.con-center{
+    text-align: center;
+    margin: 150px auto;
+}
+
+
+
+.login-wrap{
+    border: 1px solid #d6d6d6;
+    padding: 20px;
+}
+
+.page-title{
+    margin-top: -21px;
+}
+
+@media (max-width: 567px) {
+     .con-hieght{
+        height: 200px;
+    }
+    
+    .con-center{
+        text-align: center;
+        margin: 60px auto;
+    }
+    
+    .topSpace{
+        margin-top: 40px;
+    }
+    
+    .page-title{
+        margin-left: 14px;
+        margin-top: -30px;
+    }
+}
 
 
