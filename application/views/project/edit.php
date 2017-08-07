@@ -2,10 +2,17 @@
 <div class="content-wrapper">
 
     <section class="content-header">
-        <h1>
-          <i class="fa fa-tasks"></i> Edit Project
-
-        </h1>
+        <div class="col-md-6 no-padding">
+            <h1>
+                <i class="fa fa-tasks"></i> &nbsp; Edit Project Details
+            </h1>
+        </div>
+        <div class="col-md-6 no-padding" style="text-align: right;">
+            <a href="#" class="btn btn-success">  <i class="fa fa-check"></i> Approved</a>
+            <a href="#" class="btn btn-danger">  <i class="fa fa-trash-o"></i> Reject</a> &nbsp; &nbsp;
+            <a href="#" class="btn btn-default">  <i class="fa fa-eye"></i> View</a>
+        </div>
+        <div style="clear: both;"></div>
 
     </section>
 <?php if($this->session->flashdata('message')){ ?>
@@ -514,10 +521,8 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-
-                <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
+
                             <!-- /Lending -->
 
 
@@ -531,9 +536,8 @@
                             </div>
 
                             <!-- /.Lending -->
-                        </div>
+
                     </div>
-                </div>
 
             </div>
 

@@ -14,14 +14,17 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Project Detials
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Project</a></li>
-            <li class="active">Detials</li>
-        </ol>
+        <div class="col-md-6 no-padding">
+            <h1>
+               <i class="fa fa-tasks"></i> &nbsp; Project Details
+            </h1>
+        </div>
+        <div class="col-md-6 no-padding" style="text-align: right;">
+            <a href="#" class="btn btn-success">  <i class="fa fa-check"></i> Approved</a>
+            <a href="#" class="btn btn-danger">  <i class="fa fa-trash-o"></i> Reject</a> &nbsp; &nbsp;
+            <a href="#" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+        </div>
+        <div style="clear: both;"></div>
     </section>
 
     <!-- Main content -->
