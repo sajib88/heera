@@ -89,7 +89,8 @@ class Home extends CI_Controller {
         $data = array();
 
 
-        if($this->input->post()) {
+        if($this->input->post('chekoutpage') == 'chekoutpage') {
+
             $postData = $this->input->post();
             if (isset($_SESSION['deliverdata'])) {
                 $_SESSION['deliverdata'][$this->input->post('pid')] = array(
@@ -112,43 +113,25 @@ class Home extends CI_Controller {
                     $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
                     $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
                 }
-
-            } else {
-
+                $data['selectedProjects'] = $projectDeatils;
             }
 
         }
         else {
-            //redirect('home/checkout');
-            redirect(base_url().'home/index');
-        }
-
-
-        //////////////////////////////// remove by id session value
-        if($this->input->post()) {
-            $postData = $this->input->post();
-            if ($this->input->post('updatecart') == 99){
-
-                 echo $pid = $this->input->post('pid');
-                 echo $fundedAmount = $this->input->post('lendAmount');
-                //print_r($data['selectedProjects']);
-                unset($_SESSION['deliverdata'][$pid]);
-                unset($_SESSION['deliverdata']);
-
-                echo "<pre>";
-                print_r($this->session->all_userdata());
-                echo "</pre>";
-
-
+            if (!empty($myLend)) {
+                foreach ($myLend as $projectID => $selectedAmount) {
+                    $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
+                    $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
+                }
+                $data['selectedProjects'] = $projectDeatils;
             }
 
+
         }
 
-        echo "<pre>";
-        print_r($this->session->all_userdata());
-        echo "</pre>";
-        $data['selectedProjects'] = $projectDeatils;
 
+        $data['selectedProjects'] = $projectDeatils;
+        $data['purpose'] = $this->global_model->get('purpose_lookup');
         ### for retrieving any single element from the session ###
        // $userid         = $this->session->userdata['deliverdata']['User_ID'];
 
@@ -163,6 +146,82 @@ class Home extends CI_Controller {
 
     }
 
+
+    public function updatecart(){
+        $data = array();
+
+         $id = $this->uri->segment('3');
+
+        unset($_SESSION['deliverdata'][$id]);
+       // print_r($_SESSION['deliverdata']);
+
+        $myLend = $this->session->userdata('deliverdata');          #will return the whole array
+
+
+        if (!empty($myLend)) {
+            foreach ($myLend as $projectID => $selectedAmount) {
+                $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
+                $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
+            }
+            $data['selectedProjects'] = $projectDeatils;
+        }
+
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+     //echo   $this->load->view('project/checkout',$data);
+        echo $this->load->view('project/update_cart', $data, TRUE);
+    }
+
+
+
+
+    public function getarrayajax(){
+        $data = array();
+        $pid = $this->input->post('id');
+        $selectedAmount = $this->input->post('selectedAmount');
+
+        //$existingCartValue = $this->session->userdata('deliverdata');
+
+        $_SESSION['deliverdata'][$pid] = array(
+            'lendAmount' => $selectedAmount
+        );
+
+        /*foreach ($existingCartValue as $pid => $amount){
+            $existingCartValue[$pid]['lendAmount']= $selectedAmount;
+        }*/
+
+        print_r($this->session->userdata('deliverdata'));
+        exit;
+    }
+
+
+    public function payment(){
+        $data = array();
+
+
+        $myLend = $this->session->userdata('deliverdata');          #will return the whole array
+
+
+        if (!empty($myLend)) {
+            foreach ($myLend as $projectID => $selectedAmount) {
+                $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
+                $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
+            }
+            $data['selectedProjects'] = $projectDeatils;
+        }
+
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/payment',$data);
+        $this->load->view('guest_footer');
+
+    }
 
     public function ajaxlender(){
         $data = array();
@@ -188,6 +247,69 @@ class Home extends CI_Controller {
         echo $this->load->view('project/ajaxlender', $data, TRUE);
 
     }
+
+    public function finalpayment()
+    {
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        $currentCreditAmount = $data['user_info']['inAmount'];
+        $totalPaidAmound = $this->input->post('paytotal');
+
+        if($this->input->post()){
+            if($totalPaidAmound < $currentCreditAmount) {
+                $postData = $this->input->post();
+                /*echo "<pre>";
+                print_r($postData);
+                echo "</pre>";*/
+
+                // insert Lender Transaction
+                foreach ($postData['projectid'] as $key => $projectID) {
+
+                    $saveLenderFund['inAmount'] = 0;
+                    $saveLenderFund['outAmount'] = $postData['outAmount'][$key];
+                    $saveLenderFund['transactionReason'] = 'project funded';
+                    $saveLenderFund['userID'] = $loginId;
+                    $saveLenderFund['transactionDateTime'] = date('Y-m-d H:i:s');
+
+                    $this->db->insert('lander_transaction_history', $saveLenderFund);
+                }
+
+
+                // inset project fund history
+                foreach ($postData['projectid'] as $key => $projectID) {
+                    $pro['projectID '] = $projectID;
+                    $pro['fundedAmount'] = $postData['outAmount'][$key];
+                    $pro['fundedBy'] = $loginId;
+                    $pro['fundedDateTime'] = date('Y-m-d H:i:s');
+
+                    $this->global_model->insert('project_fund_history', $pro);
+                }
+
+
+
+
+
+                $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
+                $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
+                if($updateRef) {
+                    $this->session->set_flashdata('message', 'You  fund this project ');
+                }
+            }else{
+                echo "Not sufficient fund";
+            }
+        }
+
+        $this->load->view('guest_head', $data);
+        $this->load->view('project/thankyou',$data);
+        $this->load->view('guest_footer');
+
+    }
+
+
+
 
     public function projectfund()
     {

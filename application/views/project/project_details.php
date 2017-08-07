@@ -1,10 +1,12 @@
 <style type="text/css">
     .slick-slide img{
-        height: 532px;
+        height: 470px;
     }
     .banner-wrapper .slider-nav-thumbnails .item img{
         height: 115px;
+        width: 100%;
     }
+    .bar span::after {background: none;}
 </style>
 <main class="main-wrapper">
     <section class="banner-wrapper">
@@ -105,9 +107,9 @@
                         <div class="progress-wrap">
                             <h5><?php echo $percent_friendly; ?>% Funded</h5>
 
-                                <div class="progress-bar" data-percentage="<?php echo $percent_friendly; ?>">
+                                <div class="progress-bar detailsprogressbar" data-percentage="<?php echo $percent_friendly; ?>">
                                     <div class="blue bar"><span></span></div>
-                                    <div class="label"></div>
+
                                 </div>
 
                             <div class="funded-wrap">
@@ -143,7 +145,7 @@
 
                                 <?php   $loginId = $this->session->userdata('login_id'); ?>
                                 <?php if($loginId == 0)
-                                { echo "no user id";?>
+                                { ?>
                                     <div class="col-xs-5 pdl pdr item">
                                         <select name="fundedAmount" class="form-control">
                                             <option value="25">$25</option>
@@ -164,6 +166,7 @@
                                             <?php $totalampount = $user_info['inAmount']; ?>
                                             <input type="hidden" name="login_id" value="<?php echo $loginId; ?>">
                                             <input type="hidden" name="pid" value="<?php echo  $projectData['projectID']; ?>">
+                                            <input type="hidden" name="chekoutpage" value="chekoutpage">
 
 
                                             <div class="col-xs-5 pdl pdr item">
@@ -450,14 +453,5 @@
             });
 
     });
-
-
-
-
-
-
-
-
-
 
 </script>

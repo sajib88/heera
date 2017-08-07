@@ -426,7 +426,7 @@ div.thumbnail:hover {
 }
 
 .rounded {border-radius:6px;}
-.bottocheckout{padding: 30px 0; border-bottom: 1px solid #eee;}
+.bottocheckout{padding: 30px 0;}
 
 
 
@@ -503,6 +503,11 @@ div.thumbnail:hover {
 }
 .breadcrumb li a:hover { background: #ffc107  ; }
 .breadcrumb li a:hover:after { border-left-color: #ffc107   !important; }
-
+.glyphicon-trash {padding-top: 8px; font-size: 17px;}
+.panel-footer{background: #fff;}
+.panel-body h4{margin: 0px;}
+.panel-body h5{margin-bottom: 4px;}
+.odd {background-color: #efefef;}
+.detailsprogressbar {width: 100%; height: 8px; margin-top:0px; margin-bottom: 20px;}
 
 
