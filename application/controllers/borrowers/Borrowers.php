@@ -45,12 +45,18 @@ class Borrowers extends CI_Controller {
 //        exit;
 //    }
     
-    public function allFundedProject($userID){
+    public function borrowerDeatails($userID){
         $data = array();
-        //$id = $this->input->post('status');
+        
         $data['borrowersDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-        $data['allfundedproject'] = $this->global_model->get('project', array('status' => '4'));
+
+        $data['allfundedproject'] = $this->global_model->borrower_funded_project($userID);
+        
+        //print_r($data['allfundedproject']);die;
+        
         $data['allCreatedProject'] = $this->global_model->get('project', array('userID' => $userID));
+        
+        
         
         echo $this->load->view('borrowers/borrowers_deatails', $data, TRUE);
        // print_r($projectDetails);

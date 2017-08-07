@@ -269,14 +269,21 @@
                     </a>
                 </li>
 
+<!--                <div class="gap"> </div>
+
+                    
+
+
+                <a class="btn btn-block bg-fund  btn-lg" href=""><i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS</a>
+
+                   
+                <div class="gap2"> </div>-->
                 <div class="gap"> </div>
-
-                    <li class="header">
-
-
-                        <a href="<?php echo base_url('fund/Fund/addfund');?>"><span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS</span></a>
-
-                    </li>
+                <div class="col-lg-12">
+                 <button class="btn btn-success btn-lg addFund"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD FUNDS </button>
+<!--                        <a  href="</a>-->
+                  </div>
+                 <div style="clear:both"></div>
                 <div class="gap2"> </div>
 
 
@@ -434,12 +441,12 @@
                 
                  <div class="gap"> </div>
 
-                    <li class="header">
-
-
-                        <a href="<?php echo base_url('project/add');?>"><span class="btn btn-block bg-fund  btn-lg"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT</span></a>
-
-                    </li>
+                   
+                 <div class="col-lg-12">
+                 <button class="btn btn-success btn-lg addProject"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT </button>
+<!--                        <a  href="<?php echo base_url('project/add');?>"></a>-->
+                  </div>
+                 <div style="clear:both"></div>
                 <div class="gap2"> </div>
                 
                 <?php } ?>
@@ -448,3 +455,6 @@
         </section>
         <!-- /.sidebar -->
       </aside>
+
+
+       

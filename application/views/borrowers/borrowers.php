@@ -1,10 +1,8 @@
 <style type="text/css">
-    .no-padding {
-        padding: 10px !important;
-    }
-    table.dataTable thead > tr > th:last-child:after{
+   
+/*    table.dataTable thead > tr > th:last-child:after{
             display: none;
-    }
+    }*/
 </style>
 
 
@@ -86,8 +84,8 @@
                                         
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Lendar Name'; ?>"
-                                                    class="numeric"><?php echo $row->user_name; ?></td>
+                                                <td data-title="<?php echo 'Borrowers Name'; ?>"
+                                                    class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Join Date'; ?>"
                                                     class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
                                                 </td>                                               </td>
@@ -105,7 +103,7 @@
                                                     class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
                                                 
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
-                                                    <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
+                                                    <a class="borrowerDeatails btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
                                                 </td>
 
                                             </tr>
@@ -139,7 +137,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Lendars Deatails</h4>                
+                <h4 class="modal-title"><i class="fa fa-briefcase"></i> Lendars Deatails</h4>                
             </div>
             
                 <div class="modal-body">
@@ -164,7 +162,14 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var personaltable = document.getElementById("js_personal_table");
-        $(personaltable).dataTable();
+        $(personaltable).dataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "info": true,
+            "autoWidth": false,
+            columnDefs: [ { orderable: false, targets: [7] } ]
+        });
     });
 </script>
 
@@ -231,9 +236,9 @@ $("#update_status_frm").submit(function(e){
     
 });
 
-$('.allFundedProject').click(function(){
+$('.borrowerDeatails').click(function(){
     var id=$(this).data('id');
-        var site_url = "<?php echo base_url('borrowers/Borrowers/allFundedProject/'); ?>/" +id; //append id at end
+        var site_url = "<?php echo base_url('borrowers/Borrowers/borrowerDeatails/'); ?>/" +id; //append id at end
         $("#borrowerDeatails").load(site_url);
 });
 

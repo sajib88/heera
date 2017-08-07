@@ -1,7 +1,5 @@
 <style type="text/css">
-    .no-padding {
-        padding: 10px !important;
-    }
+    
     
     table.dataTable thead > tr > th:last-child:after{
         display: none;

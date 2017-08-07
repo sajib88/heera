@@ -226,10 +226,9 @@ print_r($allpersonals);die;*/
             "paging": true,
             "lengthChange": true,
             "searching": true,
-            "ordering": true,
             "info": true,
-            "autoWidth": false
-
+            "autoWidth": false,
+            columnDefs: [ { orderable: false, targets: [7,8,9] } ]
         });
     });
 </script>

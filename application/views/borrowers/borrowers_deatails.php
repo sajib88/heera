@@ -6,13 +6,158 @@
         width: 190px;
         margin: 0px auto;
     }
-    table.dataTable thead > tr > th:last-child:after{
+/*    table.dataTable thead > tr > th:last-child:after{
         display: none;
-    }
+    }*/
 </style>
 <?php //print_r($borrowersDetails);?>
-<section class="content">
-<div class="row">
+
+<?php //print_r($allfundedproject);?>
+<div class="col-md-12 no-padding">
+    <!-- Custom Tabs -->
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#cretedProjects" data-toggle="tab" aria-expanded="true">All Projects Created Chart</a></li>
+        <li class=""><a href="#fundedProjects" data-toggle="tab" aria-expanded="false">All projects Funded Chart</a></li>
+        <li class=""><a href="#borrowerProfile" data-toggle="tab" aria-expanded="false">Borrower profile</a></li>
+        
+        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="cretedProjects">
+            
+            <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body no-padding">
+                        <?php if(empty($allCreatedProject)){?>
+                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
+                        <?php }else{?>
+                            <div id="no-more-tables">
+
+                                <table class="table table-hover" id="createdProjectDataTable">
+                                    <thead>
+                                    <tr>
+
+                                        <th class="numeric">#</th>
+
+                                        <th class="numeric"><?php echo 'Project Name';?></th>
+                                        
+                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
+
+                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+
+                                        <th class="numeric"><?php echo 'Status';?></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if(!empty($allCreatedProject)) {
+                                        $i = 1;
+                                        foreach ($allCreatedProject as $row) {                                            //print_r($row);die; ?>
+                                        
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+                                                <td data-title="<?php echo 'Project Name'; ?>"
+                                                    class="numeric"><?php echo $row->name; ?></td>
+                                                
+                                                <td data-title="<?php echo 'Amount Needed'; ?>"
+                                                    class="numeric"><span><?php echo '$'.$row->neededAmount; ?></span>
+                                                </td>
+                                                <td data-title="<?php echo 'Amount Collected'; ?>"
+                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
+                                                    class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td> 
+                                                <td data-title="<?php echo 'Status'; ?>"
+                                                    class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
+                                                </td>
+                                            </tr>
+                                            <?php $i++;
+                                        }
+                                    }else{
+                                        echo 'No data Found';
+                                    }
+?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php }?>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+       
+            
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="fundedProjects">
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="box">
+                      <div class="box-body no-padding">
+                          <?php if(empty($allfundedproject)){?>
+                          <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
+                          <?php }else{?>
+                              <div id="no-more-tables">
+
+                                  <table class="table table-hover" id="fundedProjectsDataTable">
+                                      <thead>
+                                      <tr>
+
+                                          <th class="numeric">#</th>
+
+                                          <th class="numeric"><?php echo 'Project Name';?></th>                                          
+
+                                          <th class="numeric"><?php echo 'Amount Needed';?></th>                                          
+
+                                          <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                          
+                                          <th class="numeric"><?php echo 'Status';?></th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <?php if(!empty($allfundedproject)) {
+                                          $i = 1;
+                                          foreach ($allfundedproject as $row) {                                            //print_r($row);die; ?>
+
+                                              <tr>
+                                                  <td><?php echo $i; ?></td>
+                                                  <td data-title="<?php echo 'Project Name'; ?>"
+                                                      class="numeric"><?php echo $row->name; ?></td>                                                  
+                                                  
+                                                  <td data-title="<?php echo 'Amount Needed'; ?>"
+                                                      class="numeric"><span><?php echo $row->neededAmount; ?></span>
+                                                  </td>
+                                                  
+                                                  <td data-title="<?php echo 'Amount Collected'; ?>"
+                                                      <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
+                                                      class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                  
+                                                  <td data-title="<?php echo 'Status'; ?>"
+                                                    class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
+                                                  </td>
+                                                 
+                                              </tr>
+                                              <?php $i++;
+                                          }
+                                      }else{
+                                          echo 'No data Found';
+                                      }
+  ?>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          <?php }?>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </div>        
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="borrowerProfile">
+            <div class="row">
     <div class="col-md-6">          
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -120,196 +265,43 @@
         </div>
     </div>
 </div>
-
-
-
-<?php //print_r($allfundedproject);?>
-<div class="col-md-12">
-    <!-- Custom Tabs -->
-    <div class="nav-tabs-custom">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">All Projects Created Chart</a></li>
-        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">All projects Funded Chart</a></li>
-        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Borrower profile</a></li>
+        </div>
         
-        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab_1">
-            
-            <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">All Created Projects</h3>
-                    </div>
-                    <div class="box-body no-padding">
-                        <?php if(empty($allCreatedProject)){?>
-                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
-                        <?php }else{?>
-                            <div id="no-more-tables">
-
-                                <table class="table table-hover" id="js_personal_table">
-                                    <thead>
-                                    <tr>
-
-                                        <th class="numeric">#</th>
-
-                                        <th class="numeric"><?php echo 'Name';?></th>
-
-                                        <th class="numeric"><?php echo 'ShortDescription';?></th>
-                                        
-                                        <th class="numeric"><?php echo 'Loan Term';?></th>
-                                        
-                                        <th class="numeric"><?php echo 'Goal';?></th>
-
-                                        <th class="numeric"><?php echo 'Project End Date';?></th>
-
-                                        <th class="numeric"><?php echo 'Total Funded';?></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php if(!empty($allCreatedProject)) {
-                                        $i = 1;
-                                        foreach ($allCreatedProject as $row) {                                            //print_r($row);die; ?>
-                                        
-                                            <tr>
-                                                <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Name'; ?>"
-                                                    class="numeric"><?php echo $row->name; ?></td>
-                                                <td data-title="<?php echo 'ShortDescription'; ?>"
-                                                    class="numeric"><span><?php echo substr($row->shortDescription, 0, 30); ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Loan Term'; ?>"
-                                                    class="numeric"><span><?php echo $row->loanTerm; ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Goal'; ?>"
-                                                    class="numeric"><span><?php echo '$'.$row->neededAmount; ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Project End Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->projectEndDate)); ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Total Funded'; ?>"
-                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
-                                                    class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>                                               
-                                            </tr>
-                                            <?php $i++;
-                                        }
-                                    }else{
-                                        echo 'No data Found';
-                                    }
-?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php }?>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </div>
-       
-            
-        </div>
-        <!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_2">
-            <div class="row">
-              <div class="col-md-12">
-                  <div class="box">
-                      <div class="box-header">
-                          <h3 class="box-title">All Funded Projects</h3>
-                      </div>
-                      <div class="box-body no-padding">
-                          <?php if(empty($allfundedproject)){?>
-                          <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
-                          <?php }else{?>
-                              <div id="no-more-tables">
-
-                                  <table class="table table-hover" id="js_personal_table">
-                                      <thead>
-                                      <tr>
-
-                                          <th class="numeric">#</th>
-
-                                          <th class="numeric"><?php echo 'Name';?></th>
-
-                                          <th class="numeric"><?php echo 'ShortDescription';?></th>
-
-                                          <th class="numeric"><?php echo 'Loan Term';?></th>
-
-                                          <th class="numeric"><?php echo 'Goal';?></th>
-
-                                          <th class="numeric"><?php echo 'Project End Date';?></th>
-
-                                          <th class="numeric"><?php echo 'Total Funded';?></th>
-
-                                          <th class="numeric"><?php echo 'Project Image';?></th>
-
-
-
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      <?php if(!empty($allfundedproject)) {
-                                          $i = 1;
-                                          foreach ($allfundedproject as $row) {                                            //print_r($row);die; ?>
-
-                                              <tr>
-                                                  <td><?php echo $i; ?></td>
-                                                  <td data-title="<?php echo 'Name'; ?>"
-                                                      class="numeric"><?php echo $row->name; ?></td>
-                                                  <td data-title="<?php echo 'ShortDescription'; ?>"
-                                                      class="numeric"><span class="label label-success"><?php echo substr($row->shortDescription, 0, 30); ?></span>
-                                                  </td>
-                                                  <td data-title="<?php echo 'Loan Term'; ?>"
-                                                      class="numeric"><span class="label label-success"><?php echo $row->loanTerm; ?></span>
-                                                  </td>
-                                                  <td data-title="<?php echo 'Goal'; ?>"
-                                                      class="numeric"><span class="label label-success"><?php echo $row->neededAmount; ?></span>
-                                                  </td>
-                                                  <td data-title="<?php echo 'Project End Date'; ?>"
-                                                      class="numeric"><span class="label label-info"><?php echo date("d-m-Y h:i:sa", strtotime($row->projectEndDate)); ?></span>
-                                                  </td>
-                                                  <td data-title="<?php echo 'Total Funded'; ?>"
-                                                      <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
-                                                      class="numeric"><span class="label label-warning"><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
-
-                                                  <td class="numeric"><span class="label bg-purple"><img src="<?php echo base_url() . '/assets/file/project/' .$row->mainImage; ?>" alt="" width="50" height="50" class="img-circle " /></span></td>
-
-                                              </tr>
-                                              <?php $i++;
-                                          }
-                                      }else{
-                                          echo 'No data Found';
-                                      }
-  ?>
-                                      </tbody>
-                                  </table>
-                              </div>
-                          <?php }?>
-                      </div>
-
-                  </div>
-
-              </div>
-          </div>
-        </div>        
-        <!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_2">
-            
-        </div>
          <!-- /.tab-pane -->
       </div>
       <!-- /.tab-content -->
     </div>
     <!-- nav-tabs-custom -->
 </div>
-</section>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
-        var personaltable = document.getElementById("js_personal_table");
-        $(personaltable).dataTable();
+
+         $('#createdProjectDataTable').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "columnDefs": [ {
+            "targets": 0,
+            "orderable": false
+            } ]
+
+        });
+        
+        $('#fundedProjectsDataTable').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+
+        });
+        
+        
     });
 </script>
