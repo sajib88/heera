@@ -20,7 +20,7 @@
 
     <section class="content-header">
         <h1>
-           <i class="fa fa-briefcase"></i> <?php echo $page_title;?>
+           <i class="fa fa-briefcase"></i> All Borrowers
             
         </h1>
         

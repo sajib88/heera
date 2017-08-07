@@ -393,6 +393,26 @@ class Global_model extends CI_Model {
             return false;
         }
     }
+    
+    public function all_project($id){
+       $this->db->select('p.*, f.*, u.first_name as borrowerName');     
+       $this->db->from('project as p');
+       $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');  
+       $this->db->join('users as u', 'u.id=p.userID'); 
+        
+       $this->db->where('f.fundedBy', $id);
+       $this->db->group_by('f.projectID');
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
 
 
 

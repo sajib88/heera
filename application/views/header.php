@@ -353,7 +353,7 @@
 <!--                <pre>
                     <?php //print_r($allprojects);?>
                 </pre>-->
-                <li class="treeview <?php if($this->uri->segment(1)=="project"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(2)=="all"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects <?php if(!empty($count)){ echo '('.$count.')';}else{}?></span>

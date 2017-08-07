@@ -139,10 +139,7 @@
             
             <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title"> <i class="fa fa-tasks"></i> All Funded Projects</h3>
-                    </div>
+                <div class="box">                    
                     <div class="box-body no-padding">
                         <?php if(empty($allfundedproject)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
@@ -155,17 +152,17 @@
 
                                         <th class="numeric">#</th>
 
-                                        <th class="numeric"><?php echo 'Name';?></th>
+                                        <th class="numeric"><?php echo 'Project Name';?></th>
 
-                                        <th class="numeric"><?php echo 'ShortDescription';?></th>
+                                        <th class="numeric"><?php echo 'Borrower Name';?></th> 
                                         
-                                        <th class="numeric"><?php echo 'Loan Term';?></th>
+                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
                                         
-                                        <th class="numeric"><?php echo 'Goal';?></th>
+                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
 
-                                        <th class="numeric"><?php echo 'Project End Date';?></th>
+                                        <th class="numeric"><?php echo 'Status';?></th>
 
-                                        <th class="numeric"><?php echo 'Total Funded';?></th>
+                                        
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -175,23 +172,21 @@
                                         
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Name'; ?>"
+                                                <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
-                                                <td data-title="<?php echo 'ShortDescription'; ?>"
-                                                    class="numeric"><span><?php echo substr($row->shortDescription, 0, 30); ?></span>
+                                                <td data-title="<?php echo 'Borrower Name'; ?>"
+                                                    class="numeric"><span><?php echo $row->borrowerName; ?></span>
                                                 </td>
-                                                <td data-title="<?php echo 'Loan Term'; ?>"
-                                                    class="numeric"><span><?php echo $row->loanTerm; ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Goal'; ?>"
+                                                <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span><?php echo '$'.$row->neededAmount; ?></span>
                                                 </td>
-                                                <td data-title="<?php echo 'Project End Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->projectEndDate)); ?></span>
-                                                </td>
-                                                <td data-title="<?php echo 'Total Funded'; ?>"
+                                                <td data-title="<?php echo 'Amount Collected'; ?>"
                                                     <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
                                                     class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                
+                                                <td data-title="<?php echo 'Status'; ?>"
+                                                    class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
+                                                </td>
                                             </tr>
                                             <?php $i++;
                                         }

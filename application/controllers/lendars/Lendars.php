@@ -49,8 +49,14 @@ class Lendars extends CI_Controller {
         //$id = $this->input->post('status');
         //$id = $_POST['id'];
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-        $data['allfundedproject'] = $this->global_model->get('project', array('userID' => $userID));
-     
+        //$data['allfundedproject'] = $this->global_model->get('project', array('userID' => $userID));
+        
+        $data['allfundedproject'] = $this->global_model->all_project($userID);
+        
+//        echo '<pre>';
+//        print_r($data['allfundedproject']);die;
+//        echo '</pre>';
+        
         echo $this->load->view('lendars/lenders_details', $data, TRUE);
        // print_r($projectDetails);
         
