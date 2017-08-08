@@ -16,7 +16,7 @@ class Login_model extends CI_Model {
         $time['lastLogin'] = date('Y-m-d h:i:sa');        
         $this->global_model->update('users', $time, array('user_name' => $result['user_name']));        
         if ($query->num_rows() > 0) {
-            $this->session->set_userdata(array('login_id' => $result['id'], 'user_type' => $result['profession'], 'user_name' => $result['user_name']));
+            $this->session->set_userdata(array('login_id' => $result['id'], 'user_type' => $result['profession'], 'first_name' => $result['first_name']));
             return TRUE;
         } else {
             return FALSE;
@@ -29,7 +29,7 @@ class Login_model extends CI_Model {
         //echo $this->db->last_query();exit();
         $result = $query->row_array();
         if ($query->num_rows() > 0) {
-            $this->session->set_userdata(array('login_id' => $result['id'], 'user_type' => $result['profession'], 'user_name' => $result['user_name']));
+            $this->session->set_userdata(array('login_id' => $result['id'], 'user_type' => $result['profession'], 'first_name' => $result['first_name']));
             return TRUE;
         } else {
             return FALSE;
