@@ -28,6 +28,8 @@
 
 
                         <?php if(!empty($selectedProjects)) {
+
+                            ///print_r($this->session->userdata());
                             $sum = 0;
                             $i = 1;
                             foreach ($selectedProjects as $checkout) {

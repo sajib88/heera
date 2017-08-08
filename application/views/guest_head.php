@@ -82,21 +82,62 @@
                 
                 <div class="col-md-4 mobile-nav pdl pdr">
                     <ul class="nav navbar-nav navbar-right secondary-nav">
-                        
+
                         <li class="active hidden-xs"><a href="<?php echo base_url(); ?>page/about">About</a></li>
-                        <?php   $loginId = $this->session->userdata('login_id'); ?>
+                        <?php   $loginId = $this->session->userdata('login_id');
+
+
+                        ?>
                         <?php if($loginId == 0)
                         {?>
                             <li class="active hidden-xs" ><a href="<?php echo base_url(); ?>home/registration">Join Now</a></li>
                             <li><a href="<?php echo base_url(); ?>home/login">Login</a></li>
+
+
+
+
                         <?php
                         }
                         else{
                             ?>
-                            <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Dashboard</a></li>
-                            <li><a href="<?php echo base_url(); ?>home/log_out">Log out</a></li>
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $firstname = $this->session->userdata('first_name'); ?> <i class="fa fa-angle-down"></i></a>
+                                <div class="dropdown-menu mega-menu">
+                                    <div class="row">
+                                        <div class="col-sm-12 entry-single item">
+
+                                            <ul class="entry-list">
+                                                <li class="hidden-xs"><a href="<?php echo base_url(); ?>profile/dashboard">Dashboard</a></li>
+                                                <li><a href="<?php echo base_url(); ?>home/log_out">Log out</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
                         <?php  }  ?>
-                        <li class="hidden-xs"><a href="#"><img src="<?php echo base_url(); ?>comp/img/search-icon.png" class="img-responsive" alt="Search"></a></li>
+
+                        <?php
+                        $countcart=$this->session->userdata('deliverdata');
+                        $totalproduct=count($countcart);
+                        if ($totalproduct != 0 )  {?>
+                        <li class="hidden-xs cart"><a href="#"><img src="<?php echo base_url(); ?>comp/img/cart.png" class="img-responsive" alt="Search"></a></li>
+                        <li class="cartamount">
+                            <?php
+
+
+                                echo  count($countcart);
+                            }
+
+                            ?>
+                        </li>
+
+
+
+
+
                     </ul>
                 </div>
             </div>

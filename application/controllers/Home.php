@@ -192,7 +192,7 @@ class Home extends CI_Controller {
             $existingCartValue[$pid]['lendAmount']= $selectedAmount;
         }*/
 
-        print_r($this->session->userdata('deliverdata'));
+        //print_r($this->session->userdata('deliverdata'));
         exit;
     }
 
@@ -223,30 +223,7 @@ class Home extends CI_Controller {
 
     }
 
-    public function ajaxlender(){
-        $data = array();
 
-        $id = $this->uri->segment('3');
-        /// project data get url
-        //$data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
-        $data['projectData']['projectID']= $id;
-
-        /// payment shedule
-        $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
-        /// Total Fund collect
-        $data['totalfundrise'] = $this->global_model->get('project_fund_history');
-        /// total  lander for this project
-
-        $data['totallander'] = $this->global_model->count_row_where('project_fund_history', array('projectID' => $id));
-        /// $data['joins'] = $this->global_model->get_data_join('project', 'project_fund_history', 'projectID', 'project.projectID = project_fund_history.projectID', true);
-
-        $loginId = $this->session->userdata('login_id');
-        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-        $totalamount = $data['user_info']['inAmount'];
-
-        echo $this->load->view('project/ajaxlender', $data, TRUE);
-
-    }
 
     public function finalpayment()
     {
@@ -288,13 +265,10 @@ class Home extends CI_Controller {
                     $this->global_model->insert('project_fund_history', $pro);
                 }
 
-
-
-
-
                 $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
                 $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
                 if($updateRef) {
+                    //$this->session->unset_userdata($deliverdata);
                     $this->session->set_flashdata('message', 'You  fund this project ');
                 }
             }else{
@@ -310,68 +284,31 @@ class Home extends CI_Controller {
 
 
 
-
-    public function projectfund()
-    {
+    public function ajaxlender(){
         $data = array();
+
         $id = $this->uri->segment('3');
         /// project data get url
-        $data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
-        /// payment shedule
+        //$data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
+        $data['projectData']['projectID']= $id;
 
+        /// payment shedule
+        $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
+        /// Total Fund collect
+        $data['totalfundrise'] = $this->global_model->get('project_fund_history');
+        /// total  lander for this project
+
+        $data['totallander'] = $this->global_model->count_row_where('project_fund_history', array('projectID' => $id));
+        /// $data['joins'] = $this->global_model->get_data_join('project', 'project_fund_history', 'projectID', 'project.projectID = project_fund_history.projectID', true);
 
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $totalamount = $data['user_info']['inAmount'];
 
-
-        if($this->input->post()){
-            $postData = $this->input->post();
-
-
-                $save['inAmount'] = 0;
-                $save['outAmount'] = empty($postData['outAmount']) ? NULL : $postData['outAmount'];
-                $save['transactionReason'] = 'project funded';
-                $save['userID'] = $loginId;
-                $save['transactionDateTime'] =  date('Y-m-d H:i:s');
-
-
-                if($totalamount > 0) {
-                    $credit['inAmount'] = $totalamount;
-                    $credit['inAmount'] = $credit['inAmount'] -= $save['outAmount'] = $postData['outAmount'];
-                    $ref = $this->global_model->insert('lander_transaction_history', $save);
-                    if ($ref) {
-                        ///// project fund table
-                        $pro['projectID '] = empty($postData['projectid']) ? NULL : $postData['projectid'];;
-                         $pro['fundedAmount'] = empty($postData['outAmount']) ? NULL : $postData['outAmount'];
-                        $pro['fundedBy'] = $loginId;
-                        $pro['fundedDateTime'] =  date('Y-m-d H:i:s');
-
-                        $this->global_model->insert('project_fund_history', $pro);
-                        $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
-                        if ($updateRef) {
-                            echo "success";
-                           $this->session->set_flashdata('message', 'You  fund this project ');
-
-
-
-                        }else{
-                            echo "error";
-                        }
-                    }else{
-                        echo "error lander transaction";
-                    }
-                }else{
-                    echo "Not sufficient fund";
-                }
-
-
-
-        }
-
-       //echo  $this->load->view('project/ajaxlender', $data, TRUE);
+        echo $this->load->view('project/ajaxlender', $data, TRUE);
 
     }
+
 
 
 

@@ -144,8 +144,14 @@
 
 
                                 <?php   $loginId = $this->session->userdata('login_id'); ?>
-                                <?php if($loginId == 0)
-                                { ?>
+                                <?php
+                                if($percent_friendly != 100.00){
+                                if($loginId == 0)
+                                {
+
+
+
+                                    ?>
                                     <div class="col-xs-5 pdl pdr item">
                                         <select name="fundedAmount" class="form-control">
                                             <option value="25">$25</option>
@@ -184,7 +190,14 @@
 
                                         </form>
 
-                                <?php  }  ?>
+                                <?php  } }else{
+
+                                 ?>
+
+                                    <div class="text-center"><a href="<?php echo base_url('home/getPurpose'); ?>"><h4>Find more loans</h4></a> </div>
+
+
+                                <?php } ?>
 
 
 
