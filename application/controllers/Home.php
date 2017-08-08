@@ -263,12 +263,15 @@ class Home extends CI_Controller {
                     $pro['fundedDateTime'] = date('Y-m-d H:i:s');
 
                     $this->global_model->insert('project_fund_history', $pro);
+
+                    unset($_SESSION['deliverdata'][$projectID]);
                 }
 
                 $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
                 $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
                 if($updateRef) {
                     //$this->session->unset_userdata($deliverdata);
+
                     $this->session->set_flashdata('message', 'You  fund this project ');
                 }
             }else{
@@ -325,11 +328,11 @@ class Home extends CI_Controller {
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList'], 'adminApprovalStatus' => 'Approved'));
         }
         elseif(!empty ($puposeList['name'])){
-            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList,  FALSE, FALSE);
         }elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id, 'adminApprovalStatus' => 'Approved'));
         }elseif($puposeList['puposeList'] or $puposeList['name'] or $id == NULL){
-            $data['projectData'] = $this->global_model->get('project');
+            $data['projectData'] = $this->global_model->get('project', array('adminApprovalStatus' => 'Approved'));
         }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
         }               

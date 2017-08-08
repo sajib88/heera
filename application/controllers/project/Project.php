@@ -502,7 +502,7 @@ class Project extends CI_Controller {
         $data = array();
 
         $id = $this->uri->segment('4');
-
+        $save['statusID'] = 3;
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
         $save['adminApprovalStatus'] = 'Approved';
         $save['rejectReason'] = 0;
