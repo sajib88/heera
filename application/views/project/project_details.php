@@ -194,7 +194,7 @@
 
                                  ?>
 
-                                    <div class="text-center"><a href="<?php echo base_url('home/getPurpose'); ?>"><h4>Find more loans</h4></a> </div>
+                                    <div class="text-center bordertext"><a href="<?php echo base_url('home/getPurpose'); ?>"><h4>Find more loans</h4></a> </div>
 
 
                                 <?php } ?>
@@ -216,7 +216,7 @@
 
                                             </div>
                                             <div class="modal-body">
-                                                <div id="showcal"></div>
+                                                <div id="myModal"></div>
                                             </div>
 
                                         </div>

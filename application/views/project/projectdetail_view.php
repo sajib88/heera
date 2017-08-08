@@ -11,6 +11,7 @@
     }
 </style>
 
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -20,17 +21,19 @@
             </h1>
         </div>
         <div class="col-md-6 no-padding" style="text-align: right;">
-            <a href="#" class="btn btn-success">  <i class="fa fa-check"></i> Approved</a>
-            <a href="#" class="btn btn-danger">  <i class="fa fa-trash-o"></i> Reject</a> &nbsp; &nbsp;
-            <a href="#" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+           <?php if($layoutfull['adminApprovalStatus'] == 'Rejected'){ ?> <a href="#" class="btn btn-success" id="approveProject">  <i class="fa fa-check"></i> Approved</a><?php } else{  } ?>
+            <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp; &nbsp;
+            <a href="<?php echo base_url('project/Project/edit/' . $layoutfull['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+
         </div>
         <div style="clear: both;"></div>
     </section>
-
+    <div id="foo"></div>
     <!-- Main content -->
     <section class="content">
 
         <div class="row">
+
             <div class="col-md-4">
 
 
@@ -281,7 +284,28 @@
                 <!-- /.box -->
             </div>
 
+            <!-- Modal -->
 
+
+
+
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><i class="fa fa-tasks"></i> &nbsp; Update Project Status</h4>
+
+
+
+                        </div>
+                        <div class="modal-body">
+                            <div id="showcal"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -294,3 +318,95 @@
     </section>
     <!-- /.content -->
 </div>
+
+
+<input type="hidden" id='pid' data-project='<?php echo $layoutfull['projectID']; ?>'></input>
+<script>
+
+
+    var pid = document.getElementById('pid');
+    var sendpid = pid.getAttribute('data-project');
+
+    $(document).ready(function() {
+
+
+        $("#approveProject").click(function(e){
+            var r = confirm('Do you want to Appreove this Project');
+            if(r == true){
+                var base_url = '<?php echo base_url() ?>';
+                var id=sendpid;
+                $.ajax({
+                    type: 'GET',
+                    url: base_url + "project/project/approvedProject/"+id, //this file has the calculator function code
+                    //data: id,
+                    success: function(msg) {
+
+                        if (msg == 'success') {
+                            // show success meessage
+                            var msg = "<div class='alert alert-success'>Your Project Approved Successfully.  </div>";
+                            $('#foo').html(msg);
+                        }
+                        else {
+                        }
+
+                    }
+
+
+
+                });
+               // alert('Your project status Approved successfully');
+
+            }else{
+                //alert('Canceled');
+            }
+        });
+
+        $("#rejectProject").click(function(e) {
+            var r = confirm('Do you want to Reject this Project');
+            if (r == true) {
+
+                alert(sendpid);
+                var base_url = '<?php echo base_url() ?>';
+                var id=sendpid;
+                $.ajax({
+                    type: 'GET',
+                    url: base_url + "project/project/ajaxreject/"+id, //this file has the calculator function code
+                    //data: id,
+                    success:function(data){
+                        $('#showcal').html(data);
+                        $('#myModal').modal('show');
+
+                    }
+                });
+
+
+            }
+        });
+
+
+    });
+
+</script>
+
+
+
+<script type="application/javascript">
+
+    $('#rejectform').validate({
+        rules: {
+            shortDescription: {
+                required:true,
+
+            }
+        },
+        messages:{
+            shortDescription: {
+                required: "Rejected Reason Is Required",
+            }
+        }
+    });
+
+
+
+
+</script>

@@ -31,13 +31,16 @@ class Dashboard extends CI_Controller {
         if($user_info['profession'] == 1){
 
             //// Funded get table
-            $landerfundloop  = $this->global_model->get('project_fund_history', array('fundedBy' => $loginId ));
-            foreach ($landerfundloop as $landerfund){
-                /// get id from loop
-                $projectid=$landerfund->projectID;
-                $landerfund->fundedAmount;
-                $landerfund->fundedBy= $this->global_model->get('project', array('projectID' => $projectid));
 
+            $landerfundloop  = $this->global_model->get('project_fund_history', array('fundedBy' => $loginId ));
+            if(!empty($landerfundloop)) {
+                foreach ($landerfundloop as $landerfund) {
+                    /// get id from loop
+                    $projectid = $landerfund->projectID;
+                    $landerfund->fundedAmount;
+                    $landerfund->fundedBy = $this->global_model->get('project', array('projectID' => $projectid));
+
+                }
             }
 
 

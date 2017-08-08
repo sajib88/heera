@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
-        $projectData = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
+        $projectData = $this->global_model->get('project', array('adminApprovalStatus' => 'Approved'), array('adminApprovalStatus' => 'Approved', 'limit' => '3', 'start' => '0'),array('filed' => 'projectID', 'order' => 'DESC'));
 
 
         foreach ($projectData as $proData){
@@ -245,7 +245,7 @@ class Home extends CI_Controller {
                 // insert Lender Transaction
                 foreach ($postData['projectid'] as $key => $projectID) {
 
-                    $saveLenderFund['inAmount'] = 0;
+                    $saveLenderd['inAmount'] = 0;
                     $saveLenderFund['outAmount'] = $postData['outAmount'][$key];
                     $saveLenderFund['transactionReason'] = 'project funded';
                     $saveLenderFund['userID'] = $loginId;
@@ -316,13 +316,13 @@ class Home extends CI_Controller {
     public function getPurpose($id=''){
         $data = array();
         //echo $id;die;
-       
+
         $puposeList = array();
         $puposeList['puposeList'] = $this->input->post('puposeList');
         $puposeList['name'] = $this->input->post('searchByName');
 
         if(!empty($puposeList['puposeList'])){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList']));
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList'], 'adminApprovalStatus' => 'Approved'));
         }
         elseif(!empty ($puposeList['name'])){
             $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
@@ -481,7 +481,7 @@ class Home extends CI_Controller {
                 $save['profession'] = $this->input->post('profession');
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
-               // $save['user_name'] = $this->input->post('user_name');
+                $save['user_name'] = $this->input->post('first_name');
                 $save['email'] = $this->input->post('email');
                 $save['password'] = md5($this->input->post('password'));
 
@@ -496,13 +496,9 @@ class Home extends CI_Controller {
                 // }
 
                 if ($this->global_model->insert('users', $save)) {
-                    $this->load->library('email');
-                    $this->email->from('sajib@osourcebd.com', 'All Doctors');
-                    $this->email->to('sajib@osourcebd.com');
-                    $this->email->subject('Activation Link');
-                    $this->email->message('This is activation link for active user.');
-                    $this->email->send();
+
                     $this->session->set_flashdata('success', 'Your account has been created and an activation link has been sent to the email address you entered. Note that you must activate the account by selecting the activation link when you get the email before you can login.');
+
                     $redirect_link = base_url() . 'home/login';
 
                     $this->send_confirmation_email($save);
