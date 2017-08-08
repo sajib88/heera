@@ -23,7 +23,7 @@
         <li class=""><a href="#bilingInfo" data-toggle="tab" aria-expanded="false">Billing Information</a></li>        
         <li class=""><a href="#lenderProfileDeatails" data-toggle="tab" aria-expanded="false">Lender Profile Deatails</a></li>        
         
-        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+        
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="fundedProjectList">
@@ -231,7 +231,7 @@
             "info": true,
             "autoWidth": false,
             "columnDefs": [ {
-            "targets": 5,
+            "targets": 0,
             "orderable": false
             } ]
         });

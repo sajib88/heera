@@ -21,7 +21,7 @@
         <li class=""><a href="#fundedProjects" data-toggle="tab" aria-expanded="false">All projects Funded Chart</a></li>
         <li class=""><a href="#borrowerProfile" data-toggle="tab" aria-expanded="false">Borrower profile</a></li>
         
-        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+        
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="cretedProjects">

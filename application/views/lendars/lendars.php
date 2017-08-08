@@ -49,7 +49,7 @@
                     <div class="box-header">
                         <h3 class="box-title">List of All Lenders</h3>
                     </div>
-                    <div class="box-body no-padding">
+                    <div class="box-body">
                         <?php if(empty($lendars)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
                         <?php }else{?>
