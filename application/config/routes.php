@@ -104,4 +104,11 @@ $route['fund/edit/(:any)'] = 'fund/Fund/editpayment/$1';
 $route['lendars/alllendars'] = 'lendars/Lendars/alllendars';
 
 /// borrower list from admin
-$route['borrowers/allborrowers'] = 'borrowers/borrowers/allBorrowers';
+$route['borrowers/allBorrowers'] = 'borrowers/borrowers/allBorrowers';
+
+
+////borrower panel
+$route['borrow/allProjects'] = 'borrow/Borrow/allProjects/';
+$route['borrow/allProjects/(:any)'] = 'borrow/Borrow/allProjects/$1';
+$route['borrow/repaymentShchedule'] = 'borrow/Borrow/repaymentShchedule';
+
