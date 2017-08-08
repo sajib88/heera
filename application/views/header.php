@@ -298,16 +298,16 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>My Projects</a>
+                            <a href="<?php echo base_url('borrow/Borrow/allProjects'); ?>"><i class="fa fa-circle-o"></i>My Projects</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Currently Funding</a>
+                            <a href="<?php echo base_url('borrow/Borrow/allProjects/3'); ?>"><i class="fa fa-circle-o"></i>Currently Funding</a>
                         </li>
                          <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Funded</a>
+                            <a href="<?php echo base_url('borrow/Borrow/allProjects/4'); ?>"><i class="fa fa-circle-o"></i>Funded</a>
                         </li>
                         <li class="<?php if($this->uri->segment(2)=="update"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Closed</a>
+                            <a href="<?php echo base_url('borrow/Borrow/allProjects/10'); ?>"><i class="fa fa-circle-o"></i>Closed</a>
                         </li>
                     </ul>
                 </li>
@@ -354,6 +354,14 @@
                         <span>Logout</span>
                     </a>
                 </li>
+                
+                <div class="gap"> </div>                   
+                 <div class="col-lg-12">
+                    <button class="btn btn-success btn-lg addProject"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT </button>                   
+                 </div>
+                 <div style="clear:both"></div>
+                <div class="gap2"> </div>
+                
                 <?php } ?>
 
                 <?php if($user_info['profession'] == 3){?>
@@ -439,13 +447,10 @@
                     </a>
                 </li>
                 
-                 <div class="gap"> </div>
-
-                   
+                 <div class="gap"> </div>                   
                  <div class="col-lg-12">
-                 <button class="btn btn-success btn-lg addProject"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT </button>
-<!--                        <a  href="<?php echo base_url('project/add');?>"></a>-->
-                  </div>
+                    <button class="btn btn-success btn-lg addProject"> <i class="glyphicon glyphicon-plus-sign"></i> &nbsp; ADD PROJECT </button>                   
+                 </div>
                  <div style="clear:both"></div>
                 <div class="gap2"> </div>
                 
