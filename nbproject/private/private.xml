@@ -5,13 +5,17 @@
         <group>
             <file>file:/C:/xampp/htdocs/heera/application/controllers/lendars/Lendars.php</file>
             <file>file:/C:/xampp/htdocs/heera/application/views/borrowers/borrowers.php</file>
-            <file>file:/C:/xampp/htdocs/heera/application/views/project/edit.php</file>
-            <file>file:/C:/xampp/htdocs/heera/application/views/lendars/lendars.php</file>
-            <file>file:/C:/xampp/htdocs/heera/application/views/lendars/lenders_details.php</file>
-            <file>file:/C:/xampp/htdocs/heera/application/views/borrowers/borrowers_deatails.php</file>
-            <file>file:/C:/xampp/htdocs/heera/backend/custom.css</file>
+            <file>file:/C:/xampp/htdocs/heera/application/controllers/fund/Fund.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/borrow/allProjects.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/controllers/borrow/Borrow.php</file>
             <file>file:/C:/xampp/htdocs/heera/application/views/project/table_view.php</file>
-            <file>file:/C:/xampp/htdocs/heera/application/controllers/borrowers/Borrowers.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/project/project_details.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/controllers/project/Project.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/controllers/Home.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/borrow/repaymentSchedule.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/lendars/lendars.php</file>
+            <file>file:/C:/xampp/htdocs/heera/application/views/borrowers/borrowers_deatails.php</file>
         </group>
     </open-files>
 </project-private>

@@ -44,7 +44,31 @@ class Borrow extends CI_Controller {
         $this->load->view('borrow/allProjects', $data);
         $this->load->view('footer');
 
-    }    
+    } 
+    
+    public function repaymentShchedule(){
+        $data = array(); 
+        
+        $data['page_title'] = 'Repayment Schedule'; 
+        $data['no_data'] = 'No Repayment Schedule.';
+        
+        $loginId = $this->session->userdata('login_id');
+        
+        $data['repaymentSchedule'] = $this->global_model->borrower_repayment_schedule($loginId);
+       // print_r($ref);die;
+//        echo $ref[0]->projectID;
+//        die;
+//        $ref = $data['borrowerAllProjects'] = $this->global_model->get('project', array('userID' => $loginId, 'statusID' => '3'));
+//        $ref[0]->id;
+//        print_r($data['borrowerAllProjects']);die;
+//        
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+        
+        $this->load->view('header', $data);
+        $this->load->view('borrow/repaymentSchedule', $data);
+        $this->load->view('footer');
+    }
     
 
 }

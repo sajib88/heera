@@ -430,6 +430,22 @@ class Global_model extends CI_Model {
         }
         //return $query;
     }
+    
+    public function borrower_repayment_schedule($id){
+       $this->db->select('p.name as projectName,p.statusID as statusID,r.*');       
+       $this->db->from('project as p');     
+       $this->db->join('repayment_schedules as r', 'r.projectID=p.projectID');
+       $this->db->where('p.userID', $id);             
+       $this->db->where('p.statusID', '3');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
 
 
 

@@ -313,7 +313,7 @@
                 </li>
 
                 <li class="treeview <?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                  <a href="#" >
+                  <a href="<?php echo base_url('borrow/Borrow/repaymentShchedule'); ?>" >
                     <i class="fa fa-list"></i>
                     <span>Repayment Schedule</span>
                   </a>
