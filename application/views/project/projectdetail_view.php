@@ -157,6 +157,14 @@
 
                         <hr>
 
+                        <strong><i class="fa fa-usd"></i> Minimum Amount</strong>
+
+                        <p class="text-muted">
+                            <span class="badge bg-aqua"><?php echo (!empty( $layoutfull['minimumAmount']))? $layoutfull['minimumAmount']:''?></span>
+                        </p>
+
+                        <hr>
+
 
                         <strong><i class="fa fa-arrow-right"></i> Payment Method</strong>
 

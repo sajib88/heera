@@ -57,6 +57,7 @@ class Project extends CI_Controller {
                 $save['loanTerm'] = $postData['loanTerm'];
                 $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
                 $save['neededAmount'] = $postData['neededAmount'];
+                $save['minimumAmount'] = $postData['minimumAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
                 $date = date('Y-m-d', strtotime($postData['projectEndDate']));
@@ -175,6 +176,7 @@ class Project extends CI_Controller {
                 $save['loanTerm'] = $postData['loanTerm'];
                 $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
                 $save['neededAmount'] = $postData['neededAmount'];
+                $save['minimumAmount'] = $postData['minimumAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
                 $date = date('Y-m-d', strtotime($postData['projectEndDate']));
@@ -198,8 +200,7 @@ class Project extends CI_Controller {
                 $save['insurance'] = empty($postData['insurance']) ? NULL : $postData['insurance'];
                 $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
                 $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
-                $save['userID'] = $loginId;
-                $save['statusID'] = 1;
+                $save['statusID'] = NULL;
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';

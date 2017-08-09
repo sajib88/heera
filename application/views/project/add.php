@@ -310,13 +310,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
 
                                         <input name="projectEndDate" type="text" class="form-control" id="datepicker">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Minimum Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
+                                        <input type="number" name="minimumAmount"   step="0.01" class="form-control" id="minimumAmount">
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!-- /.Lending -->

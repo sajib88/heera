@@ -324,6 +324,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Needed Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
@@ -364,13 +365,26 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
 
                                         <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo $editProject['projectEndDate']; ?>">
                                     </div>
                                 </div>
+
+
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Minimum Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='minimumAmount'></span>
+                                        <input type="number" name="minimumAmount"   step="0.01" class="form-control" id="minimumAmount" value="<?php echo $editProject['minimumAmount']; ?>">
+                                    </div>
+                                </div>
+
+
+
+
                             </div>
 
                             <!-- /.Lending -->
