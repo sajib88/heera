@@ -198,8 +198,9 @@ class Project extends CI_Controller {
                 $save['insurance'] = empty($postData['insurance']) ? NULL : $postData['insurance'];
                 $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
                 $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
-                $save['userID'] = $loginId;
-                $save['statusID'] = 1;
+                $save['userID'] = empty($postData['login_id']) ? NULL : $postData['login_id'];
+               
+                $save['statusID'] = NULL;
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';
@@ -268,6 +269,7 @@ class Project extends CI_Controller {
         $data['purpose'] = $this->global_model->get('purpose_lookup');
         $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
         $data['login_id'] = $loginId;
+        //print_r($data['login_id']);die;
         $this->load->view('header', $data);
         $this->load->view('project/edit', $data);
         $this->load->view('footer');
@@ -448,80 +450,6 @@ class Project extends CI_Controller {
         $states = $this->global_model->get('states', array('country_id' => $id));
         $data['states'] = $states;
         echo $this->load->view('state', $data, TRUE);
-        exit;
-    }
-
-
-    public function ajaxreject(){
-        $data = array();
-
-         $id = $this->uri->segment('4');
-        /// project data get url
-        //$data['projectData'] = $this->global_model->get_data('project', array('projectID'=>$id));
-        $data['projectData']= $id;
-
-        $loginId = $this->session->userdata('login_id');
-        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-        $totalamount = $data['user_info']['inAmount'];
-
-        echo $this->load->view('project/ajaxreject', $data, TRUE);
-
-    }
-
-    public function rejectProject(){
-        $data = array();
-
-        $projectID = $this->input->post('projectID');
-        $adminApprovalStatus = $this->input->post('adminApprovalStatus');
-        $rejectReason = $this->input->post('shortDescription');
-
-
-                $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
-                $save['adminApprovalStatus'] = $adminApprovalStatus;
-                $save['rejectReason'] = $rejectReason;
-
-                $ref = $this->global_model->update('project', $save, array('projectID' => $projectID));
-
-
-        if( $ref ){
-            // add flash data
-            // Your project save successfully
-            echo "success";
-            //$this->session->set_flashdata('message', 'Your project status update successfully');
-            exit;
-        }else{
-            echo "error";
-            // project status not saved. Please try again.
-            $this->session->set_flashdata('error', 'Your project status not updated. Please try again.');
-        }
-        //print_r($this->session->userdata('deliverdata'));
-        exit;
-    }
-
-    public function approvedProject(){
-        $data = array();
-
-        $id = $this->uri->segment('4');
-        $save['statusID'] = 3;
-        $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
-        $save['adminApprovalStatus'] = 'Approved';
-        $save['rejectReason'] = 0;
-
-        $ref = $this->global_model->update('project', $save, array('projectID' => $id));
-
-
-        if($ref){
-            // add flash data
-            // Your project save successfully
-            echo "success";
-           // $this->session->set_flashdata('message', 'Your project status update successfully');
-            exit;
-        }else{
-            echo "error";
-            // project status not saved. Please try again.
-           // $this->session->set_flashdata('error', 'Your project status not updated. Please try again.');
-        }
-        //print_r($this->session->userdata('deliverdata'));
         exit;
     }
 
