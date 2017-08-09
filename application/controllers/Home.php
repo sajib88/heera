@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
-        $projectData = $this->global_model->get('project', array('adminApprovalStatus' => 'Approved'), array('adminApprovalStatus' => 'Approved', 'limit' => '3', 'start' => '0'),array('filed' => 'projectID', 'order' => 'DESC'));
+        $projectData = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
 
 
         foreach ($projectData as $proData){
@@ -245,7 +245,7 @@ class Home extends CI_Controller {
                 // insert Lender Transaction
                 foreach ($postData['projectid'] as $key => $projectID) {
 
-                    $saveLenderd['inAmount'] = 0;
+                    $saveLenderFund['inAmount'] = 0;
                     $saveLenderFund['outAmount'] = $postData['outAmount'][$key];
                     $saveLenderFund['transactionReason'] = 'project funded';
                     $saveLenderFund['userID'] = $loginId;
@@ -263,15 +263,12 @@ class Home extends CI_Controller {
                     $pro['fundedDateTime'] = date('Y-m-d H:i:s');
 
                     $this->global_model->insert('project_fund_history', $pro);
-
-                    unset($_SESSION['deliverdata'][$projectID]);
                 }
 
                 $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
                 $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
                 if($updateRef) {
                     //$this->session->unset_userdata($deliverdata);
-
                     $this->session->set_flashdata('message', 'You  fund this project ');
                 }
             }else{
@@ -319,20 +316,20 @@ class Home extends CI_Controller {
     public function getPurpose($id=''){
         $data = array();
         //echo $id;die;
-
+       
         $puposeList = array();
-        $puposeList['puposeList'] = $this->input->post('puposeList');
+        $puposeList['purposeID'] = $this->input->post('purposeID');
         $puposeList['name'] = $this->input->post('searchByName');
 
-        if(!empty($puposeList['puposeList'])){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['puposeList'], 'adminApprovalStatus' => 'Approved'));
+        if(!empty($puposeList['purposeID'])){
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['purposeID']));
         }
         elseif(!empty ($puposeList['name'])){
-            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList,  FALSE, FALSE);
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
         }elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id, 'adminApprovalStatus' => 'Approved'));
-        }elseif($puposeList['puposeList'] or $puposeList['name'] or $id == NULL){
-            $data['projectData'] = $this->global_model->get('project', array('adminApprovalStatus' => 'Approved'));
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
+        }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
+            $data['projectData'] = $this->global_model->get('project');
         }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
         }               
@@ -484,7 +481,7 @@ class Home extends CI_Controller {
                 $save['profession'] = $this->input->post('profession');
                 $save['first_name'] = $this->input->post('first_name');
                 $save['last_name'] = $this->input->post('last_name');
-                $save['user_name'] = $this->input->post('first_name');
+               // $save['user_name'] = $this->input->post('user_name');
                 $save['email'] = $this->input->post('email');
                 $save['password'] = md5($this->input->post('password'));
 
@@ -499,9 +496,13 @@ class Home extends CI_Controller {
                 // }
 
                 if ($this->global_model->insert('users', $save)) {
-
+                    $this->load->library('email');
+                    $this->email->from('sajib@osourcebd.com', 'All Doctors');
+                    $this->email->to('sajib@osourcebd.com');
+                    $this->email->subject('Activation Link');
+                    $this->email->message('This is activation link for active user.');
+                    $this->email->send();
                     $this->session->set_flashdata('success', 'Your account has been created and an activation link has been sent to the email address you entered. Note that you must activate the account by selecting the activation link when you get the email before you can login.');
-
                     $redirect_link = base_url() . 'home/login';
 
                     $this->send_confirmation_email($save);
@@ -726,6 +727,39 @@ class Home extends CI_Controller {
         }
     }
     
+    public function send_application_confirmation($data=array())
+    {
+        $val = $this->get_admin_email_and_name();       
+        $admin_email = $val['admin_email'];
+        $admin_name  = 'Herra.Org';        
+
+        $link = base_url('home/confirm'.'/'.$data['confirmation_key']);
+
+
+        //$this->load->model('admin/system_model');
+        $tmpl = get_email_tmpl_by_email_name('project_submit_application');
+        $subject = $tmpl->subject;
+        $subject = str_replace("#username",$data['first_name'],$subject);
+        $subject = str_replace("#activationlink",$link,$subject);
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+        $subject = str_replace("#useremail",$data['email'],$subject);
+
+
+        $body = $tmpl->body;
+        $body = str_replace("#username",$data['user_name'],$body);
+        $body = str_replace("#activationlink",$link,$body);
+        $body = str_replace("#webadmin",$admin_name,$body);
+        $body = str_replace("#useremail",$data['email'],$body);
+
+
+        $this->load->library('email');
+        $this->email->from($admin_email, $subject);
+        $this->email->to($data['email']);
+        $this->email->subject('Project Submitting Application');
+        $this->email->message($body);
+        $this->email->send();
+    }
+    
     public function borrow(){
         $data = array();
         
@@ -737,6 +771,7 @@ class Home extends CI_Controller {
             $saveUser['phone'] = empty($postData['phone']) ? NULL : $postData['phone'];
             $saveUser['country'] = empty($postData['country']) ? NULL : $postData['country'];
             $saveUser['profession'] = '2';
+            $saveUser['status'] = '1';
             
             $save['purposeID'] = empty($postData['purposeID']) ? NULL : $postData['purposeID'];
             $save['name'] = empty($postData['name']) ? NULL : $postData['name'];
@@ -750,11 +785,13 @@ class Home extends CI_Controller {
             }
              if (!empty($save['userID'])) {
                  $this->global_model->insert('project', $save);
+                 $this->send_application_confirmation($saveUser);
                  redirect('home/thankyou');
              } else {
                  $userID = $this->global_model->insert('users', $saveUser);                 
                  $save['userID'] = $userID;                 
                  $this->global_model->insert('project', $save);
+                 $this->send_application_confirmation($saveUser);
                 redirect('home/thankyou');
              }
         }
@@ -766,6 +803,8 @@ class Home extends CI_Controller {
         $this->load->view('borrow', $data);
         $this->load->view('guest_footer.php');
     }
+    
+    
     
     function thankyou(){
         $data = array();

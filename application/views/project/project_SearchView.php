@@ -95,13 +95,14 @@
 
                             <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
                                 <input type="hidden" name="purposeID" />
-                                <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
+                                <select class="form-control-search" id="puposeList" name="purposeID" onchange="this.form.submit()">
 
                                     <option value="">plese select category</option>
                                     <?php
-                                        if(!empty($purpose)){
+                                        if(!empty($purpose)){ 
                                             foreach($purpose as $row){
-                                            $sel = ($purpose->purposeID == set_value('purposeID'))?'selected="selected"':'';
+                                            $v = (set_value('purposeID')!='')?set_value('purposeID'):$projectData[0]->purposeID;
+                                            $sel = ($row->purposeID == set_value('purposeID'))?'selected="selected"':'';
                                     ?>
                                            <option value="<?php echo $row->purposeID;?>" <?php echo $sel;?> ><?php echo $row->purposeTitle;?></option>
                                     <?php
