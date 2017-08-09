@@ -92,24 +92,24 @@
                     <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
                         <div class="entry-footer cat_drop">
                             <div class="col-sm-1 sho">Category</div>
-                            <div class="col-lg-2  ">
-                                <input type="hidden" name="purposeID" />
-                                <select class="form-control-search" id="puposeList" name="purposeID" onchange="this.form.submit()">
+                                <div class="col-lg-2  ">
+                                    <input type="hidden" name="purposeID" />
+                                    <select class="form-control-search" id="puposeList" name="purposeID" onchange="this.form.submit()">
 
-                                    <option value="">plese select category</option>
-                                    <?php
-                                        if(!empty($purpose)){
-                                            foreach($purpose as $row){
-                                            $v = (set_value('purposeID')!='')?set_value('purposeID'):$projectData[0]->purposeID;
-                                            $sel = ($row->purposeID == set_value('purposeID'))?'selected="selected"':'';
-                                    ?>
-                                           <option value="<?php echo $row->purposeID;?>" <?php echo $sel;?> ><?php echo $row->purposeTitle;?></option>
-                                    <?php
+                                        <option value="">plese select category</option>
+                                        <?php
+                                            if(!empty($purpose)){
+                                                foreach($purpose as $row){
+                                                $v = (set_value('purposeID')!='')?set_value('purposeID'):$projectData[0]->purposeID;
+                                                $sel = ($row->purposeID == set_value('purposeID'))?'selected="selected"':'';
+                                        ?>
+                                               <option value="<?php echo $row->purposeID;?>" <?php echo $sel;?> ><?php echo $row->purposeTitle;?></option>
+                                        <?php
+                                                }
                                             }
-                                        }
-                                    ?>
-                                </select>
-                            </div>
+                                        ?>
+                                    </select>
+                                </div>
                         </div>
                         <div class="entry-footer cat_drop ">
                             <div class="col-sm-1 sho3">Search by Name</div>
