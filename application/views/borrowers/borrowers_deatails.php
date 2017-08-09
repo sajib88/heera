@@ -2,8 +2,8 @@
 <link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
 <style type="text/css">
     .img-size{
-        height: 118px;
-        width: 190px;
+        height: 120px;
+        width: 120px;
         margin: 0px auto;
     }
 /*    table.dataTable thead > tr > th:last-child:after{
@@ -158,112 +158,92 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="borrowerProfile">
             <div class="row">
-    <div class="col-md-6">          
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Lender Profile Information</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div style="text-align: center">
-                        <?php
-                            if($borrowersDetails['profilepicture'] == 0) {?>
-                                <img src="<?php echo base_url() . '/assets/user-demo.jpg'?>" alt="" class="img-responsive circular img-size" />
-                            <?php }
-                            else {?>
-                                <img src="<?php echo base_url() . '/assets/file/' .$borrowersDetails['profilepicture']; ?>" alt=""  class="img-responsive circular img-size" />  <?php 
-                           }
-                            ?>
+
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-body">
+
+                                <?php
+                                if($borrowersDetails['profilepicture'] == 0) {?>
+                                    <img src="<?php echo base_url() . '/assets/user-demo.jpg'?>" alt="" class="img-responsive circular profile-user-img img-responsive img-circle img-size" />
+                                <?php }
+                                else {?>
+                                    <img src="<?php echo base_url() . '/assets/file/' .$borrowersDetails['profilepicture']; ?>" alt=""  class="img-responsive circular profile-user-img img-responsive img-circle img-size" />  <?php
+                                }
+                                ?>
+
+
+                                <h3 class="profile-username text-center">Total Credit <?php echo '$'.$borrowersDetails['inAmount']; ?></h3>
+
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                    <ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <h4> <b> Total Credit </b> <?php echo '$'.$borrowersDetails['inAmount']; ?></h4>
-                        </li>
-                        <li class="list-group-item">
-                             <b>User Name </b>      
-                           <a class="pull-right text-black"><?php echo (!empty( $borrowersDetails['user_name']))? $borrowersDetails['user_name']:''; ?></a> 
-                        </li>
-                        <li class="list-group-item">
-                             <b>Location</b>      
-                           <a class="pull-right text-black">
-                                <cite title="state, country">
-                                    <?php echo $borrowersDetails['state']; ?>, <?php
-                                    $data = get_data('countries', array('id' => $borrowersDetails['country']));
-                                    echo $data['name'];
-                                    ?>
-                                </cite>
-                           </a> 
-                        </li>
-                        <li class="list-group-item">
-                             <b>Email </b>      
-                           <a class="pull-right text-black"><?php echo (!empty( $borrowersDetails['email']))? $borrowersDetails['email']:''; ?></a> 
-                        </li>
-                        <li class="list-group-item">
-                             <b>First Name </b>      
-                           <a class="pull-right text-black"><?php echo (!empty( $borrowersDetails['first_name']))? $borrowersDetails['first_name']:''; ?></a> 
-                        </li>
-                        <li class="list-group-item">
-                             <b>Middle Name </b>      
-                           <a class="pull-right text-black"><?php echo (!empty( $borrowersDetails['middle_name']))? $borrowersDetails['middle_name']:''; ?></a> 
-                        </li>
-                        <li class="list-group-item">
-                             <b>Last Name</b>      
-                           <a class="pull-right text-black"><?php echo (!empty( $borrowersDetails['last_name']))? $borrowersDetails['last_name']:''; ?></a> 
-                        </li>
-                        
-                    </ul>
-                    
+
+
+    
+    
+                <div class="col-md-6">
+
+                        <div class="box-body box-profile no-padding">
+
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <ul class="list-group list-group-unbordered">
+
+                                    <li class="list-group-item">
+                                        <b>Name </b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['first_name']))? $borrowersDetails['first_name']:''; ?></a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <b> Email </b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['email']))? $borrowersDetails['email']:''; ?></a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <b>Phone</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['phone']))? $borrowersDetails['phone']:''; ?></a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <b>Gender</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['gender']))? $borrowersDetails['gender']:''; ?></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Date of Birth</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['dateofbirth']))? $borrowersDetails['dateofbirth']:''; ?></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Country</b>
+                                        <a class="pull-right "><?php
+                                            $data = get_data('countries', array('id' => $borrowersDetails['country']));
+                                            echo $data['name'];
+                                            ?></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>State</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['state']))? $borrowersDetails['state']:''; ?></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>City</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['city']))? $borrowersDetails['city']:''; ?></a>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <b>Address</b>
+                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['address']))? $borrowersDetails['address']:''; ?></a>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
                 </div>
-                <!-- /.box-body -->
             </div>
         </div>
-    
-    
-    <div class="col-md-6">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">More Information</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <strong> Gender</strong>
-                    <p class="text-muted">
-                       <?php echo $borrowersDetails['gender']; ?>
-                    </p>
-                <hr>
-                <strong> Date of Birth</strong>
-                    <p class="text-muted">
-                       <?php echo $borrowersDetails['dateofbirth']; ?>
-                    </p>
-                <hr>
-                <strong> Address</strong>
-                    <p class="text-muted">
-                      <?php echo $borrowersDetails['address']; ?>
-                    </p>
-                <hr>
-                <strong> Country</strong>
-                    <p class="text-muted">
-                      <?php
-                        $data = get_data('countries', array('id' => $borrowersDetails['country']));
-                        echo $data['name'];
-                        ?>
-                    </p>
-                <hr>                
-                <strong> State</strong>
-                    <p class="text-muted">
-                      <?php echo $borrowersDetails['state']; ?>
-                    </p>
-                <hr>
-                <strong> City</strong>
-                    <p class="text-muted">
-                      <?php echo $borrowersDetails['city']; ?>
-                    </p>
-                <hr>
-            </div>
-            <!-- /.box-body -->
-        </div>
-    </div>
 </div>
         </div>
         
