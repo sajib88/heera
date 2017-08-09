@@ -1,6 +1,7 @@
 <style type="text/css">
     .thumbnail a > img, .thumbnail > img{
         width: 100%;
+        height: 260px;
     }
     .products > .thumbnail{
         margin-bottom: 60px;
@@ -39,7 +40,7 @@
         width: 90px;
         font-size: 17px;
         white-space: nowrap;
-        margin: 8px 2px 0px 14px;
+        margin: 8px 2px 0px 0px;
     }
     .sho3{
         float: left;
@@ -86,20 +87,18 @@
 <main class="main-wrapper">
 
     <section class="content-wrapper">
-        <div class="row">
+        <div class="container">
                 <div class="row">
-
-                    <div class="entry-footer cat_drop col-md-offset-1">
-                        <div class="col-sm-1 sho pdl-20">Category</div>
-                        <div class="col-lg-2  ">
-
-                            <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                    <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
+                        <div class="entry-footer cat_drop">
+                            <div class="col-sm-1 sho">Category</div>
+                            <div class="col-lg-2  ">
                                 <input type="hidden" name="purposeID" />
                                 <select class="form-control-search" id="puposeList" name="purposeID" onchange="this.form.submit()">
 
                                     <option value="">plese select category</option>
                                     <?php
-                                        if(!empty($purpose)){ 
+                                        if(!empty($purpose)){
                                             foreach($purpose as $row){
                                             $v = (set_value('purposeID')!='')?set_value('purposeID'):$projectData[0]->purposeID;
                                             $sel = ($row->purposeID == set_value('purposeID'))?'selected="selected"':'';
@@ -110,37 +109,30 @@
                                         }
                                     ?>
                                 </select>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="entry-footer cat_drop ">
-                        <div class="col-sm-1 sho3">Search by Name</div>
-                        <div class="col-lg-2">
-                            <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
-                                
-                                <input type="text" onchange="this.form.submit()" value="<?php echo $this->input->post('searchByName');?>" name="searchByName" class="form-control" id="exampleInputEmail2" placeholder="Search by Name" /> 
-                            </form>
+                        <div class="entry-footer cat_drop ">
+                            <div class="col-sm-1 sho3">Search by Name</div>
+                            <div class="col-lg-2">
+                                <input type="text" onchange="this.form.submit()" value="<?php echo $this->input->post('searchByName');?>" name="searchByName" class="form-control" id="exampleInputEmail2" placeholder="Search by Name" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="entry-footer cat_drop ">
-                        <div class="col-sm-1 sho2">Sort</div>
-                        <div class="col-lg-2">
-                            <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
-                                <input type="hidden" name="searchByName" />
-                                <select class="form-control-search" id="puposeList" name="puposeList" onchange="this.form.submit()">
-                                    <option value="1">Trending now</option>
-                                    <option value="2">Amount: low to high</option>
-                                    <option value="3">Amount: high to low</option>
-                                    <option value="4">Expiring soon</option>
-                                    <option value="5">Loan length</option>
-                                    <option value="6">Most recent</option>
-                                    <option value="7">Random</option>
+                        <div class="entry-footer cat_drop ">
+                            <div class="col-sm-1 sho2">Sort</div>
+                            <div class="col-lg-2">
+                                    <select class="form-control-search" id="sortingList" name="sortingList" onchange="this.form.submit()">
+                                        <option value="1">Trending now</option>
+                                        <option value="2">Amount: low to high</option>
+                                        <option value="3">Amount: high to low</option>
+                                        <option value="4">Expiring soon</option>
+                                        <option value="5">Loan length</option>
+                                        <option value="6">Most recent</option>
+                                        <option value="7">Random</option>
+                                    </select>
 
-                                </select>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    
+                    </form>
                 </div>
             </div>
 
@@ -155,7 +147,7 @@
                    <a href="<?php echo base_url('home/singleview/'.$row->projectID);?>"> 
                 <div class="col-sm-6 col-md-4 products">
                     <div class="thumbnail" >
-                        <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square ">
+                        <img src="<?php echo base_url().'assets/file/project/'.$row->mainImage; ?>" class="img-responsive circular--square">
                         <div class="caption pdr">
                             <div class="row">
                                 <div class="col-md-12">
