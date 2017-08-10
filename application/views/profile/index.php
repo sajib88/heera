@@ -7,6 +7,15 @@
       </h1>
 
     </section>
+
+    <?php if($this->session->flashdata('message')){ ?>
+        <div class="col-lg-12">
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Your Profile Updatted Successfully.</strong>
+            </div>
+        </div>
+    <?php } $this->session->unset_userdata('message'); ?>
     
    <section class="content">
     <!-- /.row -->
@@ -72,7 +81,26 @@
           </div>
           <!-- /.box -->
         </div>
-        
+
+        <div class="col-lg-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change Password</h3></h3><i class="fa fa-user title-icon"></i>
+                </div>
+                <div class="padd">
+                    <div class="form-group">
+                        <label>Change Password</label>
+                        <input   name="password" type="password" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <!--           <label>Password</label>
+                                                           <input name="password" class="form-control" disabled>-->
+                        <button class="btn btn-success">Change Your Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-lg-6 ">
             <!-- general form elements -->
           <div class="box box-primary">

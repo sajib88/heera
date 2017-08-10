@@ -145,7 +145,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-danger pull-left" type="button">Cancel</button>
+                    <button data-dismiss="modal" class="btn btn-danger pull-left" type="button">Close</button>
                 </div>            
         </div>
     </div>

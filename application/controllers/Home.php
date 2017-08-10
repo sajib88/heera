@@ -321,12 +321,13 @@ class Home extends CI_Controller {
         $puposeList['purposeID'] = $this->input->post('purposeID');
         $puposeList['name'] = $this->input->post('searchByName');
 
-        if(!empty($puposeList['purposeID'])){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$puposeList['purposeID']));
+        //print_r($puposeList);
+
+        if(!empty($puposeList['purposeID']) || !empty ($puposeList['name'])){
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList);
+
         }
-        elseif(!empty ($puposeList['name'])){
-            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList, FALSE, FALSE);
-        }elseif(!empty ($id)){
+       elseif(!empty ($id)){
             $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
         }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
             $data['projectData'] = $this->global_model->get('project');

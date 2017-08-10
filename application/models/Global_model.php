@@ -331,36 +331,15 @@ class Global_model extends CI_Model {
     public function get_profile_search_data($table, $data, $limit = FALSE, $order_by = FALSE) {
         $this->db->select('*')->from($table);
 
-        if (!empty($data['country'])) {
-
-            $this->db->like('country', $data['country']);
-        }
-        if (!empty($data['state'])) {
-
-            $this->db->like('state', $data['state']);
-        }
-
-        if (!empty($data['city'])) {
-
-            $this->db->like('city', $data['city']);
-        }
-        if (!empty($data['profession'])) {
-
-            $this->db->like('profession', $data['profession']);
-        }
-
         if (!empty($data['name'])) {
-
             $this->db->like('name', $data['name']);
         }
 
         if (!empty($data['purposeID'])) {
-
             $this->db->where('purposeID', $data['purposeID']);
         }
 
         if (!empty($limit)) {
-
             $this->db->limit($limit['limit'], $limit['start']);
         }
 
@@ -369,8 +348,7 @@ class Global_model extends CI_Model {
         }
 
         $query = $this->db->get();
-
-        //echo $this->db->last_query();exit();
+        //echo $this->db->last_query();
 
         if ($query->num_rows() > 0) {
             return $query->result();

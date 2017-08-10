@@ -14,7 +14,7 @@
         });
 
         $('.addFund').click(function() {
-             window.location.href='<?php echo base_url('fund/Fund/addfund');?>';
+             window.location.href='<?php echo base_url('fund/addfund');?>';
         });
 
     </script>

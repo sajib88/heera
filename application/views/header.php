@@ -199,17 +199,17 @@
                 </li>
 
                 <?php if($user_info['profession'] == 1){?>
-                <li class="treeview <?php if($this->uri->segment(1)=="Project"){echo "active";}?>">
+                <li class="treeview <?php if($this->uri->segment(2)=="landerproject"){echo "active";}?>">
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects</span>
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(3)=="landerproject"){echo "active";}?>">
+                        <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
                             <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(2)=="landerproject"){echo "active";}?>">
+                        <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
                             <a href="<?php echo base_url('project/landerproject/3'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
                     </ul>
