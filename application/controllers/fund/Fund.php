@@ -164,14 +164,14 @@ class Fund extends CI_Controller {
                 $save['status'] =  1;
                 $save['isPrimary'] = empty($postData['isPrimary']) ? '0' : $postData['isPrimary'];
 
-                if ($ref = $this->global_model->insert('payment_methods', $save)) {
-
+                $ref = $this->global_model->insert('payment_methods', $save);
+                    if($ref == true){
                         $this->session->set_flashdata('message', 'Added New Payment Method');
 
-                }
-                else{
-                    $this->session->set_flashdata('error', 'error found !');
-                }
+                    }
+                    else{
+                        $this->session->set_flashdata('error', 'error found !');
+                    }
             }
 
         }
