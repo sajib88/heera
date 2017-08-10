@@ -425,6 +425,22 @@ class Global_model extends CI_Model {
         //return $query;
     }
 
+    public function billable_lendars($status){
+        $this->db->select('u.first_name as lenderName,t.*');
+        $this->db->from('lander_transaction_history as t');
+        $this->db->join('users as u', 'u.id=t.userID');
+        $this->db->where('t.transactionStatus', $status);
+        //$this->db->group_by('t.projectID');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
+
 
 
 }

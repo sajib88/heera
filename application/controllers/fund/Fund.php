@@ -202,7 +202,7 @@ class Fund extends CI_Controller {
         if ($ref = $this->global_model->delete('payment_methods', array('paymentMethodID' => $id))) {
 
             $this->session->set_flashdata('message', 'Delete successfully!');
-            redirect('fund/listofPayment');
+            redirect('payment/listofPayment');
 
         }
         else{
@@ -272,12 +272,13 @@ class Fund extends CI_Controller {
                 $save['isPrimary'] = empty($postData['isPrimary']) ? '0' : $postData['isPrimary'];
 
 
-                if ($postData['isPrimary'] == 1){
+                if ($save['isPrimary'] == 1){
                     $test['isPrimary'] = 1;
                     $ref = $this->global_model->update('payment_methods', $test, array('userID' => $loginId));
                 }
                 else {
-
+                    $test['isPrimary'] = 0;
+                    $ref = $this->global_model->update('payment_methods', $test, array('userID' => $loginId));
                 }
                 if ($ref = $this->global_model->update('payment_methods', $save, array('paymentMethodID' => $id))) {
                     $this->session->set_flashdata('message', 'Update Your Payment method');

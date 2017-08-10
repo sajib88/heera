@@ -63,4 +63,53 @@ class Lendars extends CI_Controller {
         exit;
     }
 
+    public function billing()
+    {
+        $data = array();
+        $data['page_title'] = 'Billable Lenders';
+        $loginId = $this->session->userdata('login_id');
+        $data['pendingBills'] = $this->global_model->billable_lendars('pending');
+        $data['doneBills'] = $this->global_model->billable_lendars('done');
+        $data['cancelBills'] = $this->global_model->billable_lendars('cancel');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+        $this->load->view('header', $data);
+        $this->load->view('lendars/billable_lendars', $data);
+        $this->load->view('footer');
+    }
+
+    public function done(){
+        if($this->uri->segment(5) === 'done'){
+            //echo $this->uri->segment(5);
+            $id = $this->uri->segment(4);
+            $staus['transactionStatus'] = 'done';
+            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
+            if($ref == true){
+                $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
+                redirect('lendars/Lendars/billing');
+
+            }else{
+                $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
+            }
+        }
+
+    }
+
+    public function cancel(){
+        if($this->uri->segment(5) === 'cancel'){
+            //echo $this->uri->segment(5);
+            $id = $this->uri->segment(4);
+            $staus['transactionStatus'] = 'cancel';
+            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
+            if($ref == true){
+                $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
+                redirect('lendars/Lendars/billing');
+
+            }else{
+                $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
+            }
+        }
+
+    }
+
 }

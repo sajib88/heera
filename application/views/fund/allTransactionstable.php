@@ -122,8 +122,6 @@ print_r($allpersonals);die;*/
 
 <script type="text/javascript">
     $(document).ready(function(){
-
-
         $('#js_personal_table').DataTable();
     });
 </script>

@@ -158,11 +158,9 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="borrowerProfile">
             <div class="row">
-
                     <div class="col-md-4 col-md-offset-1">
                         <div class="box box-primary">
                             <div class="box-body">
-
                                 <?php
                                 if($borrowersDetails['profilepicture'] == 0) {?>
                                     <img src="<?php echo base_url() . '/assets/user-demo.jpg'?>" alt="" class="img-responsive circular profile-user-img img-responsive img-circle img-size" />
@@ -171,17 +169,9 @@
                                     <img src="<?php echo base_url() . '/assets/file/' .$borrowersDetails['profilepicture']; ?>" alt=""  class="img-responsive circular profile-user-img img-responsive img-circle img-size" />  <?php
                                 }
                                 ?>
-
-
-                                <h3 class="profile-username text-center">Total Credit <?php echo '$'.$borrowersDetails['inAmount']; ?></h3>
-
                             </div>
                         </div>
                     </div>
-
-
-    
-    
                 <div class="col-md-6">
 
                         <div class="box-body box-profile no-padding">
@@ -233,9 +223,6 @@
                                         <b>Address</b>
                                         <a class="pull-right "><?php echo (!empty( $borrowersDetails['address']))? $borrowersDetails['address']:''; ?></a>
                                     </li>
-
-
-
                                 </ul>
                             </div>
                             <!-- /.box-body -->
