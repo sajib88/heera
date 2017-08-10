@@ -734,21 +734,18 @@ class Home extends CI_Controller {
         $admin_email = $val['admin_email'];
         $admin_name  = 'Herra.Org';        
 
-        $link = base_url('home/confirm'.'/'.$data['confirmation_key']);
 
 
         //$this->load->model('admin/system_model');
         $tmpl = get_email_tmpl_by_email_name('project_submit_application');
         $subject = $tmpl->subject;
         $subject = str_replace("#username",$data['first_name'],$subject);
-        $subject = str_replace("#activationlink",$link,$subject);
         $subject = str_replace("#webadmin",$admin_name,$subject);
         $subject = str_replace("#useremail",$data['email'],$subject);
 
 
         $body = $tmpl->body;
-        $body = str_replace("#username",$data['user_name'],$body);
-        $body = str_replace("#activationlink",$link,$body);
+        $body = str_replace("#username",$data['first_name'],$body);
         $body = str_replace("#webadmin",$admin_name,$body);
         $body = str_replace("#useremail",$data['email'],$body);
 
@@ -756,7 +753,7 @@ class Home extends CI_Controller {
         $this->load->library('email');
         $this->email->from($admin_email, $subject);
         $this->email->to($data['email']);
-        $this->email->subject('Project Submitting Application');
+        $this->email->subject('Project Submitted');
         $this->email->message($body);
         $this->email->send();
     }
@@ -790,7 +787,7 @@ class Home extends CI_Controller {
                  redirect('home/thankyou');
              } else {
                  $userID = $this->global_model->insert('users', $saveUser);                 
-                 $save['userID'] = $userID;                 
+                 $save['userID'] = $userID;
                  $this->global_model->insert('project', $save);
                  $this->send_application_confirmation($saveUser);
                 redirect('home/thankyou');
@@ -804,7 +801,7 @@ class Home extends CI_Controller {
         $this->load->view('borrow', $data);
         $this->load->view('guest_footer.php');
     }
-    
+
     
     
     function thankyou(){
