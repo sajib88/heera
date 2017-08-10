@@ -24,14 +24,13 @@ print_r($allpersonals);die;*/
         </h1>
     </section>
 
-
     <?php if($this->session->flashdata('message')){ ?>
-        <div class="col-lg-12">
-            <div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong><?php echo $this->session->flashdata('message'); ?></strong>
-            </div>
+    <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><?php echo $this->session->flashdata('message'); ?></strong>
         </div>
+    </div>
     <?php } $this->session->unset_userdata('message'); ?>
 
     <section class="content">
@@ -103,8 +102,8 @@ print_r($allpersonals);die;*/
                                                                 class="numeric"><?php echo $row->transactionStatus; ?></td>
 
                                                             <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                                <a href="<?php echo base_url('lendars/Lendars/done/' . $row->transactionID . '/done'); ?>" class="btn bg-navy margin">Approve</a>
-                                                                <a href="<?php echo base_url('lendars/Lendars/cancel/' . $row->transactionID . '/cancel'); ?>" class="btn btn-danger margin">Cancel</a>
+                                                                <a href="<?php echo base_url('lendars/Lendars/changePaymentStatus/' . $row->transactionID . '/done'); ?>" class="btn btn-success">Approve</a>
+                                                                <a href="<?php echo base_url('lendars/Lendars/changePaymentStatus/' . $row->transactionID . '/cancel'); ?>" class="btn btn-danger">Cancel</a>
                                                             </td>
 
                                                         </tr>

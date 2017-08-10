@@ -78,33 +78,15 @@ class Lendars extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function done(){
-        if($this->uri->segment(5) === 'done'){
-            //echo $this->uri->segment(5);
+    public function changePaymentStatus(){
+        $staus['transactionStatus'] = $this->uri->segment(5);
+        if(!empty($staus['transactionStatus'])){
+            //echo $staus['transactionStatus'];die;
             $id = $this->uri->segment(4);
-            $staus['transactionStatus'] = 'done';
             $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
             if($ref == true){
                 $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
                 redirect('lendars/Lendars/billing');
-
-            }else{
-                $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
-            }
-        }
-
-    }
-
-    public function cancel(){
-        if($this->uri->segment(5) === 'cancel'){
-            //echo $this->uri->segment(5);
-            $id = $this->uri->segment(4);
-            $staus['transactionStatus'] = 'cancel';
-            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
-            if($ref == true){
-                $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
-                redirect('lendars/Lendars/billing');
-
             }else{
                 $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
             }
