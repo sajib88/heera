@@ -21,21 +21,6 @@ class Lendars extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
         $data['lendars'] = $this->global_model->get('users', array('profession' => '1'));
 
-        //$id = $data['lendars'];
-
-        foreach ($data['lendars'] as $key =>$val){
-            print_r($val);
-//            echo $id->id.'<br>';
-//            echo $id->first_name.'<br>';
-            die;
-        }
-
-        //print_r($data['lendars'][0]->['id']);die;
-
-        $credit = $this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$data['lendars']['']));
-
-        echo $credit;die;
-
         $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
