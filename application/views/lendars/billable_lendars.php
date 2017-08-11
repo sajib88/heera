@@ -32,7 +32,7 @@ print_r($allpersonals);die;*/
         </div>
     </div>
     <?php } $this->session->unset_userdata('message'); ?>
-
+    <div style="clear: both;"></div>
     <section class="content">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -102,7 +102,7 @@ print_r($allpersonals);die;*/
                                                                 class="numeric"><?php echo $row->transactionStatus; ?></td>
 
                                                             <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                                <a href="<?php echo base_url('lendars/Lendars/changePaymentStatus/' . $row->transactionID . '/done'); ?>" class="btn btn-success">Approve</a>
+                                                                <a href="<?php echo base_url('lendars/Lendars/changePaymentStatus/' . $row->transactionID . '/done/' .$row->outAmount .'/'. $row->inAmount.'/'. $row->userID); ?>" class="btn btn-success">Approve</a>
                                                                 <a href="<?php echo base_url('lendars/Lendars/changePaymentStatus/' . $row->transactionID . '/cancel'); ?>" class="btn btn-danger">Cancel</a>
                                                             </td>
 

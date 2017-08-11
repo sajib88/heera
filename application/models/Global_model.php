@@ -426,7 +426,7 @@ class Global_model extends CI_Model {
     }
 
     public function billable_lendars($status){
-        $this->db->select('u.first_name as lenderName,t.*');
+        $this->db->select('u.first_name as lenderName,u.inAmount as inAmount,u.id as id,t.*');
         $this->db->from('lander_transaction_history as t');
         $this->db->join('users as u', 'u.id=t.userID');
         $this->db->where('t.transactionStatus', $status);

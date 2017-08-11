@@ -416,8 +416,8 @@
                   </a>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(3)=="billing"){echo "active";}?>">
-                  <a href="<?php echo base_url('lendars/Lendars/billing'); ?>" >
+                <li class="treeview <?php if($this->uri->segment(2)=="billing"){echo "active";}?>">
+                  <a href="<?php echo base_url('lendars/billing'); ?>" >
                     <i class="fa fa-credit-card"></i>
                     <span>Billing</span>
                   </a>
