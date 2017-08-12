@@ -189,6 +189,54 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function get_with_left_join($table, $fields='*', $join_table, $join_on, $where = false, $groupBy = '', $all = false) {
+        $this->db->select('*')->from($table);
+        $this->db->join($join_table, $join_table . '.' . $join_on . ' = ' . $table . '.' . $join_on, 'left');
+
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        if(!empty($groupBy)){
+            $this->db->group_by(''.$groupBy.'');
+        }
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            if ($all) {
+                return $query->result();
+            } else {
+                return $query->row_array();
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function get_with_right_join($table, $join_table, $join_on, $where = false, $groupBy = '', $all = false) {
+        $this->db->select('*')->from($table);
+        $this->db->join($join_table, $join_table . '.' . $join_on . ' = ' . $table . '.' . $join_on, 'right');
+
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        if(!empty($groupBy)){
+            $this->db->group_by(''.$groupBy.'');
+        }
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            if ($all) {
+                return $query->result();
+            } else {
+                return $query->row_array();
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function get_data_join($table, $join_table, $join_on, $where = false, $all = false) {
         $this->db->select('*')->from($table);
 
@@ -414,7 +462,7 @@ class Global_model extends CI_Model {
        $this->db->from('project as p');     
        $this->db->join('repayment_schedules as r', 'r.projectID=p.projectID');
        $this->db->where('p.userID', $id);             
-       $this->db->where('p.statusID', '3');
+       $this->db->where('p.statusID !=', '10');
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
@@ -435,6 +483,22 @@ class Global_model extends CI_Model {
 
         if ($query->num_rows() > 0) {
             return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
+
+
+    public function get_project_details_by_id($projectID){
+        $this->db->select('p.*,rep.*');
+        $this->db->from('project as p');
+        $this->db->join('repaymentschedulelookup as rep', 'p.RepaymentScheduleID=rep.repaymentScheduleID');
+        $this->db->where('p.projectID', $projectID);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
         } else {
             return false;
         }

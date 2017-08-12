@@ -22,8 +22,8 @@ class Home extends CI_Controller {
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
-        $projectData = $this->global_model->get('project', False, array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
-
+        $projectData = $this->global_model->get('project', array('statusID !=' => 10), array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
+        //echo $this->db->last_query();
 
         foreach ($projectData as $proData){
             $proData->totalRaisedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
@@ -210,6 +210,7 @@ class Home extends CI_Controller {
                 $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
             }
             $data['selectedProjects'] = $projectDeatils;
+
         }
 
 
@@ -268,7 +269,8 @@ class Home extends CI_Controller {
                 $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
                 $updateRef = $this->global_model->update('users', $credit, array('id' => $loginId));
                 if($updateRef) {
-                    //$this->session->unset_userdata($deliverdata);
+
+                    unset($_SESSION['deliverdata'][$projectID]);
                     $this->session->set_flashdata('message', 'You  fund this project ');
                 }
             }else{
@@ -328,9 +330,9 @@ class Home extends CI_Controller {
 
         }
        elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id));
+            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id,'statusID !=' => 10));
         }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
-            $data['projectData'] = $this->global_model->get('project');
+            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10) );
         }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
         }               

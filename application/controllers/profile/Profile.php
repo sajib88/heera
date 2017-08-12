@@ -25,8 +25,7 @@ class Profile extends CI_Controller {
         if ($this->input->post()) {
           
             $this->form_validation->set_rules('first_name', 'first name', 'trim|required');
-            $this->form_validation->set_rules('last_name', 'last name', 'required');
-            $this->form_validation->set_rules('middle_name', 'middle name');
+           
 //            $this->form_validation->set_rules('pls', 'pls', 'trim');
 //            $this->form_validation->set_rules('npi', 'npi', 'trim');
 //            $this->form_validation->set_rules('pln', 'pln', 'trim');
@@ -44,8 +43,8 @@ class Profile extends CI_Controller {
                 else {}
                 
                 $save['first_name'] = $this->input->post('first_name');
-                $save['last_name'] = $this->input->post('last_name');
-                $save['middle_name'] = $this->input->post('middle_name');
+//                $save['last_name'] = $this->input->post('last_name');
+//                $save['middle_name'] = $this->input->post('middle_name');
 //                $save['plc'] = $this->input->post('plc');
 //                $save['pls'] = $this->input->post('pls');
 //                $save['npi'] = $this->input->post('npi');

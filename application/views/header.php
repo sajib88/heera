@@ -381,6 +381,10 @@
                         <li class="<?php if($this->uri->segment(3)=="2"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>Not Funded Projects</a>
                         </li>
+
+                        <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active  Projects</a>
+                        </li>
                         <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>

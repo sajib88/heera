@@ -45,7 +45,7 @@ print_r($allpersonals);die;*/
         <?php  $this->session->unset_userdata('message'); ?>
         <?php if(!empty($this->session->flashdata('error'))){?>
             <div class="col-lg-12 msg-hide">
-                <div class="alert alert-success alert-dismissible">
+                <div class="alert alert-danger alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong><?php echo $this->session->flashdata('error'); ?></strong>
                 </div>
@@ -77,10 +77,16 @@ print_r($allpersonals);die;*/
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
 
                                         <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Funded By';?></th>
+
                                         <th class="numeric"><?php echo 'Status';?></th>
+                                        <?php if($allprojects[0]->statusID == 4){?>
+                                            <th class="numeric"><?php echo 'Repayment Schedule';?></th>
+                                        <?php } else{ ?>
                                         <th class="numeric"><?php echo 'View';?></th>
+                                        <?php } ?>
+
                                         <th class="numeric"><?php echo 'Edit';?></th>
                                         <th class="numeric"><?php echo 'Change Status';?></th>
 
@@ -105,9 +111,16 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
+                                                <?php if($allprojects[0]->statusID == 4){?>
+                                                <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
+                                                    <a class="btn btn-block btn-warning" href="<?php echo base_url('project/Project/paymentschedule/' . $row->projectID); ?>" > Schedule </a>
+                                                </td>
+                                              <?php } else{ ?>
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>" > View </a>
                                                 </td>
+                                                <?php } ?>
+
                                                 <td data-title="<?php echo 'Edit'; ?>" class="numeric">
                                                     <a class="btn btn-block btn-success" href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>" > Edit </a>
                                                 </td>

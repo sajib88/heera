@@ -43,10 +43,7 @@
                     <label>Last Name</label>
                     <input name="last_name" value="<?php echo!empty($user_info['last_name']) ? $user_info['last_name'] : ''; ?>" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label>Middle Name</label>
-                    <input name="middle_name" value="<?php echo!empty($user_info['middle_name']) ? $user_info['middle_name'] : ''; ?>" class="form-control">
-                </div>
+
                 <div class="form-group">
                     <label>Gender</label>
                     <select name="gender" class="form-control">
