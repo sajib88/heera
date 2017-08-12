@@ -4,7 +4,6 @@
     <section class="content-header">
         <h1>
           <i class="fa fa-tasks"></i> New Project
-
         </h1>
 
     </section>

@@ -18,13 +18,10 @@ class Lendars extends CI_Controller {
 
     public function alllendars() {
         $data = array();
-        
         $loginId = $this->session->userdata('login_id');
-
         $data['lendars'] = $this->global_model->get('users', array('profession' => '1'));
-        
-        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
 
+        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
         $this->load->view('header', $data);
@@ -78,38 +75,32 @@ class Lendars extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function done(){
-        if($this->uri->segment(5) === 'done'){
-            //echo $this->uri->segment(5);
-            $id = $this->uri->segment(4);
-            $staus['transactionStatus'] = 'done';
-            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
-            if($ref == true){
-                $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
-                redirect('lendars/Lendars/billing');
-
-            }else{
-                $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
+    public function changePaymentStatus($id='', $status='', $outAmount='', $inAmount='', $userID='')
+    {
+       $staus['transactionStatus'] = $status;
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $userID));
+        if($outAmount != 0 || !empty($staus['transactionStatus'])){
+            $credit['inAmount'] = $data['user_info']['inAmount'] - $outAmount;
+            if($this->global_model->update('users', $credit, array('id' => $userID))) {
+                $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID' => $id));
             }
-        }
-
-    }
-
-    public function cancel(){
-        if($this->uri->segment(5) === 'cancel'){
-            //echo $this->uri->segment(5);
-            $id = $this->uri->segment(4);
-            $staus['transactionStatus'] = 'cancel';
-            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
-            if($ref == true){
-                $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
-                redirect('lendars/Lendars/billing');
-
-            }else{
-                $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
+        }elseif($inAmount != 0 || !empty($staus['transactionStatus'])){
+            $credit['inAmount']  = $data['user_info']['inAmount'] + $inAmount;
+            if($this->global_model->update('users', $credit, array('id' => $userID))) {
+                $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID' => $id));
             }
+        }elseif(!empty($staus['transactionStatus'])){
+            $ref = $this->global_model->update('lander_transaction_history', $staus, array('transactionID'=>$id));
+        }else{
+            $this->session->set_flashdata('message', 'Somthing went wrong! plese try again letar.');
         }
-
+        if($ref == true){
+            $this->session->set_flashdata('message', 'Billing Status Changed Successfully.');
+            redirect('lendars/billing');
+        }else{
+            $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
+            redirect('lendars/billing');
+        }
     }
 
 }

@@ -112,3 +112,5 @@ $route['borrow/allProjects'] = 'borrow/Borrow/allProjects/';
 $route['borrow/allProjects/(:any)'] = 'borrow/Borrow/allProjects/$1';
 $route['borrow/repaymentShchedule'] = 'borrow/Borrow/repaymentShchedule';
 
+////// billing status change from admin panel
+$route['lendars/billing'] = 'lendars/Lendars/billing';
