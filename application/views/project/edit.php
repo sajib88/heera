@@ -8,9 +8,15 @@
             </h1>
         </div>
         <div class="col-md-6 no-padding" style="text-align: right;">
-            <a href="#" class="btn btn-success">  <i class="fa fa-check"></i> Approved</a>
-            <a href="#" class="btn btn-danger">  <i class="fa fa-trash-o"></i> Reject</a> &nbsp; &nbsp;
-            <a href="#" class="btn btn-default">  <i class="fa fa-eye"></i> View</a>
+            <?php
+             if($editProject['adminApprovalStatus'] == null){
+                ?>
+                <a href="#" class="btn btn-success" id="approveProject">  <i class="fa fa-check"></i> Approved</a>
+                <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp;
+            <?php   }?>
+
+            <a href="<?php echo base_url('project/Project/edit/' . $editProject['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+
         </div>
         <div style="clear: both;"></div>
 
@@ -23,6 +29,8 @@
         </div>
     </div>
 <?php } $this->session->unset_userdata('message'); ?>
+
+    <div id="foo"></div>
     <form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/edit/'. $editProject['projectID']); ?>">
         <input type="hidden" name="login_id" value="<?php echo $editProject['userID']; ?>">
 <section class="content">
@@ -559,7 +567,7 @@
     </div>
 
 
-
+    <input type="hidden" id='pid' data-project='<?php echo $editProject['projectID']; ?>'></input>
 
 
 </div>
@@ -570,34 +578,55 @@
 
 
 
-<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="photomodal" class="modal fade">
   <style>
     .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
         height: 450px;
     }
-    .modal-header{
-       background: #5a5a5a; 
-    }
+
     .modal-header .close{
         margin-top: -10px;
         color: #fff;
     }
-    .modal-header{
-        border-bottom-color: #5a5a5a;
-    }
-  </style>   
+
+  </style>
     <div class="modal-dialog">
-        <div class="modal-content">        
+        <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="photoss" id="photoss">
 
              </div>
-           
+
         </div>
     </div>
-   
+
+
+
+
+
+</div>
+
+
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-tasks"></i> &nbsp; Update Project Status</h4>
+
+
+
+            </div>
+            <div class="modal-body">
+                <div id="showcal"></div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 
@@ -809,13 +838,106 @@
                  $('#photoss').html('<img src="'+base_url+'/assets/file/project/'+ss+'" class="img-responsive">');
 
 
-                 $("#myModal").modal("show");
+                 $("#photomodal").modal("show");
 
                });
              });   
-          </script> 
+          </script>
 
 
 
 
 
+
+
+
+
+<script>
+
+
+    var pid = document.getElementById('pid');
+    var sendpid = pid.getAttribute('data-project');
+
+    $(document).ready(function() {
+
+
+        $("#approveProject").click(function(e){
+            var r = confirm('Do you want to Appreove this Project');
+            if(r == true){
+                var base_url = '<?php echo base_url() ?>';
+                var id=sendpid;
+                $.ajax({
+                    type: 'GET',
+                    url: base_url + "project/project/approvedProject/"+id, //this file has the calculator function code
+                    //data: id,
+                    success: function(msg) {
+
+                        if (msg == 'success') {
+                            // show success meessage
+                            var msg = "<div class='alert alert-success'>Your Project Approved Successfully.  </div>";
+                            $('#foo').html(msg);
+                        }
+                        else {
+                        }
+
+                    }
+
+
+
+                });
+                // alert('Your project status Approved successfully');
+
+            }else{
+                //alert('Canceled');
+            }
+        });
+
+        $("#rejectProject").click(function(e) {
+            var r = confirm('Do you want to Reject this Project');
+            if (r == true) {
+
+
+                var base_url = '<?php echo base_url() ?>';
+                var id=sendpid;
+                $.ajax({
+                    type: 'GET',
+                    url: base_url + "project/project/ajaxreject/"+id, //this file has the calculator function code
+                    //data: id,
+                    success:function(data){
+                        $('#showcal').html(data);
+                        $('#myModal').modal('show');
+
+                    }
+                });
+
+
+            }
+        });
+
+
+    });
+
+</script>
+
+
+
+<script type="application/javascript">
+
+    $('#rejectform').validate({
+        rules: {
+            shortDescription: {
+                required:true,
+
+            }
+        },
+        messages:{
+            shortDescription: {
+                required: "Rejected Reason Is Required",
+            }
+        }
+    });
+
+
+
+
+</script>

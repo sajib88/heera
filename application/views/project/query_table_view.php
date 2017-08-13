@@ -26,7 +26,7 @@ print_r($allpersonals);die;*/
 
     <section class="content-header">
         <h1>
-            <i class="fa fa-tasks"></i>  <?php echo $page_title;?>
+            <i class="fa fa-tasks"></i> <?php if(!empty($page_title)){echo $page_title;} else {}?>
             
         </h1>
 
@@ -58,7 +58,7 @@ print_r($allpersonals);die;*/
                     </div>
                     <div class="box-body no-padding">
                         <?php if(empty($allprojects)){?>
-                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo $no_data;?></div>
+                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){echo $no_data;} else {}?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
 
@@ -95,11 +95,11 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><?php echo "Borrower Name"; ?></td>
+                                                    class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><?php echo $row->neededAmount; ?></td>
+                                                    class="numeric">$<?php echo $row->neededAmount; ?></td>
                                                 <td data-title="<?php echo 'Funded Amount'; ?>"
-                                                    class="numeric"><?php  echo $data[0]->fundedAmount; ?></td>
+                                                    class="numeric">$<?php  echo $row->fundedAmount; ?></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><?php echo "Name of founder"; ?></td>
                                                 <td data-title="<?php echo 'Status'; ?>"

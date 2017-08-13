@@ -376,7 +376,7 @@ class Global_model extends CI_Model {
         }
     }
 
-    public function get_profile_search_data($table, $data, $limit = FALSE, $order_by = FALSE) {
+    public function get_profile_search_data($table, $where, $data, $limit = FALSE, $order_by = FALSE) {
         $this->db->select('*')->from($table);
 
         if (!empty($data['name'])) {
@@ -393,6 +393,10 @@ class Global_model extends CI_Model {
 
         if (!empty($order_by)) {
             $this->db->order_by($order_by['filed'], $order_by['order']);
+        }
+
+        if (!empty($where)) {
+            $this->db->where($where);
         }
 
         $query = $this->db->get();
@@ -503,6 +507,38 @@ class Global_model extends CI_Model {
             return false;
         }
         //return $query;
+    }
+
+    public function lenders_projects_funded_amount($id)
+    {
+        $query = $this->db->query("SELECT users.first_name,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
+                                    sum(project_fund_history.fundedAmount) as fundedAmount
+                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
+                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
+                                    WHERE users.id = $id                                    
+                                    GROUP BY project.projectID");
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function lenders_projects_by_statusID($id, $statusID)
+    {
+        $query = $this->db->query("SELECT users.first_name,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
+                                    sum(project_fund_history.fundedAmount) as fundedAmount
+                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
+                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
+                                    WHERE users.id = $id AND project.statusID = $statusID                              
+                                    ");
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
     }
 
 

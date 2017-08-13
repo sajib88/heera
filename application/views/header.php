@@ -206,11 +206,11 @@
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                        <li class="<?php if($this->uri->segment(2)=="landerproject"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/landerproject'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
                         </li>
-                        <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/landerproject/3'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                        <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
+                            <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
                         </li>
                     </ul>
                 </li>

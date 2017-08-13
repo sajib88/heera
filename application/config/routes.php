@@ -88,6 +88,7 @@ $route['project/all'] = 'project/Project/all/';
 $route['project/edit/(:any)'] = 'project/Project/edit/$1';
 $route['project/all/(:any)'] = 'project/project/all/$1';
 $route['project/landerproject/(:any)'] = 'project/project/landerproject/$1';
+$route['project/landerproject'] = 'project/project/landerproject';
 
 
 
@@ -98,6 +99,7 @@ $route['fund/transactions'] = 'fund/Fund/transactions';
 $route['fund/addMethod'] = 'fund/Fund/addMethod';
 $route['payment/listofPayment'] = 'fund/Fund/listofPayment';
 $route['fund/edit/(:any)'] = 'fund/Fund/editpayment/$1';
+
 
 
 /// lenders list from admin

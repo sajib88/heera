@@ -21,8 +21,13 @@
             </h1>
         </div>
         <div class="col-md-6 no-padding" style="text-align: right;">
+            <?php
+            if($layoutfull['adminApprovalStatus'] == null){
+            ?>
            <a href="#" class="btn btn-success" id="approveProject">  <i class="fa fa-check"></i> Approved</a>
-            <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp; &nbsp;
+            <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp;
+            <?php }?>
+
             <a href="<?php echo base_url('project/Project/edit/' . $layoutfull['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
 
         </div>

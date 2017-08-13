@@ -23,7 +23,7 @@
                    <span class="widget-user-image pull-left"> <img src="<?php echo base_url();?>backend/img/dash/im1.gif" /></span>
 
                    <div class="info-box-content">
-                       <h2 class="count">$<?php echo $fundtotal;?></h2>
+                       <h2 class="count">$<?php if(!empty($fundtotal)){ echo $fundtotal;} else { echo "0.00";}?></h2>
                        <p>OUTSTANDING LOAN</p>
                        <a href="#">View all <i class="icon-long-arrow-right"></i></a><i class="fa fa-arrow-circle-right"></i>
                    </div>

@@ -326,7 +326,7 @@ class Home extends CI_Controller {
         //print_r($puposeList);
 
         if(!empty($puposeList['purposeID']) || !empty ($puposeList['name'])){
-            $data['projectData'] = $this->global_model->get_profile_search_data('project', $puposeList);
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'), $puposeList);
 
         }
        elseif(!empty ($id)){
@@ -440,14 +440,14 @@ class Home extends CI_Controller {
         //$this->load->model('admin/system_model');
         $tmpl = get_email_tmpl_by_email_name('confirmation_email');
         $subject = $tmpl->subject;
-        $subject = str_replace("#username",$data['user_name'],$subject);
+        $subject = str_replace("#username",$data['first_name'],$subject);
         $subject = str_replace("#activationlink",$link,$subject);
         $subject = str_replace("#webadmin",$admin_name,$subject);
         $subject = str_replace("#useremail",$data['email'],$subject);
 
 
         $body = $tmpl->body;
-        $body = str_replace("#username",$data['user_name'],$body);
+        $body = str_replace("#username",$data['first_name'],$body);
         $body = str_replace("#activationlink",$link,$body);
         $body = str_replace("#webadmin",$admin_name,$body);
         $body = str_replace("#useremail",$data['email'],$body);
