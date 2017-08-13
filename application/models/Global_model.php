@@ -425,7 +425,8 @@ class Global_model extends CI_Model {
     }
     
     public function all_project($id){
-       $this->db->select('p.*, f.*, u.first_name as borrowerName');     
+       $this->db->select('p.*, f.*, u.first_name as borrowerName');
+        $this->db->select_sum('f.fundedAmount');
        $this->db->from('project as p');
        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');  
        $this->db->join('users as u', 'u.id=p.userID'); 
@@ -445,9 +446,10 @@ class Global_model extends CI_Model {
     }
     
     public function borrower_funded_project($id){
-       $this->db->select('p.*');       
-       $this->db->from('project as p');       
-       //$this->db->join('users as u', 'u.id=p.userID');       
+       $this->db->select('p.*');
+       $this->db->from('project as p');
+        $this->db->select_sum('f.fundedAmount');
+       //$this->db->join('users as u', 'u.id=p.userID');
        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
        $this->db->where('p.userID', $id);             
        $this->db->group_by('p.projectID');
@@ -541,7 +543,21 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function all_lenders_with_funded_amount($id)
+    {
+        $query = $this->db->query("SELECT users.id,users.first_name,users.created,users.lastLogin,users.inAmount,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
+                                    sum(project_fund_history.fundedAmount) as fundedAmount
+                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
+                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
+                                    WHERE users.id = $id OR users.profession = $id                                 
+                                    GROUP BY project_fund_history.fundedBy, users.id");
 
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
 }
 

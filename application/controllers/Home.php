@@ -330,13 +330,13 @@ class Home extends CI_Controller {
 
         }
         elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected', 'purposeID'=>$id));
+            $data['projectData'] = $this->global_model->get_profile_search_data('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'));
         }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
             $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected') );
         }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
-        }               
-        
+        }
+
 
 
         //print_r($puposeList);

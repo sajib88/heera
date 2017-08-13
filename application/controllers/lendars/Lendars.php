@@ -19,8 +19,12 @@ class Lendars extends CI_Controller {
     public function alllendars() {
         $data = array();
         $loginId = $this->session->userdata('login_id');
-        $lendars = $this->global_model->lenders_total_funded_amount();
-        $data['lendars'] = $lendars;
+
+        //$lendars = $this->global_model->lenders_total_funded_amount();
+        $data['lendars'] = $this->global_model->all_lenders_with_funded_amount(1);
+
+        //print_r($data['lendars']);die;
+
         $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
@@ -104,3 +108,7 @@ class Lendars extends CI_Controller {
     }
 
 }
+
+
+
+

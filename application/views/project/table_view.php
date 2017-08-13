@@ -104,9 +104,9 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
                                                     class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span><?php echo $row->neededAmount; ?></span></td>
+                                                    class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><span>$<?php echo "0.00"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"

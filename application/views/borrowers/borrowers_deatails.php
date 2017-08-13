@@ -123,15 +123,12 @@
                                               <tr>
                                                   <td><?php echo $i; ?></td>
                                                   <td data-title="<?php echo 'Project Name'; ?>"
-                                                      class="numeric"><?php echo $row->name; ?></td>                                                  
-                                                  
+                                                      class="numeric"><?php echo $row->name; ?></td>
                                                   <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                      class="numeric"><span><?php echo $row->neededAmount; ?></span>
+                                                      class="numeric"><span>$<?php echo $row->neededAmount; ?></span>
                                                   </td>
-                                                  
                                                   <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                      <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('projectID'=>$row->projectID)); ?>
-                                                      class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                      class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                   
                                                   <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
