@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 
         $data['category'] = $this->global_model->get('purpose_lookup', False, array('limit' => '4', 'start' => '0'), array('filed' => 'purposeID', 'order' => 'ASC'));
         $data['purpose'] = $this->global_model->get('purpose_lookup');
-        $projectData = $this->global_model->get('project', array('statusID !=' => 10), array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
+        $projectData = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'), array('limit' => '3', 'start' => '0'), array('filed' => 'projectID', 'order' => 'DESC'));
         //echo $this->db->last_query();
 
         foreach ($projectData as $proData){
@@ -330,9 +330,9 @@ class Home extends CI_Controller {
 
         }
        elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('purposeID'=>$id,'statusID !=' => 10));
+            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'));
         }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
-            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10) );
+            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected') );
         }else{
             $this->session->set_flashdata('msg_search', '<div class="alert alert-danger" id="success-alert">'.'No Search Found.'.'</div>');
         }               

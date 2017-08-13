@@ -145,33 +145,33 @@
 
                                 <?php   $loginId = $this->session->userdata('login_id'); ?>
                                 <?php
-                                if($percent_friendly != 100.00){
-                                if($loginId == 0)
-                                {
+                                if($projectData['statusID']==3){
+                                if($percent_friendly != 100.00) {
+                                    if ($loginId == 0) {
+                                        ?>
+                                        <div class="col-xs-5 pdl pdr item">
+                                            <select name="fundedAmount" class="form-control">
+                                                <option value="25">$25</option>
+                                                <option value="50">$50</option>
+                                                <option value="100">$100</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-7 pdr item">
+                                            <a href="<?php echo base_url(); ?>home/login"
+                                               class="btn btn-mid btn-yellow">Lend Now</a>
+                                        </div>
+                                        <?php
+                                    } else {
+                                        ?>
 
 
-
-                                    ?>
-                                    <div class="col-xs-5 pdl pdr item">
-                                        <select name="fundedAmount" class="form-control">
-                                            <option value="25">$25</option>
-                                            <option value="50">$50</option>
-                                            <option value="100">$100</option>
-                                        </select>
-                                    </div>
-                                <div class="col-xs-7 pdr item">
-                                    <a href="<?php echo base_url(); ?>home/login"  class="btn btn-mid btn-yellow">Lend Now</a>
-                                </div>
-                                    <?php
-                                }
-                                else{
-                                ?>
-
-
-                                        <form id="bankvalidation" role="form" method="post"  enctype="multipart/form-data" action="<?php echo base_url('home/checkout'); ?>">
+                                        <form id="bankvalidation" role="form" method="post"
+                                              enctype="multipart/form-data"
+                                              action="<?php echo base_url('home/checkout'); ?>">
                                             <?php $totalampount = $user_info['inAmount']; ?>
                                             <input type="hidden" name="login_id" value="<?php echo $loginId; ?>">
-                                            <input type="hidden" name="pid" value="<?php echo  $projectData['projectID']; ?>">
+                                            <input type="hidden" name="pid"
+                                                   value="<?php echo $projectData['projectID']; ?>">
                                             <input type="hidden" name="chekoutpage" value="chekoutpage">
 
 
@@ -184,13 +184,16 @@
                                             </div>
 
                                             <div class="col-xs-7 pdr item">
-                                                <input type="submit" name="submit" class="btn btn-mid btn-yellow" value="Lend Now">
+                                                <input type="submit" name="submit" class="btn btn-mid btn-yellow"
+                                                       value="Lend Now">
 
                                             </div>
 
                                         </form>
 
-                                <?php  } }else{
+                                    <?php }
+                                }}
+                                else{
 
                                  ?>
 
