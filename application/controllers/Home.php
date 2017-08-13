@@ -317,7 +317,7 @@ class Home extends CI_Controller {
 
     public function getPurpose($id=''){
         $data = array();
-        //echo $id;die;
+        ///echo $id;die;
        
         $puposeList = array();
         $puposeList['purposeID'] = $this->input->post('purposeID');
@@ -329,8 +329,8 @@ class Home extends CI_Controller {
             $data['projectData'] = $this->global_model->get_profile_search_data('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'), $puposeList);
 
         }
-       elseif(!empty ($id)){
-            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected'));
+        elseif(!empty ($id)){
+            $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected', 'purposeID'=>$id));
         }elseif($puposeList['purposeID'] or $puposeList['name'] or $id == NULL){
             $data['projectData'] = $this->global_model->get('project', array('statusID !=' => 10, ' adminApprovalStatus  !=' => 'Rejected') );
         }else{

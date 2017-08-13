@@ -79,26 +79,22 @@
                                     <tbody>
                                     <?php if(!empty($lendars)) {
                                         $i = 1;
-                                        foreach ($lendars as $row) {                                            //print_r($row);die; ?>
+                                        foreach ($lendars as $row) { ?>
                                         
                                             <tr>
                                                 <td><?php echo $i; ?></td>
                                                 <td data-title="<?php echo 'Lendar Name'; ?>"
                                                     class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Join Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
-                                                </td>                                               </td>
+                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span></td>
                                                 <td data-title="<?php echo 'Last Active Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->lastLogin)); ?></span>
-                                                </td>
+                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->lastLogin)); ?></span></td>
                                                 <td data-title="<?php echo 'Total Funded'; ?>"
-                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
-                                                    class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                    class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                 <td data-title="<?php echo 'Total Credit'; ?>"
-                                                    class="numeric"><span><?php echo '$'.$row->inAmount; ?></span></td>
+                                                    class="numeric"><span><?php if(!empty($row->inAmount)){echo '$'.$row->inAmount;}else{echo '$0.00';} ?></span></td>
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
                                                     class="numeric"><span><?php echo '$0.00'; ?></span></td>
-                                                
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
                                                 </td>
@@ -108,8 +104,7 @@
                                         }
                                     }else{
                                         echo 'No data Found';
-                                    }
-?>
+                                    }?>
                                     </tbody>
                                 </table>
                             </div>

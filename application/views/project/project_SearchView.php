@@ -93,7 +93,6 @@
                         <div class="entry-footer cat_drop">
                             <div class="col-sm-1 sho">Category</div>
                                 <div class="col-lg-2  ">
-                                    <input type="hidden" name="purposeID" />
                                     <select class="form-control-search" id="puposeList" name="purposeID" onchange="this.form.submit()">
 
                                         <option value="">plese select category</option>

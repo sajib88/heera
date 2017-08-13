@@ -514,3 +514,16 @@ div.thumbnail:hover {
 .bordertext {border: 1px solid #c2d3ef;}
 
 
+.navbar-nav>li>.dropdown-menu .header_lend_dropdown{
+    border: none;
+    padding: 0;
+    background: none;
+    color: #1570f4;
+}
+
+.cat-widget .header_lend_dropdown{
+    border: none;
+    padding: 0;
+    background: none;
+    color: #1570f4;
+}

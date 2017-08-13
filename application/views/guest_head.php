@@ -56,6 +56,7 @@
                                         <a href="<?php echo base_url();?>home/getPurpose" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lend <i class="fa fa-angle-down"></i></a>
                                         <div class="dropdown-menu mega-menu">
                                             <div class="row">
+                                                <form role="form" method="post" action="<?php echo base_url('home/getPurpose');?>">
                                                 <div class="col-sm-12 entry-single item">
                                                     <h4 class="title">Categories</h4>
                                                     <ul class="entry-list">
@@ -63,11 +64,12 @@
                                                         <?php foreach($purpose as $row){
                                                             //print_r($row);
                                                             ?>
-                                                        <li><a href="<?php echo base_url('home/getPurpose/'.$row->purposeID);?>"><?php echo substr($row->purposeTitle, 0, 50); ?></a></li>
+                                                                <li><button class="header_lend_dropdown" id="puposeList" name="purposeID" value="<?php echo $row->purposeID;?>" ><?php echo substr($row->purposeTitle, 0, 50); ?></button></li>
                                                         <?php }}?>
                                                         <li><a href="<?php echo base_url();?>home/getPurpose">All Loans</a></li>
                                                     </ul>
-                                                </div>                                                
+                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </li>

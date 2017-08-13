@@ -134,19 +134,20 @@
         <div class="row">
                 <div class="col-md-1"></div>
 
-
+            <form method="post" id="category" action="<?php echo base_url('home/getPurpose');?>">
             <?php if(is_array($category)){ ?>
                 <?php foreach($category as $row){
                     //print_r($row);
                     ?>
                     <div class="cat-widget col-md-2">
                         <div class="inner-item">
-                           <a href="<?php echo base_url('home/getPurpose/'.$row->purposeID);?>">
-                            <img  src="<?php echo base_url().'assets/file/category/'.$row->purposeImage; ?>" alt="" class="img-responsive rounded">
-                            <div class="carousel-caption">
-                                <h4><?php echo substr($row->purposeTitle, 0, 50); ?></h4>
-                            </div>
-                           </a>
+                                <button class="header_lend_dropdown" id="puposeList" name="purposeID" value="<?php echo $row->purposeID;?>" >
+                                <img  src="<?php echo base_url().'assets/file/category/'.$row->purposeImage; ?>" alt="" class="img-responsive rounded">
+                                <div class="carousel-caption">
+                                    <h4><?php echo substr($row->purposeTitle, 0, 50); ?></h4>
+                                </div>
+                                </button>
+
                         </div>
                     </div>
 
@@ -154,6 +155,7 @@
                 }
             }
             ?>
+            </form>
 
             <div class="cat-widget col-md-2">
                 <div class="inner-item">
@@ -335,3 +337,9 @@
 
 
 </main>
+
+<script>
+    document.getElementById("puposeList").onclick = function() {
+        document.getElementById("category").submit();
+    }
+</script>
