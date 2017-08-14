@@ -430,6 +430,9 @@ class Project extends CI_Controller {
             $data['page_title'] = 'Active Projects';
             $data['no_data'] = 'Any Active Project Not Found.';
             $data['allprojects'] = $this->global_model->lenders_projects_funded_amount($loginId);
+
+            //print_r($data['allprojects']);die;
+
         }elseif ($id == 4) {
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';

@@ -95,7 +95,7 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><?php echo $row->first_name; ?></td>
+                                                    class="numeric"><?php echo $row->borrowerName; ?></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric">$<?php echo $row->neededAmount; ?></td>
                                                 <td data-title="<?php echo 'Funded Amount'; ?>"
