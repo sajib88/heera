@@ -324,8 +324,8 @@
                       <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
-                        <li class="<?php if($this->uri->segment(2)=="myprofile"){echo "active";}?>">
-                            <a href="#"><i class="fa fa-circle-o"></i>Transactions</a>
+                        <li class="<?php if($this->uri->segment(3)=="projectFunding"){echo "active";}?>">
+                            <a href="<?php echo base_url('borrow/Borrow/projectFunding'); ?>"><i class="fa fa-circle-o"></i>Transactions</a>
                         </li>
                     </ul>
                 </li>

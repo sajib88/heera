@@ -568,7 +568,52 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function getProjectFunding($id=''){
+        $this->db->select('p.name, p.projectID, f.projectID, f.fundedDateTime, f.fundedAmount, f.fundedBy, u.first_name as lenderName');
+        $this->db->from('project as p');
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
+        $this->db->join('users as u', 'u.id=f.fundedBy');
+        $this->db->where('p.userID', $id);
+        $query = $this->db->get();
+        //echo "<pre>"; print_r($query->result());echo "</pre>";
 
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function getRepaidFunding($id=''){
+        $this->db->select('p.projectID, p.name, r.repaidDateTime, r.projectID, r.repaidAmount, r.repaidStatus');
+        $this->db->from('project as p');
+        $this->db->join('project_repaid_history as r', 'r.projectID=p.projectID');
+        $this->db->where('p.userID', $id);
+        $query = $this->db->get();
+        //echo "<pre>"; print_r($query->result());echo "</pre>";
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function all_lenders_with_funded_amount($id)
+    {
+        $query = $this->db->query("SELECT users.id,users.first_name,users.created,users.lastLogin,users.inAmount,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
+                                    sum(project_fund_history.fundedAmount) as fundedAmount
+                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
+                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
+                                    WHERE users.id = $id OR users.profession = $id                                 
+                                    GROUP BY project_fund_history.fundedBy, users.id");
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
 }
 
