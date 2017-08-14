@@ -307,7 +307,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="row">
+                        <div class="row padd">
                             <div class="col-sm-4">
                                 <?php if(!empty($layoutfull['photo1'])){ ?>
                                 <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo1']; ?>" alt="projet"  class="img-responsive circular img-size">

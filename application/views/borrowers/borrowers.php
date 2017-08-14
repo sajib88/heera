@@ -96,8 +96,7 @@
                                                 <td data-title="<?php echo 'Project Qty'; ?>"
                                                     class="numeric"><span><?php echo count_project($row->id); ?></span></td>
                                                 <td data-title="<?php echo 'Amount Received'; ?>"
-                                                    <?php $data =$this->global_model->total_sum_amount('project_fund_history', array('fundedBy'=>$row->id)); ?>
-                                                    class="numeric"><span><?php if(!empty($data[0]->fundedAmount)){echo '$'.$data[0]->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                    class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                 
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
                                                     class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
