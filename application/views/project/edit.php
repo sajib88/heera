@@ -440,6 +440,48 @@
             </div>
         </div>
 
+        <div class="col-md-12 no-padding">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-user"></i>
+
+                    <h3 class="box-title">Project Assign To Borrow</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Borrow Select<span class="error">*</span></label><span id='purposeID-error' class='error' for='purposeID'></span>
+                                    <select name="userID" class="form-control chosen-select" id="type">
+                                        <option value="">Select Borrow</option>
+                                        <?php
+                                        if (is_array($allborrowers) and (!empty($allborrowers))) {
+
+                                            foreach ($allborrowers as $borrow) {
+                                                $v = (set_value('id')!='')?set_value('id'):$editProject['userID'];
+                                                $sel = ($v == $borrow->id)?'selected="selected"':'';
+                                                ?>
+                                                <option  value="<?php echo $borrow->id; ?>" <?php echo $sel;?>><?php echo $borrow->first_name; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
     </div>
 
 
@@ -550,6 +592,10 @@
                 required:true
             },
             purposeID:{
+                required:true
+            },
+
+            userID:{
                 required:true
             },
             shortDescription:{

@@ -66,6 +66,7 @@ class Project extends CI_Controller {
                 $save['homeOwnership'] = $postData['homeOwnership'];
                 $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
                 $save['userID'] = $loginId;
+                $save['createdBy'] = $loginId;
 
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
@@ -173,7 +174,8 @@ class Project extends CI_Controller {
              $save['monthlyExpenses'] = empty($postData['monthlyExpenses']) ? NULL : $postData['monthlyExpenses'];
              $save['homeOwnership'] = $postData['homeOwnership'];
              $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
-
+             $save['userID'] = $postData['userID'];
+            
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
                 $this->PATH = './assets/file/project';
@@ -236,6 +238,7 @@ class Project extends CI_Controller {
         $id = $this->uri->segment('4');
         $data['editProject'] = $this->global_model->get_data('project', array('projectID' => $id));        
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['allborrowers'] = $this->global_model->get('users', array('profession'=> 2 ));
         $data['countries'] = $this->global_model->get('countries');
         $data['states'] = $this->global_model->get('states');
         $data['profession'] = $this->global_model->get('profession');
@@ -318,6 +321,12 @@ class Project extends CI_Controller {
 
             $data['page_title'] = 'Closed Projects';
             $data['no_data'] = 'Any Closed Project Not Found.';
+        }
+        elseif ($id == 88) {
+            $data['allprojects'] = $this->global_model->get($table);
+            $data['hide'] = 'hide';
+            $data['page_title'] = 'All Projects';
+            $data['no_data'] = 'All Project Not Found.';
         }
 
         $this->load->view('header', $data);

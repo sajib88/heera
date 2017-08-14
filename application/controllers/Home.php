@@ -776,6 +776,8 @@ class Home extends CI_Controller {
             $save['purposeID'] = empty($postData['purposeID']) ? NULL : $postData['purposeID'];
             $save['name'] = empty($postData['name']) ? NULL : $postData['name'];
             $save['neededAmount'] = empty($postData['neededAmount']) ? NULL : $postData['neededAmount'];
+            $save['createdBy'] = empty($postData['first_name']) ? NULL : $postData['first_name'];
+            $save['shortDescription'] = empty($postData['shortDescription']) ? NULL : $postData['shortDescription'];
             
             if(!empty($this->input->post('email'))){
                 $ref = $this->global_model->get('users', array('email'=>$this->input->post('email'), 'profession' => '2'));                

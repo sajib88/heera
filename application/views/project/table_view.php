@@ -83,11 +83,18 @@ print_r($allpersonals);die;*/
 
 
                                         <th class="numeric"><?php echo 'Status';?></th>
+
+                                        <?php if(!empty($hide)){
+
+                                        }
+                                        else{  ?>
+
+
                                         <?php if($allprojects[0]->statusID == 4){?>
                                             <th class="numeric"><?php echo 'Repayment Schedule';?></th>
                                         <?php } else{ ?>
                                         <th class="numeric"><?php echo 'View';?></th>
-                                        <?php } ?>
+                                        <?php } } ?>
 
                                         <th class="numeric"><?php echo 'Edit';?></th>
                                         <th class="numeric"><?php echo 'Change Status';?></th>
@@ -113,23 +120,39 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
-                                                <?php if($allprojects[0]->statusID == 4){?>
-                                                <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
-                                                    <?php if(!empty($row->repaymentScheduleID)){ ?>
-                                                        <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/paymentschedule/view/' . $row->projectID); ?>" > View  </a>
-                                                   <?php }else{{
-                                                    ?>
-                                                        <a class="btn btn-block btn-warning" href="<?php echo base_url('project/Project/paymentschedule/' . $row->projectID); ?>" > Create  </a>
 
-                                                   <?php }}?>
+                                            <?php if(!empty($hide)){
+
+                                            }
+                                            else { ?>
+
+                                                <?php if ($allprojects[0]->statusID == 4) { ?>
+                                                    <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
+                                                        <?php if (!empty($row->repaymentScheduleID)) { ?>
+                                                            <a class="btn btn-block btn-primary"
+                                                               href="<?php echo base_url('project/Project/paymentschedule/view/' . $row->projectID); ?>">
+                                                                View </a>
+                                                        <?php } else {
+                                                            {
+                                                                ?>
+                                                                <a class="btn btn-block btn-warning"
+                                                                   href="<?php echo base_url('project/Project/paymentschedule/' . $row->projectID); ?>">
+                                                                    Create </a>
+
+                                                            <?php }
+                                                        } ?>
 
 
-                                                </td>
-                                              <?php } else{ ?>
-                                                <td data-title="<?php echo 'View'; ?>" class="numeric">
-                                                    <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>" > View </a>
-                                                </td>
-                                                <?php } ?>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td data-title="<?php echo 'View'; ?>" class="numeric">
+                                                        <a class="btn btn-block btn-primary"
+                                                           href="<?php echo base_url('project/Project/detail/' . $row->projectID); ?>">
+                                                            View </a>
+                                                    </td>
+                                                <?php }
+
+                                            }?>
 
                                                 <td data-title="<?php echo 'Edit'; ?>" class="numeric">
                                                     <a class="btn btn-block btn-success" href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>" > Edit </a>
@@ -250,8 +273,7 @@ print_r($allpersonals);die;*/
             "lengthChange": true,
             "searching": true,
             "info": true,
-            "autoWidth": false,
-            columnDefs: [ { orderable: false, targets: [7,8,9] } ]
+            "autoWidth": false
         });
     });
 </script>
@@ -345,6 +367,6 @@ $("#update_status_frm").submit(function(e){
 
 setTimeout(function(){$('.msg-hide').fadeOut('slow');}, 3000);
 
-</script> 
+</script>
 
 

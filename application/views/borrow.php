@@ -85,8 +85,13 @@
                                 <div class="form-group mb-10">
                                     <label>Amount Needed</label>
                                     <input  required="" type="number" name="neededAmount" class="form-control" placeholder="Amount Needed" autofocus="">
-                                </div> 
-                            </div>
+                                </div>
+                                    <div class="form-group mb-10">
+                                        <label>Project Description</label>
+                                        <textarea name="shortDescription" class="form-control"></textarea>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 ptop-20">
