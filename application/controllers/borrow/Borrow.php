@@ -67,6 +67,29 @@ class Borrow extends CI_Controller {
         $this->load->view('borrow/repaymentSchedule', $data);
         $this->load->view('footer');
     }
+
+
+    public function projectFunding()
+    {
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+
+        $data['fundHistory'] = $this->global_model->getProjectFunding($loginId);
+
+        $data['repaid'] = $this->global_model->getRepaidFunding($loginId);
+//        echo '<pre>';
+//        print_r($data['repaid']);
+//        echo '</pre>';
+//        die;
+
+        $this->load->view('header', $data);
+        $this->load->view('borrow/projectFunding', $data);
+        $this->load->view('footer');
+    }
     
 
 }
