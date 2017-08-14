@@ -528,6 +528,42 @@ class Global_model extends CI_Model {
     }
 
     public function lenders_projects_funded_amount($id='', $statusID=''){
+
+    public function get_repayment_check($id){
+        $this->db->select('p.*,rep.repaymentScheduleID');
+        $this->db->from('project as p');
+        $this->db->join('repayment_schedules as rep', 'p.projectID=rep.projectID', 'left');
+        $this->db->where('p.statusID', $id);
+        $this->db->group_by('rep.projectID');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+
+
+    }
+
+
+
+    public function lenders_projects_funded_amount1($id)
+    {
+        $query = $this->db->query("SELECT users.first_name,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
+                                    sum(project_fund_history.fundedAmount) as fundedAmount
+                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
+                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
+                                    WHERE users.id = $id                                    
+                                    GROUP BY project.projectID");
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function lenders_projects_funded_amount($id){
         $this->db->select('p.name,p.neededAmount,p.statusID, f.*, u.first_name as borrowerName');
         $this->db->from('project as p');
         $this->db->select_sum('f.fundedAmount');

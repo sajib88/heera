@@ -59,7 +59,9 @@ print_r($allpersonals);die;*/
                         <h3 class="box-title">List of All Projects</h3>
                     </div>
                     <div class="box-body">
-                        <?php if(empty($allprojects)){?>
+                        <?php if(empty($allprojects)){
+
+                            ?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data;}else{}?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
@@ -113,7 +115,15 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
                                                 <?php if($allprojects[0]->statusID == 4){?>
                                                 <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
-                                                    <a class="btn btn-block btn-warning" href="<?php echo base_url('project/Project/paymentschedule/' . $row->projectID); ?>" > Schedule </a>
+                                                    <?php if(!empty($row->repaymentScheduleID)){ ?>
+                                                        <a class="btn btn-block btn-primary" href="<?php echo base_url('project/Project/paymentschedule/view/' . $row->projectID); ?>" > View  </a>
+                                                   <?php }else{{
+                                                    ?>
+                                                        <a class="btn btn-block btn-warning" href="<?php echo base_url('project/Project/paymentschedule/' . $row->projectID); ?>" > Create  </a>
+
+                                                   <?php }}?>
+
+
                                                 </td>
                                               <?php } else{ ?>
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">

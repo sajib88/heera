@@ -15,7 +15,7 @@
                 <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp;
             <?php   }?>
 
-            <a href="<?php echo base_url('project/Project/edit/' . $editProject['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+            <a href="<?php echo base_url('project/Project/detail/' . $editProject['projectID']); ?>" class="btn btn-default">  <i class="fa fa-eye"></i> View</a>
 
         </div>
         <div style="clear: both;"></div>
@@ -87,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <div class="form-group">                                        
-                                        <label>Details Description<span class="error">*</span></label>
+                                        <label>Details Description</label>
                                         <textarea  name="detailsDescription" class="form-control"><?php echo $editProject['detailsDescription']; ?></textarea>
                                         <?php echo form_error('detailsDescription');?>
                                     </div>
@@ -177,7 +177,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Country<span class="error">*</span></label>
+                                        <label>Country</label>
                                         <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
                                             <option value="">Select</option>
                                             <?php
@@ -222,21 +222,9 @@
                                         <input name="city" value="<?php echo $editProject['city']; ?>" id="city" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Feed URL</label>
-                                        <input name="feedURL" value="<?php echo $editProject['feedURL']; ?>"  class="form-control">
-                                    </div>
-                                </div>
+
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Video URL</label>
-                                        <input name="videoURL" value="<?php echo $editProject['videoURL']; ?>"  class="form-control">
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- /.Lending -->
                         </div>
                     </div>
@@ -263,28 +251,6 @@
                         <div class="col-lg-12">
                             <!-- /Lending -->
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Credit Score<span class="error">*</span></label><span id='type-error' class='error' ></span>
-
-                                        <?php $types2 = array('A','A+','B','C','Y');?>
-                                        <select name="creditScore" class="form-control chosen-select" id="type">
-                                            <option value="">Select Credit Score</option>
-                                            <?php
-                                                if (is_array($types2) and (!empty($types2))) {
-                                                    foreach ($types2 as $key=>$value) {
-                                                        $v = (set_value('creditScore')!='')?set_value('creditScore'):$editProject['creditScore'];
-                                                        $sel = ($v == $value)?'selected="selected"':'';
-                                                        ?>
-                                                        <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
-                                                    <?php
-                                                    }
-                                                }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -307,46 +273,52 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Repayment Schedule<span class="error">*</span></label><span id='type-error' class='error' ></span>
                                         <select name="RepaymentScheduleID" class="form-control chosen-select" id="type">
                                             <option value="">Select Loan Term</option>
-                                                <?php
-                                                    if (is_array($repaymentschedule) and (!empty($repaymentschedule))) {
-                                                        foreach ($repaymentschedule as $row) {
-                                                            $v = (set_value('RepaymentScheduleID')!='')?set_value('RepaymentScheduleID'):$editProject['RepaymentScheduleID'];
-                                                            $sel = ($v == $row->repaymentScheduleID)?'selected="selected"':'';
-                                                            ?>
-                                                            <option  value="<?php echo $row->repaymentScheduleID; ?>" <?php echo $sel;?>><?php echo $row->repaymentScheduleTitle; ?></option>
-                                                        <?php
-                                                        }
-                                                    }
-                                                ?>
+                                            <?php
+                                            if (is_array($repaymentschedule) and (!empty($repaymentschedule))) {
+                                                foreach ($repaymentschedule as $row) {
+                                                    $v = (set_value('RepaymentScheduleID')!='')?set_value('RepaymentScheduleID'):$editProject['RepaymentScheduleID'];
+                                                    $sel = ($v == $row->repaymentScheduleID)?'selected="selected"':'';
+                                                    ?>
+                                                    <option  value="<?php echo $row->repaymentScheduleID; ?>" <?php echo $sel;?>><?php echo $row->repaymentScheduleTitle; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                         <?php echo form_error('RepaymentScheduleID');?>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Needed Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='price'></span>
-                                        <input type="number" name="neededAmount"   step="0.01" class="form-control" id="neededAmount" value="<?php echo $editProject['neededAmount']; ?>">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
+                                        <label>Needed Amount ($)</label>
+                                        <input type="number" name="neededAmount"   step="0.01" class="form-control" id="neededAmount" value="<?php echo $editProject['neededAmount']; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Minimum Amount ($)</label>
+                                        <input type="number" name="minimumAmount"   step="0.01" class="form-control" id="minimumAmount" value="<?php echo $editProject['minimumAmount']; ?>">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Payment Method Select </label>
 
                                         <?php $typespm = array('Fixed Funding','Flexible Funding');?>
-        
+
                                         <select name="paymentMethodID" class="form-control chosen-select" id="type">
                                            <option value="">Select Loan Term</option>
                                                <?php
@@ -366,28 +338,24 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Interest Rate<span class="error">*</span></label><span id='special-price-error' class='error' for='special_price'></span>
+                                        <label>Interest Rate</label>
                                         <input type="number" name="interestRate"  class="form-control"  id="special_price" value="<?php echo $editProject['interestRate']; ?>">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Project End Date<span class="error">*</span></label><span id='projectEndDate' class='error' for='projectEndDate'></span>
+                                        <label>Project End Date</label>
 
                                         <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo $editProject['projectEndDate']; ?>">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
 
 
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Minimum Amount ($)<span class="error">*</span></label><span id='price-error' class='error' for='minimumAmount'></span>
-                                        <input type="number" name="minimumAmount"   step="0.01" class="form-control" id="minimumAmount" value="<?php echo $editProject['minimumAmount']; ?>">
-                                    </div>
-                                </div>
+
 
 
 
@@ -419,15 +387,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Monthly Income<span class="error">*</span></label><span id='monthlyIncome-price-error' class='error' for='monthlyIncome'></span>
+                                        <label>Monthly Income</label>
                                         <input type="number" name="monthlyIncome"  class="form-control"  id="monthlyIncome" value="<?php echo $editProject['monthlyIncome']; ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Total Expensese<span class="error">*</span></label><span id='totalExpenses-price-error' class='error' for='totalExpenses'></span>
-                                        <input type="number" name="totalExpenses"  class="form-control"  id="totalExpenses" value="<?php echo $editProject['totalExpenses']; ?>">
+                                        <label>Monthly Expenses</label>
+                                        <input type="number" name="monthlyExpenses" value="<?php echo $editProject['monthlyExpenses']; ?>"  class="form-control"  id="monthlyExpenses" >
                                     </div>
                                 </div>
                             </div>
@@ -436,7 +404,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Home Ownership</label>
-                                        <?php $typesyn = array('Yes','No');?>        
+                                        <?php $typesyn =  array('Own','Rent');?>
                                         <select name="homeOwnership" class="form-control chosen-select" id="type">
                                             <option value="">Select Home Ownership</option>
                                                 <?php
@@ -456,74 +424,13 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Length Of Employment</label>
+                                        <label>Current Employment</label>
                                         <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Debt To Income<span class="error">*</span></label><span id='debtToIncome-error' class='error' for='debtToIncome'></span>
-                                        <input type="number" name="debtToIncome"  class="form-control"  id="debtToIncome" value="<?php echo $editProject['debtToIncome']; ?>">
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Employment Self Employment</label>
-                                        <input name="employmentSelfemployment" value="<?php echo $editProject['employmentSelfemployment']; ?>" class="form-control" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Monthly Expenses<span class="error">*</span></label><span id='monthlyExpenses-error' class='error' for='monthlyExpenses'></span>
-                                        <input type="number" name="monthlyExpenses" value="<?php echo $editProject['monthlyExpenses']; ?>"  class="form-control"  id="monthlyExpenses" >
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Other Loan Repayment</label>
-                                        <input type="number" name="otherLoanRepayment" value="<?php echo $editProject['otherLoanRepayment']; ?>" class="form-control"  id="otherLoanRepayment">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Transport Charge</label>
-                                        <input type="number" name="transportCharge" value="<?php echo $editProject['transportCharge']; ?>" class="form-control"  id="transportCharge">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Insurance</label>
-                                        <input type="number" name="insurance" value="<?php echo $editProject['insurance']; ?>" class="form-control"  id="insurance" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Courses School Fees</label>
-                                        <input type="number" name="coursesSchoolFees" value="<?php echo $editProject['coursesSchoolFees']; ?>" class="form-control"  id="coursesSchoolFees">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>TaxNIProvisions</label>
-                                        <input type="number" name="TaxNIProvisions" value="<?php echo $editProject['TaxNIProvisions']; ?>" class="form-control"  id="TaxNIProvisions">
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- /.Lending -->
                         </div>
@@ -648,56 +555,23 @@
             shortDescription:{
                 required:true
             },
-
-            creditScore:{
-               required:true
-              },
-
             loanTerm:{
                 required:true
             },
             RepaymentScheduleID:{
                 required:true
             },
-            paymentMethodID:{
-                required:true
-            },
-
-
-            country:{
-                required:true
-            },
             neededAmount:{
                 required:true,
                 number: true
             },
-            interestRate:{
-                required:true,
-                number: true
-            },
-            monthlyIncome:{
-                required:true,
-                number: true
+
+            'mainImage': {
+
+                extension: "png,jpg,jpeg,gif,bmp"
             },
 
-            totalExpenses:{
-                required:true,
-                number: true
-            },
 
-            debtToIncome:{
-                required:true,
-                number: true
-            },
-
-            city:{
-                required:true
-
-            },
-
-            monthlyExpenses:{
-                number: true
-            },
             'photo_2': {
 
                 extension: "png,jpg,jpeg,gif,bmp"
@@ -733,34 +607,16 @@
             },
 
 
-            country: {
-                required: "Project Country is Important !",
-            },
+
             neededAmount: {
                 required: "Needed Amount is Required, 0-9 Number digit only allow",
             },
-            city: {
-                required: "City is Required",
+
+            'mainImage':{
+
+                extension:"Only Image Format  file is allowed!"
             },
 
-
-            interestRate: {
-                required: "Interest Rate Price is Required, 0-9 Number digit only allow",
-            },
-
-            monthlyIncome: {
-                required: "Total Expenses is Required, 0-9 Number digit only allow",
-            },
-
-            totalExpenses: {
-                required: "Total Expenses is Required, 0-9 Number digit only allow",
-            },
-            debtToIncome: {
-                required: "Debt To Income is Required, 0-9 Number digit only allow",
-            },
-            monthlyExpenses: {
-                required: "0-9 Number digit only allow",
-            },           
             'photo_2':{
 
                 extension:"Only Image Format  file is allowed!"
