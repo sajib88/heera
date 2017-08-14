@@ -23,13 +23,11 @@ class Borrow extends CI_Controller {
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
         
-        $data['borrowerAllProjects'] = $this->global_model->get('project', array('userID' => $loginId, 'statusID' => $statusID));
-       // print_r($data['borrowerAllProjects']);exit;        
+        $data['borrowerAllProjects'] = $this->global_model->borrowerAllProject($loginId, $statusID);
         
          if($statusID == ''){
             $data['page_title'] = 'All Projects'; 
-            $data['no_data'] = 'You have not create any project yet.';            
-            $data['borrowerAllProjects'] = $this->global_model->get('project', array('userID' => $loginId));
+            $data['no_data'] = 'You have not create any project yet.';
         }elseif($statusID == 4){
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';            

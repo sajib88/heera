@@ -398,21 +398,15 @@ class Project extends CI_Controller {
         $data['project_status'] = $this->global_model->get('project_status_lookup');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
-        //echo $id;die;
+        $data['allprojects'] = $this->global_model->lenders_projects_funded_amount($loginId, $id);
         if ($id == '') {
             $data['page_title'] = 'Active Projects';
             $data['no_data'] = 'Any Active Project Not Found.';
-            $data['allprojects'] = $this->global_model->lenders_projects_funded_amount($loginId);
-
-            //print_r($data['allprojects']);die;
-
         }elseif ($id == 4) {
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';
-            $data['allprojects'] = $this->global_model->lenders_projects_by_statusID($loginId, $id);
 
         }
-
         $this->load->view('header', $data);
         $this->load->view('project/query_table_view', $data);
         $this->load->view('footer');

@@ -527,6 +527,7 @@ class Global_model extends CI_Model {
         //return $query;
     }
 
+    public function lenders_projects_funded_amount($id='', $statusID=''){
 
     public function get_repayment_check($id){
         $this->db->select('p.*,rep.repaymentScheduleID');
@@ -569,6 +570,9 @@ class Global_model extends CI_Model {
         $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
         $this->db->join('users as u', 'u.id=p.userID');
         $this->db->where('f.fundedBy', $id);
+        if(!empty($statusID)){
+            $this->db->where('p.statusID', $statusID);
+        }
         $this->db->group_by('f.projectID');
         $query = $this->db->get();
 
@@ -579,17 +583,19 @@ class Global_model extends CI_Model {
         }
     }
 
-    public function lenders_projects_by_statusID($id, $statusID)
-    {
-        $this->db->select('p.name,p.neededAmount,p.statusID, f.*, u.first_name as borrowerName');
+    public function borrowerAllProject($id='', $statusID=''){
+        $this->db->select('p.projectID, p.name,p.neededAmount,p.statusID, f.fundedAmount, u.first_name as lenderName');
         $this->db->from('project as p');
         $this->db->select_sum('f.fundedAmount');
-        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
-        $this->db->join('users as u', 'u.id=p.userID');
-        $this->db->where('f.fundedBy', $id);
-        $this->db->where('p.statusID', $statusID);
-        $this->db->group_by('f.projectID');
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID','left');
+        $this->db->join('users as u', 'u.id=f.fundedBy','left');
+        $this->db->where('p.userID', $id);
+        if(!empty($statusID)){
+            $this->db->where('p.statusID', $statusID);
+        }
+        $this->db->group_by('p.projectID');
         $query = $this->db->get();
+        //echo "<pre>"; print_r($query->result());echo "</pre>";
 
         if ($query->num_rows() > 0) {
             return $query->result();
