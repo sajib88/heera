@@ -76,7 +76,6 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Funded Amount';?></th>
 
-                                        <th class="numeric"><?php echo 'Amount Funded By';?></th>
                                         <th class="numeric"><?php echo 'Status';?></th>
 
 
@@ -100,8 +99,6 @@ print_r($allpersonals);die;*/
                                                     class="numeric">$<?php echo $row->neededAmount; ?></td>
                                                 <td data-title="<?php echo 'Funded Amount'; ?>"
                                                     class="numeric">$<?php  echo $row->fundedAmount; ?></td>
-                                                <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><?php echo "Name of founder"; ?></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><?php echo getStatusById($row->statusID); ?></td>
 
