@@ -41,19 +41,13 @@ class Project extends CI_Controller {
             $this->form_validation->set_rules('shortDescription', 'shortDescription', 'required');
             //$this->form_validation->set_rules('detailsDescription', 'detailsDescription');
             $this->form_validation->set_rules('neededAmount', 'neededAmount', 'required');
-            $this->form_validation->set_rules('interestRate', 'interestRate', 'required');
-            $this->form_validation->set_rules('address1', 'address1');
-            $this->form_validation->set_rules('address2', 'address2');
-            $this->form_validation->set_rules('city', 'city', 'required');
-            $this->form_validation->set_rules('state', 'state', 'required');
-            $this->form_validation->set_rules('country', 'country', 'required');
+
 
             if($this->form_validation->run() == true){
                 $save['name'] = $postData['name'];
                 $save['purposeID'] = $postData['purposeID'];
                 $save['shortDescription'] = $postData['shortDescription'];
                 $save['detailsDescription'] = empty($postData['detailsDescription']) ? NULL : $postData['detailsDescription'];
-                $save['creditScore'] = $postData['creditScore'];
                 $save['loanTerm'] = $postData['loanTerm'];
                 $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
                 $save['neededAmount'] = $postData['neededAmount'];
@@ -67,20 +61,10 @@ class Project extends CI_Controller {
                 $save['city'] = $postData['city'];
                 $save['state'] = $postData['state'];
                 $save['country'] = $postData['country'];
-                $save['feedURL'] = $postData['feedURL'];
-                $save['videoURL'] = $postData['videoURL'];
                 $save['monthlyIncome'] = $postData['monthlyIncome'];
-                $save['totalExpenses'] = $postData['totalExpenses'];
-                $save['homeOwnership'] = $postData['homeOwnership'];
-                $save['lengthOfEmployment'] = empty($postData['lengthOfEmployment']) ? NULL : $postData['lengthOfEmployment'];
-                $save['debtToIncome'] = $postData['debtToIncome'];
-                $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
                 $save['monthlyExpenses'] = empty($postData['monthlyExpenses']) ? NULL : $postData['monthlyExpenses'];
-                $save['otherLoanRepayment'] = empty($postData['otherLoanRepayment']) ? NULL : $postData['otherLoanRepayment'];
-                $save['transportCharge'] = empty($postData['transportCharge']) ? NULL : $postData['transportCharge'];
-                $save['insurance'] = empty($postData['insurance']) ? NULL : $postData['insurance'];
-                $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
-                $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
+                $save['homeOwnership'] = $postData['homeOwnership'];
+                $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
                 $save['userID'] = $loginId;
 
                 
@@ -168,38 +152,27 @@ class Project extends CI_Controller {
 
             $postData = $this->input->post();
 
-                $save['name'] = $postData['name'];
-                $save['purposeID'] = $postData['purposeID'];
-                $save['shortDescription'] = $postData['shortDescription'];
-                $save['detailsDescription'] = empty($postData['detailsDescription']) ? NULL : $postData['detailsDescription'];
-                $save['creditScore'] = $postData['creditScore'];
-                $save['loanTerm'] = $postData['loanTerm'];
-                $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
-                $save['neededAmount'] = $postData['neededAmount'];
-                $save['minimumAmount'] = $postData['minimumAmount'];
-                $save['paymentMethodID'] = $postData['paymentMethodID'];
-                $save['interestRate'] = $postData['interestRate'];
-                $date = date('Y-m-d', strtotime($postData['projectEndDate']));
-                $save['projectEndDate'] = $date;
-                $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
-                $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
-                $save['city'] = $postData['city'];
-                $save['state'] = $postData['state'];
-                $save['country'] = $postData['country'];
-                $save['feedURL'] = $postData['feedURL'];
-                $save['videoURL'] = $postData['videoURL'];
-                $save['monthlyIncome'] = $postData['monthlyIncome'];
-                $save['totalExpenses'] = $postData['totalExpenses'];
-                $save['homeOwnership'] = $postData['homeOwnership'];
-                $save['lengthOfEmployment'] = empty($postData['lengthOfEmployment']) ? NULL : $postData['lengthOfEmployment'];
-                $save['debtToIncome'] = $postData['debtToIncome'];
-                $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
-                $save['monthlyExpenses'] = empty($postData['monthlyExpenses']) ? NULL : $postData['monthlyExpenses'];
-                $save['otherLoanRepayment'] = empty($postData['otherLoanRepayment']) ? NULL : $postData['otherLoanRepayment'];
-                $save['transportCharge'] = empty($postData['transportCharge']) ? NULL : $postData['transportCharge'];
-                $save['insurance'] = empty($postData['insurance']) ? NULL : $postData['insurance'];
-                $save['coursesSchoolFees'] = empty($postData['coursesSchoolFees']) ? NULL : $postData['coursesSchoolFees'];
-                $save['TaxNIProvisions'] = empty($postData['TaxNIProvisions']) ? NULL : $postData['TaxNIProvisions'];
+             $save['name'] = $postData['name'];
+             $save['purposeID'] = $postData['purposeID'];
+             $save['shortDescription'] = $postData['shortDescription'];
+             $save['detailsDescription'] = empty($postData['detailsDescription']) ? NULL : $postData['detailsDescription'];
+             $save['loanTerm'] = $postData['loanTerm'];
+             $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
+             $save['neededAmount'] = $postData['neededAmount'];
+             $save['minimumAmount'] = $postData['minimumAmount'];
+             $save['paymentMethodID'] = $postData['paymentMethodID'];
+             $save['interestRate'] = $postData['interestRate'];
+             $date = date('Y-m-d', strtotime($postData['projectEndDate']));
+             $save['projectEndDate'] = $date;
+             $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
+             $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
+             $save['city'] = $postData['city'];
+             $save['state'] = $postData['state'];
+             $save['country'] = $postData['country'];
+             $save['monthlyIncome'] = $postData['monthlyIncome'];
+             $save['monthlyExpenses'] = empty($postData['monthlyExpenses']) ? NULL : $postData['monthlyExpenses'];
+             $save['homeOwnership'] = $postData['homeOwnership'];
+             $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
 
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
@@ -317,7 +290,7 @@ class Project extends CI_Controller {
             $data['no_data'] = 'Any Active Project Not Found.';
 
         }elseif ($id == 4) {
-
+            $data['allprojects'] = $this->global_model->get_repayment_check($id);
             $data['page_title'] = 'Funded Projects';
             $data['no_data'] = 'Any Funded Project Not Found.';
 
@@ -481,6 +454,7 @@ class Project extends CI_Controller {
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
         $save['adminApprovalStatus'] = $adminApprovalStatus;
         $save['rejectReason'] = $rejectReason;
+        $save['statusID'] = 8;
 
         $ref = $this->global_model->update('project', $save, array('projectID' => $projectID));
 
@@ -544,6 +518,8 @@ class Project extends CI_Controller {
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
         $save['adminApprovalStatus'] = 'Approved';
         $save['rejectReason'] = 0;
+        $save['statusID'] = 3;
+
 
         $ref = $this->global_model->update('project', $save, array('projectID' => $id));
 
@@ -687,119 +663,117 @@ class Project extends CI_Controller {
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
 
-        $projectID = $this->uri->segment('4');
+        $action = $this->uri->segment('4');
+        if($action == 'view'){
+            $projectID = $this->uri->segment('5');
+        }else{
+            $projectID = $this->uri->segment('4');
+        }
         if(empty($projectID)){$projectID = $this->input->post('projectID');}
 
         $projectData = $this->global_model->get_project_details_by_id($projectID);
 
         $existingSchedule = $this->global_model->get_data('repayment_schedules', array('projectID' => $projectID));
+        if($action != 'view') {
+            if (empty($projectData)) {
+                $this->session->set_flashdata('error', 'This Project ID is not exist. Please try with valid project.');
+            } elseif (!empty($projectData) && $projectData['statusID'] != '4') {
+                $this->session->set_flashdata('error', 'This Project is not permitted to create Repayment Schedule. Please try with valid project.');
+            } elseif (!empty($existingSchedule)) {
+                $this->session->set_flashdata('error', 'Repayment Schedule already exist for this Project. Please try with valid project.');
+            } else {
 
-        if(empty($projectData)){
-            $this->session->set_flashdata('error', 'This Project ID is not exist. Please try with valid project.');
-        }elseif(!empty($projectData) && $projectData['statusID'] != '4'){
-            $this->session->set_flashdata('error', 'This Project is not permitted to create Repayment Schedule. Please try with valid project.');
-        }elseif(!empty($existingSchedule)){
-            $this->session->set_flashdata('error', 'Repayment Schedule already exist for this Project. Please try with valid project.');
-        }else{
+                $totalRaisedAmount = array('totalRaisedAmount' => $this->global_model->total_sum('project_fund_history', array('projectID' => $projectData['projectID'])));
 
-            $totalRaisedAmount = array('totalRaisedAmount' => $this->global_model->total_sum('project_fund_history', array('projectID' => $projectData['projectID'])));
+                $fullProjectData = array_merge($projectData + $totalRaisedAmount);
 
-            $fullProjectData =  array_merge($projectData+$totalRaisedAmount);
+                // IF subbmit button clicked.
+                if ($this->input->post()) {
 
-            // IF subbmit button clicked.
-            if($this->input->post()) {
+                    $postData = $this->input->post();
+                    $repaidSchedulArr = array();
 
-                $postData = $this->input->post();
-                $repaidSchedulArr = array();
+                    if (!empty($postData['projectID'])) {
 
-                if(!empty($postData['projectID'])){
+                        $loanTerm = $projectData['loanTerm'];
+                        $numberOfMonth = 0;
 
-                    $loanTerm=$projectData['loanTerm'];
-                    $numberOfMonth = 0;
-
-                    if($loanTerm == '1 Year')
-                    {
-                        $numberOfMonth = 12;
-                        $numberOfYear = 1;
-                    }
-                    elseif($loanTerm == '2 Years')
-                    {
-                        $numberOfMonth = 24;
-                        $numberOfYear = 2;
-                    }
-                    elseif($loanTerm == '3 Years')
-                    {
-                        $numberOfMonth = 36;
-                        $numberOfYear = 3;
-                    }
-                    elseif($loanTerm == '4 Years')
-                    {
-                        $numberOfMonth = 48;
-                        $numberOfYear = 4;
-                    }
-                    elseif($loanTerm == '5 Years')
-                    {
-                        $numberOfMonth = 60;
-                        $numberOfYear = 5;
-                    }
-
-                    $repaymentScheduleValue = $projectData['repaymentScheduleValue'];
-                    $repaymentScheduleType = $projectData['repaymentScheduleType'];
-
-                    $totalFundedAmount = $fullProjectData['totalRaisedAmount'];
-
-                    if($repaymentScheduleType == 'Monthly') {
-
-                        $repaidAmount = number_format(($totalFundedAmount / $numberOfMonth), 2, '.', '');
-
-                        $CurrentMonth = date('d-m-Y', strtotime('first day of this month') + 60 * 60 * 24 * $repaymentScheduleValue);
-
-                        $month = strtotime($CurrentMonth);
-                        for ($i = 1; $i <= $numberOfMonth; $i++) {
-                            $month = strtotime('next month',$month);
-
-                            $repaidSchedulArr['projectID'] = $projectID;
-                            $repaidSchedulArr['schedualeDateTime'] = date("Y-m-d", $month);
-                            $repaidSchedulArr['repaidAmount'] = $repaidAmount;
-
-                            $updateRef=$this->db->insert('repayment_schedules', $repaidSchedulArr);
+                        if ($loanTerm == '1 Year') {
+                            $numberOfMonth = 12;
+                            $numberOfYear = 1;
+                        } elseif ($loanTerm == '2 Years') {
+                            $numberOfMonth = 24;
+                            $numberOfYear = 2;
+                        } elseif ($loanTerm == '3 Years') {
+                            $numberOfMonth = 36;
+                            $numberOfYear = 3;
+                        } elseif ($loanTerm == '4 Years') {
+                            $numberOfMonth = 48;
+                            $numberOfYear = 4;
+                        } elseif ($loanTerm == '5 Years') {
+                            $numberOfMonth = 60;
+                            $numberOfYear = 5;
                         }
 
-                    }
-                    elseif($repaymentScheduleType == 'Days'){
+                        $repaymentScheduleValue = $projectData['repaymentScheduleValue'];
+                        $repaymentScheduleType = $projectData['repaymentScheduleType'];
 
-                        // Dont touch this veriable 
-                        $totalDaysInyear = 365;
+                        $totalFundedAmount = $fullProjectData['totalRaisedAmount'];
 
-                        $days = ($totalDaysInyear*$numberOfYear)/$repaymentScheduleValue;
+                        if ($repaymentScheduleType == 'Monthly') {
 
-                        $repaidAmount = number_format(($totalFundedAmount / $days), 2, '.', '');
+                            $repaidAmount = number_format(($totalFundedAmount / $numberOfMonth), 2, '.', '');
 
-                        $currentDate = date('Y-m-d');
+                            $CurrentMonth = date('d-m-Y', strtotime('first day of this month') + 60 * 60 * 24 * $repaymentScheduleValue);
 
-                        for ($i = 1; $i <= $days; $i++) {
-                            $dateWise = date('Y-m-d', strtotime('+'.$repaymentScheduleValue.' day', strtotime($currentDate)));
-                            //$dateWiseArr[] = $dateWise;
+                            $month = strtotime($CurrentMonth);
+                            for ($i = 1; $i <= $numberOfMonth; $i++) {
+                                $month = strtotime('next month', $month);
 
-                            $repaidSchedulArr['projectID'] = $projectID;
-                            $repaidSchedulArr['schedualeDateTime'] = $dateWise;
-                            $repaidSchedulArr['repaidAmount'] = $repaidAmount;
-                            $updateRef=$this->db->insert('repayment_schedules', $repaidSchedulArr);
+                                $repaidSchedulArr['projectID'] = $projectID;
+                                $repaidSchedulArr['schedualeDateTime'] = date("Y-m-d", $month);
+                                $repaidSchedulArr['repaidAmount'] = $repaidAmount;
 
-                            $currentDate = $dateWise;
+                                $updateRef = $this->db->insert('repayment_schedules', $repaidSchedulArr);
+                            }
 
+                        } elseif ($repaymentScheduleType == 'Days') {
+
+                            // Dont touch this veriable 
+                            $totalDaysInyear = 365;
+
+                            $days = ($totalDaysInyear * $numberOfYear) / $repaymentScheduleValue;
+
+                            $repaidAmount = number_format(($totalFundedAmount / $days), 2, '.', '');
+
+                            $currentDate = date('Y-m-d');
+
+                            for ($i = 1; $i <= $days; $i++) {
+                                $dateWise = date('Y-m-d', strtotime('+' . $repaymentScheduleValue . ' day', strtotime($currentDate)));
+                                //$dateWiseArr[] = $dateWise;
+
+                                $repaidSchedulArr['projectID'] = $projectID;
+                                $repaidSchedulArr['schedualeDateTime'] = $dateWise;
+                                $repaidSchedulArr['repaidAmount'] = $repaidAmount;
+                                $updateRef = $this->db->insert('repayment_schedules', $repaidSchedulArr);
+
+                                $currentDate = $dateWise;
+
+                            }
                         }
-                    }
 
-                    if($updateRef) {
-                        $this->session->set_flashdata('message', 'Your project Repayment Schedule Created Successfully ');
-                    }else{
-                        $this->session->set_flashdata('errot', 'Your project Repayment Schedule Not Created. Please try again.');
+                        if ($updateRef) {
+                            $this->session->set_flashdata('message', 'Your project Repayment Schedule Created Successfully ');
+                        } else {
+                            $this->session->set_flashdata('errot', 'Your project Repayment Schedule Not Created. Please try again.');
+                        }
                     }
                 }
-            }
 
-            $data['projectData'] = $fullProjectData;
+                $data['projectData'] = $fullProjectData;
+            }
+        }else{
+            $data['projectData'] = $projectData;
         }
 
         $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $projectID));

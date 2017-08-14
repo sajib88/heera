@@ -28,7 +28,7 @@
                 <strong><?php echo $this->session->flashdata('error'); ?></strong>
             </div>
         </div>
-    <?php }else{ ?>
+    <?php }elseif(empty($repaymentSchedule)){ ?>
         <form role="form" method="post" id="repayment" enctype="multipart/form-data" action="<?php echo base_url('project/Project/paymentschedule/'. $projectData['projectID']); ?>"><input type="hidden" name="projectID" value="<?php echo $projectData['projectID'] ?>">
 <section class="content">
 <div class="row">

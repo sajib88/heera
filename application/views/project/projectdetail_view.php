@@ -31,7 +31,7 @@
             <a class="btn btn-danger" id="rejectProject" href="#"> <i class="fa fa-trash-o"></i> Reject</a>&nbsp;
             <?php }?>
 
-            <a href="<?php echo base_url('project/Project/edit/' . $layoutfull['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> Edit</a>
+            <a href="<?php echo base_url('project/Project/edit/' . $layoutfull['projectID']); ?>" class="btn btn-default">  <i class="fa fa-edit"></i> View</a>
 
         </div>
         <div style="clear: both;"></div>
@@ -132,11 +132,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong><i class="fa fa-arrow-circle-o-up"></i> Credit Score</strong>
-                        <p class="text-muted">
-                            <?php echo (!empty( $layoutfull['creditScore']))? $layoutfull['creditScore']:''?>
-                        </p>
-                        <hr>
+
 
 
                         <strong><i class="fa fa-arrows-h"></i> Loan Term </strong>
@@ -256,42 +252,15 @@
                                 <b>Monthly Income ($)</b> <span class="pull-right badge bg-blue"><?php echo (!empty( $layoutfull['monthlyIncome']))? $layoutfull['monthlyIncome']:''?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Total Expenses ($)</b> <span class="pull-right badge bg-red"><?php echo (!empty( $layoutfull['totalExpenses']))? $layoutfull['totalExpenses']:'Not selected'?></span>
+                                <b>Monthly Expenses  ($)</b> <span class="pull-right badge bg-red"><?php echo (!empty( $layoutfull['monthlyExpenses']))? $layoutfull['monthlyExpenses']:'Not selected'?></span>
                             </li>
                             <li class="list-group-item">
                                 <b>Home Ownership</b> <span class="pull-right badge bg-yellow"><?php echo (!empty( $layoutfull['homeOwnership']))? $layoutfull['homeOwnership']:'Not selected'?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Length of Employment</b> <span class="pull-right badge bg-aqua"><?php echo (!empty( $layoutfull['lengthOfEmployment']))? $layoutfull['lengthOfEmployment']:'Not selected'?></span>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Debt to Income ($)</b> <span class="pull-right badge bg-blue"><?php echo (!empty( $layoutfull['debtToIncome']))? $layoutfull['debtToIncome']:'Not selected'?></span>
+                                <b>Current Employment</b> <span class="pull-right badge bg-aqua"><?php echo (!empty( $layoutfull['lengthOfEmployment']))? $layoutfull['lengthOfEmployment']:'Not selected'?></span>
                             </li>
 
-
-                            <li class="list-group-item">
-                                <b>Monthly Expenses  ($)</b> <span class="pull-right badge bg-red"><?php echo (!empty( $layoutfull['monthlyExpenses']))? $layoutfull['monthlyExpenses']:'Not selected'?></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Other Loan Repayments ($)</b> <span class="pull-right badge bg-light-blue"><?php echo (!empty( $layoutfull['otherLoanRepayment']))? $layoutfull['otherLoanRepayment']:'Not selected'?></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Transport Charges ($)</b> <span class="pull-right badge bg-light-blue"><?php echo (!empty( $layoutfull['transportCharge']))? $layoutfull['transportCharge']:'Not selected'?></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Insurance ($)</b> <span class="pull-right badge bg-light-blue"><?php echo (!empty( $layoutfull['insurance']))? $layoutfull['insurance']:'Not selected'?></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Courses/School Fees ($)</b> <span class="pull-right badge bg-light-blue"><?php echo (!empty( $layoutfull['coursesSchoolFees']))? $layoutfull['coursesSchoolFees']:'Not selected'?></span>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Tax/NI Provisions ($)</b> <span class="pull-right badge bg-light-blue"><?php echo (!empty( $layoutfull['TaxNIProvisions']))? $layoutfull['TaxNIProvisions']:'Not selected'?></span>
-                            </li>
                         </ul>
                     </div>
                     <!-- /.box-body -->
@@ -411,7 +380,7 @@
             var r = confirm('Do you want to Reject this Project');
             if (r == true) {
 
-                alert(sendpid);
+
                 var base_url = '<?php echo base_url() ?>';
                 var id=sendpid;
                 $.ajax({
