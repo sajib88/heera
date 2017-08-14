@@ -527,8 +527,6 @@ class Global_model extends CI_Model {
         //return $query;
     }
 
-    public function lenders_projects_funded_amount($id='', $statusID=''){
-
     public function get_repayment_check($id){
         $this->db->select('p.*,rep.repaymentScheduleID');
         $this->db->from('project as p');
