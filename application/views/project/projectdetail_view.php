@@ -9,6 +9,9 @@
         padding: 3px;
         border: 3px solid #d2d6de;
     }
+    .img-size{
+        margin: 0 auto;
+    }
 </style>
 
 
@@ -295,6 +298,36 @@
                 </div>
 
                 <!-- /.box -->
+            </div>
+
+            <div class="col-md-8">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Project Images</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <?php if(!empty($layoutfull['photo1'])){ ?>
+                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo1']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                <?php } else{}?>
+                            </div>
+                            <div class="col-sm-4">
+                                <?php if(!empty($layoutfull['photo2'])){ ?>
+                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo2']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                <?php } else{}?>
+                            </div>
+                            <div class="col-sm-4">
+                                <?php if(!empty($layoutfull['photo3'])){ ?>
+                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo3']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                <?php } else{}?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.box-body -->
+                </div>
             </div>
 
             <!-- Modal -->
