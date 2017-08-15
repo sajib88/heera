@@ -113,7 +113,7 @@
                                                     <tr>
                                                         <td><?php echo $i; ?></td>
                                                         <td data-title="<?php echo 'Repaid Date'; ?>"
-                                                            class="numeric"><?php echo date('d-M-y', strtotime($row->repaidDateTime)); ?></td>
+                                                            class="numeric"><?php echo date('M-d-Y', strtotime($row->repaidDateTime)); ?></td>
                                                         <td data-title="<?php echo 'Project Name'; ?>"
                                                             class="numeric"><span><?php echo $row->name; ?></span>
                                                         </td>
