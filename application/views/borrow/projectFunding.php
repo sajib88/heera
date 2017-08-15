@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="box">
-                            <div class="box-body no-padding">
+                            <div class="box-body">
                                 <?php if(empty($fundHistory)){?>
                                     <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
                                 <?php }else{?>
@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="box">
-                            <div class="box-body no-padding">
+                            <div class="box-body">
                                 <?php if(empty($repaid)){?>
                                     <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
                                 <?php }else{?>

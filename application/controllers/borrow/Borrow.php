@@ -26,16 +26,16 @@ class Borrow extends CI_Controller {
         $data['borrowerAllProjects'] = $this->global_model->borrowerAllProject($loginId, $statusID);
         
          if($statusID == ''){
-            $data['page_title'] = 'All Projects'; 
+            $data['page_title'] = 'All';
             $data['no_data'] = 'You have not create any project yet.';
         }elseif($statusID == 4){
-            $data['page_title'] = 'Funded Projects';
+            $data['page_title'] = 'Funded';
             $data['no_data'] = 'Any Funded Project Not Found.';            
         }elseif($statusID == 3){
-            $data['page_title'] = 'Currently Funding Projects';
+            $data['page_title'] = 'Currently Funding';
             $data['no_data'] = 'Any Active Project Not Found.';            
         }elseif($statusID == 10){
-            $data['page_title'] = 'Closed Projects';
+            $data['page_title'] = 'Closed';
             $data['no_data'] = 'Any Closed Project Not Found.';            
         }
         $this->load->view('header', $data);

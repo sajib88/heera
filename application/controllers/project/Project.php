@@ -270,7 +270,7 @@ class Project extends CI_Controller {
         //echo $id;die;
         if($id == ''){
 
-            $data['page_title'] = 'New Submitted Projects';
+            $data['page_title'] = 'New';
             $data['no_data'] = 'No Project Found.';
 
             $data['allprojects'] = $this->global_model->get($table, array('statusID' => NULL));
@@ -279,53 +279,53 @@ class Project extends CI_Controller {
         
         }elseif($id == 1){
 
-            $data['page_title'] = 'Open Projects';
+            $data['page_title'] = 'Open';
             $data['no_data'] = 'Any Open Project Not Found.';
 
         }elseif ($id == 2) {
 
-            $data['page_title'] = 'Not Funded Projects';
+            $data['page_title'] = 'Not Funded';
             $data['no_data'] = 'Any Not Funded Project Not Found.';
 
         }elseif ($id == 3) {
 
-            $data['page_title'] = 'Active Projects';
+            $data['page_title'] = 'Active';
             $data['no_data'] = 'Any Active Project Not Found.';
 
         }elseif ($id == 4) {
             $data['allprojects'] = $this->global_model->get_repayment_check($id);
-            $data['page_title'] = 'Funded Projects';
+            $data['page_title'] = 'Funded';
             $data['no_data'] = 'Any Funded Project Not Found.';
 
         }elseif ($id == 5) {
 
-            $data['page_title'] = 'Partial Repaid Projects';
+            $data['page_title'] = 'Partial Repaid';
             $data['no_data'] = 'Any Partial Repaid Project Not Found.'; 
         }elseif ($id == 6) {
 
-            $data['page_title'] = 'Repaid Projects';
+            $data['page_title'] = 'Repaid';
             $data['no_data'] = 'Any Repaid Project Not Found.';
         }elseif ($id == 7) {
 
-            $data['page_title'] = 'Defaulted Projects';
+            $data['page_title'] = 'Defaulted';
             $data['no_data'] = 'Any Defaulted Project Not Found.';
         }elseif ($id == 8) {
 
-            $data['page_title'] = 'Loaned Projects';
+            $data['page_title'] = 'Loaned';
             $data['no_data'] = 'Any Loaned Project Not Found.';
         }elseif ($id == 9) {
 
-            $data['page_title'] = 'Repayment Progress Projects';
+            $data['page_title'] = 'Repayment Progress';
             $data['no_data'] = 'Any Repayment Progress Project Not Found.';
         }elseif ($id == 10) {
 
-            $data['page_title'] = 'Closed Projects';
+            $data['page_title'] = 'Closed';
             $data['no_data'] = 'Any Closed Project Not Found.';
         }
         elseif ($id == 88) {
             $data['allprojects'] = $this->global_model->get($table);
             $data['hide'] = 'hide';
-            $data['page_title'] = 'All Projects';
+            $data['page_title'] = 'All';
             $data['no_data'] = 'All Project Not Found.';
         }
 
@@ -409,10 +409,10 @@ class Project extends CI_Controller {
         $data['login_id'] = $loginId;
         $data['allprojects'] = $this->global_model->lenders_projects_funded_amount($loginId, $id);
         if ($id == '') {
-            $data['page_title'] = 'Active Projects';
+            $data['page_title'] = 'Active';
             $data['no_data'] = 'Any Active Project Not Found.';
         }elseif ($id == 4) {
-            $data['page_title'] = 'Funded Projects';
+            $data['page_title'] = 'Funded';
             $data['no_data'] = 'Any Funded Project Not Found.';
 
         }

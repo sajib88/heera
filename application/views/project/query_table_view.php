@@ -56,7 +56,7 @@ print_r($allpersonals);die;*/
                     <div class="box-header">
                         <h3 class="box-title">List of All Projects</h3>
                     </div>
-                    <div class="box-body no-padding">
+                    <div class="box-body">
                         <?php if(empty($allprojects)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){echo $no_data;} else {}?></div>
                         <?php }else{?>

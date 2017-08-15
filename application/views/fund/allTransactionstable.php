@@ -32,7 +32,7 @@ print_r($allpersonals);die;*/
                     <div class="box-header">
                         <h3 class="box-title">List Of All Transactions </h3>
                     </div>
-                    <div class="box-body no-padding">
+                    <div class="box-body">
                         <?php if(count($allTransactions)<=0){?>
                             <div class="alert alert-info">No Personal</div>
                         <?php }else{?>

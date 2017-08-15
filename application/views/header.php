@@ -207,10 +207,10 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(3)==""){echo "active";}?>">
-                            <a href="<?php echo base_url('project/landerproject'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                            <a href="<?php echo base_url('project/landerproject'); ?>"><i class="fa fa-circle-o"></i>All</a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                            <a href="<?php echo base_url('project/landerproject/4'); ?>"><i class="fa fa-circle-o"></i>Funded</a>
                         </li>
                     </ul>
                 </li>
@@ -373,39 +373,39 @@
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(3)==""){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/'); ?>"><i class="fa fa-circle-o"></i>New Submitted Projects<?php if(!empty($count)){ echo '('.$count.')';}else{}?></a>
+                            <a href="<?php echo base_url('project/all/'); ?>"><i class="fa fa-circle-o"></i>New <?php if(!empty($count)){ echo '('.$count.')';}else{}?></a>
                         </li>
 
                         <li class="<?php if($this->uri->segment(3)=="3"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active  Projects</a>
+                            <a href="<?php echo base_url('project/all/3'); ?>"><i class="fa fa-circle-o"></i>Active </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="8"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/8'); ?>"><i class="fa fa-circle-o"></i>Rejected  Projects</a>
+                            <a href="<?php echo base_url('project/all/8'); ?>"><i class="fa fa-circle-o"></i>Rejected </a>
                         </li>
 
                         <li class="<?php if($this->uri->segment(3)=="2"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>Not Funded Projects</a>
+                            <a href="<?php echo base_url('project/all/2'); ?>"><i class="fa fa-circle-o"></i>Not Funded </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded Projects</a>
+                            <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="9"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/9'); ?>"><i class="fa fa-circle-o"></i>Repayment Progress</a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="5"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/5'); ?>"><i class="fa fa-circle-o"></i>Partial Repaid Projects</a>
+                            <a href="<?php echo base_url('project/all/5'); ?>"><i class="fa fa-circle-o"></i>Partial Repaid </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="6"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/6'); ?>"><i class="fa fa-circle-o"></i>Repaid Projects</a>
+                            <a href="<?php echo base_url('project/all/6'); ?>"><i class="fa fa-circle-o"></i>Repaid </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="7"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/7'); ?>"><i class="fa fa-circle-o"></i>Defaulted Projects</a>
+                            <a href="<?php echo base_url('project/all/7'); ?>"><i class="fa fa-circle-o"></i>Defaulted </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="10"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/10'); ?>"><i class="fa fa-circle-o"></i>Closed Projects</a>
+                            <a href="<?php echo base_url('project/all/10'); ?>"><i class="fa fa-circle-o"></i>Closed </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="88"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/88'); ?>"><i class="fa fa-circle-o"></i>All Projects</a>
+                            <a href="<?php echo base_url('project/all/88'); ?>"><i class="fa fa-circle-o"></i>All </a>
                         </li>
                     </ul>
                 </li>
