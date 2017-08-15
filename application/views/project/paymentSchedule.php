@@ -120,7 +120,7 @@
                                             <td data-title="<?php echo 'Repaid Amount'; ?>"
                                                 class="numeric"><span><?php echo $row->repaidAmount; ?></span></td>
                                             <td data-title="<?php echo 'Repayment Schedule Date'; ?>"
-                                                class="numeric"><span><?php echo date('d-M-y',strtotime($row->schedualeDateTime)); ?></span></td>
+                                                class="numeric"><span><?php echo date('M-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
                                         </tr>
                                         <?php $i++;
                                     }

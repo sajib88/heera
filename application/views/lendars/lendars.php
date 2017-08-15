@@ -86,9 +86,9 @@
                                                 <td data-title="<?php echo 'Lendar Name'; ?>"
                                                     class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Join Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span></td>
+                                                    class="numeric"><span><?php echo date("M-d-Y", strtotime($row->created)); ?></span></td>
                                                 <td data-title="<?php echo 'Last Active Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->lastLogin)); ?></span></td>
+                                                    class="numeric"><span><?php echo date("M-d-Y", strtotime($row->lastLogin)); ?></span></td>
                                                 <td data-title="<?php echo 'Total Funded'; ?>"
                                                     class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                 <td data-title="<?php echo 'Total Credit'; ?>"

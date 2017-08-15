@@ -75,12 +75,12 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Transaction Date & Time'; ?>"
                                                     class="numeric"><?php
                                                     $phpdate = strtotime( $row->transactionDateTime);
-                                                   echo  $mysqldate = date( 'Y-m-d | H:i:s', $phpdate );
+                                                   echo  $mysqldate = date( 'M-d-Y | H:i:s', $phpdate );
                                                     ?></td>
                                                 <td data-title="<?php echo 'Amount in'; ?>"
-                                                    class="numeric"><?php echo $row->inAmount; ?></td>
+                                                    class="numeric">$<?php echo $row->inAmount; ?></td>
                                                 <td data-title="<?php echo 'Amount out'; ?>"
-                                                    class="numeric"><?php echo $row->outAmount; ?></td>
+                                                    class="numeric">$<?php echo $row->outAmount; ?></td>
 
                                                 <?php
 

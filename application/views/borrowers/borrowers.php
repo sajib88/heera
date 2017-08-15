@@ -87,10 +87,10 @@
                                                 <td data-title="<?php echo 'Borrowers Name'; ?>"
                                                     class="numeric"><?php echo $row->first_name; ?></td>
                                                 <td data-title="<?php echo 'Join Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y", strtotime($row->created)); ?></span>
-                                                </td>                                               </td>
+                                                    class="numeric"><span><?php echo date("M-d-Y", strtotime($row->created)); ?></span>
+                                                </td>
                                                 <td data-title="<?php echo 'Last Active Date'; ?>"
-                                                    class="numeric"><span><?php echo date("d-m-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
+                                                    class="numeric"><span><?php echo date("M-d-Y h:i:sa", strtotime($row->lastLogin)); ?></span>
                                                 </td>
                                                 
                                                 <td data-title="<?php echo 'Project Qty'; ?>"

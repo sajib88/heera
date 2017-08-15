@@ -51,7 +51,7 @@
                                                     <tr>
                                                         <td><?php echo $i; ?></td>
                                                         <td data-title="<?php echo 'Date'; ?>"
-                                                            class="numeric"><?php echo date('d-M-y', strtotime($row->fundedDateTime)); ?></td>
+                                                            class="numeric"><?php echo date('M-d-Y', strtotime($row->fundedDateTime)); ?></td>
 
                                                         <td data-title="<?php echo 'Project Name'; ?>"
                                                             class="numeric"><span><?php echo $row->name; ?></span>
