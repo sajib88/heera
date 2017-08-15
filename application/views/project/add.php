@@ -280,7 +280,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Payment Method Select <span class="error">*</span></label><span id='type-error' class='error' ></span>
+                                        <label>Type of Funding <span class="error">*</span></label><span id='type-error' class='error' ></span>
 
                                         <?php $typespmth = array('Fixed Funding','Flexible Funding');?>
                                         <select name="paymentMethodID" class="form-control chosen-select" id="type">
@@ -355,7 +355,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Current Employment</label>
+                                        <label>Current Profession</label>
                                         <input name="employmentSelfemployment" value="<?php echo '';?>" class="form-control" >
                                     </div>
                                 </div>

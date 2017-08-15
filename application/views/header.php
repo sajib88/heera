@@ -402,7 +402,7 @@
                             <a href="<?php echo base_url('project/all/7'); ?>"><i class="fa fa-circle-o"></i>Defaulted </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="10"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/10'); ?>"><i class="fa fa-circle-o"></i>Closed </a>
+                            <a href="<?php echo base_url('project/all/10'); ?>"><i class="fa fa-circle-o"></i>Canceled </a>
                         </li>
                         <li class="<?php if($this->uri->segment(3)=="88"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/88'); ?>"><i class="fa fa-circle-o"></i>All </a>

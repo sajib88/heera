@@ -315,7 +315,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Payment Method Select </label>
+                                        <label>Type of Funding </label>
 
                                         <?php $typespm = array('Fixed Funding','Flexible Funding');?>
 
@@ -424,7 +424,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Current Employment</label>
+                                        <label>Current Profession</label>
                                         <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
                                     </div>
                                 </div>

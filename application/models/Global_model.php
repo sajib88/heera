@@ -190,7 +190,7 @@ class Global_model extends CI_Model {
     }
 
     public function get_with_left_join($table, $fields='*', $join_table, $join_on, $where = false, $groupBy = '', $all = false) {
-        $this->db->select('*')->from($table);
+        $this->db->select($fields)->from($table);
         $this->db->join($join_table, $join_table . '.' . $join_on . ' = ' . $table . '.' . $join_on, 'left');
 
         if (!empty($where)) {
@@ -539,8 +539,20 @@ class Global_model extends CI_Model {
         } else {
             return false;
         }
+    }
 
-
+    public function get_funded_project_list($id){
+        $this->db->select('p.*,rep.repaymentScheduleID');
+        $this->db->from('project as p');
+        $this->db->join('repayment_schedules as rep', 'p.projectID=rep.projectID', 'left');
+        $this->db->where('p.statusID', $id);
+        $this->db->group_by('rep.projectID');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
     }
 
 

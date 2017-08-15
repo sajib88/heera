@@ -77,13 +77,13 @@ print_r($allpersonals);die;*/
                                         <th class="numeric"><?php echo 'Borrower Name';?></th>
 
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
-
+                                        <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Collected';?></th>
                                          <th class="numeric"><?php echo 'Amount Funded By';?></th>
 
 
                                         <th class="numeric"><?php echo 'Status';?></th>
-
+                                    <?php }?>
                                         <?php if(!empty($hide)){
 
                                         }
@@ -97,8 +97,9 @@ print_r($allpersonals);die;*/
                                         <?php } } ?>
 
                                         <th class="numeric"><?php echo 'Edit';?></th>
+                                        <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Change Status';?></th>
-
+                                        <?php }?>
 
                                     </tr>
                                     </thead>
@@ -114,13 +115,14 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
+                                            <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
                                                     class="numeric"><span>$<?php echo "0.00"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
-
+                                            <?php }?>
                                             <?php if(!empty($hide)){
 
                                             }
@@ -157,10 +159,11 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Edit'; ?>" class="numeric">
                                                     <a class="btn btn-block btn-success" href="<?php echo base_url('project/Project/edit/' . $row->projectID); ?>" > Edit </a>
                                                 </td>
+                                            <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Change Status'; ?>" class="numeric">
                                                     <a class="changeStatus btn btn-block btn-dropbox" data-toggle="modal" href="#myModal" data-id="<?php echo $row->projectID; ?>">Change Status</a> 
                                                 </td>
-
+                                            <?php }?>
                                             </tr>
                                             <?php $i++;
                                         }
