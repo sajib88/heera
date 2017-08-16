@@ -296,7 +296,9 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Project End Date</label>
-                                        <input name="projectEndDate" type="text" class="form-control" id="datepicker">
+                                        <div class="input-group">
+                                            <input name="projectEndDate" type="text" class="form-control" id="datepicker">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -526,15 +528,15 @@
     jQuery(document).ready(function() {
         //Date picker
         $('#datepicker2').datepicker({
-            autoclose: true
+            autoclose: true,
+            minDate: 0
         });
         $('#datepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            startDate: new Date(),
+            todayHighlight: true
         });
-
     });
-
-
 
 </script>
 
@@ -555,6 +557,11 @@
         });
 
     }
+
+
+</script>
+
+<script language="javascript">
 
 </script>
 
