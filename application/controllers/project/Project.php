@@ -392,6 +392,8 @@ class Project extends CI_Controller {
         $data['user_info'] = $user_info = $this->global_model->get_data('users', array('id' => $loginId));
         $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $id));
 
+        $data['lenders'] = $this->global_model->getLenderPerProject($id);
+
         $getbyprojectid= $getprojectdata['userID'];
 
         $date = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid, 'password' => ''));
@@ -401,12 +403,21 @@ class Project extends CI_Controller {
 
          $password = uniqid(date('YmdHis'));
 
-
         $this->load->view('header', $data);
         $this->load->view('project/projectdetail_view', $data);
         $this->load->view('footer');
 
 
+    }
+
+    public function lenderProfile($id){
+        $data = array();
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $user_info = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $id));
+        $this->load->view('header', $data);
+        $this->load->view('project/lenderProfile', $data);
+        $this->load->view('footer');
     }
 
 

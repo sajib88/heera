@@ -272,6 +272,53 @@
             <div class="col-md-8">
                 <div class="box box-primary">
                     <div class="box-header with-border">
+                        <h3 class="box-title">Lender</h3>
+                    </div>
+                    <div class="box-body">
+                        <?php if(empty($lenders)){
+
+                        ?>
+                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> Project Not Funded Yet.</div>
+                        <?php }else{?>
+                        <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                            <thead>
+                            <tr>
+                                <th class="numeric">Lender Name</th>
+
+                                <th class="numeric">Amount Funded</th>
+
+                                <th class="numeric">View</th>
+                                <th class="numeric">Refund</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if(!empty($lenders)) {
+
+                                foreach ($lenders as $row) {
+                                    // print_r($data);
+                                    ?>
+                                    <tr>
+                                        <td class="numeric"><?php echo $row->lenderName; ?></td>
+                                        <td class="numeric">$<?php echo $row->fundedAmount; ?></td>
+                                        <td class="numeric"><a class="btn btn-block btn-info" href="<?php echo base_url('project/Project/lenderProfile/' . $row->fundedBy); ?>" > View</a></td>
+                                        <td class="numeric"><a class="btn btn-block btn-warning" href="<?php ///echo base_url('project/Project/edit/' . $row->projectID); ?>" > Refund </a></td>
+                                    </tr>
+                                    <?php
+                                }
+                           }else{
+                               echo 'No data Found';
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
                         <h3 class="box-title">Project Images</h3>
                     </div>
                     <!-- /.box-header -->
