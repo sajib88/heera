@@ -77,6 +77,9 @@ print_r($allpersonals);die;*/
                                         <th class="numeric"><?php echo 'Borrower Name';?></th>
 
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
+
+                                        <th class="numeric"><?php echo 'Project Purpose';?></th>
+
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Collected';?></th>
                                          <th class="numeric"><?php echo 'Amount Funded By';?></th>
@@ -115,6 +118,8 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
+                                                <td data-title="<?php echo 'Project Purpose'; ?>"
+                                                    class="numeric"><span><?php echo getpurposeById($row->purposeID); ?></span></td>
                                             <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
                                                     class="numeric"><span>$<?php echo "0.00"; ?></span></td>
