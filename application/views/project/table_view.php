@@ -78,7 +78,7 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
 
-                                        <th class="numeric"><?php echo 'Project Purpose';?></th>
+
 
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Collected';?></th>
@@ -87,6 +87,7 @@ print_r($allpersonals);die;*/
 
                                         <th class="numeric"><?php echo 'Status';?></th>
                                     <?php }?>
+                                        <th class="numeric"><?php echo 'Project Purpose';?></th>
                                         <?php if(!empty($hide)){
 
                                         }
@@ -118,8 +119,6 @@ print_r($allpersonals);die;*/
                                                     class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
-                                                <td data-title="<?php echo 'Project Purpose'; ?>"
-                                                    class="numeric"><span><?php echo getpurposeById($row->purposeID); ?></span></td>
                                             <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
                                                     class="numeric"><span>$<?php echo "0.00"; ?></span></td>
@@ -128,6 +127,8 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
                                             <?php }?>
+                                                <td data-title="<?php echo 'Project Purpose'; ?>"
+                                                    class="numeric"><span><?php echo getpurposeById($row->purposeID); ?></span></td>
                                             <?php if(!empty($hide)){
 
                                             }
