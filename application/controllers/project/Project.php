@@ -259,7 +259,6 @@ class Project extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
         $data['allprojects'] = $this->global_model->get($table, array('statusID' => $id));
 
-
         $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
         $data['project_status'] = $this->global_model->get('project_status_lookup');
 

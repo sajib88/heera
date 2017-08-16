@@ -81,9 +81,10 @@ print_r($allpersonals);die;*/
 
 
                                         <?php if(!empty($p_statusID)){?>
-                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                        <th class="numeric"><?php echo 'Amount Funded';?></th>
+                                            <?php if($p_statusID != 3){?>
                                          <th class="numeric"><?php echo 'Amount Funded By';?></th>
-
+                                         <?php } ?>
 
                                         <th class="numeric"><?php echo 'Status';?></th>
                                     <?php }?>
@@ -120,10 +121,12 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
                                             <?php if(!empty($p_statusID)){?>
-                                                <td data-title="<?php echo 'Amount Collected'; ?>"
+                                                <td data-title="<?php echo 'Amount Funded'; ?>"
                                                     class="numeric"><span>$<?php echo "0.00"; ?></span></td>
+                                                <?php if($p_statusID != 3){?>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>
+                                                <?php } ?>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
                                             <?php }?>
