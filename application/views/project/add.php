@@ -328,8 +328,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Monthly Expenses</label>
-                                        <input type="number" name="monthlyExpenses"  class="form-control"  id="monthlyExpenses">
+                                        <label>Monthly Income</label>
+                                        <input type="number" name="monthlyIncome"  class="form-control"  id="monthlyIncome">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

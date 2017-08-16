@@ -44,6 +44,14 @@ class Project extends CI_Controller {
 
 
             if($this->form_validation->run() == true){
+
+                if(!empty($postData['projectEndDate'])){
+                    $date = date('Y-m-d', strtotime(($postData['projectEndDate']) ? NULL : $postData['projectEndDate']));
+                }
+                else{
+                    $date = null;
+                }
+
                 $save['name'] = $postData['name'];
                 $save['purposeID'] = $postData['purposeID'];
                 $save['shortDescription'] = $postData['shortDescription'];
@@ -54,8 +62,7 @@ class Project extends CI_Controller {
                 $save['minimumAmount'] = $postData['minimumAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
-                $date = date('Y-m-d', strtotime($postData['projectEndDate']));
-                $save['projectEndDate'] = $date;                
+                 $save['projectEndDate'] = $date;
                 $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
                 $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
                 $save['city'] = $postData['city'];
@@ -152,7 +159,12 @@ class Project extends CI_Controller {
          if($this->input->post()){
 
             $postData = $this->input->post();
-
+             if(!empty($postData['projectEndDate'])){
+                 $date = date('Y-m-d', strtotime(($postData['projectEndDate']) ? NULL : $postData['projectEndDate']));
+             }
+             else{
+                 $date = null;
+             }
              $save['name'] = $postData['name'];
              $save['purposeID'] = $postData['purposeID'];
              $save['shortDescription'] = $postData['shortDescription'];
@@ -517,6 +529,9 @@ class Project extends CI_Controller {
         $data = array();
 
         $id = $this->uri->segment('4');
+        $getprojectsenddate = $this->global_model->get_data('project', array('projectID' => $id));
+        $getEnddateproject= $getprojectsenddate['projectEndDate'];
+        if($getEnddateproject != null) {
 
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
         $save['adminApprovalStatus'] = 'Approved';
@@ -524,8 +539,13 @@ class Project extends CI_Controller {
         $save['statusID'] = 3;
 
 
-        $ref = $this->global_model->update('project', $save, array('projectID' => $id));
 
+            $ref = $this->global_model->update('project', $save, array('projectID' => $id));
+        }
+        else {
+            echo "notfound";
+            $ref = '';
+        }
         if($ref){
 
             // Your project save successfully
@@ -570,7 +590,7 @@ class Project extends CI_Controller {
 
             }
 
-            exit;
+
         }else{
             echo "error";
 
