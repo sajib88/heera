@@ -804,6 +804,8 @@
                             $('#foo').html(msg);
                         }
                         else {
+                            var msg = "<div class='alert alert-danger'>Project end date not allow to blank. Please add project end date first  </div>";
+                            $('#foo').html(msg);
                         }
 
                     }
