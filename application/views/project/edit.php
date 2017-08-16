@@ -429,6 +429,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Employment Status</label>
+                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
+                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
+                                            <option value="">Select Home Ownership</option>
+                                            <?php
+                                            if (is_array($types4) and (!empty($types4))) {
+                                                foreach ($types4 as $key=>$value) {
+                                                    $v = (set_value('employmentSelfemployment')!='')?set_value('employmentSelfemployment'):$editProject['employmentSelfemployment'];
+                                                    $sel = ($v == $value)?'selected="selected"':'';
+                                                    ?>
+                                                    <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
 
 

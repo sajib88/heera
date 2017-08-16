@@ -258,7 +258,7 @@
                                 <b>Home Ownership</b> <span class="pull-right badge bg-yellow"><?php echo (!empty( $layoutfull['homeOwnership']))? $layoutfull['homeOwnership']:'Not selected'?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Current Employment</b> <span class="pull-right badge bg-aqua"><?php echo (!empty( $layoutfull['lengthOfEmployment']))? $layoutfull['lengthOfEmployment']:'Not selected'?></span>
+                                <b>Current Employment</b> <span class="pull-right badge bg-aqua"><?php echo (!empty( $layoutfull['employmentSelfemployment']))? $layoutfull['employmentSelfemployment']:'Not selected'?></span>
                             </li>
 
                         </ul>

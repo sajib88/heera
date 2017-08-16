@@ -362,6 +362,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Employment Status</label>
+                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
+                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
+                                            <option value="">Select Employment Status</option>
+                                            <?php foreach ($types4 as $row) {?>
+                                                <option value="<?php echo $row;?>"><?php echo $row?></option>
+                                            <?php }?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
 
                             <!-- /.Lending -->
