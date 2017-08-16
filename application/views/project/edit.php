@@ -720,7 +720,9 @@
             autoclose: true
         });
         $('#datepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            startDate: new Date(),
+            todayHighlight: true
         });
 
     });
