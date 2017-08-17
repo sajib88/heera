@@ -45,8 +45,10 @@ class Project extends CI_Controller {
 
             if($this->form_validation->run() == true){
 
+
                 if(!empty($postData['projectEndDate'])){
-                    $date = date('Y-m-d', strtotime(($postData['projectEndDate']) ? NULL : $postData['projectEndDate']));
+                    $dbdate = new DateTime($postData['projectEndDate']);
+                    $date = $dbdate->format('Y-m-d');
                 }
                 else{
                     $date = null;
@@ -62,7 +64,7 @@ class Project extends CI_Controller {
                 $save['minimumAmount'] = $postData['minimumAmount'];
                 $save['paymentMethodID'] = $postData['paymentMethodID'];
                 $save['interestRate'] = $postData['interestRate'];
-                 $save['projectEndDate'] = $date;
+                $save['projectEndDate'] = $date;
                 $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
                 $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
                 $save['city'] = $postData['city'];
@@ -159,12 +161,20 @@ class Project extends CI_Controller {
          if($this->input->post()){
 
             $postData = $this->input->post();
+     // echo date('Y-m-d', strtotime($postData['projectEndDate']));
+
+
+
              if(!empty($postData['projectEndDate'])){
-                 $date = date('Y-m-d', strtotime(($postData['projectEndDate']) ? NULL : $postData['projectEndDate']));
+
+                 $dbdate = new DateTime($postData['projectEndDate']);
+                 $date = $dbdate->format('Y-m-d');
              }
              else{
                  $date = null;
              }
+
+
              $save['name'] = $postData['name'];
              $save['purposeID'] = $postData['purposeID'];
              $save['shortDescription'] = $postData['shortDescription'];
@@ -175,8 +185,7 @@ class Project extends CI_Controller {
              $save['minimumAmount'] = $postData['minimumAmount'];
              $save['paymentMethodID'] = $postData['paymentMethodID'];
              $save['interestRate'] = $postData['interestRate'];
-             $date = date('Y-m-d', strtotime($postData['projectEndDate']));
-             $save['projectEndDate'] = $date;
+             $save['projectEndDate'] =  $date;
              $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
              $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
              $save['city'] = $postData['city'];
@@ -537,20 +546,119 @@ class Project extends CI_Controller {
 
     public function approvedProject(){
         $data = array();
-
-        $id = $this->uri->segment('4');
+        $this->load->library('Resizeimg');
+        $postData = $this->input->get();
+        $id = $this->input->get('projectid');
         $getprojectsenddate = $this->global_model->get_data('project', array('projectID' => $id));
         $getEnddateproject= $getprojectsenddate['projectEndDate'];
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        if(!empty($postData['projectEndDate'])){
+
+            $dbdate = new DateTime($postData['projectEndDate']);
+            $date = $dbdate->format('Y-m-d');
+        }
+        else{
+            $date = null;
+        }
+
+        $save['name'] = $postData['name'];
+        $save['purposeID'] = $postData['purposeID'];
+        $save['shortDescription'] = $postData['shortDescription'];
+        $save['detailsDescription'] = empty($postData['detailsDescription']) ? NULL : $postData['detailsDescription'];
+        $save['loanTerm'] = $postData['loanTerm'];
+        $save['RepaymentScheduleID'] = $postData['RepaymentScheduleID'];
+        $save['neededAmount'] = $postData['neededAmount'];
+        $save['minimumAmount'] = $postData['minimumAmount'];
+        $save['paymentMethodID'] = $postData['paymentMethodID'];
+        $save['interestRate'] = $postData['interestRate'];
+        $save['projectEndDate'] =  $date;
+        $save['address1'] = empty($postData['address1']) ? NULL : $postData['address1'];
+        $save['address2'] = empty($postData['address2']) ? NULL : $postData['address2'];
+        $save['city'] = $postData['city'];
+        $save['state'] = $postData['state'];
+        $save['country'] = $postData['country'];
+        $save['monthlyIncome'] = $postData['monthlyIncome'];
+        $save['monthlyExpenses'] = empty($postData['monthlyExpenses']) ? NULL : $postData['monthlyExpenses'];
+        $save['homeOwnership'] = $postData['homeOwnership'];
+        $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
+        $save['userID'] = $postData['userID'];
+
+
+        if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
+            $this->PATH = './assets/file/project';
+            $photo_name = time();
+            if (!file_exists($this->PATH)) {
+                mkdir($this->PATH, 0777, true);
+            }
+            $save['mainImage'] = $this->resizeimg->image_upload('mainImage', $this->PATH, 'size[300,300]', '', $photo_name);
+        }
+        else {
+
+        }
+
+        if (isset($_FILES["photo1"]["name"]) && $_FILES["photo1"]["name"] != '') {
+            $this->PATH = './assets/file/project';
+            $photo_name = time();
+            if (!file_exists($this->PATH)) {
+                mkdir($this->PATH, 0777, true);
+            }
+            $save['photo1'] = $this->resizeimg->image_upload('photo1', $this->PATH, 'size[300,300]', '', $photo_name);
+        }
+        else {
+
+        }
+
+        if (isset($_FILES["photo2"]["name"]) && $_FILES["photo2"]["name"] != '') {
+            $this->PATH = './assets/file/project';
+            $photo_name = time();
+            if (!file_exists($this->PATH)) {
+                mkdir($this->PATH, 0777, true);
+            }
+            $save['photo2'] = $this->resizeimg->image_upload('photo2', $this->PATH, 'size[300,300]', '', $photo_name);
+        }
+        else {
+
+        }
+
+        if (isset($_FILES["photo3"]["name"]) && $_FILES["photo3"]["name"] != '') {
+            $this->PATH = './assets/file/project';
+            $photo_name = time();
+            if (!file_exists($this->PATH)) {
+                mkdir($this->PATH, 0777, true);
+            }
+            $save['photo3'] = $this->resizeimg->image_upload('photo3', $this->PATH, 'size[300,300]', '', $photo_name);
+        }
+        else {
+
+        }
+
+        // print '<pre>';
+        // print_r($save);die;
+
+        if ($ref = $this->global_model->update('project', $save, array('projectID' => $id))) {
+            $this->session->set_flashdata('message', 'Update Your Project info...');
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////
+
+
         if($getEnddateproject != null) {
 
+
+
+
+
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
-        $save['adminApprovalStatus'] = 'Approved';
+        $save['adminApprovalStatus'] = 'alisha00071';
         $save['rejectReason'] = 0;
-        $save['statusID'] = 3;
+        $save['statusID'] = 4;
 
 
 
-            $ref = $this->global_model->update('project', $save, array('projectID' => $id));
+          $ref = $this->global_model->update('project', $save, array('projectID' => $id));
         }
         else {
             echo "notfound";

@@ -33,6 +33,7 @@
     <div id="foo"></div>
     <form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/edit/'. $editProject['projectID']); ?>">
         <input type="hidden" name="login_id" value="<?php echo $editProject['userID']; ?>">
+        <input type="hidden" name="projectid" value="<?php echo $editProject['projectID']; ?>">
 <section class="content">
 <div class="row">
     <div class="col-md-6">
@@ -524,7 +525,7 @@
                                 <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
                             </div>
                             <div class="col-lg-6 ">
-                                <button class="btn  btn-success  btn-lg pull-right"  name="submit" type="submit">
+                                <button id="updateproject" class="btn  btn-success  btn-lg pull-right" onclick="this.form.submit()"  type="button">
                                     <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
                             </div>
 
@@ -788,35 +789,37 @@
 
 
         $("#approveProject").click(function(e){
-            var r = confirm('Do you want to Appreove this Project');
-            if(r == true){
-                var base_url = '<?php echo base_url() ?>';
-                var id=sendpid;
-                $.ajax({
-                    type: 'GET',
-                    url: base_url + "project/project/approvedProject/"+id, //this file has the calculator function code
-                    //data: id,
-                    success: function(msg) {
+            if($("#classifiedform").valid()) {
+                var r = confirm('Do you want to Appreove this Project');
+                if (r == true) {
+                    var base_url = '<?php echo base_url() ?>';
+                    var id = sendpid;
+                    $.ajax({
+                        type: 'GET',
+                        data: $('#classifiedform').serialize(),
+                        url: base_url + "project/project/approvedProject/", //this file has the calculator function code
+                        //data: id,
+                        success: function (msg) {
 
-                        if (msg == 'success') {
-                            // show success meessage
-                            var msg = "<div class='alert alert-success'>Your Project Approved Successfully.  </div>";
-                            $('#foo').html(msg);
+                            if (msg == 'success') {
+                                // show success meessage
+                                var msg = "<div class='alert alert-success'>Your Project Approved Successfully.  </div>";
+                                $('#foo').html(msg);
+                            }
+                            else {
+                                var msg = "<div class='alert alert-danger'>Project end date not allow to blank. Please add project end date first  </div>";
+                                $('#foo').html(msg);
+                            }
+
                         }
-                        else {
-                            var msg = "<div class='alert alert-danger'>Project end date not allow to blank. Please add project end date first  </div>";
-                            $('#foo').html(msg);
-                        }
-
-                    }
 
 
+                    });
+                    // alert('Your project status Approved successfully');
 
-                });
-                // alert('Your project status Approved successfully');
-
-            }else{
-                //alert('Canceled');
+                } else {
+                    //alert('Canceled');
+                }
             }
         });
 
@@ -868,4 +871,13 @@
 
 
 
+</script>
+
+<script>
+    $(function() {
+        $('#updateproject').click(function() {
+
+            this.submit();
+        });
+    });
 </script>
