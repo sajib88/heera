@@ -278,14 +278,14 @@ class Project extends CI_Controller {
         $data = array();
 
         $loginId = $this->session->userdata('login_id');
-        $data['allprojects'] = $this->global_model->get($table, array('statusID' => $id));
+        $data['allprojects'] = $this->global_model->projectList($id);
 
         $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
         $data['project_status'] = $this->global_model->get('project_status_lookup');
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
-        $data['count'] = $this->global_model->count_row_where($table, array('statusID' => NULL));
+
         $data['p_statusID'] = $id;
         //echo $id;die;
         if($id == ''){
@@ -293,8 +293,8 @@ class Project extends CI_Controller {
             $data['page_title'] = 'New';
             $data['no_data'] = 'No Project Found.';
 
-            $data['allprojects'] = $this->global_model->get($table, array('statusID' => NULL));
-            
+            $data['allprojects'] = $this->global_model->projectList(NULL);
+
             //print_r($data['count']);die;
         
         }elseif($id == 1){
@@ -314,6 +314,7 @@ class Project extends CI_Controller {
 
         }elseif ($id == 4) {
             $data['allprojects'] = $this->global_model->get_repayment_check($id);
+            //print_r($data['allprojects']);
             $data['page_title'] = 'Funded';
             $data['no_data'] = 'Not Found.';
 
@@ -403,6 +404,8 @@ class Project extends CI_Controller {
 
         $data['lenders'] = $this->global_model->getLenderPerProject($id);
 
+        //echo "<pre>"; print_r( $data['lenders']);echo "</pre>";die;
+
         $getbyprojectid= $getprojectdata['userID'];
 
         $date = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid, 'password' => ''));
@@ -421,9 +424,12 @@ class Project extends CI_Controller {
 
     public function lenderProfile($id){
         $data = array();
+
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $user_info = $this->global_model->get_data('users', array('id' => $loginId));
+
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $id));
+
         $this->load->view('header', $data);
         $this->load->view('project/lenderProfile', $data);
         $this->load->view('footer');

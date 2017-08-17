@@ -24,10 +24,6 @@ class Dashboard extends CI_Controller {
         ///// For lender purpuse code
         $data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
 
-        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
-
-
-
         if($user_info['profession'] == 1){
 
             //// Funded get table
