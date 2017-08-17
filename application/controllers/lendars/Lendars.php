@@ -25,7 +25,7 @@ class Lendars extends CI_Controller {
 
         //print_r($data['lendars']);die;
 
-        $data['count'] = $this->global_model->count_row_where('project', array('statusID' => NULL));
+
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
         $this->load->view('header', $data);
