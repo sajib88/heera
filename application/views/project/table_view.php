@@ -117,12 +117,12 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span><?php echo "Borrower Name"; ?></span></td>
+                                                    class="numeric"><span><?php echo $row->borrowerName; ?></span></td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
                                                     class="numeric"><span>$<?php echo $row->neededAmount; ?></span></td>
                                             <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Amount Funded'; ?>"
-                                                    class="numeric"><span>$<?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><span>$<?php if(!empty($row->fundedAmount)){echo $row->fundedAmount;}else{echo '0.00';} ?></span></td>
                                                 <?php if($p_statusID != 3){?>
                                                 <td data-title="<?php echo 'Amount Funded By'; ?>"
                                                     class="numeric"><span><?php echo "Name of founder"; ?></span></td>

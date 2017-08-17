@@ -345,9 +345,9 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Project End Date</label>
+                                        <label>Project End Date</label><span id='date' class='error' for='start_date'></span>
 
-                                        <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo $editProject['projectEndDate']; ?>">
+                                        <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo date("m/d/Y", strtotime($editProject['projectEndDate'])); ?>">
                                     </div>
                                 </div>
                             </div>
