@@ -53,7 +53,7 @@ class Borrowers extends CI_Controller {
         
         //print_r($data['allfundedproject']);die;
         
-        $data['allCreatedProject'] = $this->global_model->get('project', array('userID' => $userID));
+        $data['allCreatedProject'] = $this->global_model->borrower_all_project($userID);
         
         
         

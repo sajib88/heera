@@ -445,9 +445,10 @@ class Global_model extends CI_Model {
     }
     
     public function borrower_funded_project($id){
-       $this->db->select('p.*');
+       $this->db->select('p.*, f.fundedAmount');
        $this->db->from('project as p');
        //$this->db->join('users as u', 'u.id=p.userID');
+        $this->db->select_sum('f.fundedAmount');
        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
        $this->db->where('p.userID', $id);
        $this->db->group_by('p.projectID');
@@ -461,13 +462,12 @@ class Global_model extends CI_Model {
         //return $query;
     }
 
-    public function all_borrower_with_funded_amount($id){
-        $this->db->select('p.*,u.*');
+    public function borrower_all_project($id){
+        $this->db->select('p.*, f.fundedAmount');
         $this->db->from('project as p');
         $this->db->select_sum('f.fundedAmount');
-        $this->db->join('users as u', 'u.id=p.userID');
-        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
-        $this->db->where('u.profession', $id);
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+        $this->db->where('p.userID', $id);
         $this->db->group_by('p.projectID');
         $query = $this->db->get();
 
@@ -477,6 +477,23 @@ class Global_model extends CI_Model {
             return false;
         }
         //return $query;
+    }
+
+    public function all_borrower_with_funded_amount($id){
+        $this->db->select('p.*, u.*, f.fundedAmount');
+        $this->db->from('project as p');
+        $this->db->join('users as u', 'u.id=p.userID', 'left');
+        $this->db->select_sum('f.fundedAmount');
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+        $this->db->where('u.profession', $id);
+        $this->db->group_by('p.userID');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
     }
     
     public function borrower_repayment_schedule($id){
@@ -673,6 +690,24 @@ class Global_model extends CI_Model {
         $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
         $this->db->select_sum('f.fundedAmount');
         $this->db->where('p.statusID', $id);
+        $this->db->group_by('p.projectID');
+        $query = $this->db->get();
+        //echo "<pre>"; print_r($query->result());echo "</pre>";
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function allprojectList(){
+        $this->db->select('p.*, f.fundedAmount, u.first_name as borrowerName');
+        $this->db->from('project as p');
+        $this->db->join('users as u', 'u.id=p.userID');
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+        $this->db->select_sum('f.fundedAmount');
+
         $this->db->group_by('p.projectID');
         $query = $this->db->get();
         //echo "<pre>"; print_r($query->result());echo "</pre>";

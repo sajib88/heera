@@ -335,7 +335,7 @@ class Project extends CI_Controller {
             $data['no_data'] = 'Project Not Found.';
         }
         elseif ($id == 88) {
-            $data['allprojects'] = $this->global_model->get($table);
+            $data['allprojects'] = $this->global_model->allprojectList();
             $data['hide'] = 'hide';
             $data['page_title'] = 'All';
             $data['no_data'] = 'Project Not Found.';
