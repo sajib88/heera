@@ -425,15 +425,13 @@ class Global_model extends CI_Model {
     }
     
     public function all_project($id){
-       $this->db->select('p.*, f.*, u.first_name as borrowerName');
+       $this->db->select('p.name, p.projectID, p.neededAmount, p.userID, p.statusID, f.fundedAmount, u.first_name as borrowerName');
        $this->db->from('project as p');
-       $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');  
-       $this->db->join('users as u', 'u.id=p.userID'); 
-        
-       $this->db->where('f.fundedBy', $id);             
-       $this->db->group_by('f.projectID');
-
-
+        $this->db->join('users as u', 'u.id=p.userID');
+        $this->db->select_sum('f.fundedAmount');
+       $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+       $this->db->where('f.fundedBy', $id);
+       $this->db->group_by('p.projectID');
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
