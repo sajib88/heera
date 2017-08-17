@@ -305,6 +305,7 @@ class Project extends CI_Controller {
 
         }elseif ($id == 4) {
             $data['allprojects'] = $this->global_model->get_repayment_check($id);
+            //print_r($data['allprojects']);
             $data['page_title'] = 'Funded';
             $data['no_data'] = 'Not Found.';
 
