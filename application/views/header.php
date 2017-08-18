@@ -390,12 +390,17 @@
                         <li class="<?php if($this->uri->segment(3)=="4"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/4'); ?>"><i class="fa fa-circle-o"></i>Funded </a>
                         </li>
-                        <li class="<?php if($this->uri->segment(3)=="9"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/9'); ?>"><i class="fa fa-circle-o"></i>Repayment Progress</a>
+                        <!--
+
+                        <li class="<?php // if($this->uri->segment(3)=="9"){echo "active";}?>">
+                            <a href="<?php // echo base_url('project/all/9'); ?>"><i class="fa fa-circle-o"></i>Repayment Progress</a>
+                        </li> -->
+                        <!--
+
+                        <li class="<?php // if($this->uri->segment(3)=="5"){echo "active";}?>">
+                            <a href="<?php //echo base_url('project/all/5'); ?>"><i class="fa fa-circle-o"></i>Partial Repaid </a>
                         </li>
-                        <li class="<?php if($this->uri->segment(3)=="5"){echo "active";}?>">
-                            <a href="<?php echo base_url('project/all/5'); ?>"><i class="fa fa-circle-o"></i>Partial Repaid </a>
-                        </li>
+                        -->
                         <li class="<?php if($this->uri->segment(3)=="6"){echo "active";}?>">
                             <a href="<?php echo base_url('project/all/6'); ?>"><i class="fa fa-circle-o"></i>Repaid </a>
                         </li>

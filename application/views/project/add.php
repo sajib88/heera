@@ -540,14 +540,11 @@
 
 
     jQuery(document).ready(function() {
-        //Date picker
-        $('#datepicker2').datepicker({
-            autoclose: true,
-            minDate: 0
-        });
+
         $('#datepicker').datepicker({
             autoclose: true,
             startDate: new Date(),
+            format: 'mm-dd-yyyy',
             todayHighlight: true
         });
     });

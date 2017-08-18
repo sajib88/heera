@@ -82,9 +82,6 @@ print_r($allpersonals);die;*/
 
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Funded';?></th>
-                                            <?php if($p_statusID != 3){?>
-                                         <th class="numeric"><?php echo 'Amount Funded By';?></th>
-                                         <?php } ?>
 
                                         <th class="numeric"><?php echo 'Status';?></th>
                                     <?php }?>
@@ -123,10 +120,7 @@ print_r($allpersonals);die;*/
                                             <?php if(!empty($p_statusID)){?>
                                                 <td data-title="<?php echo 'Amount Funded'; ?>"
                                                     class="numeric"><span>$<?php if(!empty($row->fundedAmount)){echo $row->fundedAmount;}else{echo '0.00';} ?></span></td>
-                                                <?php if($p_statusID != 3){?>
-                                                <td data-title="<?php echo 'Amount Funded By'; ?>"
-                                                    class="numeric"><span><?php echo "Name of founder"; ?></span></td>
-                                                <?php } ?>
+
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span class="label"><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span></td>
                                             <?php }?>
@@ -276,6 +270,9 @@ print_r($allpersonals);die;*/
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/dataTables.bootstrap.js"></script>
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<?php
+if(!empty($hide != 'hide')){
+?>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -285,10 +282,29 @@ print_r($allpersonals);die;*/
             "lengthChange": true,
             "searching": true,
             "info": true,
-            "autoWidth": false
+            "autoWidth": false,
+            "lengthMenu": [[20, 45, 70, -1], 20, 45, 70, "All"]]
         });
     });
 </script>
+<?php} else{?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //var personaltable = document.getElementById("js_personal_table");
+            $('#js_personal_table').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "info": true,
+                "autoWidth": false,
+                "lengthMenu": [[12, 25, 50, -1], [12, 25, 50, "All"]]
+
+            });
+        });
+    </script>
+<?php }?>
+
+
 
 <script type="text/javascript">
 $('.changeStatus').click(function(){

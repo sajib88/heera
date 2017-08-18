@@ -31,6 +31,7 @@ class Home extends CI_Controller {
         $data['projectData'] = $projectData;
 
 
+
         $this->load->view('guest_head', $data);
         $this->load->view('home',$data);
         $this->load->view('guest_footer');
@@ -63,11 +64,14 @@ class Home extends CI_Controller {
         $projectData['totalRaisedAmount'] = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectData['projectID']));
         $data['projectData'] = $projectData;
 
+
+
         /// payment shedule
         $data['repaymentschedule'] = $this->global_model->get('repaymentschedulelookup');
         /// Total Fund collect
         $data['totalfundrise'] = $this->global_model->get('project_fund_history');
         /// total  lander for this project
+
 
         /// Total lander
         $data['totallander'] = $this->global_model->count_row_funded('project_fund_history', array('projectID' => $id));

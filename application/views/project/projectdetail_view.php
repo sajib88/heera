@@ -74,23 +74,24 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong><i class="fa fa-check"></i> Project Name</strong>
-                        <p class="text-muted">
-                            <?php echo (!empty( $layoutfull['name']))? $layoutfull['name']:''?>
-                        </p>
+
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b> Project Name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['name']))? $layoutfull['name']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Purpose</b> <span class="pull-right"> <?php
+                                    $data = get_data('purpose_lookup', array('purposeID' => $layoutfull['purposeID']));
+                                    echo $data['purposeTitle'];
+                                    ?></span>
+                            </li>
+
+                        </ul>
+
+
                         <hr>
-
-
-                        <strong><i class="fa fa-crosshairs"></i> Purpose </strong>
-                        <p class="text-muted">
-
-                            <?php
-                            $data = get_data('purpose_lookup', array('purposeID' => $layoutfull['purposeID']));
-                            echo $data['purposeTitle'];
-                            ?>
-                        </p>
-                        <hr>
-                        <strong><i class="fa fa-book margin-r-5"></i> Short Description</strong>
+                        <strong>Short Description</strong>
 
                         <p class="text-muted">
                             <?php echo (!empty( $layoutfull['shortDescription']))? $layoutfull['shortDescription']:''?>
@@ -98,7 +99,7 @@
 
                         <hr>
 
-                        <strong><i class="fa fa-book margin-r-5"></i> Long Description</strong>
+                        <strong> Long Description</strong>
 
                         <p class="text-muted">
                             <?php echo (!empty( $layoutfull['detailsDescription']))? $layoutfull['shortDescription']:''?>
@@ -110,6 +111,36 @@
 
 
 
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Borrower Info</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['first_name']))? $layoutfull['first_name']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['dateofbirth']))? $layoutfull['dateofbirth']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Email</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['email']))? $layoutfull['email']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['phone']))? $layoutfull['phone']:''?></span>
+                            </li>
+
+                        </ul>
 
 
                     </div>
@@ -133,66 +164,36 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Loan Term</b> <span class="pull-right"><?php echo (!empty( $layoutfull['loanTerm']))? $layoutfull['loanTerm']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Repayment Schedule</b> <span class="pull-right"><?php  $data = get_data('repaymentschedulelookup', array('RepaymentScheduleID' => $layoutfull['RepaymentScheduleID']));
+                                    echo $data['repaymentScheduleTitle']; ?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Needed Amount</b> <span class="pull-right"><?php echo (!empty( $layoutfull['neededAmount']))? $layoutfull['neededAmount']:'Not selected'?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b> Minimum Amount</b> <span class="pull-right"><?php echo (!empty( $layoutfull['minimumAmount']))? $layoutfull['minimumAmount']:'Not selected'?></span>
+                            </li>
+
+                            <li class="list-group-item">
+                                <b> Payment Method</b> <span class="pull-right"><?php echo (!empty( $layoutfull['paymentMethodID']))? $layoutfull['paymentMethodID']:'Not selected'?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b> Interest Rate</b> <span class="pull-right"><?php echo (!empty( $layoutfull['interestRate']))? $layoutfull['interestRate']:'Not selected'?></span>
+                            </li>
+
+                            <li class="list-group-item">
+                                <b> Project End Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
+                                   echo  $date = $dbdate->format('m-d-y');?></span>
+                            </li>
 
 
-                        <strong><i class="fa fa-arrows-h"></i> Loan Term </strong>
-                        <p class="text-muted">
+                        </ul>
 
-                            <?php echo (!empty( $layoutfull['loanTerm']))? $layoutfull['loanTerm']:''?>
-                        </p>
-                        <hr>
-                        <strong><i class="fa fa-book margin-r-5"></i> RepaymentScheduleID</strong>
-
-                        <p class="text-muted">
-
-                            <?php
-                            $data = get_data('repaymentschedulelookup', array('RepaymentScheduleID' => $layoutfull['RepaymentScheduleID']));
-                            echo $data['repaymentScheduleTitle'];
-                            ?>
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-usd"></i> Needed Amount</strong>
-
-                        <p class="text-muted">
-                            <span class="badge bg-yellow"><?php echo (!empty( $layoutfull['neededAmount']))? $layoutfull['neededAmount']:''?></span>
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-usd"></i> Minimum Amount</strong>
-
-                        <p class="text-muted">
-                            <span class="badge bg-aqua"><?php echo (!empty( $layoutfull['minimumAmount']))? $layoutfull['minimumAmount']:''?></span>
-                        </p>
-
-                        <hr>
-
-
-                        <strong><i class="fa fa-arrow-right"></i> Payment Method</strong>
-
-                        <p class="text-muted">
-                            <span class="badge bg-blue"><?php echo (!empty( $layoutfull['paymentMethodID']))? $layoutfull['paymentMethodID']:''?></span>
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-arrow-right"></i> Interest Rate</strong>
-
-                        <p class="text-muted">
-                            <span class="badge bg-red"><?php echo $layoutfull['interestRate'];?></span>
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-calendar"></i> Project End Date</strong>
-
-                        <p class="text-muted">
-                            <span class="badge bg-red"><?php echo (!empty( $layoutfull['projectEndDate']))? $layoutfull['projectEndDate']:''?></span>
-                        </p>
-
-                        <hr>
 
 
 
@@ -201,6 +202,55 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
+
+
+
+
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Lender</h3>
+                        </div>
+                        <div class="box-body">
+                            <?php if(empty($lenders)){
+
+                                ?>
+                                <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> Project Not Funded Yet.</div>
+                            <?php }else{?>
+                                <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                    <thead>
+                                    <tr>
+                                        <th class="numeric">Lender Name</th>
+
+                                        <th class="numeric">Amount Funded</th>
+
+                                        <th class="numeric">View</th>
+                                        <th class="numeric">Refund</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if(!empty($lenders)) {
+
+                                        foreach ($lenders as $row) {
+                                            // print_r($data);
+                                            ?>
+                                            <tr>
+                                                <td class="numeric"><?php echo $row->lenderName; ?></td>
+                                                <td class="numeric">$<?php echo $row->fundedAmount; ?></td>
+                                                <td class="numeric"><a class="btn btn-block btn-info" href="<?php echo base_url('project/Project/lenderProfile/' . $row->fundedBy); ?>" > View</a></td>
+                                                <td class="numeric"><a class="btn btn-block btn-warning" href="<?php ///echo base_url('project/Project/edit/' . $row->projectID); ?>" > Refund </a></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo 'No data Found';
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            <?php }?>
+                        </div>
+                    </div>
 
             </div>
 
@@ -221,18 +271,18 @@
                     <div class="box-body">
                         <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-                        <p class="text-muted">
-                            <?php echo (!empty( $layoutfull['country']))? countryNameByID($layoutfull['country']).',':''?>
-                            <?php echo (!empty( $layoutfull['state']))? $layoutfull['state'].',':''?>
-                            <?php echo (!empty( $layoutfull['city']))? $layoutfull['city']:''?>
-                        </p>
-
-                        <p class="text-muted">
-
-                            <?php echo (!empty( $layoutfull['address1']))? $layoutfull['address1']:''?>
-                        </p>
-
                         <hr>
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b> <?php echo (!empty( $layoutfull['country']))? countryNameByID($layoutfull['country']).',':''?>
+                                    <?php echo (!empty( $layoutfull['state']))? $layoutfull['state'].',':''?>
+                                    <?php echo (!empty( $layoutfull['city']))? $layoutfull['city']:''?></span>
+                            </li>
+
+                        </ul>
+
+
+
 
                     </div>
 
@@ -249,102 +299,61 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Monthly Income ($)</b> <span class="pull-right badge bg-blue"><?php echo (!empty( $layoutfull['monthlyIncome']))? $layoutfull['monthlyIncome']:''?></span>
+                                <b>Monthly Income ($)</b> <span class="pull-right"><?php echo (!empty( $layoutfull['monthlyIncome']))? $layoutfull['monthlyIncome']:''?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Monthly Expenses  ($)</b> <span class="pull-right badge bg-red"><?php echo (!empty( $layoutfull['monthlyExpenses']))? $layoutfull['monthlyExpenses']:'Not selected'?></span>
+                                <b>Monthly Expenses  ($)</b> <span class="pull-right"><?php echo (!empty( $layoutfull['monthlyExpenses']))? $layoutfull['monthlyExpenses']:'Not selected'?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Home Ownership</b> <span class="pull-right badge bg-yellow"><?php echo (!empty( $layoutfull['homeOwnership']))? $layoutfull['homeOwnership']:'Not selected'?></span>
+                                <b>Home Ownership</b> <span class="pull-right"><?php echo (!empty( $layoutfull['homeOwnership']))? $layoutfull['homeOwnership']:'Not selected'?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Current Employment</b> <span class="pull-right badge bg-aqua"><?php echo (!empty( $layoutfull['employmentSelfemployment']))? $layoutfull['employmentSelfemployment']:'Not selected'?></span>
+                                <b>Current Employment</b> <span class="pull-right"><?php echo (!empty( $layoutfull['employmentSelfemployment']))? $layoutfull['employmentSelfemployment']:'Not selected'?></span>
                             </li>
-
                         </ul>
                     </div>
                     <!-- /.box-body -->
+
+
+
                 </div>
+
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Project Images</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row padd">
+                                <div class="col-sm-12">
+                                    <?php if(!empty($layoutfull['photo1'])){ ?>
+                                        <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo1']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                    <?php } else{}?>
+                                </div>
+                                <div class="col-sm-12">
+                                    <?php if(!empty($layoutfull['photo2'])){ ?>
+                                        <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo2']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                    <?php } else{}?>
+                                </div>
+                                <div class="col-sm-12">
+                                    <?php if(!empty($layoutfull['photo3'])){ ?>
+                                        <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo3']; ?>" alt="projet"  class="img-responsive circular img-size">
+                                    <?php } else{}?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.box-body -->
+                    </div>
+
 
                 <!-- /.box -->
             </div>
 
-            <div class="col-md-8">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Lender</h3>
-                    </div>
-                    <div class="box-body">
-                        <?php if(empty($lenders)){
 
-                        ?>
-                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> Project Not Funded Yet.</div>
-                        <?php }else{?>
-                        <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
-                            <thead>
-                            <tr>
-                                <th class="numeric">Lender Name</th>
 
-                                <th class="numeric">Amount Funded</th>
 
-                                <th class="numeric">View</th>
-                                <th class="numeric">Refund</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if(!empty($lenders)) {
-
-                                foreach ($lenders as $row) {
-                                    // print_r($data);
-                                    ?>
-                                    <tr>
-                                        <td class="numeric"><?php echo $row->lenderName; ?></td>
-                                        <td class="numeric">$<?php echo $row->fundedAmount; ?></td>
-                                        <td class="numeric"><a class="btn btn-block btn-info" href="<?php echo base_url('project/Project/lenderProfile/' . $row->fundedBy); ?>" > View</a></td>
-                                        <td class="numeric"><a class="btn btn-block btn-warning" href="<?php ///echo base_url('project/Project/edit/' . $row->projectID); ?>" > Refund </a></td>
-                                    </tr>
-                                    <?php
-                                }
-                           }else{
-                               echo 'No data Found';
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                        <?php }?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Project Images</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="row padd">
-                            <div class="col-sm-4">
-                                <?php if(!empty($layoutfull['photo1'])){ ?>
-                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo1']; ?>" alt="projet"  class="img-responsive circular img-size">
-                                <?php } else{}?>
-                            </div>
-                            <div class="col-sm-4">
-                                <?php if(!empty($layoutfull['photo2'])){ ?>
-                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo2']; ?>" alt="projet"  class="img-responsive circular img-size">
-                                <?php } else{}?>
-                            </div>
-                            <div class="col-sm-4">
-                                <?php if(!empty($layoutfull['photo3'])){ ?>
-                                <img  src="<?php echo base_url() . 'assets/file/project/' .$layoutfull['photo3']; ?>" alt="projet"  class="img-responsive circular img-size">
-                                <?php } else{}?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- /.box-body -->
-                </div>
-            </div>
 
             <!-- Modal -->
 

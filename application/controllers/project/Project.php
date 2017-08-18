@@ -400,8 +400,8 @@ class Project extends CI_Controller {
 
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $user_info = $this->global_model->get_data('users', array('id' => $loginId));
-        $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $id));
-
+        ///$getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $id));
+        $getprojectdata = $data['layoutfull'] = $this->global_model->front_projectList($id);
         $data['lenders'] = $this->global_model->getLenderPerProject($id);
 
         //echo "<pre>"; print_r( $data['lenders']);echo "</pre>";die;
@@ -658,7 +658,7 @@ class Project extends CI_Controller {
 
 
         $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
-        $save['adminApprovalStatus'] = 'alisha00071';
+        $save['adminApprovalStatus'] = 'Approved';
         $save['rejectReason'] = 0;
         $save['statusID'] = 4;
 

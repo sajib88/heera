@@ -26,7 +26,11 @@
             <div class="col-md-8 pdl">
 
 
-
+<?php
+//echo "<pre>";
+//print_r($front_projectList);
+//echo "<pre>";
+?>
                 <!-- MAIN SLIDES -->
                 <div class="slider">
                      <div data-index="1">
