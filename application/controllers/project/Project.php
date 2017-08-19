@@ -430,9 +430,10 @@ class Project extends CI_Controller {
 
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $id));
 
-        $this->load->view('header', $data);
-        $this->load->view('project/lenderProfile', $data);
-        $this->load->view('footer');
+
+
+        echo $this->load->view('project/lenderProfile', $data, TRUE);
+       exit;
     }
 
 

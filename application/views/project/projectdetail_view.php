@@ -188,7 +188,7 @@
 
                             <li class="list-group-item">
                                 <b> Project End Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
-                                   echo  $date = $dbdate->format('m-d-y');?></span>
+                                   echo  $date = $dbdate->format('m-d-Y');?></span>
                             </li>
 
 
@@ -233,11 +233,13 @@
 
                                         foreach ($lenders as $row) {
                                             // print_r($data);
+
+
                                             ?>
                                             <tr>
                                                 <td class="numeric"><?php echo $row->lenderName; ?></td>
                                                 <td class="numeric">$<?php echo $row->fundedAmount; ?></td>
-                                                <td class="numeric"><a class="btn btn-block btn-info" href="<?php echo base_url('project/Project/lenderProfile/' . $row->fundedBy); ?>" > View</a></td>
+                                                <td class="numeric"><a class="viewprojects btn btn-block btn-info"  data-landerID='<?=$row->fundedBy?>' href="javascript:" > View</a></td>
                                                 <td class="numeric"><a class="btn btn-block btn-warning" href="<?php ///echo base_url('project/Project/edit/' . $row->projectID); ?>" > Refund </a></td>
                                             </tr>
                                             <?php
@@ -380,6 +382,26 @@
 
 
 
+            <div id="viewModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><i class="fa  fa-child"></i> &nbsp;  Lendar Profile</h4>
+
+
+
+                        </div>
+                        <div class="modal-body">
+                            <div id="showview"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
             <!-- /.col -->
@@ -482,3 +504,29 @@
 
 
 </script>
+
+
+<script type="application/javascript">
+   // var pid = document.getElementById('pid');
+    //var sendpid = pid.getAttribute('data-view');
+    $(".viewprojects").click(function(e) {
+
+    var base_url = '<?php echo base_url() ?>';
+    var selectedLanderID = $(this).data('landerid');
+    //var id=sendpid;
+    $.ajax({
+    type: 'GET',
+    url: base_url + "project/project/lenderProfile/"+selectedLanderID, //this file has the calculator function code
+    //data: id,
+    success:function(data){
+    $('#showview').html(data);
+    $('#viewModal').modal('show');
+
+    }
+    });
+
+    });
+
+</script>
+
+

@@ -544,7 +544,6 @@
         $('#datepicker').datepicker({
             autoclose: true,
             startDate: new Date(),
-            format: 'mm-dd-yyyy',
             todayHighlight: true
         });
     });
