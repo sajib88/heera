@@ -86,10 +86,42 @@
                                     <label>Amount Needed</label>
                                     <input  required="" type="number" name="neededAmount" class="form-control" placeholder="Amount Needed" autofocus="">
                                 </div>
+                                <div class="form-group mb-10">
+                                    <label>Project Description</label>
+                                    <textarea name="shortDescription" class="form-control"></textarea>
+                                </div>
+
+
+                                        <div class="form-group mb-10">
+                                            <label>Project  Image<span class="error">*</span></label><span id='picture1-error' class='error' for='picture1'></span>
+                                            <input class="btn btn-default" name="mainImage" type="file">
+                                        </div>
+
+
+
+                                        <div class="form-group mb-10">
+                                            <label>Project Image Two</label><span id='picture2-error' class='error' for='picture2'></span>
+                                            <input class="btn btn-default" name="photo1" type="file">
+                                        </div>
+
+
+
+
                                     <div class="form-group mb-10">
-                                        <label>Project Description</label>
-                                        <textarea name="shortDescription" class="form-control"></textarea>
+                                            <label>Project Image  Three</label><span id='picture2-error' class='error' for='picture2'></span>
+                                            <input class="btn btn-default" name="photo2" type="file">
+
                                     </div>
+                                    <div class="form-group mb-10">
+                                            <label>Project Image  Four</label><span id='picture3-error' class='error' for='picture3'></span>
+                                            <input class="btn btn-default" name="photo3" type="file">
+
+                                    </div>
+
+
+
+
+
 
                                 </div>
                             </div>

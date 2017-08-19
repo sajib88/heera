@@ -782,6 +782,54 @@ class Home extends CI_Controller {
             $save['neededAmount'] = empty($postData['neededAmount']) ? NULL : $postData['neededAmount'];
             $save['createdBy'] = empty($postData['first_name']) ? NULL : $postData['first_name'];
             $save['shortDescription'] = empty($postData['shortDescription']) ? NULL : $postData['shortDescription'];
+
+            if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['mainImage'] = $this->resizeimg->image_upload('mainImage', $this->PATH, 'size[300,300]', '', $photo_name);
+            }
+            else {
+
+            }
+
+            if (isset($_FILES["photo1"]["name"]) && $_FILES["photo1"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo1'] = $this->resizeimg->image_upload('photo1', $this->PATH, 'size[300,300]', '', $photo_name);
+            }
+            else {
+
+            }
+
+            if (isset($_FILES["photo2"]["name"]) && $_FILES["photo2"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo2'] = $this->resizeimg->image_upload('photo2', $this->PATH, 'size[300,300]', '', $photo_name);
+            }
+            else {
+
+            }
+
+            if (isset($_FILES["photo3"]["name"]) && $_FILES["photo3"]["name"] != '') {
+                $this->PATH = './assets/file/project';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['photo3'] = $this->resizeimg->image_upload('photo3', $this->PATH, 'size[300,300]', '', $photo_name);
+            }
+            else {
+
+            }
             
             if(!empty($this->input->post('email'))){
                 $ref = $this->global_model->get('users', array('email'=>$this->input->post('email'), 'profession' => '2'));                

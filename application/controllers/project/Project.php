@@ -935,4 +935,16 @@ class Project extends CI_Controller {
 
 
 
+    public function ajaxrepayment($id){
+        $data = array();
+
+        $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $id));
+
+
+
+        echo $this->load->view('project/ajaxpayment', $data, TRUE);
+        exit;
+    }
+
+
 }

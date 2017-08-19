@@ -507,13 +507,12 @@
 
 
 <script type="application/javascript">
-   // var pid = document.getElementById('pid');
-    //var sendpid = pid.getAttribute('data-view');
+
     $(".viewprojects").click(function(e) {
 
     var base_url = '<?php echo base_url() ?>';
     var selectedLanderID = $(this).data('landerid');
-    //var id=sendpid;
+
     $.ajax({
     type: 'GET',
     url: base_url + "project/project/lenderProfile/"+selectedLanderID, //this file has the calculator function code

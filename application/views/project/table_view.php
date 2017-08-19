@@ -66,7 +66,7 @@ print_r($allpersonals);die;*/
                         <?php }else{?>
                             <div id="no-more-tables">
 
-                                <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                <table class="table table table-striped table-bordered dataTable no-footer data-table20 data-table12" id="js_personal_table">
                                     <thead>
                                     <tr>
 
@@ -83,6 +83,7 @@ print_r($allpersonals);die;*/
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Funded';?></th>
 
+
                                         <th class="numeric"><?php echo 'Status';?></th>
                                     <?php }?>
                                         <th class="numeric"><?php echo 'Project Purpose';?></th>
@@ -93,7 +94,10 @@ print_r($allpersonals);die;*/
 
 
                                         <?php if($allprojects[0]->statusID == 4){?>
+                                                <th class="numeric"><?php echo '% Repaid';?></th>
+                                                <th class="numeric"><?php echo 'Payment Amount';?></th>
                                             <th class="numeric"><?php echo 'Repayment Schedule';?></th>
+
                                         <?php } else{ ?>
                                         <th class="numeric"><?php echo 'View';?></th>
                                         <?php } } ?>
@@ -132,11 +136,16 @@ print_r($allpersonals);die;*/
                                             else { ?>
 
                                                 <?php if ($allprojects[0]->statusID == 4) { ?>
+
+                                                    <td data-title="<?php echo 'Amount Funded'; ?>"
+                                                        class="numeric"><span>$30.33%</span></td>
+                                                    <td data-title="<?php echo 'Payment Amount'; ?>"
+                                                        class="numeric"><span>$25/month</span></td>
                                                     <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
                                                         <?php if (!empty($row->repaymentScheduleID)) { ?>
-                                                            <a class="btn btn-block btn-primary"
-                                                               href="<?php echo base_url('project/Project/paymentschedule/view/' . $row->projectID); ?>">
-                                                                View </a>
+
+
+                                                            <a class="repayment btn btn-block btn-primary"  data-repid='<?=$row->projectID?>' href="javascript:" > View</a>
                                                         <?php } else {
                                                             {
                                                                 ?>
@@ -149,6 +158,7 @@ print_r($allpersonals);die;*/
 
 
                                                     </td>
+
                                                 <?php } else { ?>
                                                     <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                         <a class="btn btn-block btn-primary"
@@ -156,6 +166,7 @@ print_r($allpersonals);die;*/
                                                             View </a>
                                                     </td>
                                                 <?php }
+
 
                                             }?>
 
@@ -265,48 +276,71 @@ print_r($allpersonals);die;*/
 </div>
 
 
+<div id="viewModal" class="modal fade modal-view" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-tasks"></i> Repayment Schedule</h4>
+
+
+
+            </div>
+            <div class="modal-body">
+                <div id="showview"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/dataTables.bootstrap.js"></script>
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<?php
-if(!empty($hide != 'hide')){
-?>
+<style>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        //var personaltable = document.getElementById("js_personal_table");
-        $('#js_personal_table').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "info": true,
-            "autoWidth": false,
-            "lengthMenu": [[20, 45, 70, -1], 20, 45, 70, "All"]]
-        });
-    });
-</script>
-<?php} else{?>
+</style>
+
+<?php
+if(!empty($hide != 'hide')) {
+    ?>
+
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             //var personaltable = document.getElementById("js_personal_table");
-            $('#js_personal_table').DataTable({
+            $('.data-table20').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
-                "info": true,
                 "autoWidth": false,
                 "lengthMenu": [[12, 25, 50, -1], [12, 25, 50, "All"]]
+
 
             });
         });
     </script>
-<?php }?>
-
-
+    <?php
+} else {
+?>
 
 <script type="text/javascript">
+
+
+        $('.data-table20').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "autoWidth": false,
+            "lengthMenu": [[20, 45, 70, -1], [20, 45, 70, "All"]]
+
+        });
+
+</script>
+<?php } ?>
+
+<script type="text/javascript">
+
 $('.changeStatus').click(function(){
     
     var base_url = '<?php echo base_url() ?>';
@@ -394,6 +428,30 @@ $("#update_status_frm").submit(function(e){
 <script type="application/javascript">
 
 setTimeout(function(){$('.msg-hide').fadeOut('slow');}, 3000);
+
+</script>
+
+
+
+<script type="application/javascript">
+
+    $(".repayment").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var selectedrepid = $(this).data('repid');
+
+        $.ajax({
+            type: 'GET',
+            url: base_url + "project/Project/ajaxrepayment/"+selectedrepid, //this file has the calculator function code
+            //data: id,
+            success:function(data){
+                $('#showview').html(data);
+                $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
 
 </script>
 

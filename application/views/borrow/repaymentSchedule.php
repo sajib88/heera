@@ -23,13 +23,13 @@ print_r($allpersonals);die;*/
 
 
 <div class="content-wrapper">
-    
-    
+
+
 
     <section class="content-header">
         <h1>
             <i class="fa fa-list"></i>  <?php if(!empty($page_title)){ echo $page_title;} else {}?>
-            
+
         </h1>
 
     </section>
@@ -43,7 +43,7 @@ print_r($allpersonals);die;*/
         </div>
     <?php } $this->session->unset_userdata('message'); ?>
 
-    <section class="content">       
+    <section class="content">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-default">
@@ -51,32 +51,34 @@ print_r($allpersonals);die;*/
                         <h3 class="box-title">Repayment Schedule (<?php if(!empty($repaymentSchedule[0]->projectName)){ echo $repaymentSchedule[0]->projectName;}else{} ?>)</h3>
                     </div>
                     <div class="box-body">
-                        
+
                         <?php if(empty($repaymentSchedule)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
-                                
+
                                 <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
                                     <thead>
                                     <tr>
 
-                                        <th class="numeric">#</th>                                                                            
-                                                                                
+                                        <th class="numeric">#</th>
+
                                         <th class="numeric"><?php echo 'Repaid Amount';?></th>
 
                                         <th class="numeric"><?php echo 'Repayment Schedule Date';?></th>
-                                        
+
                                         <th class="numeric"><?php echo 'Status';?></th>
-                                        
+
                                         <th class="numeric text-center"><?php echo 'Action';?></th>
-                                        
+
 
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if(!empty($repaymentSchedule)) {
+                                    <?php if(!empty($repaymentSchedule))
+
+                                    {
                                         $i = 1;
                                         foreach ($repaymentSchedule as $row) { ?>
                                             <tr>
@@ -84,13 +86,13 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Repaid Amount'; ?>"
                                                     class="numeric"><span><?php echo $row->repaidAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Repayment Schedule Date'; ?>"
-                                                    class="numeric"><span><?php echo date('M-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
+                                                    class="numeric"><span><?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->repaymentStatus; ?> </span></td>
+                                                    class="numeric"><span class="label"> <?php echo $row->statusID; ?> </span></td>
                                                 <?php
                                                 $repDate = date('m-Y',strtotime($row->schedualeDateTime));
                                                 $currentdate = date('m-Y');
-                                                $stutas = $row->repaymentStatus;
+                                                $stutas = $row->statusID;
                                                 if($repDate == $currentdate && $stutas == 'Unpaid'){
                                                 ?>
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
@@ -116,9 +118,9 @@ print_r($allpersonals);die;*/
                             </div>
                         <?php }?>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
 
