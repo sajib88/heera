@@ -112,15 +112,17 @@ class Global_model extends CI_Model {
     }
 
     //// total amount
-    public function total_sum($table, $where)
+    public function total_sum($table = 'project_fund_history', $where='', $sumField = 'fundedAmount')
     {
-        $this->db->select_sum('fundedAmount');
+        $this->db->select_sum($sumField);
         $this->db->from($table);
-        $this->db->where($where);
+        if(!empty($where)) {
+            $this->db->where($where);
+        }
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             $result = $query->result();
-            return $result[0]->fundedAmount;
+            return $result[0]->$sumField;
         } else {
             return false;
         }
@@ -543,16 +545,41 @@ class Global_model extends CI_Model {
     }
 
     public function get_repayment_check($id){
-        $this->db->select('p.*,rep.repaymentScheduleID, u.first_name as borrowerName, f.projectID, f.fundedAmount, f.fundedBy as lenderName,');
+        $this->db->select('p.*, u.first_name as borrowerName, p.repaymentScheduleID as repid, sl.repaymentScheduleTitle');
         $this->db->from('project as p');
         $this->db->join('users as u', 'u.id=p.userID', 'left');
-        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
-        $this->db->join('repayment_schedules as rep', 'rep.projectID=p.projectID', 'left');
-        $this->db->select_sum('f.fundedAmount');
+        $this->db->join('repaymentschedulelookup as sl', 'p.repaymentScheduleID=sl.repaymentScheduleID', 'left');
+
+        //$this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+        //$this->db->join('repayment_schedules as rep', 'rep.projectID=p.projectID', 'left');
+       // $this->db->select_sum('f.fundedAmount');
         $this->db->where('p.statusID', $id);
-        $this->db->group_by('rep.projectID');
         $query = $this->db->get();
+        ///echo $this->db->last_query();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_repayment_balance($id){
+        $this->db->select('r.*, h.repaidAmount,h.repaidDateTime,h.repaidAmount as amountpay,r.projectID as pid');
+        $this->db->from('repayment_schedules as r');
+        $this->db->join('project_repaid_history as h', 'h.projectID=r.projectID');
+        $this->db->where('r.projectID', $id);
+
         //echo $this->db->last_query();
+
+        //$this->db->select('h.*, r.*');
+       // $this->db->from('project_repaid_history as h');
+       // $this->db->join('repayment_schedules as r', 'h.projectRepaidID=r.repaymentScheduleID', 'left');
+       // $this->db->where('r.projectID', $id);
+
+        $query = $this->db->get();
+
+        ///echo $this->db->last_query();
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
@@ -582,6 +609,7 @@ class Global_model extends CI_Model {
         $this->db->join('project_fund_history as f', 'f.projectID=p.projectID');
         $this->db->join('users as u', 'u.id=p.userID');
         $this->db->where('f.fundedBy', $id);
+
         if(!empty($statusID)){
             $this->db->where('p.statusID', $statusID);
         }

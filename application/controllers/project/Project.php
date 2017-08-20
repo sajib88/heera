@@ -313,8 +313,36 @@ class Project extends CI_Controller {
             $data['no_data'] = 'Project Not Found.';
 
         }elseif ($id == 4) {
-            $data['allprojects'] = $this->global_model->get_repayment_check($id);
-            //print_r($data['allprojects']);
+            $projectData = $this->global_model->get_repayment_check($id);
+
+            foreach ($projectData as $proData){
+                $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
+                $proData->fundedAmount = (!empty($fundedAmount))? $fundedAmount:'0';
+                $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+                $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+
+                // calculate repaid %
+                $x =  $repaidAmount;
+                $y =  $fundedAmount;
+                @$percent = @$x/@$y;
+
+                $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
+
+                $proData->repaidPercent = $percent_friendly;
+
+                $paymentAmount = $this->global_model->get_data('repayment_schedules', array('projectID' => $proData->projectID), array('limit'=>'1','start'=>'0'));
+                $proData->paymentAmount = (!empty($paymentAmount))?$paymentAmount['repaidAmount']:'0';
+
+            }
+
+            $data['allprojects'] = $projectData;
+
+
+
+
+            //echo "<pre>";
+           // print_r($data['allprojects']);
+          // echo "<pre>";
             $data['page_title'] = 'Funded';
             $data['no_data'] = 'Not Found.';
 
@@ -911,6 +939,9 @@ class Project extends CI_Controller {
                         }
 
                         if ($updateRef) {
+                            $save['isScheduleCreated'] = 1;
+                            $this->global_model->update('project', $save, array('projectID' => $projectID));
+
                             $this->session->set_flashdata('message', 'Your project Repayment Schedule Created Successfully ');
                         } else {
                             $this->session->set_flashdata('errot', 'Your project Repayment Schedule Not Created. Please try again.');
@@ -938,9 +969,39 @@ class Project extends CI_Controller {
     public function ajaxrepayment($id){
         $data = array();
 
-        $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $id));
+        //$projectData =  $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $id));
+        $projectData =$this->global_model->get_repayment_balance($id);
+
+        foreach ($projectData as $proData){
+            $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
+            $proData->fundedAmount = (!empty($fundedAmount))? $fundedAmount:'0';
+            $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+            $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+
+            // calculate repaid %
+            $x =  $repaidAmount;
+            $y =  $fundedAmount;
+
+            $percent = $x/$y;
+            $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
+
+            $proData->repaidPercent = $percent_friendly;
+
+            $paymentAmount = $this->global_model->get_data('repayment_schedules', array('projectID' => $proData->projectID), array('limit'=>'1','start'=>'0'));
+            $proData->paymentAmount = (!empty($paymentAmount))?$paymentAmount['repaidAmount']:'0';
 
 
+
+            $proData->remaining = $percent_friendly;
+
+
+            //$proData->fundcollecttion = (!empty($fundcollecttion))? $fundcollecttion:'0';
+
+        }
+        $data['repaymentSchedule'] =   $projectData;
+
+
+        $data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'));
 
         echo $this->load->view('project/ajaxpayment', $data, TRUE);
         exit;

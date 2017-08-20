@@ -66,7 +66,7 @@ print_r($allpersonals);die;*/
                         <?php }else{?>
                             <div id="no-more-tables">
 
-                                <table class="table table table-striped table-bordered dataTable no-footer data-table20 data-table12" id="js_personal_table">
+                                <table class="table table table-striped table-bordered dataTable no-footer data-table20" id="js_personal_table">
                                     <thead>
                                     <tr>
 
@@ -135,14 +135,19 @@ print_r($allpersonals);die;*/
                                             }
                                             else { ?>
 
-                                                <?php if ($allprojects[0]->statusID == 4) { ?>
+                                                <?php if ($allprojects[0]->statusID == 4) {
+
+
+                                                    ?>
+
 
                                                     <td data-title="<?php echo 'Amount Funded'; ?>"
-                                                        class="numeric"><span>$30.33%</span></td>
+                                                        class="numeric"><span><?=$row->repaidPercent;?>%</span></td>
                                                     <td data-title="<?php echo 'Payment Amount'; ?>"
-                                                        class="numeric"><span>$25/month</span></td>
+                                                        class="numeric"><span>$<?=  $row->paymentAmount ?>/ <?=$row->repaymentScheduleTitle?>
+                                                        </span></td>
                                                     <td data-title="<?php echo 'Schedule'; ?>" class="numeric">
-                                                        <?php if (!empty($row->repaymentScheduleID)) { ?>
+                                                        <?php if ($row->isScheduleCreated != 0) { ?>
 
 
                                                             <a class="repayment btn btn-block btn-primary"  data-repid='<?=$row->projectID?>' href="javascript:" > View</a>
@@ -298,46 +303,8 @@ print_r($allpersonals);die;*/
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/dataTables.bootstrap.js"></script>
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<style>
-
-</style>
-
-<?php
-if(!empty($hide != 'hide')) {
-    ?>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //var personaltable = document.getElementById("js_personal_table");
-            $('.data-table20').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "autoWidth": false,
-                "lengthMenu": [[12, 25, 50, -1], [12, 25, 50, "All"]]
 
 
-            });
-        });
-    </script>
-    <?php
-} else {
-?>
-
-<script type="text/javascript">
-
-
-        $('.data-table20').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "autoWidth": false,
-            "lengthMenu": [[20, 45, 70, -1], [20, 45, 70, "All"]]
-
-        });
-
-</script>
-<?php } ?>
 
 <script type="text/javascript">
 
@@ -454,5 +421,39 @@ setTimeout(function(){$('.msg-hide').fadeOut('slow');}, 3000);
     });
 
 </script>
+
+
+<?php
+if(!empty($page_title == 'All')) {
+    ?>
+    <script type="text/javascript">
+
+
+        $('.data-table20').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "autoWidth": false,
+            "lengthMenu": [[20, 45, 70, -1], [20, 45, 70, "All"]]
+
+        });
+
+    </script>
+    <?php
+} else {
+    ?>
+    <script type="text/javascript">
+
+        $('.data-table20').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "autoWidth": false,
+            "lengthMenu": [[12, 25, 50, -1], [12, 25, 50, "All"]]
+
+        });
+    </script>
+
+<?php } ?>
 
 

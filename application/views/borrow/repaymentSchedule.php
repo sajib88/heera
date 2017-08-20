@@ -93,7 +93,7 @@ print_r($allpersonals);die;*/
                                                 $repDate = date('m-Y',strtotime($row->schedualeDateTime));
                                                 $currentdate = date('m-Y');
                                                 $stutas = $row->statusID;
-                                                if($repDate == $currentdate && $stutas == 'Unpaid'){
+                                                if($repDate != $currentdate && $stutas != 'Unpaid'){
                                                 ?>
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
                                                     <a href="<?php echo base_url('borrow/Borrow/borrowerRepayment/' . $row->projectID .'/'.$row->repaidAmount .'/'. date('Y-m-d',strtotime($row->schedualeDateTime)) .'/Paid/' . $row->repaymentScheduleID );?>" class="btn btn-warning ">Make Payment </a>

@@ -405,35 +405,6 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Home Ownership</label>
-                                        <?php $typesyn =  array('Own','Rent');?>
-                                        <select name="homeOwnership" class="form-control chosen-select" id="type">
-                                            <option value="">Select Home Ownership</option>
-                                                <?php
-                                                    if (is_array($typesyn) and (!empty($typesyn))) {
-                                                        foreach ($typesyn as $key=>$value) {
-                                                            $v = (set_value('homeOwnership')!='')?set_value('homeOwnership'):$editProject['homeOwnership'];
-                                                            $sel = ($v == $value)?'selected="selected"':'';
-                                                            ?>
-                                                            <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
-                                                        <?php
-                                                        }
-                                                    }
-                                                ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Current Profession</label>
-                                        <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
                                         <label>Employment Status</label>
                                         <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
                                         <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
@@ -451,6 +422,36 @@
                                             ?>
                                         </select>
                                     </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Current Profession</label>
+                                        <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Home Ownership</label>
+                                        <?php $typesyn =  array('Own','Rent');?>
+                                        <select name="homeOwnership" class="form-control chosen-select" id="type">
+                                            <option value="">Select Home Ownership</option>
+                                            <?php
+                                            if (is_array($typesyn) and (!empty($typesyn))) {
+                                                foreach ($typesyn as $key=>$value) {
+                                                    $v = (set_value('homeOwnership')!='')?set_value('homeOwnership'):$editProject['homeOwnership'];
+                                                    $sel = ($v == $value)?'selected="selected"':'';
+                                                    ?>
+                                                    <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
 
