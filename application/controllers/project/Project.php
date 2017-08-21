@@ -586,6 +586,12 @@ class Project extends CI_Controller {
         $id = $this->input->get('projectid');
         $getprojectsenddate = $this->global_model->get_data('project', array('projectID' => $id));
         $getEnddateproject= $getprojectsenddate['projectEndDate'];
+        $getprojectname= $getprojectsenddate['name'];
+        $getpurposeID= $getprojectsenddate['purposeID'];
+        $getloanTerm= $getprojectsenddate['loanTerm'];
+        $getRepaymentScheduleID= $getprojectsenddate['RepaymentScheduleID'];
+        $getneededAmount= $getprojectsenddate['neededAmount'];
+
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -680,7 +686,7 @@ class Project extends CI_Controller {
         /////////////////////////////////////////////////////////////////////////////////////
 
 
-        if($getEnddateproject != null) {
+        if($getEnddateproject != null && $getprojectname!= null && $getpurposeID != null && $getloanTerm != null && $getRepaymentScheduleID !=null && $getneededAmount != null) {
 
 
 

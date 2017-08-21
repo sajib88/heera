@@ -343,18 +343,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Employment Status</label>
-                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
-                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
-                                            <option value="">Select Employment Status</option>
+                                        <label>Home Ownership</label>
+
+                                        <?php $types4 = array('Own','Rent');?>
+                                        <select name="homeOwnership" class="form-control chosen-select" id="type">
+                                            <option value="">Select Home Ownership</option>
                                             <?php foreach ($types4 as $row) {?>
                                                 <option value="<?php echo $row;?>"><?php echo $row?></option>
                                             <?php }?>
                                         </select>
                                     </div>
-
                                 </div>
-
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Current Profession</label>
@@ -365,16 +364,16 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Home Ownership</label>
-
-                                        <?php $types4 = array('Own','Rent');?>
-                                        <select name="homeOwnership" class="form-control chosen-select" id="type">
-                                            <option value="">Select Loan Term</option>
+                                        <label>Employment Status</label>
+                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
+                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
+                                            <option value="">Select Employment Status</option>
                                             <?php foreach ($types4 as $row) {?>
                                                 <option value="<?php echo $row;?>"><?php echo $row?></option>
                                             <?php }?>
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
 

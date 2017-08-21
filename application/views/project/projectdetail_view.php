@@ -67,6 +67,39 @@
                     <!-- /.box-body -->
                 </div>
 
+
+
+
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Borrower Info</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['first_name']))? $layoutfull['first_name']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['dateofbirth']))? $layoutfull['dateofbirth']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Email</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['email']))? $layoutfull['email']:''?></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['phone']))? $layoutfull['phone']:''?></span>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
                 <!-- About Me Box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -118,34 +151,7 @@
                 </div>
 
 
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Borrower Info</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
 
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['first_name']))? $layoutfull['first_name']:''?></span>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['dateofbirth']))? $layoutfull['dateofbirth']:''?></span>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Email</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['email']))? $layoutfull['email']:''?></span>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['phone']))? $layoutfull['phone']:''?></span>
-                            </li>
-
-                        </ul>
-
-
-                    </div>
-                    <!-- /.box-body -->
-                </div>
 
                 <!-- About Me Box -->
 
@@ -440,7 +446,7 @@
                             $('#foo').html(msg);
                         }
                         else {
-                            var msg = "<div class='alert alert-danger'>Project end date not allow to blank. Please add project end date first </div>";
+                            var msg = "<div class='alert alert-danger'> Project Name, Project Purpose , Repayment Schedule, Needed Amount ,End date not allow to blank. Please add those field First </div>";
                             $('#foo').html(msg);
                         }
                     }
@@ -456,9 +462,6 @@
         });
 
         $("#rejectProject").click(function(e) {
-            var r = confirm('Do you want to Reject this Project');
-            if (r == true) {
-
 
                 var base_url = '<?php echo base_url() ?>';
                 var id=sendpid;
@@ -474,7 +477,7 @@
                 });
 
 
-            }
+
         });
 
 
@@ -484,26 +487,7 @@
 
 
 
-<script type="application/javascript">
 
-    $('#rejectform').validate({
-        rules: {
-            shortDescription: {
-                required:true,
-
-            }
-        },
-        messages:{
-            shortDescription: {
-                required: "Rejected Reason Is Required",
-            }
-        }
-    });
-
-
-
-
-</script>
 
 
 <script type="application/javascript">
@@ -528,4 +512,22 @@
 
 </script>
 
+<script type="application/javascript">
 
+    $('#myForm').validate({
+        rules: {
+            shortDescription: {
+                required:true
+
+            }
+        },
+        messages:{
+            shortDescription: {
+                required: "Rejected Reason Is Required"
+            }
+        }
+    });
+
+
+
+</script>

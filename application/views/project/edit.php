@@ -405,35 +405,6 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Employment Status</label>
-                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
-                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
-                                            <option value="">Select Home Ownership</option>
-                                            <?php
-                                            if (is_array($types4) and (!empty($types4))) {
-                                                foreach ($types4 as $key=>$value) {
-                                                    $v = (set_value('employmentSelfemployment')!='')?set_value('employmentSelfemployment'):$editProject['employmentSelfemployment'];
-                                                    $sel = ($v == $value)?'selected="selected"':'';
-                                                    ?>
-                                                    <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Current Profession</label>
-                                        <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
                                         <label>Home Ownership</label>
                                         <?php $typesyn =  array('Own','Rent');?>
                                         <select name="homeOwnership" class="form-control chosen-select" id="type">
@@ -453,6 +424,36 @@
                                     </div>
 
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Current Profession</label>
+                                        <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Employment Status</label>
+                                        <?php $types4 = array('Part-Time Employed','Full-Time Employed', 'Unemployed');?>
+                                        <select name="employmentSelfemployment" class="form-control chosen-select" id="type">
+                                            <option value="">Select Employment Status</option>
+                                            <?php
+                                            if (is_array($types4) and (!empty($types4))) {
+                                                foreach ($types4 as $key=>$value) {
+                                                    $v = (set_value('employmentSelfemployment')!='')?set_value('employmentSelfemployment'):$editProject['employmentSelfemployment'];
+                                                    $sel = ($v == $value)?'selected="selected"':'';
+                                                    ?>
+                                                    <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
 
 
@@ -770,7 +771,7 @@
                                 $('#foo').html(msg);
                             }
                             else {
-                                var msg = "<div class='alert alert-danger'>Project end date not allow to blank. Please add project end date first  </div>";
+                                var msg = "<div class='alert alert-danger'>Project Title, end date not allow to blank. Please add project end date first  </div>";
                                 $('#foo').html(msg);
                             }
 
@@ -820,7 +821,7 @@
     $('#rejectform').validate({
         rules: {
             shortDescription: {
-                required:true,
+                required:true
 
             }
         },

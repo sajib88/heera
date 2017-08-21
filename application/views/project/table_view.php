@@ -69,44 +69,28 @@ print_r($allpersonals);die;*/
                                 <table class="table table table-striped table-bordered dataTable no-footer data-table20" id="js_personal_table">
                                     <thead>
                                     <tr>
-
-                                        <th class="numeric">#</th>
-
                                         <th class="numeric"><?php echo 'Project Name';?></th>
-
                                         <th class="numeric"><?php echo 'Borrower Name';?></th>
-
                                         <th class="numeric"><?php echo 'Amount Needed';?></th>
-
-
-
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Amount Funded';?></th>
-
-
-                                        <th class="numeric"><?php echo 'Status';?></th>
+                                        <th class="numeric"><?php echo 'Status of the Project';?></th>
                                     <?php }?>
                                         <th class="numeric"><?php echo 'Project Purpose';?></th>
                                         <?php if(!empty($hide)){
-
                                         }
                                         else{  ?>
-
-
                                         <?php if($allprojects[0]->statusID == 4){?>
                                                 <th class="numeric"><?php echo '% Repaid';?></th>
                                                 <th class="numeric"><?php echo 'Payment Amount';?></th>
                                             <th class="numeric"><?php echo 'Repayment Schedule';?></th>
-
                                         <?php } else{ ?>
                                         <th class="numeric"><?php echo 'View';?></th>
                                         <?php } } ?>
-
                                         <th class="numeric"><?php echo 'Edit';?></th>
                                         <?php if(!empty($p_statusID)){?>
                                         <th class="numeric"><?php echo 'Change Status';?></th>
                                         <?php }?>
-
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -114,7 +98,7 @@ print_r($allpersonals);die;*/
                                         $i = 1;
                                         foreach ($allprojects as $row) { ?>
                                             <tr>
-                                                <td><?php echo $i; ?></td>
+
                                                 <td data-title="<?php echo 'Project Name'; ?>"
                                                     class="numeric"><?php echo $row->name; ?></td>
                                                 <td data-title="<?php echo 'Borrower Name'; ?>"

@@ -1,5 +1,5 @@
 
-<form  id="myForm" name="myForm" method="post" action="#">
+<form  id="myForm" class="reject" name="myForm" method="post" action="#">
 
     <div id="foo"><div>
 
@@ -11,7 +11,7 @@
                 <div class="form-group">
 
                     <label>Reason Description<span class="error">*</span></label>
-                    <textarea required="required"  name="shortDescription" class="form-control"></textarea>
+                    <textarea required="required"  name="shortDescription" id="shortDescription" class="form-control"></textarea>
 
                 </div>
             </div>
@@ -39,7 +39,7 @@
     <script>
 
         $("#submitbutton").click(function(e){
-
+            if($("#classifiedform").valid()) {
             var base_url = '<?php echo base_url() ?>';
             $.ajax({
                 url: "<?php echo base_url(); ?>project/project/rejectProject",
@@ -65,7 +65,27 @@
                     }
                 }
             });
-
+            }
             e.preventDefault();
         });
     </script>
+
+<script type="application/javascript">
+
+    $('#myForm').validate({
+        rules: {
+            shortDescription: {
+                required:true
+
+            }
+        },
+        messages:{
+            shortDescription: {
+                required: "Rejected Reason Is Required"
+            }
+        }
+    });
+
+
+
+</script>
