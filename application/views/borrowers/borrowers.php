@@ -99,7 +99,7 @@
                                                     class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
                                                 
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
-                                                    class="numeric"><span><?php echo 'Total Repaid'; ?></span></td>
+                                                    class="numeric"><span><?= ((!empty($row->repaidAmount))? '$'.$row->repaidAmount: '$0.00'); ?></span></td>
                                                 
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="borrowerDeatails btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
@@ -136,7 +136,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><i class="fa fa-briefcase"></i> Lendars Deatails</h4>                
+                <h4 class="modal-title"><i class="fa fa-briefcase"></i> Borrower Deatails</h4>
             </div>
             
                 <div class="modal-body">
