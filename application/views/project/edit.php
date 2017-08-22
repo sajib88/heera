@@ -844,7 +844,6 @@
 </script>
 
 
-
 <script type="application/javascript">
 
     $('#rejectform').validate({
