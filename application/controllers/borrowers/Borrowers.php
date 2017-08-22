@@ -21,8 +21,14 @@ class Borrowers extends CI_Controller {
         $data['page_title'] = 'All Borrowers';
         $data['no_data'] = 'No Project Not Found.';
         $loginId = $this->session->userdata('login_id');
-        $data['borrowers'] = $this->global_model->all_borrower_with_funded_amount(2);
+        $projectData = $this->global_model->all_borrower_with_funded_amount(2);
 
+        foreach ($projectData as $proData){
+            $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('repaidBy' => $proData->userID, 'repaidStatus' => 'Done'), 'repaidAmount');
+            $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+        }
+
+        $data['borrowers'] = $projectData;
         //print_r($data['borrowers']);die;
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
@@ -53,9 +59,13 @@ class Borrowers extends CI_Controller {
         
         //print_r($data['allfundedproject']);die;
         
-        $data['allCreatedProject'] = $this->global_model->borrower_all_project($userID);
-        
-        
+        $allCreatedProject = $this->global_model->borrower_all_project($userID);
+        foreach ($allCreatedProject as $proData){
+
+            $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+            $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+        }
+        $data['allCreatedProject'] = $allCreatedProject;
         
         echo $this->load->view('borrowers/borrowers_deatails', $data, TRUE);
        // print_r($projectDetails);

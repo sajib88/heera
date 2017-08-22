@@ -192,10 +192,18 @@
                                 <b> Interest Rate</b> <span class="pull-right"><?php echo (!empty( $layoutfull['interestRate']))? $layoutfull['interestRate']:'Not selected'?></span>
                             </li>
 
+
+
                             <li class="list-group-item">
-                                <b> Project End Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
-                                   echo  $date = $dbdate->format('m-d-Y');?></span>
+                                <b> Project Re Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
+                                    echo  $date = $dbdate->format('m-d-Y');?></span>
                             </li>
+
+                            <?php if(!empty($layoutfull['rejectReason'])){?>
+                                <li class="list-group-item">
+                                    <b> Reject Reason</b> <span class="pull-right"><?php echo (!empty( $layoutfull['rejectReason']))? $layoutfull['rejectReason']:'Not selected'?></span>
+                                </li>
+                            <?php } else{}?>
 
 
                         </ul>
