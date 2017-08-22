@@ -18,14 +18,7 @@
 <div class="col-md-12 no-padding">
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
-        <?php if($this->session->flashdata('message')){ ?>
-            <div class="col-lg-12">
-                <div class="alert alert-success alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong><?php echo $this->session->flashdata('message'); ?></strong>
-                </div>
-            </div>
-        <?php } $this->session->unset_userdata('message'); ?>
+
       <ul class="nav nav-tabs">
         <li class="active"><a href="#fundedProjectList" data-toggle="tab" aria-expanded="true">Funded Projects List</a></li>
         <li class=""><a href="#bilingInfo" data-toggle="tab" aria-expanded="false">Billing Information</a></li>        
@@ -33,6 +26,7 @@
         
         
       </ul>
+
       <div class="tab-content">
         <div class="tab-pane active" id="fundedProjectList">
             
@@ -55,9 +49,9 @@
 
                                         <th class="numeric"><?php echo 'Borrower Name';?></th> 
                                         
-                                        <th class="numeric"><?php echo 'Amount Needed';?></th>
+                                        <th class="numeric"><?php echo 'Amount Lent';?></th>
                                         
-                                        <th class="numeric"><?php echo 'Amount Collected';?></th>
+                                        <th class="numeric"><?php echo 'Amount Repaid';?></th>
 
                                         <th class="numeric"><?php echo 'Status';?></th>
 
@@ -77,10 +71,10 @@
                                                     class="numeric"><span><?php echo $row->borrowerName; ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Amount Needed'; ?>"
-                                                    class="numeric"><span><?php echo '$'.$row->neededAmount; ?></span>
+                                                    class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span></td>
+                                                    class="numeric"><span><?php echo "0.00"; ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
                                                 </td>
@@ -105,14 +99,73 @@
             
         </div>
         <!-- /.tab-pane -->
-        <div class="tab-pane active" id="bilingInfo">
+        <div class="tab-pane" id="bilingInfo">
 
 
-            
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="box">
+                        <div class="box-body no-padding">
+                            <?php if(empty($listpaymethod)){?>
+                                <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
+                            <?php }else{?>
+                                <div id="no-more-tables">
+
+                                    <table class="table table-hover" id="fundedProjectsDataTable">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Use method</th>
+                                            <th>Status</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php if(!empty($listpaymethod)) {
+                                            $i = 1;
+                                            foreach ($listpaymethod as $row) {
+                                                ?>
+                                                <tr>
+                                                    <td><a href="#"><?php echo $i; ?></a></td>
+                                                    <td><?php echo $row->selectPaymentType; ?></td>
+                                                    <td><?php
+                                                        if($row->isPrimary == 1)
+                                                        {
+                                                            echo "Primary"; }
+                                                        else
+                                                        {
+                                                            echo "Secondary";
+                                                        } ?></td>
+                                                    <td><?php echo $row->status; ?></td>
+
+
+
+                                                </tr>
+
+                                                <?php $i++;
+                                            }
+                                        }?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php }?>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
         </div>
+
         <div class="tab-pane" id="lenderProfileDeatails">
           <div class="row">
               <form id="myForm" name="myForm" role="form" method="post" class="form-horizontal">
+                  <div id="foo"></div>
               <div class="col-md-4 col-md-offset-1">
                   <div class="box box-primary">
                       <div class="box-body padd">
@@ -129,9 +182,20 @@
                             <h3 class="profile-username text-center">Total Credit <?php echo '$'.$lendarDetails['inAmount']; ?></h3>
                     </div>
 
+
+
                 </div>
-                  <small>Please Upload a Profile Picture</small>
-                  <input class="btn btn-default text-center" name="profilepicture" type="file">
+                  <div class="row">
+                      <div class="col-md-6">
+
+                          <a class="btn btn-block btn-info"> Add Fund</a>
+                      </div>
+                      <div class="col-md-6">
+
+                          <a class="btn btn-block btn-warning"> Refund </a>
+                      </div>
+                  </div>
+
               </div>
 
             <div class="col-md-6">
@@ -297,16 +361,19 @@
                 url:base_url + "lendars/Lendars/updateLenderProfile/"+id,
                 type: 'POST',
                 data: $("#myForm").serialize(),
-                success: function(data){
+                success: function (msg) {
 
-                    console.log(data);
-                    alert("success");
-                   // $('#email').val('');
-                    //$('#qText').val('');
+                    if (msg == 'success') {
+                        // show success meessage
+                        var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
+                        $('#foo').html(msg);
+                    }
+                    else {
+                        var msg = "<div class='alert alert-danger'> Profile no updated </div>";
+                        $('#foo').html(msg);
+                    }
                 },
-                error: function(){
-                    alert("Fail")
-                }
+
             });
             e.preventDefault();
         });

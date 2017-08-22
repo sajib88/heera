@@ -47,21 +47,21 @@ class Lendars extends CI_Controller {
     
     public function allFundedProject($userID){
         $data = array();
-        //$id = $this->input->post('status');
-        //$id = $_POST['id'];
+
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-        //$data['allfundedproject'] = $this->global_model->get('project', array('userID' => $userID));
         
         $data['allfundedproject'] = $this->global_model->all_project($userID);
 
-        $data['countries'] = $this->global_model->get('countries');
+        $data['listpaymethod'] = $this->global_model->get('payment_methods', array('userID' => $userID));
 
-//        echo '<pre>';
-//        print_r($data['allfundedproject']);die;
-//        echo '</pre>';
-        
+        $data['countries'] = $this->global_model->get('countries');
+        //echo '<pre>';
+        //print_r($data['allfundedproject']);
+        //echo '</pre>';
+
+
         echo $this->load->view('lendars/lenders_details', $data, TRUE);
-       // print_r($projectDetails);
+
         
         exit;
     }
@@ -94,9 +94,17 @@ class Lendars extends CI_Controller {
 
             }
 
-            if ($ref = $this->global_model->update('users', $save, array('id' => $id))) {
-                $this->session->set_flashdata('message', 'Update Your Profile info...');
+            $ref = $this->global_model->update('users', $save, array('id' => $id));
+
+            if($ref){
+                echo "success";
+
             }
+            else{
+                echo "error";
+            }
+
+
     }
 
     public function billing()

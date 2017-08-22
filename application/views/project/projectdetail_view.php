@@ -201,7 +201,10 @@
 
                             <?php if(!empty($layoutfull['rejectReason'])){?>
                                 <li class="list-group-item">
-                                    <b> Reject Reason</b> <span class="pull-right"><?php echo (!empty( $layoutfull['rejectReason']))? $layoutfull['rejectReason']:'Not selected'?></span>
+                                    <b> Reject Reason</b> <b class="pull-right"></b>
+                                </li>
+                                <li class="list-group-item">
+                                    <span style="color: red;"> <?php echo (!empty( $layoutfull['rejectReason']))? $layoutfull['rejectReason']:'Not selected'?></span>
                                 </li>
                             <?php } else{}?>
 

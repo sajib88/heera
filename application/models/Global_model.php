@@ -429,8 +429,8 @@ class Global_model extends CI_Model {
     public function all_project($id){
        $this->db->select('p.name, p.projectID, p.neededAmount, p.userID, p.statusID, f.fundedAmount, u.first_name as borrowerName');
        $this->db->from('project as p');
-        $this->db->join('users as u', 'u.id=p.userID');
-        $this->db->select_sum('f.fundedAmount');
+       $this->db->join('users as u', 'u.id=p.userID');
+       $this->db->select_sum('f.fundedAmount');
        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
        $this->db->where('f.fundedBy', $id);
        $this->db->group_by('p.projectID');
@@ -550,9 +550,6 @@ class Global_model extends CI_Model {
         $this->db->join('users as u', 'u.id=p.userID', 'left');
         $this->db->join('repaymentschedulelookup as sl', 'p.repaymentScheduleID=sl.repaymentScheduleID', 'left');
 
-        //$this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
-        //$this->db->join('repayment_schedules as rep', 'rep.projectID=p.projectID', 'left');
-       // $this->db->select_sum('f.fundedAmount');
         $this->db->where('p.statusID', $id);
         $query = $this->db->get();
         ///echo $this->db->last_query();
@@ -570,16 +567,27 @@ class Global_model extends CI_Model {
         $this->db->join('project_repaid_history as h', 'h.projectID=r.projectID');
         $this->db->where('r.projectID', $id);
 
-        //echo $this->db->last_query();
 
-        //$this->db->select('h.*, r.*');
-       // $this->db->from('project_repaid_history as h');
-       // $this->db->join('repayment_schedules as r', 'h.projectRepaidID=r.repaymentScheduleID', 'left');
-       // $this->db->where('r.projectID', $id);
 
         $query = $this->db->get();
 
         ///echo $this->db->last_query();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+
+    public function lender_payment_story($userID){
+        $this->db->select('p.*, u.first_name as borrowerName, p.repaymentScheduleID as repid, sl.repaymentScheduleTitle');
+        $this->db->from('project as p');
+        $this->db->join('users as u', 'u.id=p.userID', 'left');
+        $this->db->join('repaymentschedulelookup as sl', 'p.repaymentScheduleID=sl.repaymentScheduleID', 'left');
+        $this->db->where('p.userID', $userID);
+        $query = $this->db->get();
+        echo $this->db->last_query();
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
