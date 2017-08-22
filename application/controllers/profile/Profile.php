@@ -10,7 +10,6 @@ class Profile extends CI_Controller {
             redirect('home/login');
         }
     }
-
     public function index() {
 
         $data = array();
