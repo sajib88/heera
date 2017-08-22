@@ -74,6 +74,66 @@ class ProjectUpdates extends CI_Controller {
         }
 
 
+        ////// funded with repaid amount
+        //$projectData =  $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $id));
+        $projectData =$this->global_model->get('project', array('statusID' => 4));
+
+        foreach ($projectData as $proData){
+            $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
+            $proData->fundedAmount = (!empty($fundedAmount))? $fundedAmount:'0';
+            $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+            $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+
+            // calculate repaid %
+            $x =  $repaidAmount;
+            $y =  $fundedAmount;
+
+            $percent = $x/$y;
+            $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
+
+            $proData->repaidPercent = $percent_friendly;
+
+            $paymentAmount = $this->global_model->get_data('repayment_schedules', array('projectID' => $proData->projectID), array('limit'=>'1','start'=>'0'));
+            $proData->paymentAmount = (!empty($paymentAmount))?$paymentAmount['repaidAmount']:'0';
+
+
+
+            $proData->remaining = $percent_friendly;
+
+
+            //$proData->fundcollecttion = (!empty($fundcollecttion))? $fundcollecttion:'0';
+
+        }
+        $data['projectData'] =   $projectData;
+
+        foreach ($projectData as $pro ){
+          //  echo "<pre>";
+           /// print_r($pro);
+           /// echo  "<pre>";
+             $totalfundedbylader = $pro->fundedAmount;
+             $totalrepaid = $pro->repaidAmount;
+             $pid = $pro->projectID;
+
+             if($totalfundedbylader == $totalrepaid)
+             {
+                 $save['statusID'] = 6;
+                 $this->global_model->update('project', $save, array('projectID' => $pid));
+                 echo "go to repaid";
+             }
+             else{
+                 echo "all payment not repaid";
+             }
+
+        }
+
+
+
+       /// $data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'));
+
+        ///
+
+
+
 
     }
 

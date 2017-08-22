@@ -219,24 +219,38 @@ print_r($allpersonals);die;*/
                                 
                         </div>
 
-                    
 
-                        <div class="form-group">
-                            <label>Status<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
-                            <select name="status" id="statusID" class="form-control">
-                                <option value="">Status Select</option>
+
                                 <?php
-                                    if (is_array($project_status)) {
-                                        foreach ($project_status as $project_status) {
-                                            $sel = ($project_status->statusID == set_value('statusID'))?'selected="selected"':'';
-                                            ?>
-                                <option class="stat" data-statas="<?php echo $project_status->statusID; ?>" value="<?php echo $project_status->statusID; ?>" <?php echo $sel;?> ><?php echo $project_status->statusTitle; ?></option>
-                                            <?php
-                                        }
-                                    }
+                                 $getvaluedb = $allprojects[0]->statusID;
+
                                 ?>
-                            </select>  
-                        </div>
+
+
+                                <div class="form-group">
+                                    <label>Status<span class="error">*</span></label><span id="title-error" class="error" for="title"></span>
+                                    <select name="status" id="statusID" class="form-control">
+
+                                        <option  <?php if ($getvaluedb == 'null' ) echo 'selected' ; ?> class="stat" data-statas="null" value="null">New</option>
+                                        <option <?php if ($getvaluedb == '3' ) echo 'selected' ; ?> class="stat" data-statas="3" value="3">Active</option>
+                                        <option <?php if ($getvaluedb == '8' ) echo 'selected' ; ?> class="stat" data-statas="8" value="8">Rejected</option>
+                                        <option <?php if ($getvaluedb == '2' ) echo 'selected' ; ?> class="stat" data-statas="2" value="2">Not Funded</option>
+                                        <optgroup label="Funded">
+                                            <option <?php if ($getvaluedb == '4' ) echo 'selected' ; ?>  data-statas="4" value="4">Funded</option>
+                                            <option <?php if ($getvaluedb == '9' ) echo 'selected' ; ?> class="stat" data-statas="9" value="9">Repayment Progress</option>
+                                        </optgroup>
+                                        <option <?php if ($getvaluedb == '6' ) echo 'selected' ; ?>class="stat" data-statas="6" value="6">Repaid</option>
+
+                                        <option <?php if ($getvaluedb == '7' ) echo 'selected' ; ?> class="stat" data-statas="7" value="7">Defaulted</option>
+
+                                        <option <?php if ($getvaluedb == '10' ) echo 'selected' ; ?> class="stat" data-statas="10" value="10">canceled</option>
+
+
+
+
+                                </select>
+                                </div>
+
                             </div>
                         </section>
                     </div>

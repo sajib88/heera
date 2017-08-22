@@ -39,7 +39,7 @@
     <script>
 
         $("#submitbutton").click(function(e){
-            if($("#classifiedform").valid()) {
+            if($("#myForm").valid()) {
             var base_url = '<?php echo base_url() ?>';
             $.ajax({
                 url: "<?php echo base_url(); ?>project/project/rejectProject",

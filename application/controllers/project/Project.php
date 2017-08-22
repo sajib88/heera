@@ -257,7 +257,7 @@ class Project extends CI_Controller {
         }
         
         $id = $this->uri->segment('4');
-        $data['editProject'] = $this->global_model->get_data('project', array('projectID' => $id));        
+        $data['editProject'] = $this->global_model->editproject($id);
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['allborrowers'] = $this->global_model->get('users', array('profession'=> 2 ));
         $data['countries'] = $this->global_model->get('countries');

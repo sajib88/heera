@@ -355,13 +355,6 @@
                             </div>
                             <div class="row">
 
-
-
-
-
-
-
-
                             </div>
 
                             <!-- /.Lending -->
@@ -428,7 +421,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Current Profession</label>
-                                        <input type="number" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
+                                        <input type="text" name="lengthOfEmployment" value="<?php echo $editProject['lengthOfEmployment']; ?>" class="form-control" >
                                     </div>
                                 </div>
                             </div>
@@ -458,13 +451,46 @@
 
 
 
-                            <!-- /.Lending -->
+                   <!-- /.Lending -->
                         </div>
                     </div>
                 </div>
 
+
+
+            </div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Borrower Info</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $editProject['first_name']))? $editProject['first_name']:''?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $editProject['dateofbirth']))? $editProject['dateofbirth']:''?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Email</b> <span class="pull-right">  <?php echo (!empty( $editProject['email']))? $editProject['email']:''?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $editProject['phone']))? $editProject['phone']:''?></span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+                <!-- /.box-body -->
             </div>
         </div>
+
+
+
 
 
 
@@ -510,6 +536,10 @@
 </section>
 
 </div>
+
+
+
+
 
 
 
@@ -788,8 +818,7 @@
         });
 
         $("#rejectProject").click(function(e) {
-            var r = confirm('Do you want to Reject this Project');
-            if (r == true) {
+           /// var r = confirm('Do you want to Reject this Project');
 
 
                 var base_url = '<?php echo base_url() ?>';
@@ -806,7 +835,7 @@
                 });
 
 
-            }
+
         });
 
 
