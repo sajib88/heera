@@ -140,6 +140,18 @@
                                 </div>
 
                             </div>
+                            <?php if(!empty($editProject['rejectReason'])){?>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Reject Reason</label></br>
+                                        <label style="color: red"><?php echo (!empty( $editProject['rejectReason']))? $editProject['rejectReason']:'Not selected'?></label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <?php } else{}?>
                         </div>
                     </div>
                     <!-- /.row (nested) -->
