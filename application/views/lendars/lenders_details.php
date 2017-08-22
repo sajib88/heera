@@ -18,6 +18,14 @@
 <div class="col-md-12 no-padding">
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
+        <?php if($this->session->flashdata('message')){ ?>
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong><?php echo $this->session->flashdata('message'); ?></strong>
+                </div>
+            </div>
+        <?php } $this->session->unset_userdata('message'); ?>
       <ul class="nav nav-tabs">
         <li class="active"><a href="#fundedProjectList" data-toggle="tab" aria-expanded="true">Funded Projects List</a></li>
         <li class=""><a href="#bilingInfo" data-toggle="tab" aria-expanded="false">Billing Information</a></li>        
@@ -102,10 +110,10 @@
         </div>
         <div class="tab-pane" id="lenderProfileDeatails">
           <div class="row">
-
+              <form id="myForm" name="myForm" role="form" method="post" class="form-horizontal">
               <div class="col-md-4 col-md-offset-1">
                   <div class="box box-primary">
-                      <div class="box-body">
+                      <div class="box-body padd">
 
                               <?php
                               if($lendarDetails['profilepicture'] == 0) {?>
@@ -116,72 +124,118 @@
                               }
                               ?>
 
-
                             <h3 class="profile-username text-center">Total Credit <?php echo '$'.$lendarDetails['inAmount']; ?></h3>
-
                     </div>
+
                 </div>
+                  <small>Please Upload a Profile Picture</small>
+                  <input class="btn btn-default text-center" name="profilepicture" type="file">
               </div>
 
             <div class="col-md-6">
 
-                    <div class="box-body box-profile no-padding">
+                    <div class="box box-primary">
                      <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <ul class="list-group list-group-unbordered">
+                    <div class="box-body">
 
-                            <li class="list-group-item">
-                                <b>Name </b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['first_name']))? $lendarDetails['first_name']:''; ?></a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b> Email </b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['email']))? $lendarDetails['email']:''; ?></a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Phone</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['phone']))? $lendarDetails['phone']:''; ?></a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Gender</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['gender']))? $lendarDetails['gender']:''; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Date of Birth</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['dateofbirth']))? $lendarDetails['dateofbirth']:''; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Country</b>
-                                <a class="pull-right "><?php
-                                    $data = get_data('countries', array('id' => $lendarDetails['country']));
-                                    echo $data['name'];
-                                    ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>State</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['state']))? $lendarDetails['state']:''; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>City</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['city']))? $lendarDetails['city']:''; ?></a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <b>Address</b>
-                                <a class="pull-right "><?php echo (!empty( $lendarDetails['address']))? $lendarDetails['address']:''; ?></a>
-                            </li>
-
-
-
-                        </ul>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Name</label>
+                                <div class="col-md-8">
+                                    <input name="first_name" value="<?php echo $lendarDetails['first_name']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Email</label>
+                                <div class="col-md-8">
+                                    <input name="email" value="<?php echo $lendarDetails['email']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Phone</label>
+                                <div class="col-md-8">
+                                    <input name="phone" value="<?php echo $lendarDetails['phone']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Gender</label>
+                                <div class="col-md-8">
+                                    <input name="gender" value="<?php echo $lendarDetails['gender']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Date of Birth</label>
+                                <div class="col-md-8">
+                                    <input name="dateofbirth" value="<?php echo $lendarDetails['dateofbirth']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Country</label>
+                                <div class="col-md-8">
+                                    <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
+                                        <option value="">Select</option>
+                                        <?php
+                                        if (is_array($countries)) {
+                                            foreach ($countries as $country) {
+                                                $v = (set_value('country')!='')?set_value('country'):$lendarDetails['country'];
+                                                $sel = ($v == $country->id)?'selected="selected"':'';
+                                                ?>
+                                                <option  value="<?php echo $country->id; ?>" <?php echo $sel;?>><?php echo $country->name; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                    <?php echo form_error('country');?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">State</label>
+                                    <div class="col-md-8">
+                                        <div id="result">
+                                            <select name="state"  class="form-control">
+                                                <option value="">Select state</option>
+                                                <?php
+                                                if (is_array($states) and (!empty($states))) {
+                                                    foreach ($states as $row) {
+                                                        $v = (set_value('state')!='')?set_value('state'):$lendarDetails['state'];
+                                                        $sel = ($v == $row->name)?'selected="selected"':'';
+                                                        ?>
+                                                        <option  value="<?php echo $row->name; ?>" <?php echo $sel;?>><?php echo $row->name; ?></option>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">City</label>
+                                <div class="col-md-8">
+                                    <input name="city" value="<?php echo $lendarDetails['city']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 label-control">Address</label>
+                                <div class="col-md-8">
+                                    <input name="address" value="<?php echo $lendarDetails['address']; ?>"  class="form-control">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <!-- /.box-body -->
                 </div>
 
             </div>
+
+                  <div class="col-lg-3 col-md-offset-1">
+
+                      <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
+                  </div>
+                  <div class="col-lg-7 ">
+                      <button id="updateProfile" class="btn btn-success  btn-lg pull-right" data-id="<?php echo $lendarDetails['id']; ?>" type="button">
+                          <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
+                  </div>
 
         </div>
         </div> 
@@ -208,5 +262,51 @@
             } ]
         });
         
+    });
+</script>
+
+<script>
+
+    function getComboA(sel) {
+        var value = sel.value;
+        var base_url = '<?php echo base_url() ?>';
+        var da = {state: value};
+        $.ajax({
+            type: 'POST',
+            url: base_url + "project/project/getStateByAjax",
+            data: da,
+            dataType: "text",
+            success: function(resultData) {
+                $("#result").html(resultData);
+            }
+        });
+
+    }
+
+</script>
+
+<script>
+    $(function(){
+        $("#updateProfile").click(function(e){
+            var base_url = '<?php echo base_url() ?>';
+            var id=$(this).data('id');
+
+            $.ajax({
+                url:base_url + "lendars/Lendars/updateLenderProfile/"+id,
+                type: 'POST',
+                data: $("#myForm").serialize(),
+                success: function(data){
+
+                    console.log(data);
+                    alert("success");
+                   // $('#email').val('');
+                    //$('#qText').val('');
+                },
+                error: function(){
+                    alert("Fail")
+                }
+            });
+            e.preventDefault();
+        });
     });
 </script>

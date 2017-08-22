@@ -53,7 +53,9 @@ class Lendars extends CI_Controller {
         //$data['allfundedproject'] = $this->global_model->get('project', array('userID' => $userID));
         
         $data['allfundedproject'] = $this->global_model->all_project($userID);
-        
+
+        $data['countries'] = $this->global_model->get('countries');
+
 //        echo '<pre>';
 //        print_r($data['allfundedproject']);die;
 //        echo '</pre>';
@@ -62,6 +64,39 @@ class Lendars extends CI_Controller {
        // print_r($projectDetails);
         
         exit;
+    }
+
+    public function updateLenderProfile($id){
+        $this->load->library('Resizeimg');
+
+            $postData = $this->input->post();
+
+            $save['first_name'] = $postData['first_name'];
+            $save['email'] = $postData['email'];
+            $save['phone'] = $postData['phone'];
+            $save['gender'] = $postData['gender'];
+            $save['dateofbirth'] = $postData['dateofbirth'];
+            $save['country'] = $postData['country'];
+            $save['state'] = $postData['state'];
+            $save['city'] = $postData['city'];
+            $save['address'] = $postData['address'];
+
+            if (isset($_FILES["profilepicture"]["name"]) && $_FILES["profilepicture"]["name"] != '') {
+                $this->PATH = './assets/file';
+                $photo_name = time();
+                if (!file_exists($this->PATH)) {
+                    mkdir($this->PATH, 0777, true);
+                }
+                $save['profilepicture'] = $this->resizeimg->image_upload('profilepicture', $this->PATH, 'size[300,300]', '', $photo_name);
+                print_r(  $save['profilepicture']);
+            }
+            else {
+
+            }
+
+            if ($ref = $this->global_model->update('users', $save, array('id' => $id))) {
+                $this->session->set_flashdata('message', 'Update Your Profile info...');
+            }
     }
 
     public function billing()
