@@ -307,7 +307,7 @@ print_r($allpersonals);die;*/
 <script type="text/javascript">
 
 $('.changeStatus').click(function(){
-    
+    $('#loadingState').show();
     var base_url = '<?php echo base_url() ?>';
    
     var id=$(this).data('id');
@@ -322,13 +322,14 @@ $('.changeStatus').click(function(){
             console.log(repData);
             $('#pojectID').html(repData['name']);
             $('#statusID').val(repData['status']);
-            $('#projectID').val(repData['projectID']);            
+            $('#projectID').val(repData['projectID']);
+            $('#loadingState').hide();
         }
     });       
 });
 
 $("#update_status_frm").submit(function(e){
-    
+    $('#loadingState').show();
     e.preventDefault();
     var $form = $(this);
     var base_url = '<?php echo base_url() ?>';
@@ -351,12 +352,12 @@ $("#update_status_frm").submit(function(e){
                 //$('.close-modal').;  
                
                 window.location.href=base_url + "project/Project/all/"+statusID;
-                
+                $('#loadingState').hide();
                 
             }else{
                 // show error meessage
                 window.location.href=base_url + "project/Project/all/";
-                 
+                $('#loadingState').hide();
             }
             //console.log(msg);
 //            var repData = JSON.parse(rsp);

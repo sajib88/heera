@@ -222,12 +222,12 @@ $("#update_status_frm").submit(function(e){
     
 });
 
-$('.allFundedProject').click(function(){ 
-    
-    var id=$(this).data('id');           
-        var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/"+id; //append id at end
-        $("#lendarDeatails").load(site_url);  
-        
+$('.allFundedProject').click(function() {
+    $('#loadingState').show();
+    var id = $(this).data('id');
+    var site_url = "<?php echo base_url('lendars/Lendars/allFundedProject/'); ?>/" + id; //append id at end
+    $("#lendarDeatails").load(site_url);
+    $('#loadingState').hide();
 });
 
 </script>
