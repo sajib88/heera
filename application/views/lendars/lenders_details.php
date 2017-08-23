@@ -276,11 +276,11 @@
                   <div class="row">
                       <div class="col-md-6">
 
-                          <a class="btn btn-block btn-info"> Add Fund</a>
+                          <a href="<?php echo base_url('fund/Fund/adminfund'); ?>/<?php echo $lendarDetails['id']; ?>" class="btn btn-block btn-info"> Add Fund</a>
                       </div>
                       <div class="col-md-6">
 
-                          <a class="btn btn-block btn-warning"> Refund </a>
+                          <a  href="<?php echo base_url('fund/Fund/adminrefund'); ?>/<?php echo $lendarDetails['id']; ?>"class="btn btn-block btn-warning"> Refund </a>
                       </div>
                   </div>
 

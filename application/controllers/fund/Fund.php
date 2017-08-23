@@ -59,6 +59,80 @@ class Fund extends CI_Controller {
 
     }
 
+    public function adminfund($id) {
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        $getlendersbyid = $this->global_model->get_data('users', array('id' => $id));
+
+        $totalbalance = $getlendersbyid['inAmount'];
+
+
+
+        if($this->input->post()){
+            $postData = $this->input->post();
+            $this->form_validation->set_rules('inAmount', 'inAmount', 'required');
+            if($this->form_validation->run() == true){
+                $loginId = $this->session->userdata('login_id');
+                $save['inAmount'] = empty($postData['inAmount']) ? NULL : $postData['inAmount'];
+                $save['outAmount'] = 0;
+                $save['transactionReason'] = 'add funds';
+                $save['userID'] = $id;
+                $save['transactionDateTime'] =  date('Y-m-d H:i:s');
+                $credit['inAmount'] = $totalbalance;
+                $credit['inAmount'] = $credit['inAmount'] += $save['inAmount'] = $postData['inAmount'];
+                if ($ref = $this->global_model->insert('lander_transaction_history', $save)) {
+                    if($ref = $this->global_model->update('users', $credit, array('id' => $id))){
+
+
+                        $this->session->set_flashdata('message', 'Add New Fund Credit balance');
+                    }
+                }
+                else{
+                    $this->session->set_flashdata('error', 'error found !');
+                }
+            }
+
+        }
+
+
+
+
+
+        $this->load->view('header', $data);
+        $this->load->view('fund/adminaddFund', $data);
+        $this->load->view('footer');
+
+
+    }
+
+
+    public function adminrefund($id) {
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        $getlendersbyid = $this->global_model->get_data('users', array('id' => $id));
+
+      echo  $totalbalance = $getlendersbyid['inAmount'];
+
+
+        $data['projectlist'] = $this->global_model->get('project', array('statusID' => 3));
+
+
+
+
+
+        $this->load->view('header', $data);
+        $this->load->view('fund/adminrefund', $data);
+        $this->load->view('footer');
+
+
+    }
+
 
     public function transactions()
     {
