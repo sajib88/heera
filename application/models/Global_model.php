@@ -754,10 +754,12 @@ class Global_model extends CI_Model {
     }
 
     public function repaymentList(){
-        $this->db->select('p.projectID, p.name as projectName, u.first_name as borrowerName, r.*');
-        $this->db->from('project as p');
-        $this->db->join('project_repaid_history as r', 'r.projectID=p.projectID');
-        $this->db->join('users as u', 'u.id=p.userID');
+        $this->db->select('p.projectID, p.name as projectName, u.first_name as borrowerName, r.*, u2.first_name as processBy');
+        $this->db->from('project_repaid_history as r');
+        $this->db->join('project as p', 'r.projectID=p.projectID', 'left');
+        $this->db->join('users as u', 'u.id=r.repaidBy', 'left');
+        $this->db->join('users as u2', 'u2.id=r.paymentProcessBy', 'left');
+
         //$this->db->group_by('p.projectID');
         $query = $this->db->get();
         //echo "<pre>"; print_r($query->result());echo "</pre>";
@@ -768,6 +770,46 @@ class Global_model extends CI_Model {
             return false;
         }
     }
+
+
+
+
+    public function repayment_get_by_id($id){
+
+        $this->db->select('r.projectID, r.repaidAmount,r.repaidStatus, r.repaymentScheduleID,r.projectRepaidID, p.name,p.userID as borrowerId');
+        $this->db->from('project_repaid_history as r');
+        $this->db->join('project as p', 'p.projectID = r.projectID', 'left');
+        $this->db->where('r.projectRepaidID', $id);
+
+        $query = $this->db->get();
+////print_r($query);
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_landerby_project_id($id){
+
+        $this->db->select('f.*,u.first_name,u.id, u.inAmount as currentCreditAmount');
+        $this->db->from('project_fund_history as f');
+        $this->db->join('users as u', 'u.id = f.fundedBy');
+        $this->db->where('f.projectID', $id);
+
+        $this->db->group_by('f.fundedBy');
+        $this->db->select_sum('f.fundedAmount');
+        $query = $this->db->get();
+
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
 
     public function front_projectList($id){
         $this->db->select('p.*, f.fundedAmount as totalRaisedAmount, u.first_name, u.email, u.dateofbirth, u.phone, u.profilepicture');
