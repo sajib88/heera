@@ -20,11 +20,8 @@ class Dashboard extends CI_Controller {
 
         $loginId = $this->session->userdata('login_id');
         $user_info= $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
-
-        ///// For lender purpuse code
-        //$data['fundtotal'] =  $this->global_model->total_sum('project_fund_history', array('fundedBy' => $loginId));
         $data['lenderFundingDeatails'] =  $this->global_model->lendersOutstanding($loginId);
-        //print_r($data['lenderFundingDeatails']);die;
+
 
         if($user_info['profession'] == 1){
 

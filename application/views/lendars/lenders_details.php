@@ -317,7 +317,7 @@
                             <div class="form-group">
                                 <label for="name" class="col-md-4 label-control">Date of Birth</label>
                                 <div class="col-md-8">
-                                    <input name="dateofbirth" value="<?php echo $lendarDetails['dateofbirth']; ?>"  class="form-control">
+                                    <input name="dateofbirth" id="datepicker" value="<?php echo date("m/d/Y", strtotime($lendarDetails['dateofbirth'])); ?>"  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -425,7 +425,7 @@
         var da = {state: value};
         $.ajax({
             type: 'POST',
-            url: base_url + "project/project/getStateByAjax",
+            url: base_url + "lendars/Lendars/getStateByAjax",
             data: da,
             dataType: "text",
             success: function(resultData) {
@@ -464,4 +464,21 @@
             e.preventDefault();
         });
     });
+</script>
+
+
+<script type="text/javascript">
+
+
+    jQuery(document).ready(function() {
+        //Date picker
+        $('#datepicker2').datepicker({
+            autoclose: true
+        });
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+
+    });
+
 </script>

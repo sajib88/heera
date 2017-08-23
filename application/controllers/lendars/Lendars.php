@@ -49,16 +49,11 @@ class Lendars extends CI_Controller {
         $data = array();
 
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-        
         $data['allfundedproject'] = $this->global_model->all_project($userID);
-
         $data['listpaymethod'] = $this->global_model->get('payment_methods', array('userID' => $userID));
 
         $data['countries'] = $this->global_model->get('countries');
-        //echo '<pre>';
-        //print_r($data['allfundedproject']);
-        //echo '</pre>';
-
+        $data['states'] = $this->global_model->get('states');
 
         echo $this->load->view('lendars/lenders_details', $data, TRUE);
 
@@ -148,6 +143,16 @@ class Lendars extends CI_Controller {
             $this->session->set_flashdata('error', 'Somthing went wrong! plese try again letar.');
             redirect('lendars/billing');
         }
+    }
+
+
+    public function getStateByAjax() {
+        $data = array();
+        $id = $this->input->post('state');
+        $states = $this->global_model->get('states', array('country_id' => $id));
+        $data['states'] = $states;
+        echo $this->load->view('state', $data, TRUE);
+        exit;
     }
 
 }

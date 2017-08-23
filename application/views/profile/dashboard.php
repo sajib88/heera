@@ -39,7 +39,7 @@
 
                     <div class="info-box-content">
                         <h2 class="count">$<?php echo (!empty( $lenderFundingDeatails['outStandingAmount']))? $lenderFundingDeatails['outStandingAmount']:'0.00'?></h2>
-                        <p>Outstanding AMOUNT</p>
+                        <p>OUTSTANDING AMOUNT</p>
                         <a href="#">View all <i class="icon-long-arrow-right"></i></a><i class="fa fa-arrow-circle-right"></i>
                     </div>
                     <!-- /.info-box-content -->

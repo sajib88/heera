@@ -157,9 +157,12 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="borrowerProfile">
             <div class="row">
+                <form id="myForm" name="myForm" role="form" method="post" class="form-horizontal">
+                    <div id="foo"></div>
                     <div class="col-md-4 col-md-offset-1">
                         <div class="box box-primary">
-                            <div class="box-body">
+                            <div class="box-body padd">
+
                                 <?php
                                 if($borrowersDetails['profilepicture'] == 0) {?>
                                     <img src="<?php echo base_url() . '/assets/user-demo.jpg'?>" alt="" class="img-responsive circular profile-user-img img-responsive img-circle img-size" />
@@ -169,65 +172,127 @@
                                 }
                                 ?>
                             </div>
+
+
+
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <a class="btn btn-block btn-info"> Add Fund</a>
+                            </div>
+                            <div class="col-md-6">
+
+                                <a class="btn btn-block btn-warning"> Refund </a>
+                            </div>
+                        </div>
+
                     </div>
-                <div class="col-md-6">
 
-                        <div class="box-body box-profile no-padding">
+                    <div class="col-md-6">
 
+                        <div class="box box-primary">
                             <!-- /.box-header -->
-                            <div class="box-body no-padding">
-                                <ul class="list-group list-group-unbordered">
+                            <div class="box-body">
 
-                                    <li class="list-group-item">
-                                        <b>Name </b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['first_name']))? $borrowersDetails['first_name']:''; ?></a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <b> Email </b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['email']))? $borrowersDetails['email']:''; ?></a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <b>Phone</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['phone']))? $borrowersDetails['phone']:''; ?></a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <b>Gender</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['gender']))? $borrowersDetails['gender']:''; ?></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Date of Birth</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['dateofbirth']))? $borrowersDetails['dateofbirth']:''; ?></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Country</b>
-                                        <a class="pull-right "><?php
-                                            $data = get_data('countries', array('id' => $borrowersDetails['country']));
-                                            echo $data['name'];
-                                            ?></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>State</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['state']))? $borrowersDetails['state']:''; ?></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>City</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['city']))? $borrowersDetails['city']:''; ?></a>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <b>Address</b>
-                                        <a class="pull-right "><?php echo (!empty( $borrowersDetails['address']))? $borrowersDetails['address']:''; ?></a>
-                                    </li>
-                                </ul>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Name</label>
+                                    <div class="col-md-8">
+                                        <input name="first_name" value="<?php echo $borrowersDetails['first_name']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Email</label>
+                                    <div class="col-md-8">
+                                        <input name="email" value="<?php echo $borrowersDetails['email']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Phone</label>
+                                    <div class="col-md-8">
+                                        <input name="phone" value="<?php echo $borrowersDetails['phone']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Gender</label>
+                                    <div class="col-md-8">
+                                        <input name="gender" value="<?php echo $borrowersDetails['gender']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Date of Birth</label>
+                                    <div class="col-md-8">
+                                        <input name="dateofbirth" id="datepicker" value="<?php echo date("m/d/Y", strtotime($borrowersDetails['dateofbirth'])); ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Country</label>
+                                    <div class="col-md-8">
+                                        <select onchange="getComboA(this)" name="country" id="js_country" class="form-control">
+                                            <option value="">Select</option>
+                                            <?php
+                                            if (is_array($countries)) {
+                                                foreach ($countries as $country) {
+                                                    $v = (set_value('country')!='')?set_value('country'):$borrowersDetails['country'];
+                                                    $sel = ($v == $country->id)?'selected="selected"':'';
+                                                    ?>
+                                                    <option  value="<?php echo $country->id; ?>" <?php echo $sel;?>><?php echo $country->name; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                        <?php echo form_error('country');?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="State" class="col-md-4 label-control">State</label>
+                                    <div class="col-md-8">
+                                        <div id="result">
+                                            <select name="state"  class="form-control">
+                                                <option value="">Select state</option>
+                                                <?php
+                                                if (is_array($states) and (!empty($states))) {
+                                                    foreach ($states as $row) {
+                                                        $v = (set_value('state')!='')?set_value('state'):$borrowersDetails['state'];
+                                                        $sel = ($v == $row->name)?'selected="selected"':'';
+                                                        ?>
+                                                        <option  value="<?php echo $row->name; ?>" <?php echo $sel;?>><?php echo $row->name; ?></option>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">City</label>
+                                    <div class="col-md-8">
+                                        <input name="city" value="<?php echo $borrowersDetails['city']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-4 label-control">Address</label>
+                                    <div class="col-md-8">
+                                        <input name="address" value="<?php echo $borrowersDetails['address']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                             <!-- /.box-body -->
                         </div>
 
-                </div>
+                      </div>
+
+                        <div class="col-lg-3 col-md-offset-1">
+
+                            <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
+                        </div>
+                        <div class="col-lg-7 ">
+                            <button id="updateProfile" class="btn btn-success  btn-lg pull-right" data-id="<?php echo $borrowersDetails['id']; ?>" type="button">
+                                <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
+                        </div>
             </div>
         </div>
 </div>
@@ -271,3 +336,71 @@
         
     });
 </script>
+
+<script>
+
+    function getComboA(sel) {
+        var value = sel.value;
+        var base_url = '<?php echo base_url() ?>';
+        var da = {state: value};
+        $.ajax({
+            type: 'POST',
+            url: base_url + "borrowers/Borrowers/getStateByAjax",
+            data: da,
+            dataType: "text",
+            success: function(resultData) {
+                $("#result").html(resultData);
+            }
+        });
+
+    }
+
+</script>
+
+<script>
+    $(function(){
+        $("#updateProfile").click(function(e){
+            var base_url = '<?php echo base_url() ?>';
+            var id=$(this).data('id');
+
+            $.ajax({
+                url:base_url + "borrowers/Borrowers/updateBorrowerProfile/"+id,
+                type: 'POST',
+                data: $("#myForm").serialize(),
+                success: function (msg) {
+
+                    if (msg == 'success') {
+                        // show success meessage
+                        var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
+                        $('#foo').html(msg);
+                    }
+                    else {
+                        var msg = "<div class='alert alert-danger'> Profile no updated </div>";
+                        $('#foo').html(msg);
+                    }
+                },
+
+            });
+            e.preventDefault();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+
+    jQuery(document).ready(function() {
+        //Date picker
+        $('#datepicker2').datepicker({
+            autoclose: true
+        });
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+
+    });
+
+
+
+</script>
+
