@@ -34,7 +34,9 @@
             <div class="col-md-12 ">
                 <div class="box">                    
                     <div class="box-body no-padding">
-                        <?php if(empty($allfundedproject)){?>
+                        <?php if(empty($allfundedproject)){
+
+                            ?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
@@ -74,7 +76,7 @@
                                                     class="numeric"><span><?php if(!empty($row->fundedAmount)){echo '$'.$row->fundedAmount;}else{echo '$0.00';}  ?></span>
                                                 </td>
                                                 <td data-title="<?php echo 'Amount Collected'; ?>"
-                                                    class="numeric"><span><?php echo "0.00"; ?></span></td>
+                                                    class="numeric"><span><?=(!empty($row->browRepaidAmount))?'$'.$row->browRepaidAmount:'$0.00';?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
                                                     class="numeric"><span><?php if(!empty($row->statusID)){ echo getStatusById($row->statusID);}else{ echo 'New';} ?></span>
                                                 </td>

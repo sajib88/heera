@@ -427,7 +427,7 @@ class Global_model extends CI_Model {
     }
     
     public function all_project($id){
-       $this->db->select('p.name, p.projectID, p.neededAmount, p.userID, p.statusID, f.fundedAmount, u.first_name as borrowerName');
+       $this->db->select('p.name, p.projectID, p.neededAmount, p.userID, p.statusID, f.fundedAmount, f.fundedBy, u.first_name as borrowerName');
        $this->db->from('project as p');
        $this->db->join('users as u', 'u.id=p.userID');
        $this->db->select_sum('f.fundedAmount');
@@ -683,21 +683,28 @@ class Global_model extends CI_Model {
         }
     }
 
-    public function all_lenders_with_funded_amount($id)
-    {
-        $query = $this->db->query("SELECT users.id,users.first_name,users.created,users.lastLogin,users.inAmount,project_fund_history.fundedBy,project_fund_history.projectID,project.`name`,project.statusID,project.neededAmount,
-                                    sum(project_fund_history.fundedAmount) as fundedAmount
-                                    FROM users INNER JOIN project_fund_history ON users.id = project_fund_history.fundedBy
-                                      INNER JOIN project ON project_fund_history.projectID = project.projectID
-                                    WHERE users.id = $id OR users.profession = $id                                 
-                                    GROUP BY project_fund_history.fundedBy, users.id");
+
+
+    public function all_lenders_with_funded_amount(){
+        $this->db->select('f.* , u.*');
+        $this->db->select_sum('f.fundedAmount');
+        //$this->db->select_sum('brh.amount');
+        //$this->db->from('project as p');
+        $this->db->from('users as u');
+        $this->db->join('project_fund_history as f', 'u.id = f.fundedBy', 'left');
+        //$this->db->join('borrower_repaid_history as brh', 'u.id = brh.lenderID', 'left');
+        $this->db->group_by('u.id');
+        $this->db->where('u.profession', 1);
+        $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {
             return false;
         }
+        //return $query;
     }
+
 
     public function getLenderPerProject($id=''){
         $this->db->select('p.projectID, p.userID, f.fundedAmount, f.fundedBy, u.id, u.first_name as lenderName');

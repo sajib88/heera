@@ -94,7 +94,7 @@
                                                 <td data-title="<?php echo 'Total Credit'; ?>"
                                                     class="numeric"><span><?php if(!empty($row->inAmount)){echo '$'.$row->inAmount;}else{echo '$0.00';} ?></span></td>
                                                 <td data-title="<?php echo 'Total Repaid'; ?>"
-                                                    class="numeric"><span><?php echo '$0.00'; ?></span></td>
+                                                    class="numeric"><span><?=(!empty($row->browRepaidAmount))?'$'.$row->browRepaidAmount:'$0.00';?></span></td>
                                                 <td data-title="<?php echo 'View'; ?>" class="numeric">
                                                     <a class="allFundedProject btn btn-block btn-primary" href="#myModal" data-toggle="modal" data-id="<?php echo $row->id; ?>" > View </a>
                                                 </td>

@@ -21,9 +21,16 @@ class Lendars extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
 
         //$lendars = $this->global_model->lenders_total_funded_amount();
-        $data['lendars'] = $this->global_model->all_lenders_with_funded_amount(1);
+        $lendarsData = $this->global_model->all_lenders_with_funded_amount();
 
-        //print_r($data['lendars']);die;
+        foreach ($lendarsData as $proData){
+
+            $repaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('lenderID' => $proData->id), 'amount');
+            $proData->browRepaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+
+        }
+        $data['lendars'] = $lendarsData;
+//        echo "<pre>";print_r($data['lendars']);echo "</pre>";die;
 
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
@@ -49,8 +56,16 @@ class Lendars extends CI_Controller {
         $data = array();
 
         $data['lendarDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-        $data['allfundedproject'] = $this->global_model->all_project($userID);
+        $allfundedproject = $this->global_model->all_project($userID);
         $data['listpaymethod'] = $this->global_model->get('payment_methods', array('userID' => $userID));
+
+        foreach ($allfundedproject as $proData){
+
+            $repaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('projectsID' => $proData->projectID,'lenderID' => $proData->fundedBy), 'amount');
+            $proData->browRepaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+
+        }
+        $data['allfundedproject'] = $allfundedproject;
 
         $data['countries'] = $this->global_model->get('countries');
         $data['states'] = $this->global_model->get('states');
