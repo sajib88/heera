@@ -23,7 +23,7 @@
                    <span class="widget-user-image pull-left"> <img src="<?php echo base_url();?>backend/img/dash/im1.gif" /></span>
 
                    <div class="info-box-content">
-                       <h2 class="count">$<?php if(!empty($fundtotal)){ echo $fundtotal;} else { echo "0.00";}?></h2>
+                       <h2 class="count"><?php echo (!empty( $lenderFundingDeatails['outStandingLoan']))? $lenderFundingDeatails['outStandingLoan']:'0'?></h2>
                        <p>OUTSTANDING LOAN</p>
                        <a href="#">View all <i class="icon-long-arrow-right"></i></a><i class="fa fa-arrow-circle-right"></i>
                    </div>
@@ -38,7 +38,7 @@
                         <img src="<?php echo base_url();?>backend/img/dash/im2.gif" /></span>
 
                     <div class="info-box-content">
-                        <h2 class="count">$<?= $user_info['inAmount']; ?></h2>
+                        <h2 class="count">$<?php echo (!empty( $lenderFundingDeatails['outStandingAmount']))? $lenderFundingDeatails['outStandingAmount']:'0.00'?></h2>
                         <p>Outstanding AMOUNT</p>
                         <a href="#">View all <i class="icon-long-arrow-right"></i></a><i class="fa fa-arrow-circle-right"></i>
                     </div>

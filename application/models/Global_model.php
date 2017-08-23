@@ -803,7 +803,20 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function lendersOutstanding($id=''){
+        $this->db->select('SUM(f.fundedAmount) as outStandingAmount, COUNT(f.projectID) as outStandingLoan');
+        $this->db->from('project_fund_history as f');
+        $this->db->where('f.fundedBy', $id);
+        $this->db->group_by('f.fundedBy');
+        $query = $this->db->get();
+        //echo "<pre>"; print_r($query->result());echo "</pre>";
 
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
 
 
 }
