@@ -67,7 +67,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
+                                            <label>Is Primary Payment Method ?</label>
 
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
+                                            <label>Is Primary Payment Method ?</label>
 
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
+                                            <label>Is Primary Payment Method ?</label>
 
                                         </div>
                                     </div>
@@ -289,7 +289,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
+                                            <label>Is Primary Payment Method ?</label>
 
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <input id="isPrimary" type="checkbox" name="isPrimary" value="1">
-                                            <label>Primary Payment Method ?</label>
+                                            <label>Is Primary Payment Method ?</label>
 
                                         </div>
                                     </div>
