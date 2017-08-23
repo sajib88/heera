@@ -101,8 +101,9 @@ class Borrow extends CI_Controller {
         $projectData['repaidStatus'] = 'Pending';
         $projectData['paymentProcessBy'] = Null;
         $projectData['paymentProcessTime'] = Null;
+        $projectData['repaymentScheduleID'] = $repaymentScheduleID;
 
-        $repaymentData['repaymentStatus'] = $repaymentStatus;
+        $repaymentData['repaidStatus'] = $repaymentStatus;
         //$repaymentStatus['repaymentScheduleID'] = $repaymentScheduleID;
 
         if($this->global_model->insert('project_repaid_history', $projectData)){

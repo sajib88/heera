@@ -86,32 +86,28 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Repaid Amount'; ?>"
                                                     class="numeric"><span><?php echo $row->repaidAmount; ?></span></td>
                                                 <td data-title="<?php echo 'Repayment Schedule Date'; ?>"
-                                                    class="numeric"><span><?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
+                                                    class="numeric"><span><?php echo date('M-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
                                                 <td data-title="<?php echo 'Status'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->statusID; ?> </span></td>
+                                                    class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
                                                 <?php
-                                                $repDate = date('m-Y',strtotime($row->schedualeDateTime));
-                                                $currentdate = date('m-Y');
-                                                $stutas = $row->statusID;
-                                                if($repDate != $currentdate && $stutas != 'Unpaid'){
+                                               // $repDate = date('m-Y',strtotime($row->schedualeDateTime));
+                                               // $currentdate = date('m-Y');
+                                                if($row->repaidStatus != 'Pending'){
                                                 ?>
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                    <a href="<?php echo base_url('borrow/Borrow/borrowerRepayment/' . $row->projectID .'/'.$row->repaidAmount .'/'. date('Y-m-d',strtotime($row->schedualeDateTime)) .'/Paid/' . $row->repaymentScheduleID );?>" class="btn btn-warning ">Make Payment </a>
+                                                    <a href="<?php echo base_url('borrow/Borrow/borrowerRepayment/' . $row->projectID .'/'.$row->repaidAmount .'/'. date('Y-m-d',strtotime($row->schedualeDateTime)) .'/Pending/' . $row->repaymentScheduleID);?>" class="btn btn-warning ">Make Payment </a>
                                                 </td>
-                                                <?php }elseif($repDate == $currentdate && $stutas == 'Paid'){?>
-                                                <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                    <a class="btn btn-success" disabled>Paid</a></td>
                                                 <?php }else{?>
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                <a class="btn btn-warning" disabled>Unpaid</a></td>
+                                                    <a class="btn btn-success" disabled><?php echo $row->repaidStatus;?></a></td>
                                                 <?php }?>
-
                                             </tr>
                                             <?php $i++;
                                         }
                                     }else{
                                         echo 'No data Found';
-                                    }
+                                    } ?>
+
 ?>
                                     </tbody>
                                 </table>
