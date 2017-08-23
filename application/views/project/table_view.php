@@ -357,7 +357,7 @@ $("#update_status_frm").submit(function(e){
             }else{
                 // show error meessage
                 window.location.href=base_url + "project/Project/all/";
-                 
+                $('#loadingState').hide();
             }
             //console.log(msg);
 //            var repData = JSON.parse(rsp);
