@@ -216,7 +216,22 @@
                                 <div class="form-group">
                                     <label for="name" class="col-md-4 label-control">Gender</label>
                                     <div class="col-md-8">
-                                        <input name="gender" value="<?php echo $borrowersDetails['gender']; ?>"  class="form-control">
+                                    <?php $gender =  array('male','female');?>
+                                    <select name="gender" class="form-control chosen-select" id="type">
+                                        <option value="">Select Gender</option>
+                                        <?php
+                                        if (is_array($gender) and (!empty($gender))) {
+                                            foreach ($gender as $key=>$value) {
+                                                $v = (set_value('gender')!='')?set_value('gender'):$borrowersDetails['gender'];
+                                                $sel = ($v == $value)?'selected="selected"':'';
+                                                ?>
+                                                <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
