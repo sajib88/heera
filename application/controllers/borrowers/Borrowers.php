@@ -54,12 +54,12 @@ class Borrowers extends CI_Controller {
         $data = array();
         
         $data['borrowersDetails'] = $this->global_model->get_data('users', array('id' => $userID));
-
         $data['allfundedproject'] = $this->global_model->borrower_funded_project($userID);
-        
-        //print_r($data['allfundedproject']);die;
-        
         $allCreatedProject = $this->global_model->borrower_all_project($userID);
+
+        $data['countries'] = $this->global_model->get('countries');
+        $data['states'] = $this->global_model->get('states');
+
         foreach ($allCreatedProject as $proData){
 
             $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
@@ -226,6 +226,56 @@ class Borrowers extends CI_Controller {
     }
 
 
+
+    public function updateBorrowerProfile($id){
+        $this->load->library('Resizeimg');
+
+        $postData = $this->input->post();
+
+        $save['first_name'] = $postData['first_name'];
+        $save['email'] = $postData['email'];
+        $save['phone'] = $postData['phone'];
+        $save['gender'] = $postData['gender'];
+        $save['dateofbirth'] = $postData['dateofbirth'];
+        $save['country'] = $postData['country'];
+        $save['state'] = $postData['state'];
+        $save['city'] = $postData['city'];
+        $save['address'] = $postData['address'];
+
+        if (isset($_FILES["profilepicture"]["name"]) && $_FILES["profilepicture"]["name"] != '') {
+            $this->PATH = './assets/file';
+            $photo_name = time();
+            if (!file_exists($this->PATH)) {
+                mkdir($this->PATH, 0777, true);
+            }
+            $save['profilepicture'] = $this->resizeimg->image_upload('profilepicture', $this->PATH, 'size[300,300]', '', $photo_name);
+            print_r(  $save['profilepicture']);
+        }
+        else {
+
+        }
+
+        $ref = $this->global_model->update('users', $save, array('id' => $id));
+
+        if($ref){
+            echo "success";
+
+        }
+        else{
+            echo "error";
+        }
+
+
+    }
+
+    public function getStateByAjax() {
+        $data = array();
+        $id = $this->input->post('state');
+        $states = $this->global_model->get('states', array('country_id' => $id));
+        $data['states'] = $states;
+        echo $this->load->view('state', $data, TRUE);
+        exit;
+    }
 
 }
 

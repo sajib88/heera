@@ -103,58 +103,144 @@
 
 
             <div class="row">
-                <div class="col-md-12 ">
-                    <div class="box">
-                        <div class="box-body no-padding">
-                            <?php if(empty($listpaymethod)){?>
-                                <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
-                            <?php }else{?>
-                                <div id="no-more-tables">
 
-                                    <table class="table table-hover" id="fundedProjectsDataTable">
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Type</th>
-                                            <th>Use method</th>
-                                            <th>Status</th>
+                <?php if(empty($listpaymethod)){?>
+                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
+                <?php }else{?>
+                    <?php if(!empty($listpaymethod)) {
+                         foreach ($listpaymethod as $row) {
+                    ?>
+                    <div class="col-md-6 ">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?php echo $row->selectPaymentType;?></h3>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="list-group list-group-unbordered">
 
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php if(!empty($listpaymethod)) {
-                                            $i = 1;
-                                            foreach ($listpaymethod as $row) {
-                                                ?>
-                                                <tr>
-                                                    <td><a href="#"><?php echo $i; ?></a></td>
-                                                    <td><?php echo $row->selectPaymentType; ?></td>
-                                                    <td><?php
-                                                        if($row->isPrimary == 1)
-                                                        {
-                                                            echo "Primary"; }
-                                                        else
-                                                        {
-                                                            echo "Secondary";
-                                                        } ?></td>
-                                                    <td><?php echo $row->status; ?></td>
+                                        <?php
+                                            if($row->selectPaymentType == 'PayPal'){?>
+                                                <li class="list-group-item">
+                                                    <b>Email</b><span class="pull-right"><?php echo $row->paypalemail; ?></span>
+                                                </li>
+                                                <?php if(!empty($row->useFor)){ ?>
+                                                <li class="list-group-item">
+                                                    <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
+                                                </li>
+                                                <?php } else{} ?>
+                                                <?php if($row->isPrimary == 1){?>
+                                                <li class="list-group-item">
+                                                    <b>Payment Method</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                </li>
+                                                <?php }else{?>
+                                                    <li class="list-group-item">
+                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                    </li>
+                                                <?php }?>
+                                            <?php }elseif($row->selectPaymentType == 'Debit Card'){?>
+                                                <li class="list-group-item">
+                                                    <b>Debit Card Number</b><span class="pull-right"> <?php echo $row->debitCardNumber; ?> </span>
+                                                </li>
+                                                <?php if(!empty($row->useFor)){ ?>
+                                                    <li class="list-group-item">
+                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
+                                                    </li>
+                                                <?php } else{} ?>
+                                                <?php if($row->isPrimary == 1){?>
+                                                    <li class="list-group-item">
+                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                    </li>
+                                                <?php }else{?>
+                                                    <li class="list-group-item">
+                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                    </li>
+                                                <?php }?>
+                                            <?php }elseif($row->selectPaymentType == 'Credit Card'){ ?>
+                                                <li class="list-group-item">
+                                                    <b>First Name</b><span class="pull-right"> <?php echo $row->firstName; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Last Name</b><span class="pull-right"> <?php echo $row->lastName; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Expiration Date</b><span class="pull-right"> <?php echo $row->expireDate.'-'.$row->expireMonth.'-'.$row->expireYear; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>CVV Code</b><span class="pull-right"> <?php echo $row->cvv; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Credit Type</b><span class="pull-right"> <?php echo $row->cardType; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Card Number</b><span class="pull-right"> <?php echo $row->cardNumber; ?> </span>
+                                                </li>
+                                                <?php if(!empty($row->useFor)){ ?>
+                                                    <li class="list-group-item">
+                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
+                                                    </li>
+                                                <?php } else{} ?>
+                                                <?php if($row->isPrimary == 1){?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                    </li>
+                                                <?php }else{?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                    </li>
+                                                <?php }?>
 
+                                            <?php }elseif($row->selectPaymentType == 'Direct Deposit'){ ?>
+                                                <li class="list-group-item">
+                                                    <b>Bank Name</b><span class="pull-right"> <?php echo $row->bankName; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Account Number</b><span class="pull-right"> <?php echo $row->accountNumber; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Routhing Number</b><span class="pull-right"> <?php echo $row->routhingNumber; ?> </span>
+                                                </li>
+                                                <?php if(!empty($row->useFor)){ ?>
+                                                    <li class="list-group-item">
+                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
+                                                    </li>
+                                                <?php } else{} ?>
+                                                <?php if($row->isPrimary == 1){?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                    </li>
+                                                <?php }else{?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                    </li>
+                                                <?php }?>
+                                            <?php }elseif($row->selectPaymentType == 'Check'){?>
+                                                <?php if(!empty($row->useFor)){ ?>
+                                                    <li class="list-group-item">
+                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
+                                                    </li>
+                                                <?php } else{} ?>
+                                                <?php if($row->isPrimary == 1){?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                    </li>
+                                                <?php }else{?>
+                                                    <li class="list-group-item">
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                    </li>
+                                                <?php }?>
+                                            <?php }?>
 
-
-                                                </tr>
-
-                                                <?php $i++;
-                                            }
-                                        }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            <?php }?>
+                                </ul>
+                            </div>
                         </div>
-
                     </div>
 
-                </div>
+                <?php
+                         }
+                    }
+                }
+                ?>
+
             </div>
 
 
@@ -225,13 +311,27 @@
                             <div class="form-group">
                                 <label for="name" class="col-md-4 label-control">Gender</label>
                                 <div class="col-md-8">
-                                    <input name="gender" value="<?php echo $lendarDetails['gender']; ?>"  class="form-control">
+                                    <?php $gender =  array('male','female');?>
+                                    <select name="gender" class="form-control chosen-select" id="type">
+                                        <option value="">Select Gender</option>
+                                        <?php
+                                        if (is_array($gender) and (!empty($gender))) {
+                                            foreach ($gender as $key=>$value) {
+                                                $v = (set_value('gender')!='')?set_value('gender'):$lendarDetails['gender'];
+                                                $sel = ($v == $value)?'selected="selected"':'';
+                                                ?>
+                                                <option  value="<?php echo $value; ?>" <?php echo $sel;?>><?php echo $value; ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-md-4 label-control">Date of Birth</label>
                                 <div class="col-md-8">
-                                    <input name="dateofbirth" value="<?php echo $lendarDetails['dateofbirth']; ?>"  class="form-control">
+                                    <input name="dateofbirth" id="datepicker" value="<?php echo date("m/d/Y", strtotime($lendarDetails['dateofbirth'])); ?>"  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -339,7 +439,7 @@
         var da = {state: value};
         $.ajax({
             type: 'POST',
-            url: base_url + "project/project/getStateByAjax",
+            url: base_url + "lendars/Lendars/getStateByAjax",
             data: da,
             dataType: "text",
             success: function(resultData) {
@@ -378,4 +478,21 @@
             e.preventDefault();
         });
     });
+</script>
+
+
+<script type="text/javascript">
+
+
+    jQuery(document).ready(function() {
+        //Date picker
+        $('#datepicker2').datepicker({
+            autoclose: true
+        });
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+
+    });
+
 </script>
