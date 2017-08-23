@@ -34,14 +34,7 @@ print_r($allpersonals);die;*/
 
     </section>
 
-    <?php if($this->session->flashdata('message')){ ?>
-        <div class="col-lg-12">
-            <div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong><?php echo $this->session->flashdata('message'); ?></strong>
-            </div>
-        </div>
-    <?php } $this->session->unset_userdata('message'); ?>
+
 
     <section class="content">
         <div class="row">
@@ -100,12 +93,18 @@ print_r($allpersonals);die;*/
                                                 <td data-title="<?php echo 'Repaid Status'; ?>"
                                                     class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
                                                 <td data-title="<?php echo 'Payment Process By'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->paymentProcessBy; ?> </span></td>
+                                                    class="numeric"><span class="label"> <?php echo $row->processBy; ?> </span></td>
                                                 <td data-title="<?php echo 'Payment Process Time'; ?>"
                                                     class="numeric"><span class="label"> <?php echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?> </span></td>
 
                                                 <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                    <a href="#" class="btn btn-dropbox ">Approve </a>
+                                                    <?php if($row->repaidStatus == 'Pending') {?>
+                                                    <a class="viewprojects btn btn-block btn-info"  data-projectid='<?=$row->projectRepaidID?>' href="javascript:" > Approved </a>
+                                                <?php } else {?>
+
+                                                        <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
+
+                                                    <?php }?>
                                                 </td>
 
 
@@ -130,6 +129,25 @@ print_r($allpersonals);die;*/
     </section>
 </div>
 
+
+<div id="viewModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa  fa-list"></i> &nbsp;Repayment Approval</h4>
+
+
+
+            </div>
+            <div class="modal-body">
+                <div id="showview"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/dataTables.bootstrap.js"></script>
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
@@ -151,6 +169,30 @@ print_r($allpersonals);die;*/
             } ]
         });
     });
+</script>
+
+
+
+<script type="application/javascript">
+
+    $(".viewprojects").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var fundedprojectID = $(this).data('projectid');
+
+        $.ajax({
+            type: 'GET',
+            url: base_url + "borrowers/borrowers/getRepayment/"+fundedprojectID, //this file has the calculator function code
+            //data: id,
+            success:function(data){
+                $('#showview').html(data);
+                $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
+
 </script>
 
 
