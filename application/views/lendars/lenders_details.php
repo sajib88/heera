@@ -453,7 +453,9 @@
 
 <script>
     $(function(){
-        $("#updateProfile").click(function(e){
+
+            $("#updateProfile").click(function(e){
+                $('#loadingState').show();
             var base_url = '<?php echo base_url() ?>';
             var id=$(this).data('id');
 
@@ -467,10 +469,12 @@
                         // show success meessage
                         var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
                         $('#foo').html(msg);
+                        $('#loadingState').hide();
                     }
                     else {
                         var msg = "<div class='alert alert-danger'> Profile no updated </div>";
                         $('#foo').html(msg);
+                        $('#loadingState').hide();
                     }
                 },
 

@@ -236,9 +236,11 @@ $("#update_status_frm").submit(function(e){
 });
 
 $('.borrowerDeatails').click(function(){
+    $('#loadingState').show();
     var id=$(this).data('id');
         var site_url = "<?php echo base_url('borrowers/Borrowers/borrowerDeatails/'); ?>/" +id; //append id at end
         $("#borrowerDeatails").load(site_url);
+        $('#loadingState').hide();
 });
 
 

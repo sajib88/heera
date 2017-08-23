@@ -53,6 +53,9 @@
     </head>
 
   <body class="skin-black-light sidebar-mini">
+    <div id="loadingState">
+        <img class="loader" src="<?php echo base_url()?>/assets/ajax-loader.gif" />
+    </div>
     <div class="wrapper">
 
       <header class="main-header">
