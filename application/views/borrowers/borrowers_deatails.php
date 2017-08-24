@@ -157,7 +157,7 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="borrowerProfile">
             <div class="row">
-                <form id="myForm" name="myForm" role="form" method="post" class="form-horizontal">
+                <form id="update_borrower_profile" name="myForm" role="form" method="post" class="form-horizontal">
                     <div id="foo"></div>
                     <div class="col-md-4 col-md-offset-1">
                         <div class="box box-primary">
@@ -175,16 +175,6 @@
 
 
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-
-                                <a class="btn btn-block btn-info"> Add Fund</a>
-                            </div>
-                            <div class="col-md-6">
-
-                                <a class="btn btn-block btn-warning"> Refund </a>
-                            </div>
                         </div>
 
                     </div>
@@ -293,7 +283,7 @@
                                         <input name="address" value="<?php echo $borrowersDetails['address']; ?>"  class="form-control">
                                     </div>
                                 </div>
-                                </form>
+
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -301,13 +291,13 @@
                       </div>
 
                         <div class="col-lg-3 col-md-offset-1">
-
                             <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
                         </div>
                         <div class="col-lg-7 ">
                             <button id="updateProfile" class="btn btn-success  btn-lg pull-right" data-id="<?php echo $borrowersDetails['id']; ?>" type="button">
                                 <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
                         </div>
+                </form>
             </div>
         </div>
 </div>
@@ -320,10 +310,8 @@
     <!-- nav-tabs-custom -->
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function(){
-
          $('#createdProjectDataTable').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -335,9 +323,7 @@
             "targets": 0,
             "orderable": false
             } ]
-
         });
-        
         $('#fundedProjectsDataTable').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -345,15 +331,11 @@
             "ordering": true,
             "info": true,
             "autoWidth": false
-
         });
-        
-        
     });
 </script>
 
 <script>
-
     function getComboA(sel) {
         var value = sel.value;
         var base_url = '<?php echo base_url() ?>';
@@ -367,46 +349,41 @@
                 $("#result").html(resultData);
             }
         });
-
     }
-
 </script>
 
 <script>
     $(function(){
         $("#updateProfile").click(function(e){
-            $('#loadingState').show();
-            var base_url = '<?php echo base_url() ?>';
-            var id=$(this).data('id');
-
-            $.ajax({
-                url:base_url + "borrowers/Borrowers/updateBorrowerProfile/"+id,
-                type: 'POST',
-                data: $("#myForm").serialize(),
-                success: function (msg) {
-
-                    if (msg == 'success') {
-                        // show success meessage
-                        var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
-                        $('#foo').html(msg);
-                        $('#loadingState').hide();
-                    }
-                    else {
-                        var msg = "<div class='alert alert-danger'> Profile no updated </div>";
-                        $('#foo').html(msg);
-                        $('#loadingState').hide();
-                    }
-                },
-
-            });
+            if($("#update_borrower_profile").valid()) {
+                $('#loadingState').show();
+                var base_url = '<?php echo base_url() ?>';
+                var id = $(this).data('id');
+                $.ajax({
+                    url: base_url + "borrowers/Borrowers/updateBorrowerProfile/" + id,
+                    type: 'POST',
+                    data: $("#update_borrower_profile").serialize(),
+                    success: function (msg) {
+                        if (msg == 'success') {
+                            // show success meessage
+                            var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
+                            $('#foo').html(msg);
+                            $('#loadingState').hide();
+                        }
+                        else {
+                            var msg = "<div class='alert alert-danger'> Profile no updated </div>";
+                            $('#foo').html(msg);
+                            $('#loadingState').hide();
+                        }
+                    },
+                });
+            }
             e.preventDefault();
         });
     });
 </script>
 
 <script type="text/javascript">
-
-
     jQuery(document).ready(function() {
         //Date picker
         $('#datepicker2').datepicker({
@@ -415,10 +392,45 @@
         $('#datepicker').datepicker({
             autoclose: true
         });
-
     });
-
-
-
 </script>
 
+<script type="application/javascript">
+    $('#update_borrower_profile').validate({
+        rules: {
+            first_name: {
+                required:true,
+            },
+
+            email: {
+                required:true,
+            },
+
+            phone: {
+                required:true,
+                number: true
+            },
+
+            dateofbirth: {
+                required:true,
+            }
+        },
+        messages:{
+            first_name: {
+                required: "Name is Required",
+            },
+
+            email: {
+                required: "Email Address is Required",
+            },
+
+            phone: {
+                required: "Phone Number is Required",
+            },
+
+            dateofbirth: {
+                required: "Date of Birth Number is Required",
+            }
+        }
+    });
+</script>
