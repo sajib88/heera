@@ -31,13 +31,73 @@
 <?php } $this->session->unset_userdata('message'); ?>
 
     <div id="foo"></div>
-    <form role="form" method="post" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/edit/'. $editProject['projectID']); ?>">
+    <form role="form" method="post" class="commentsform" id="classifiedform" enctype="multipart/form-data" action="<?php echo base_url('project/Project/edit/'. $editProject['projectID']); ?>">
         <input type="hidden" name="login_id" value="<?php echo $editProject['userID']; ?>">
         <input type="hidden" name="userID" value="<?php echo $editProject['userID']; ?>">
         <input type="hidden" name="projectid" value="<?php echo $editProject['projectID']; ?>">
 <section class="content">
 <div class="row">
     <div class="col-md-6">
+
+
+
+
+        <div class="col-md-12 no-padding">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-user"></i>
+
+                    <h3 class="box-title">Borrower Info</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <!-- /Lending -->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Full name</label>
+                                        <input name="first_name" value="<?php echo $editProject['first_name']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label> Date of Birth</label>
+                                        <input name="dateofbirth" id="datepicker2" value="<?php echo $editProject['dateofbirth']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input name="email" value="<?php echo $editProject['email']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Phone number</label>
+                                        <input name="phone" value="<?php echo $editProject['phone']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
         <div class="col-md-12 no-padding">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -171,7 +231,6 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
-
                         <div class="col-lg-12">
                             <!-- /Lending -->
                             <div class="row">
@@ -364,6 +423,15 @@
                                         <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo date("m/d/Y", strtotime($editProject['projectEndDate'])); ?>">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Funded Amount</label><span id='date' class='error' for='start_date'></span>
+
+                                        <input name="" disabled type="text" class="form-control" id="" value="$ <?php echo $fundedAmount; ?>">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row">
 
@@ -471,33 +539,47 @@
 
 
             </div>
+
+        </div>
+
+
+        <div class="col-md-12 no-padding">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Borrower Info</h3>
+                    <i class="fa fa-comments-o"></i>
+
+                    <h3 class="box-title">Comments</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label> Comments</label>
+                                        <textarea required name="comments" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <a href="#" class="btn btn-success" id="comments">  <i class="fa fa-check"></i> Send Comments</a>
+                                    </div>
+                                </div>
+
+                            </div>
 
 
-                    <ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $editProject['first_name']))? $editProject['first_name']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $editProject['dateofbirth']))? $editProject['dateofbirth']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Email</b> <span class="pull-right">  <?php echo (!empty( $editProject['email']))? $editProject['email']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $editProject['phone']))? $editProject['phone']:''?></span>
-                        </li>
 
-                    </ul>
-
-
+                        </div>
+                    </div>
                 </div>
-                <!-- /.box-body -->
+
             </div>
         </div>
 
@@ -612,8 +694,29 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
-
 <script type="application/javascript">
+
+    $('.commentsform').validate({
+        rules: {
+            comments: {
+                required:true
+
+            }
+        },
+        messages:{
+            comments: {
+                required: "Comments Text is Required",
+            }
+        }
+    });
+
+
+
+
+</script>
+<script type="application/javascript">
+
+
     $('#classifiedform').validate({
         rules: {
             name: {
@@ -785,9 +888,7 @@
 
 
 
-<script>
-
-
+<script type="text/javascript">
     var pid = document.getElementById('pid');
     var sendpid = pid.getAttribute('data-project');
 
@@ -885,3 +986,48 @@
         });
     });
 </script>
+
+
+<script type="application/javascript">
+
+    var pid = document.getElementById('pid');
+    var sendpid = pid.getAttribute('data-project');
+
+    $("#comments").click(function(e){
+        if($(".commentsform").valid()) {
+                var base_url = '<?php echo base_url() ?>';
+                var id = sendpid;
+                $.ajax({
+                    type: 'POST',
+                    data: $('#classifiedform').serialize(),
+                    url: base_url + "project/project/sendcomments/", //this file has the calculator function code
+                    //data: id,
+                    success: function (msg) {
+
+                        if (msg == 'success') {
+                            // show success meessage
+                            var msg = "<div class='alert alert-success'>Your Comments Send  Successfully.  </div>";
+                            $('#foo').html(msg);
+                        }
+                        else {
+                            var msg = "<div class='alert alert-danger'> Your comments not send </div>";
+                            $('#foo').html(msg);
+                        }
+
+                    }
+
+
+                });
+
+        }
+    });
+
+
+</script>
+
+
+
+
+
+
+

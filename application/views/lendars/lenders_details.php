@@ -252,7 +252,7 @@
 
         <div class="tab-pane" id="lenderProfileDeatails">
           <div class="row">
-              <form id="myForm" name="myForm" role="form" method="post" class="form-horizontal">
+              <form id="update_lender_profile" name="myForm" role="form" method="post" class="form-horizontal">
                   <div id="foo"></div>
               <div class="col-md-4 col-md-offset-1">
                   <div class="box box-primary">
@@ -457,30 +457,32 @@
     $(function(){
 
             $("#updateProfile").click(function(e){
-                $('#loadingState').show();
-            var base_url = '<?php echo base_url() ?>';
-            var id=$(this).data('id');
+                if($("#update_lender_profile").valid()) {
+                    $('#loadingState').show();
+                    var base_url = '<?php echo base_url() ?>';
+                    var id = $(this).data('id');
 
-            $.ajax({
-                url:base_url + "lendars/Lendars/updateLenderProfile/"+id,
-                type: 'POST',
-                data: $("#myForm").serialize(),
-                success: function (msg) {
+                    $.ajax({
+                        url: base_url + "lendars/Lendars/updateLenderProfile/" + id,
+                        type: 'POST',
+                        data: $("#update_lender_profile").serialize(),
+                        success: function (msg) {
 
-                    if (msg == 'success') {
-                        // show success meessage
-                        var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
-                        $('#foo').html(msg);
-                        $('#loadingState').hide();
-                    }
-                    else {
-                        var msg = "<div class='alert alert-danger'> Profile no updated </div>";
-                        $('#foo').html(msg);
-                        $('#loadingState').hide();
-                    }
-                },
+                            if (msg == 'success') {
+                                // show success meessage
+                                var msg = "<div class='alert alert-success'>Profile Update Successfully.  </div>";
+                                $('#foo').html(msg);
+                                $('#loadingState').hide();
+                            }
+                            else {
+                                var msg = "<div class='alert alert-danger'> Profile no updated </div>";
+                                $('#foo').html(msg);
+                                $('#loadingState').hide();
+                            }
+                        },
 
-            });
+                    });
+                }
             e.preventDefault();
         });
     });
@@ -501,4 +503,44 @@
 
     });
 
+</script>
+
+<script type="application/javascript">
+    $('#update_lender_profile').validate({
+        rules: {
+            first_name: {
+                required:true,
+            },
+
+            email: {
+                required:true,
+            },
+
+            phone: {
+                required:true,
+                number: true
+            },
+
+            dateofbirth: {
+                required:true,
+            }
+        },
+        messages:{
+            first_name: {
+                required: "Name is Required",
+            },
+
+            email: {
+                required: "Email Address is Required",
+            },
+
+            phone: {
+                required: "Phone Number is Required",
+            },
+
+            dateofbirth: {
+                required: "Date of Birth Number is Required",
+            }
+        }
+    });
 </script>

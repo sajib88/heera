@@ -161,8 +161,6 @@ class Project extends CI_Controller {
          if($this->input->post()){
 
             $postData = $this->input->post();
-     // echo date('Y-m-d', strtotime($postData['projectEndDate']));
-
 
 
              if(!empty($postData['projectEndDate'])){
@@ -196,6 +194,8 @@ class Project extends CI_Controller {
              $save['homeOwnership'] = $postData['homeOwnership'];
              $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
              $save['userID'] = $postData['userID'];
+
+
             
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
@@ -244,10 +244,28 @@ class Project extends CI_Controller {
                 }
                 else {
 
-                }  
-                
-                // print '<pre>';
-                // print_r($save);die;
+                }
+
+
+             if(!empty($postData['dateofbirth'])){
+
+                 $dbdate = new DateTime($postData['dateofbirth']);
+                 $dateofbirth = $dbdate->format('Y-m-d');
+             }
+             else{
+                 $dateofbirth = null;
+             }
+
+
+             $updateuser['first_name'] = empty($postData['first_name']) ? 0 : $postData['first_name'];
+             $updateuser['dateofbirth'] = $dateofbirth;
+             $updateuser['email'] = empty($postData['email']) ? 0 : $postData['email'];
+             $updateuser['phone'] = empty($postData['phone']) ? 0 : $postData['phone'];
+
+             $posteduid =$postData['userID'];
+
+             $this->global_model->update('users', $updateuser, array('id' => $posteduid));
+
                 $id = $this->uri->segment('4');
                 if ($ref = $this->global_model->update('project', $save, array('projectID' => $id))) {
                     $this->session->set_flashdata('message', 'Update Your Project info...');
@@ -255,8 +273,14 @@ class Project extends CI_Controller {
 
 
         }
-        
+
         $id = $this->uri->segment('4');
+
+        $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $id));
+        $data['fundedAmount'] = (!empty($fundedAmount))? $fundedAmount:'0';
+
+        $data['editProject'] = $fundedAmount;
+
         $data['editProject'] = $this->global_model->editproject($id);
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['allborrowers'] = $this->global_model->get('users', array('profession'=> 2 ));
@@ -435,6 +459,9 @@ class Project extends CI_Controller {
         //echo "<pre>"; print_r( $data['lenders']);echo "</pre>";die;
 
         $getbyprojectid= $getprojectdata['userID'];
+
+        $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $id));
+        $data['fundedAmount'] = (!empty($fundedAmount))? $fundedAmount:'0';
 
         $date = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid, 'password' => ''));
             $date['first_name'];
@@ -826,6 +853,37 @@ class Project extends CI_Controller {
     }
 
 
+    public function project_message_application($datas=array())
+    {
+        $val = $this->get_admin_email_and_name();
+        $admin_email = $val['admin_email'];
+        $admin_name  = $val['admin_name'];
+
+        //$this->load->model('admin/system_model');
+        $tmpl = get_email_tmpl_by_email_name('project_message_application');
+        $subject = $tmpl->subject;
+        $subject = str_replace("#first_name",$datas['first_name'],$subject);
+        $subject = str_replace("#comments",$datas['comments'],$subject);
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+        $subject = str_replace("#useremail",$datas['email'],$subject);
+
+        $body = $tmpl->body;
+        $body = str_replace("#first_name",$datas['first_name'],$body);
+        $body = str_replace("#comments",$datas['comments'],$body);
+        $body = str_replace("#useremail",$datas['email'],$body);
+        $body = str_replace("#webadmin",$admin_name,$body);
+
+
+
+        $this->load->library('email');
+        $this->email->from($admin_email, $subject);
+        $this->email->to($datas['email']);
+        $this->email->subject('Project '.$datas['status']);
+        $this->email->message($body);
+        $this->email->send();
+    }
+
+
     #get web admin name and email for email sending
     public function get_admin_email_and_name()
     {
@@ -994,4 +1052,67 @@ class Project extends CI_Controller {
     }
 
 
+
+
+
+
+    public function sendcomments(){
+        $data = array();
+        $postData = $this->input->post();
+        $projectID = $this->input->post('projectid');
+        $comments = $this->input->post('comments');
+        $loginId = $this->session->userdata('login_id');
+
+        $save['projectsID'] = $projectID;
+        $save['senderID'] = $loginId;
+        $save['message'] = $comments;
+        $save['sendDatetime'] =  date('Y-m-d H:i:s');
+        $save['status'] = 1;
+
+        $ref = $this->global_model->insert('messeage_log', $save);
+
+        if($ref){
+
+            // Your project save successfully
+            echo "success";
+            /// get project details
+            $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $projectID));
+            /// get project details by user id
+            $getbyprojectid= $getprojectdata['userID'];
+            //// Set temp pass
+
+            /// get new user id and data
+            $datas = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid));
+
+
+
+            if ($comments != null){
+                $datas['first_name'];
+                $datas['comments']= $comments;
+                $datas['email'];
+                $this->project_message_application($datas);
+            }
+            else {
+
+                echo "error";
+
+            }
+
+
+        }
+
+        else{
+            echo "error";
+
+        }
+
+
+    }
+
+
+
+
 }
+
+
+
