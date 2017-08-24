@@ -763,7 +763,7 @@ class Global_model extends CI_Model {
         $this->db->join('project as p', 'r.projectID=p.projectID', 'left');
         $this->db->join('users as u', 'u.id=r.repaidBy', 'left');
         $this->db->join('users as u2', 'u2.id=r.paymentProcessBy', 'left');
-
+        $this->db->where('p.isScheduleCreated', 1);
         //$this->db->group_by('p.projectID');
         $query = $this->db->get();
         //echo "<pre>"; print_r($query->result());echo "</pre>";

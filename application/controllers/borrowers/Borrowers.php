@@ -277,5 +277,46 @@ class Borrowers extends CI_Controller {
         exit;
     }
 
+
+
+    public function defaulted($id){
+        $data = array();
+
+        $loginId = $this->session->userdata('login_id');
+
+        $data['projectid'] = $id;
+
+        echo $this->load->view('borrowers/ajaxdefaulted', $data, TRUE);
+        exit;
+
+    }
+    public function makedefaulted()
+    {
+
+        $data = array();
+        $loginId = $this->session->userdata('login_id');
+        $postData = $this->input->post();
+
+        $projectid = $this->input->post('projectid');
+
+
+        if (!empty($projectid)) {
+            $postData = $this->input->post();
+
+            $save['statusID'] = 7;
+            $save['isScheduleCreated'] = 0;
+            $this->global_model->update('project', $save, array('projectid' => $projectid));
+
+                echo "success";
+        }
+        else {
+            echo "error";
+
+        }
+
+
+    }
+
+
 }
 

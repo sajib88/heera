@@ -3,129 +3,284 @@
         color: #333;
     }
 </style>
-<?php
-/**
- * Created by PhpStorm.
- * User: ALAM
- * Date: 10-Dec-16
- * Time: 2:17 AM
- */
-/*print '<pre>';
-print_r($allpersonals);die;*/
-?>
-
-
-
 
 <link href="<?php echo base_url('backend/plugins/datatables/dataTables.bootstrap.css');?>" rel="stylesheet">
 <link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
 
-
-
 <div class="content-wrapper">
-
-
-
     <section class="content-header">
         <h1>
             <i class="fa fa-list"></i>  <?php if(!empty($page_title)){ echo $page_title;} else {}?>
-
         </h1>
-
     </section>
-
-
 
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-default">
-                    <div class="box-header">
-                        <h3 class="box-title"> All Repayment List </h3>
-                    </div>
-                    <div class="box-body">
+                <div class="col-md-12 no-padding">
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
 
-                        <?php if(empty($allRepaymentList)){?>
-                            <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
-                        <?php }else{?>
-                            <div id="no-more-tables">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#pastDue" data-toggle="tab" aria-expanded="true">Past Due</a></li>
+                            <li class=""><a href="#due" data-toggle="tab" aria-expanded="false">Due</a></li>
+                            <li class=""><a href="#current" data-toggle="tab" aria-expanded="false">Current</a></li>
+                            <li class=""><a href="#all" data-toggle="tab" aria-expanded="false">All</a></li>
+                        </ul>
 
-                                <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
-                                    <thead>
-                                    <tr>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="pastDue">
+                                <?php if(empty($pastDueArr)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
+                                <?php }else{?>
+                                <div id="no-more-tables">
 
-                                        <th class="numeric">#</th>
+                                    <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                        <thead>
+                                        <tr>
+                                            <th class="numeric">#</th>
+                                            <th class="numeric">Project Name</th>
+                                            <th class="numeric">Borrower Name</th>
+                                            <th class="numeric">Payment Date</th>
+                                            <th class="numeric">Payment amount</th>
+                                            <th class="numeric">Loan balance</th>
+                                            <th class="numeric">Status</th>
+                                            <th class="numeric">View</th>
+                                            <!-- <th class="numeric">--><?php //echo 'Payment Process By';?><!--</th>-->
+                                            <!-- <th class="numeric">--><?php //echo 'Payment Process Time';?><!--</th>-->
+                                            <th class="numeric text-center">Make Payment</th>
+                                            <th class="numeric text-center">Defaulted</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php if(!empty($pastDueArr)) {
+                                            $i = 1;
+                                            foreach ($pastDueArr as $row) { ?>
+                                                <tr>
+                                                    <td><?php echo $i; ?></td>
+                                                    <td data-title="Project Name" class="numeric"><span><?php echo $row->projectName; ?></span></td>
+                                                    <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
+                                                    <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
+                                                    <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
+                                                    <td data-title="Loan balance" class="numeric"><span>$<?php echo '0.00'; ?></span></td>
+                                                    <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
+                                                    <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
+                                                    <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
+                                                    <!--                                                <td data-title="--><?php //echo 'Payment Process Time'; ?><!--"-->
+                                                    <!--                                                    class="numeric"><span class="label"> --><?php //echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?><!-- </span></td>-->
+                                                    <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
-                                        <th class="numeric"><?php echo 'Project Name';?></th>
+                                                    <td data-title="Make Payment" class="numeric text-center">
+                                                        <?php if($row->repaidStatus == 'Pending') {?>
+                                                            <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
+                                                        <?php } else {?>
 
-                                        <th class="numeric"><?php echo 'Repaid Amount';?></th>
+                                                            <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
 
-                                        <th class="numeric"><?php echo 'Borrower Name';?></th>
-
-                                        <th class="numeric"><?php echo 'Repaid Date';?></th>
-
-                                        <th class="numeric"><?php echo 'Repaid Status';?></th>
-
-                                        <th class="numeric"><?php echo 'Payment Process By';?></th>
-
-                                        <th class="numeric"><?php echo 'Payment Process Time';?></th>
-
-                                        <th class="numeric text-center"><?php echo 'Action';?></th>
-
-
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php if(!empty($allRepaymentList)) {
-                                        $i = 1;
-                                        foreach ($allRepaymentList as $row) { ?>
-                                            <tr>
-                                                <td><?php echo $i; ?></td>
-                                                <td data-title="<?php echo 'Project Name'; ?>"
-                                                    class="numeric"><span><?php echo $row->projectName; ?></span></td>
-                                                <td data-title="<?php echo 'Repaid Amount'; ?>"
-                                                    class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
-                                                <td data-title="<?php echo 'Borrower Name'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
-                                                <td data-title="<?php echo 'Repaid Date'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo date('M-d-Y',strtotime($row->repaidDateTime)); ?> </span></td>
-                                                <td data-title="<?php echo 'Repaid Status'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
-                                                <td data-title="<?php echo 'Payment Process By'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo $row->processBy; ?> </span></td>
-                                                <td data-title="<?php echo 'Payment Process Time'; ?>"
-                                                    class="numeric"><span class="label"> <?php echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?> </span></td>
-
-                                                <td data-title="<?php echo 'Action'; ?>" class="numeric text-center">
-                                                    <?php if($row->repaidStatus == 'Pending') {?>
-                                                    <a class="viewprojects btn btn-block btn-info"  data-projectid='<?=$row->projectRepaidID?>' href="javascript:" > Approved </a>
-                                                <?php } else {?>
-
-                                                        <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
-
-                                                    <?php }?>
-                                                </td>
-
-
-                                            </tr>
-                                            <?php $i++;
+                                                        <?php }?>
+                                                    </td>
+                                                    <td data-title="Defaulted" class="numeric"> <a  class="defaulted btn btn-block btn-warning" data-projectid='<?=$row->projectID?>'   href="javascript:" > Defaulted </a></td>
+                                                </tr>
+                                                <?php $i++;
+                                            }
                                         }
-                                    }else{
-                                        echo 'No data Found';
-                                    }
-                                    ?>
-                                    </tbody>
-                                </table>
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php }?>
                             </div>
-                        <?php }?>
+
+                            <div class="tab-pane" id="due">
+                                <?php if(empty($dueArr)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
+                                <?php }else{?>
+                                    <div id="no-more-tables">
+
+                                        <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                            <thead>
+                                            <tr>
+                                                <th class="numeric">#</th>
+                                                <th class="numeric">Project Name</th>
+                                                <th class="numeric">Borrower Name</th>
+                                                <th class="numeric">Payment Date</th>
+                                                <th class="numeric">Payment amount</th>
+                                                <th class="numeric">Loan balance</th>
+                                                <th class="numeric">Status</th>
+                                                <th class="numeric">View</th>
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process By';?><!--</th>-->
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process Time';?><!--</th>-->
+                                                <th class="numeric text-center">Make Payment</th>
+                                                <th class="numeric text-center">Defaulted</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php if(!empty($dueArr)) {
+                                                $i = 1;
+                                                foreach ($dueArr as $row) { ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td data-title="Project Name" class="numeric"><span><?php echo $row->projectName; ?></span></td>
+                                                        <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
+                                                        <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
+                                                        <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
+                                                        <td data-title="Loan balance" class="numeric"><span>$<?php echo '0.00'; ?></span></td>
+                                                        <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process Time'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?><!-- </span></td>-->
+                                                        <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
+
+                                                        <td data-title="Make Payment" class="numeric text-center">
+                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                                <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
+                                                            <?php } else {?>
+
+                                                                <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
+
+                                                            <?php }?>
+                                                        </td>
+                                                        <td data-title="Defaulted" class="numeric"> <a  class="defaulted btn btn-block btn-warning" data-projectid='<?=$row->projectID?>'   href="javascript:" > Defaulted </a></td>
+                                                    </tr>
+                                                    <?php $i++;
+                                                }
+                                            }
+                                            ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php }?>
+                            </div>
+
+                            <div class="tab-pane" id="current">
+                                <?php if(empty($currentArr)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
+                                <?php }else{?>
+                                    <div id="no-more-tables">
+
+                                        <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                            <thead>
+                                            <tr>
+                                                <th class="numeric">#</th>
+                                                <th class="numeric">Project Name</th>
+                                                <th class="numeric">Borrower Name</th>
+                                                <th class="numeric">Payment Date</th>
+                                                <th class="numeric">Payment amount</th>
+                                                <th class="numeric">Loan balance</th>
+                                                <th class="numeric">Status</th>
+                                                <th class="numeric">View</th>
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process By';?><!--</th>-->
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process Time';?><!--</th>-->
+                                                <th class="numeric text-center">Make Payment</th>
+                                                <th class="numeric text-center">Defaulted</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php if(!empty($currentArr)) {
+                                                $i = 1;
+                                                foreach ($currentArr as $row) { ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td data-title="Project Name" class="numeric"><span><?php echo $row->projectName; ?></span></td>
+                                                        <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
+                                                        <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
+                                                        <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
+                                                        <td data-title="Loan balance" class="numeric"><span>$<?php echo '0.00'; ?></span></td>
+                                                        <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process Time'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?><!-- </span></td>-->
+                                                        <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
+
+                                                        <td data-title="Make Payment" class="numeric text-center">
+                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                                <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
+                                                            <?php } else {?>
+
+                                                                <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
+
+                                                            <?php }?>
+                                                        </td>
+                                                        <td data-title="Defaulted" class="numeric"> <a  class="defaulted btn btn-block btn-warning" data-projectid='<?=$row->projectID?>'   href="javascript:" > Defaulted </a></td>
+                                                    </tr>
+                                                    <?php $i++;
+                                                }
+                                            }
+                                            ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php }?>
+                            </div>
+
+                            <div class="tab-pane" id="all">
+                                <?php if(empty($allRepaymentList)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
+                                <?php }else{?>
+                                    <div id="no-more-tables">
+
+                                        <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                            <thead>
+                                            <tr>
+                                                <th class="numeric">#</th>
+                                                <th class="numeric">Project Name</th>
+                                                <th class="numeric">Borrower Name</th>
+                                                <th class="numeric">Payment Date</th>
+                                                <th class="numeric">Payment amount</th>
+                                                <th class="numeric">Loan balance</th>
+                                                <th class="numeric">Status</th>
+                                                <th class="numeric">View</th>
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process By';?><!--</th>-->
+                                                <!-- <th class="numeric">--><?php //echo 'Payment Process Time';?><!--</th>-->
+                                                <th class="numeric text-center">Make Payment</th>
+                                                <th class="numeric text-center">Defaulted</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php if(!empty($allRepaymentList)) {
+                                                $i = 1;
+                                                foreach ($allRepaymentList as $row) { ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td data-title="Project Name" class="numeric"><span><?php echo $row->projectName; ?></span></td>
+                                                        <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
+                                                        <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
+                                                        <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
+                                                        <td data-title="Loan balance" class="numeric"><span>$<?php echo '0.00'; ?></span></td>
+                                                        <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
+                                                        <!--                                                <td data-title="--><?php //echo 'Payment Process Time'; ?><!--"-->
+                                                        <!--                                                    class="numeric"><span class="label"> --><?php //echo date('M-d-Y',strtotime($row->paymentProcessTime)); ?><!-- </span></td>-->
+                                                        <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
+
+                                                        <td data-title="Make Payment" class="numeric text-center">
+                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                                <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
+                                                            <?php } else {?>
+
+                                                                <button class="btn btn-block btn-primary"   href="javascript:" > Done </button>
+
+                                                            <?php }?>
+                                                        </td>
+                                                        <td data-title="Defaulted" class="numeric"> <a  class="defaulted btn btn-block btn-warning" data-projectid='<?=$row->projectID?>'   href="javascript:" > Defaulted </a></td>
+                                                    </tr>
+                                                    <?php $i++;
+                                                }
+                                            }
+                                            ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php }?>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </section>
 </div>
 
@@ -136,17 +291,30 @@ print_r($allpersonals);die;*/
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><i class="fa  fa-list"></i> &nbsp;Repayment Approval</h4>
-
-
-
             </div>
             <div class="modal-body">
                 <div id="showview"></div>
             </div>
-
         </div>
     </div>
 </div>
+
+
+<div id="viewdefaulted" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa  fa-list"></i> &nbsp;Change Status</h4>
+            </div>
+            <div class="modal-body">
+                <div id="viewdefaulteddata"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/dataTables.bootstrap.js"></script>
@@ -171,22 +339,38 @@ print_r($allpersonals);die;*/
     });
 </script>
 
-
-
 <script type="application/javascript">
 
-    $(".viewprojects").click(function(e) {
+    $(".makepaymentAct").click(function(e) {
 
         var base_url = '<?php echo base_url() ?>';
-        var fundedprojectID = $(this).data('projectid');
+        var fundedprojectID = $(this).data('scheduleid');
 
         $.ajax({
             type: 'GET',
-            url: base_url + "borrowers/borrowers/getRepayment/"+fundedprojectID, //this file has the calculator function code
+            url: base_url + "repaymentprocess/getRepayment/"+fundedprojectID, //this file has the calculator function code
             //data: id,
             success:function(data){
                 $('#showview').html(data);
                 $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
+
+    $(".defaulted").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var projectid = $(this).data('projectid');
+
+        $.ajax({
+            type: 'GET',
+            url: base_url + "borrowers/borrowers/defaulted/"+projectid, //this file has the calculator function code
+            //data: id,
+            success:function(data){
+                $('#viewdefaulteddata').html(data);
+                $('#viewdefaulted').modal('show');
 
             }
         });
