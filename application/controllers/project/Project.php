@@ -853,6 +853,37 @@ class Project extends CI_Controller {
     }
 
 
+    public function project_message_application($datas=array())
+    {
+        $val = $this->get_admin_email_and_name();
+        $admin_email = $val['admin_email'];
+        $admin_name  = $val['admin_name'];
+
+        //$this->load->model('admin/system_model');
+        $tmpl = get_email_tmpl_by_email_name('project_message_application');
+        $subject = $tmpl->subject;
+        $subject = str_replace("#first_name",$datas['first_name'],$subject);
+        $subject = str_replace("#comments",$datas['comments'],$subject);
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+        $subject = str_replace("#useremail",$datas['email'],$subject);
+
+        $body = $tmpl->body;
+        $body = str_replace("#first_name",$datas['first_name'],$body);
+        $body = str_replace("#comments",$datas['comments'],$body);
+        $body = str_replace("#useremail",$datas['email'],$body);
+        $body = str_replace("#webadmin",$admin_name,$body);
+
+
+
+        $this->load->library('email');
+        $this->email->from($admin_email, $subject);
+        $this->email->to($datas['email']);
+        $this->email->subject('Project '.$datas['status']);
+        $this->email->message($body);
+        $this->email->send();
+    }
+
+
     #get web admin name and email for email sending
     public function get_admin_email_and_name()
     {
@@ -1041,4 +1072,67 @@ class Project extends CI_Controller {
     }
 
 
+
+
+
+
+    public function sendcomments(){
+        $data = array();
+        $postData = $this->input->post();
+        $projectID = $this->input->post('projectid');
+        $comments = $this->input->post('comments');
+        $loginId = $this->session->userdata('login_id');
+
+        $save['projectsID'] = $projectID;
+        $save['senderID'] = $loginId;
+        $save['message'] = $comments;
+        $save['sendDatetime'] =  date('Y-m-d H:i:s');
+        $save['status'] = 1;
+
+        $ref = $this->global_model->insert('messeage_log', $save);
+
+        if($ref){
+
+            // Your project save successfully
+            echo "success";
+            /// get project details
+            $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $projectID));
+            /// get project details by user id
+            $getbyprojectid= $getprojectdata['userID'];
+            //// Set temp pass
+
+            /// get new user id and data
+            $datas = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid));
+
+
+
+            if ($comments != null){
+                $datas['first_name'];
+                $datas['comments']= $comments;
+                $datas['email'];
+                $this->project_message_application($datas);
+            }
+            else {
+
+                echo "error";
+
+            }
+
+
+        }
+
+        else{
+            echo "error";
+
+        }
+
+
+    }
+
+
+
+
 }
+
+
+
