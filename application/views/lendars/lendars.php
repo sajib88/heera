@@ -19,7 +19,7 @@
 
     <section class="content-header">
         <h1>
-            <i class="fa  fa-child"></i>  All Lendars
+            <i class="fa  fa-child"></i>  All Lenders
             
         </h1>
         
@@ -61,7 +61,7 @@
 
                                         <th class="numeric">#</th>
 
-                                        <th class="numeric"><?php echo 'Lendar Name';?></th>
+                                        <th class="numeric"><?php echo 'Lender Name';?></th>
 
                                         <th class="numeric"><?php echo 'Join Date';?></th>
 
@@ -129,7 +129,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"> <i class="fa  fa-child"></i> Lendars Deatails</h4>                
+                <h4 class="modal-title"> <i class="fa  fa-child"></i> Lender Details</h4>
             </div>
             
                 <div class="modal-body">

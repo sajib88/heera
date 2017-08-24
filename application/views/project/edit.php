@@ -38,15 +38,10 @@
 <section class="content">
 <div class="row">
     <div class="col-md-6">
-
-
-
-
         <div class="col-md-12 no-padding">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <i class="fa fa-user"></i>
-
                     <h3 class="box-title">Borrower Info</h3>
                 </div>
                 <!-- /.box-header -->
@@ -58,7 +53,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Full name</label>
+                                        <label>Full Name</label>
                                         <input name="first_name" value="<?php echo $editProject['first_name']; ?>"  class="form-control">
                                     </div>
                                 </div>
@@ -79,14 +74,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Phone number</label>
+                                        <label>Phone Number</label>
                                         <input name="phone" value="<?php echo $editProject['phone']; ?>"  class="form-control">
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <!-- /.Lending -->
                         </div>
                     </div>
@@ -94,15 +86,10 @@
 
             </div>
         </div>
-
-
-
-
         <div class="col-md-12 no-padding">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <i class="fa fa-th"></i>
-
                     <h3 class="box-title">Project Info </h3>
                 </div>
                 <div class="box-body">

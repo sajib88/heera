@@ -17,7 +17,7 @@
       <ul class="nav nav-tabs">
         <li class="active"><a href="#fundedProjectList" data-toggle="tab" aria-expanded="true">Funded Projects List</a></li>
         <li class=""><a href="#bilingInfo" data-toggle="tab" aria-expanded="false">Billing Information</a></li>        
-        <li class=""><a href="#lenderProfileDeatails" data-toggle="tab" aria-expanded="false">Lender Profile Deatails</a></li>
+        <li class=""><a href="#lenderProfileDeatails" data-toggle="tab" aria-expanded="false">Lender Profile Details</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="fundedProjectList">
@@ -159,7 +159,7 @@
                                                     <b>Account Number</b><span class="pull-right"> <?php echo $row->accountNumber; ?> </span>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Routhing Number</b><span class="pull-right"> <?php echo $row->routhingNumber; ?> </span>
+                                                    <b>Routing Number</b><span class="pull-right"> <?php echo $row->routhingNumber; ?> </span>
                                                 </li>
                                                 <?php if($row->isPrimary == 1){?>
                                                     <li class="list-group-item">

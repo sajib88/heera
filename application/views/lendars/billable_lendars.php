@@ -19,7 +19,7 @@ print_r($allpersonals);die;*/
 
     <section class="content-header">
         <h1>
-            <i class="fa fa-credit-card"></i> Billable Lendars
+            <i class="fa fa-credit-card"></i> Billable Lenders
 
         </h1>
     </section>
@@ -48,7 +48,7 @@ print_r($allpersonals);die;*/
                             <div class="box">
                                 <div class="box-body">
                                     <?php if(!empty($pendingBills)<=0){?>
-                                        <div class="alert alert-info">Currently no Billable Lendar is available.</div>
+                                        <div class="alert alert-info">Currently no Billable Lender is available.</div>
                                     <?php }else{?>
                                         <div id="no-more-tables">
 
@@ -58,7 +58,7 @@ print_r($allpersonals);die;*/
 
                                                     <th class="numeric">#</th>
 
-                                                    <th class="numeric"><?php echo 'Lendar Name';?></th>
+                                                    <th class="numeric"><?php echo 'Lender Name';?></th>
 
                                                     <th class="numeric"><?php echo 'Transaction Reason';?></th>
 
@@ -84,7 +84,7 @@ print_r($allpersonals);die;*/
 
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
-                                                            <td data-title="<?php echo 'Lendar Name'; ?>"
+                                                            <td data-title="<?php echo 'Lender Name'; ?>"
                                                                 class="numeric"><?php echo $row->lenderName; ?></td>
                                                             <td data-title="<?php echo 'Transaction Reason'; ?>"
                                                                 class="numeric"><?php echo $row->transactionReason; ?></td>
@@ -125,7 +125,7 @@ print_r($allpersonals);die;*/
                             <div class="box">
                                 <div class="box-body">
                                     <?php if(!empty($doneBills)<=0){?>
-                                        <div class="alert alert-info">Currently no Billable Lendar is available.</div>
+                                        <div class="alert alert-info">Currently no Billable Lender is available.</div>
                                     <?php }else{?>
                                         <div id="no-more-tables">
 
@@ -135,7 +135,7 @@ print_r($allpersonals);die;*/
 
                                                     <th class="numeric">#</th>
 
-                                                    <th class="numeric"><?php echo 'Lendar Name';?></th>
+                                                    <th class="numeric"><?php echo 'Lender Name';?></th>
 
                                                     <th class="numeric"><?php echo 'Transaction Reason';?></th>
 
@@ -159,7 +159,7 @@ print_r($allpersonals);die;*/
 
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
-                                                            <td data-title="<?php echo 'Lendar Name'; ?>"
+                                                            <td data-title="<?php echo 'Lender Name'; ?>"
                                                                 class="numeric"><?php echo $row->lenderName; ?></td>
                                                             <td data-title="<?php echo 'Transaction Reason'; ?>"
                                                                 class="numeric"><?php echo $row->transactionReason; ?></td>
@@ -196,7 +196,7 @@ print_r($allpersonals);die;*/
                             <div class="box">
                                 <div class="box-body">
                                     <?php if(!empty($cancelBills)<=0){?>
-                                        <div class="alert alert-info">Currently no Billable Lendar is available.</div>
+                                        <div class="alert alert-info">Currently no Billable Lender is available.</div>
                                     <?php }else{?>
                                         <div id="no-more-tables">
 
@@ -206,7 +206,7 @@ print_r($allpersonals);die;*/
 
                                                     <th class="numeric">#</th>
 
-                                                    <th class="numeric"><?php echo 'Lendar Name';?></th>
+                                                    <th class="numeric"><?php echo 'Lender Name';?></th>
 
                                                     <th class="numeric"><?php echo 'Transaction Reason';?></th>
 
@@ -230,7 +230,7 @@ print_r($allpersonals);die;*/
 
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
-                                                            <td data-title="<?php echo 'Lendar Name'; ?>"
+                                                            <td data-title="<?php echo 'Lender Name'; ?>"
                                                                 class="numeric"><?php echo $row->lenderName; ?></td>
                                                             <td data-title="<?php echo 'Transaction Reason'; ?>"
                                                                 class="numeric"><?php echo $row->transactionReason; ?></td>

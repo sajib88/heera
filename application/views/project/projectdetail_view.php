@@ -81,7 +81,7 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['first_name']))? $layoutfull['first_name']:''?></span>
+                                <b>Full Name</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['first_name']))? $layoutfull['first_name']:''?></span>
                             </li>
                             <li class="list-group-item">
                                 <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['dateofbirth']))? $layoutfull['dateofbirth']:''?></span>
@@ -90,7 +90,7 @@
                                 <b>Email</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['email']))? $layoutfull['email']:''?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['phone']))? $layoutfull['phone']:''?></span>
+                                <b>Phone Number</b> <span class="pull-right">  <?php echo (!empty( $layoutfull['phone']))? $layoutfull['phone']:''?></span>
                             </li>
 
                         </ul>
@@ -195,7 +195,7 @@
 
 
                             <li class="list-group-item">
-                                <b> Project Re Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
+                                <b> Project End Date</b> <span class="pull-right"><?php $dbdate = new DateTime($layoutfull['projectEndDate']);
                                     echo  $date = $dbdate->format('m-d-Y');?></span>
                             </li>
 

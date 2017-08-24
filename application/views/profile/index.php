@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <section class="content-header">
       <h1><i class="fa fa-cog"></i>
-        Profile Mange
+        Profile Manage
 
       </h1>
 

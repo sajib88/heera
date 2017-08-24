@@ -176,7 +176,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label><span class="error">*</span></label>
-                                            <label>Routhing Number <span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
+                                            <label>Routing Number <span class="error">*</span></label><span id='expirationDate' class='error' for='expirationDate'></span>
                                             <input name="routhingNumber" id="routhingNumber" type="text" class="form-control" placeholder="Routhing Number">
                                         </div>
                                     </div>
