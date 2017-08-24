@@ -3,6 +3,29 @@
 <link href="<?php echo base_url('backend/plugins/datatables/dataTables.bootstrap.css');?>" rel="stylesheet">
 <link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
 
+        <div class="row">
+            <div class="col-md-6 dash-widget">
+                <div class="info-box info-box-dash">
+                    <span class="widget-user-image pull-left"> <img src="<?php echo base_url();?>backend/img/dash/im1.gif" /></span>
+                    <div class="info-box-content">
+                        <h2 class="count">$0.00</h2>
+                        <h4>Lent Amount</h4>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </div>
+
+            <div class="col-md-6 dash-widget">
+                <div class="info-box info-box-dash">
+                    <span class="widget-user-image pull-left"><img src="<?php echo base_url();?>backend/img/dash/im3.gif" /></span>
+                    <div class="info-box-content">
+                        <h2 class="count">$0.00</h2>
+                        <h4>Repaid Amount</h4>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </div>
+        </div>
 
         <div class="row">
 
