@@ -120,7 +120,7 @@ class Fund extends CI_Controller {
       echo  $totalbalance = $getlendersbyid['inAmount'];
 
 
-        $data['projectlist'] = $this->global_model->get('project', array('statusID' => 3));
+        $data['projectlist'] = $this->global_model->get('project', array('statusID' => 4));
 
 
 

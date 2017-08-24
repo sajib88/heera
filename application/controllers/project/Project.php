@@ -161,8 +161,6 @@ class Project extends CI_Controller {
          if($this->input->post()){
 
             $postData = $this->input->post();
-     // echo date('Y-m-d', strtotime($postData['projectEndDate']));
-
 
 
              if(!empty($postData['projectEndDate'])){
@@ -196,6 +194,8 @@ class Project extends CI_Controller {
              $save['homeOwnership'] = $postData['homeOwnership'];
              $save['employmentSelfemployment'] = empty($postData['employmentSelfemployment']) ? NULL : $postData['employmentSelfemployment'];
              $save['userID'] = $postData['userID'];
+
+
             
                 
                 if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
@@ -244,10 +244,28 @@ class Project extends CI_Controller {
                 }
                 else {
 
-                }  
-                
-                // print '<pre>';
-                // print_r($save);die;
+                }
+
+
+             if(!empty($postData['dateofbirth'])){
+
+                 $dbdate = new DateTime($postData['dateofbirth']);
+                 $dateofbirth = $dbdate->format('Y-m-d');
+             }
+             else{
+                 $dateofbirth = null;
+             }
+
+
+             $updateuser['first_name'] = empty($postData['first_name']) ? 0 : $postData['first_name'];
+             $updateuser['dateofbirth'] = $dateofbirth;
+             $updateuser['email'] = empty($postData['email']) ? 0 : $postData['email'];
+             $updateuser['phone'] = empty($postData['phone']) ? 0 : $postData['phone'];
+
+             $posteduid =$postData['userID'];
+
+             $this->global_model->update('users', $updateuser, array('id' => $posteduid));
+
                 $id = $this->uri->segment('4');
                 if ($ref = $this->global_model->update('project', $save, array('projectID' => $id))) {
                     $this->session->set_flashdata('message', 'Update Your Project info...');
@@ -255,8 +273,14 @@ class Project extends CI_Controller {
 
 
         }
-        
+
         $id = $this->uri->segment('4');
+
+        $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $id));
+        $data['fundedAmount'] = (!empty($fundedAmount))? $fundedAmount:'0';
+
+        $data['editProject'] = $fundedAmount;
+
         $data['editProject'] = $this->global_model->editproject($id);
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['allborrowers'] = $this->global_model->get('users', array('profession'=> 2 ));
@@ -435,6 +459,9 @@ class Project extends CI_Controller {
         //echo "<pre>"; print_r( $data['lenders']);echo "</pre>";die;
 
         $getbyprojectid= $getprojectdata['userID'];
+
+        $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $id));
+        $data['fundedAmount'] = (!empty($fundedAmount))? $fundedAmount:'0';
 
         $date = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid, 'password' => ''));
             $date['first_name'];

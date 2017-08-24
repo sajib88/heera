@@ -211,11 +211,6 @@
 
                         </ul>
 
-
-
-
-
-
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -234,6 +229,14 @@
                                 ?>
                                 <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> Project Not Funded Yet.</div>
                             <?php }else{?>
+
+                                <ul class="list-group list-group-unbordered">
+
+                                    <li class="list-group-item">
+                                        <b>Funded Amount</b> <span class="pull-right">$ <?php echo $fundedAmount; ?></span>
+                                    </li>
+                                </ul>
+
                                 <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
                                     <thead>
                                     <tr>
