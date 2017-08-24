@@ -853,6 +853,37 @@ class Project extends CI_Controller {
     }
 
 
+    public function project_message_application($datas=array())
+    {
+        $val = $this->get_admin_email_and_name();
+        $admin_email = $val['admin_email'];
+        $admin_name  = $val['admin_name'];
+
+        //$this->load->model('admin/system_model');
+        $tmpl = get_email_tmpl_by_email_name('project_message_application');
+        $subject = $tmpl->subject;
+        $subject = str_replace("#first_name",$datas['first_name'],$subject);
+        $subject = str_replace("#comments",$datas['comments'],$subject);
+        $subject = str_replace("#webadmin",$admin_name,$subject);
+        $subject = str_replace("#useremail",$datas['email'],$subject);
+
+        $body = $tmpl->body;
+        $body = str_replace("#first_name",$datas['first_name'],$body);
+        $body = str_replace("#comments",$datas['comments'],$body);
+        $body = str_replace("#useremail",$datas['email'],$body);
+        $body = str_replace("#webadmin",$admin_name,$body);
+
+
+
+        $this->load->library('email');
+        $this->email->from($admin_email, $subject);
+        $this->email->to($datas['email']);
+        $this->email->subject('Project '.$datas['status']);
+        $this->email->message($body);
+        $this->email->send();
+    }
+
+
     #get web admin name and email for email sending
     public function get_admin_email_and_name()
     {
@@ -999,46 +1030,89 @@ class Project extends CI_Controller {
 
 
 
-    public function ajaxrepayment($id){
+    public function ajaxrepayment($projectID){
         $data = array();
+        ini_set('display_errors',1);
+        $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+        $data['totalRepaidAmount'] = (!empty($repaidAmount))? $repaidAmount:'0';
 
-        //$projectData =  $data['repaymentSchedule'] = $this->global_model->get('repayment_schedules', array('projectID' => $id));
-        $projectData =$this->global_model->get_repayment_balance($id);
+        $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectID));
 
-        foreach ($projectData as $proData){
-            $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
-            $proData->fundedAmount = (!empty($fundedAmount))? $fundedAmount:'0';
-            $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
-            $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
+        $data['remainingAmount'] = floatval($fundedAmount-$repaidAmount);
+        $data['fundedAmount'] = $fundedAmount;
 
-            // calculate repaid %
-            $x =  $repaidAmount;
-            $y =  $fundedAmount;
+        $repaymentSchedule =$this->global_model->get_repayment_balance($projectID);
 
-            $percent = $x/$y;
-            $percent_friendly = number_format( $percent * 100, 2 ); // change 2 to # of decimals
+        $data['repaymentSchedule'] =   $repaymentSchedule;
 
-            $proData->repaidPercent = $percent_friendly;
-
-            $paymentAmount = $this->global_model->get_data('repayment_schedules', array('projectID' => $proData->projectID), array('limit'=>'1','start'=>'0'));
-            $proData->paymentAmount = (!empty($paymentAmount))?$paymentAmount['repaidAmount']:'0';
-
-
-
-            $proData->remaining = $percent_friendly;
-
-
-            //$proData->fundcollecttion = (!empty($fundcollecttion))? $fundcollecttion:'0';
-
-        }
-        $data['repaymentSchedule'] =   $projectData;
-
-
-        $data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'));
+        $data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $projectID, 'repaidStatus' => 'Done'));
 
         echo $this->load->view('project/ajaxpayment', $data, TRUE);
         exit;
     }
 
 
+
+
+
+
+    public function sendcomments(){
+        $data = array();
+        $postData = $this->input->post();
+        $projectID = $this->input->post('projectid');
+        $comments = $this->input->post('comments');
+        $loginId = $this->session->userdata('login_id');
+
+        $save['projectsID'] = $projectID;
+        $save['senderID'] = $loginId;
+        $save['message'] = $comments;
+        $save['sendDatetime'] =  date('Y-m-d H:i:s');
+        $save['status'] = 1;
+
+        $ref = $this->global_model->insert('messeage_log', $save);
+
+        if($ref){
+
+            // Your project save successfully
+            echo "success";
+            /// get project details
+            $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $projectID));
+            /// get project details by user id
+            $getbyprojectid= $getprojectdata['userID'];
+            //// Set temp pass
+
+            /// get new user id and data
+            $datas = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid));
+
+
+
+            if ($comments != null){
+                $datas['first_name'];
+                $datas['comments']= $comments;
+                $datas['email'];
+                $this->project_message_application($datas);
+            }
+            else {
+
+                echo "error";
+
+            }
+
+
+        }
+
+        else{
+            echo "error";
+
+        }
+
+
+    }
+
+
+
+
 }
+
+
+

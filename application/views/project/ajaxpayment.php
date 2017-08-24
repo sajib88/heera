@@ -1,16 +1,5 @@
 
     <?php
-  // echo "<pre>";
- //   print_r($repaymentSchedule);
-  /// echo "<pre>";
-
-//exit;
-
-    $totalfund =  $repaymentSchedule[0]->fundedAmount;
-    $amountpaid =  $repaymentSchedule[0]->repaidAmount;
-    $remaingtotal = $totalfund - $amountpaid;
-
-
     if(!empty($repaymentSchedule)){?>
     <section class="content">
 
@@ -20,15 +9,12 @@
                     <span class="widget-user-image pull-left"> <img src="<?php echo base_url();?>backend/img/dash/im1.gif" /></span>
 
                     <div class="info-box-content">
-                        <h2 class="count">$<?= $amountpaid =  $repaymentSchedule[0]->repaidAmount;?></h2>
+                        <h2 class="count">$<?= $totalRepaidAmount?></h2>
                         <h3>Amount Paid</h3>
-
-
                     </div>
                     <!-- /.info-box-content -->
                 </div>
             </div>
-            <?php //print_r($projectfunded); ?>
 
             <div class="col-md-6 dash-widget">
                 <div class="info-box info-box-dash">
@@ -36,7 +22,7 @@
                         <img src="<?php echo base_url();?>backend/img/dash/im3.gif" /></span>
 
                     <div class="info-box-content">
-                        <h2 class="count">$<?= $remaingtotal; ?></h2>
+                        <h2 class="count">$<?= $remainingAmount; ?></h2>
                         <h3>Amount Remaining</h3>
 
                     </div>
@@ -48,75 +34,47 @@
 
                     <div class="box-body">
                         <div id=tables">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                             <table class="table table table-striped table-bordered dataTable no-footer" id="data-table">
                                 <thead>
                                 <tr>
                                     <th class="numeric">#</th>
-                                    <th class="numeric"><?php echo 'Repayment Schedule Date';?></th>
-                                    <th class="numeric"><?php echo 'Payment Amount';?></th>
-
+                                    <th class="numeric">Due Date</th>
+                                    <th class="numeric">Amount Due</th>
+                                    <th class="numeric">Payment Date</th>
+                                    <th class="numeric">Payment amount</th>
+                                    <th class="numeric">Loan Balance</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $i = 1;
-                                    foreach ($repaymentSchedule as $row) {
+                                $i = 1;
+                                $TotalLoanBalance = 0;
+                                foreach ($repaymentSchedule as $row) {
+                                $amountPaid = $row->amountPaid;
+                                if($TotalLoanBalance == 0){
+                                    $TotalLoanBalance = (!empty($amountPaid))?floatval($fundedAmount - $amountPaid):'0';
+                                }else{
+                                    $TotalLoanBalance = floatval($TotalLoanBalance-$amountPaid);
+                                }
 
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
+                                $paymentDate = (!empty($row->repaidDateTime)) ?date('m-d-Y',strtotime($row->repaidDateTime)):'';
 
-                                            <td data-title="<?php echo 'Repayment Schedule Date'; ?>"
-                                                class="numeric"><span><?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?></span>
-                                            </td>
-                                            <td data-title="<?php echo 'Repaid Amount'; ?>"
-                                                class="numeric"><span>$<?php echo $row->paymentAmount; ?></span></td>
-
-                                        </tr>
-                                        <?php $i++;
-                                    }
+                                 ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td data-title="Due Date" class="numeric"><span><?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?></span></td>
+                                        <td data-title="Amount Due" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
+                                        <td data-title="Payment Date" class="numeric"><span><?php echo $paymentDate; ?></span></td>
+                                        <td data-title="Payment amount" class="numeric"><span><?php echo (!empty($amountPaid))?'$'.$amountPaid:''; ?></span></td>
+                                        <td data-title="Loan Balance" class="numeric"><span><?php echo (!empty($paymentDate))?$TotalLoanBalance:''; ?></span></td>
+                                    </tr>
+                                <?php $i++;
+                                }
                                 ?>
                                 </tbody>
                             </table>
                             </div>
-                                <div class="col-md-6">
-                            <table class="table table table-striped table-bordered dataTable no-footer" id="bata-table">
-                                <thead>
-                                <tr>
-
-                                    <th class="numeric"><?php echo 'Payment Received Date';?></th>
-                                    <th class="numeric"><?php echo 'Current Loan Balance';?></th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                if(!empty($fundcollecttion)){
-                                foreach ($fundcollecttion as $row) {
-
-                                    ?>
-                                    <tr>
-
-                                        <td data-title="<?php echo 'Payment Received Date'; ?>"
-                                            class="numeric"><span><?php echo date('m-d-Y',strtotime($row->repaidDateTime)); ?></span>
-                                        </td>
-                                        <td data-title="<?php echo 'Current Loan Balance'; ?>"
-                                            class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
-
-                                    </tr>
-                                    <?php $i++;
-                                }}
-                                ?>
-
-                                </tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>Amount Remaining $<?= $remaingtotal; ?></td>
-
-                                </tr>
-                            </table>
-                                </div>
                         </div>
                     </div>
                 </div>

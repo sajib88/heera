@@ -562,13 +562,10 @@ class Global_model extends CI_Model {
 
 
     public function get_repayment_balance($id){
-        $this->db->select('r.*, h.repaidAmount,h.repaidDateTime,h.repaidAmount as amountpay,r.projectID as pid');
+        $this->db->select('r.*, h.repaidDateTime,h.repaidAmount as amountPaid,r.projectID as pid');
         $this->db->from('repayment_schedules as r');
-        $this->db->join('project_repaid_history as h', 'h.projectID=r.projectID');
+        $this->db->join('project_repaid_history as h', 'r.repaymentScheduleID=h.repaymentScheduleID', 'left');
         $this->db->where('r.projectID', $id);
-
-
-
         $query = $this->db->get();
 
         ///echo $this->db->last_query();
