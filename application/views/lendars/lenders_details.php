@@ -10,26 +10,17 @@
         display: none;
     }*/
 </style>
-<?php //print_r($lendarDetails);?>
-
-
-
 
 <div class="col-md-12 no-padding">
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
-
       <ul class="nav nav-tabs">
         <li class="active"><a href="#fundedProjectList" data-toggle="tab" aria-expanded="true">Funded Projects List</a></li>
         <li class=""><a href="#bilingInfo" data-toggle="tab" aria-expanded="false">Billing Information</a></li>        
-        <li class=""><a href="#lenderProfileDeatails" data-toggle="tab" aria-expanded="false">Lender Profile Deatails</a></li>        
-        
-        
+        <li class=""><a href="#lenderProfileDeatails" data-toggle="tab" aria-expanded="false">Lender Profile Deatails</a></li>
       </ul>
-
       <div class="tab-content">
         <div class="tab-pane active" id="fundedProjectList">
-            
             <div class="row">
             <div class="col-md-12 ">
                 <div class="box">                    
@@ -40,11 +31,9 @@
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
                         <?php }else{?>
                             <div id="no-more-tables">
-
                                 <table class="table table-hover" id="fundedProjectsDataTable">
                                     <thead>
                                     <tr>
-
                                         <th class="numeric">#</th>
 
                                         <th class="numeric"><?php echo 'Project Name';?></th>
@@ -56,8 +45,6 @@
                                         <th class="numeric"><?php echo 'Amount Repaid';?></th>
 
                                         <th class="numeric"><?php echo 'Status';?></th>
-
-                                        
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -85,27 +72,19 @@
                                         }
                                     }else{
                                         echo 'No data Found';
-                                    }
-?>
+                                    }?>
                                     </tbody>
                                 </table>
                             </div>
                         <?php }?>
                     </div>
-                    
                 </div>
-                
             </div>
         </div>
-       
-            
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="bilingInfo">
-
-
             <div class="row">
-
                 <?php if(empty($listpaymethod)){?>
                     <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php echo 'No project funded yet.';?></div>
                 <?php }else{?>
@@ -119,56 +98,36 @@
                             </div>
                             <div class="box-body no-padding">
                                 <ul class="list-group list-group-unbordered">
-
                                         <?php
                                             if($row->selectPaymentType == 'PayPal'){?>
                                                 <li class="list-group-item">
                                                     <b>Email</b><span class="pull-right"><?php echo $row->paypalemail; ?></span>
                                                 </li>
-                                                <?php if(!empty($row->useFor)){ ?>
-                                                <li class="list-group-item">
-                                                    <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
-                                                </li>
-                                                <?php } else{} ?>
                                                 <?php if($row->isPrimary == 1){?>
                                                 <li class="list-group-item">
-                                                    <b>Payment Method</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                    <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
                                                 </li>
                                                 <?php }else{?>
                                                     <li class="list-group-item">
-                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
                                                     </li>
                                                 <?php }?>
                                             <?php }elseif($row->selectPaymentType == 'Debit Card'){?>
                                                 <li class="list-group-item">
                                                     <b>Debit Card Number</b><span class="pull-right"> <?php echo $row->debitCardNumber; ?> </span>
                                                 </li>
-                                                <?php if(!empty($row->useFor)){ ?>
-                                                    <li class="list-group-item">
-                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
-                                                    </li>
-                                                <?php } else{} ?>
                                                 <?php if($row->isPrimary == 1){?>
                                                     <li class="list-group-item">
-                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
                                                     </li>
                                                 <?php }else{?>
                                                     <li class="list-group-item">
-                                                        <b>Payment Method</b><span class="pull-right"> <?php echo "No"; ?> </span>
+                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
                                                     </li>
                                                 <?php }?>
                                             <?php }elseif($row->selectPaymentType == 'Credit Card'){ ?>
                                                 <li class="list-group-item">
-                                                    <b>First Name</b><span class="pull-right"> <?php echo $row->firstName; ?> </span>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Last Name</b><span class="pull-right"> <?php echo $row->lastName; ?> </span>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Expiration Date</b><span class="pull-right"> <?php echo $row->expireDate.'-'.$row->expireMonth.'-'.$row->expireYear; ?> </span>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>CVV Code</b><span class="pull-right"> <?php echo $row->cvv; ?> </span>
+                                                    <b>Card Holder Name</b><span class="pull-right"> <?php echo $row->firstName; ?> </span>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Credit Type</b><span class="pull-right"> <?php echo $row->cardType; ?> </span>
@@ -176,11 +135,12 @@
                                                 <li class="list-group-item">
                                                     <b>Card Number</b><span class="pull-right"> <?php echo $row->cardNumber; ?> </span>
                                                 </li>
-                                                <?php if(!empty($row->useFor)){ ?>
-                                                    <li class="list-group-item">
-                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
-                                                    </li>
-                                                <?php } else{} ?>
+                                                <li class="list-group-item">
+                                                    <b>Expiration Date</b><span class="pull-right"> <?php echo $row->expireMonth.'-'.$row->expireYear; ?> </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>CVV Code</b><span class="pull-right"> <?php echo $row->cvv; ?> </span>
+                                                </li>
                                                 <?php if($row->isPrimary == 1){?>
                                                     <li class="list-group-item">
                                                         <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
@@ -201,26 +161,6 @@
                                                 <li class="list-group-item">
                                                     <b>Routhing Number</b><span class="pull-right"> <?php echo $row->routhingNumber; ?> </span>
                                                 </li>
-                                                <?php if(!empty($row->useFor)){ ?>
-                                                    <li class="list-group-item">
-                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
-                                                    </li>
-                                                <?php } else{} ?>
-                                                <?php if($row->isPrimary == 1){?>
-                                                    <li class="list-group-item">
-                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
-                                                    </li>
-                                                <?php }else{?>
-                                                    <li class="list-group-item">
-                                                        <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "No"; ?> </span>
-                                                    </li>
-                                                <?php }?>
-                                            <?php }elseif($row->selectPaymentType == 'Check'){?>
-                                                <?php if(!empty($row->useFor)){ ?>
-                                                    <li class="list-group-item">
-                                                        <b>Used For</b><span class="pull-right"><?php echo $row->useFor; ?> </span>
-                                                    </li>
-                                                <?php } else{} ?>
                                                 <?php if($row->isPrimary == 1){?>
                                                     <li class="list-group-item">
                                                         <b>Is Primary Payment Method ?</b><span class="pull-right"> <?php echo "Yes"; ?> </span>
@@ -231,7 +171,6 @@
                                                     </li>
                                                 <?php }?>
                                             <?php }?>
-
                                 </ul>
                             </div>
                         </div>
@@ -274,16 +213,10 @@
 
                 </div>
                   <div class="row">
-                      <div class="col-md-6">
-
-                          <a href="<?php echo base_url('fund/Fund/adminfund'); ?>/<?php echo $lendarDetails['id']; ?>" class="btn btn-block btn-info"> Add Fund</a>
-                      </div>
-                      <div class="col-md-6">
-
+                      <div class="col-md-6 col-md-offset-3">
                           <a  href="<?php echo base_url('fund/Fund/adminrefund'); ?>/<?php echo $lendarDetails['id']; ?>"class="btn btn-block btn-warning"> Refund </a>
                       </div>
                   </div>
-
               </div>
 
             <div class="col-md-6">
@@ -393,18 +326,14 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
-
             </div>
-
-                  <div class="col-lg-3 col-md-offset-1">
-
-                      <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
-                  </div>
-                  <div class="col-lg-7 ">
-                      <button id="updateProfile" class="btn btn-success  btn-lg pull-right" data-id="<?php echo $lendarDetails['id']; ?>" type="button">
-                          <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
-                  </div>
-
+              <div class="col-lg-3 col-md-offset-1">
+                  <?php echo anchor('profile/dashboard',"<i class='fa fa-undo'></i> &nbsp; &nbsp; Cancel",array('class' => 'btn btn-danger btn-lg'));?>
+              </div>
+              <div class="col-lg-7 ">
+                  <button id="updateProfile" class="btn btn-success  btn-lg pull-right" data-id="<?php echo $lendarDetails['id']; ?>" type="button">
+                      <i class="fa fa-check"></i> &nbsp; &nbsp; Update</button>
+              </div>
         </div>
         </div> 
         <!-- /.tab-pane -->
@@ -490,8 +419,6 @@
 
 
 <script type="text/javascript">
-
-
     jQuery(document).ready(function() {
         //Date picker
         $('#datepicker2').datepicker({
@@ -502,7 +429,6 @@
         });
 
     });
-
 </script>
 
 <script type="application/javascript">
