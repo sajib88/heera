@@ -38,6 +38,66 @@
 <section class="content">
 <div class="row">
     <div class="col-md-6">
+
+
+
+
+        <div class="col-md-12 no-padding">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-user"></i>
+
+                    <h3 class="box-title">Borrower Info</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <!-- /Lending -->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Full name</label>
+                                        <input name="first_name" value="<?php echo $editProject['first_name']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label> Date of Birth</label>
+                                        <input name="dateofbirth" id="datepicker2" value="<?php echo $editProject['dateofbirth']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input name="email" value="<?php echo $editProject['email']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Phone number</label>
+                                        <input name="phone" value="<?php echo $editProject['phone']; ?>"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- /.Lending -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
         <div class="col-md-12 no-padding">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -364,6 +424,15 @@
                                         <input name="projectEndDate" type="text" class="form-control" id="datepicker" value="<?php echo date("m/d/Y", strtotime($editProject['projectEndDate'])); ?>">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Funded Amount</label><span id='date' class='error' for='start_date'></span>
+
+                                        <input name="" disabled type="text" class="form-control" id="" value="$ <?php echo $fundedAmount; ?>">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row">
 
@@ -471,34 +540,7 @@
 
 
             </div>
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Borrower Info</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
 
-
-                    <ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <b>Full name</b> <span class="pull-right">  <?php echo (!empty( $editProject['first_name']))? $editProject['first_name']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Date of Birth</b> <span class="pull-right">  <?php echo (!empty( $editProject['dateofbirth']))? $editProject['dateofbirth']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Email</b> <span class="pull-right">  <?php echo (!empty( $editProject['email']))? $editProject['email']:''?></span>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Phone number</b> <span class="pull-right">  <?php echo (!empty( $editProject['phone']))? $editProject['phone']:''?></span>
-                        </li>
-
-                    </ul>
-
-
-                </div>
-                <!-- /.box-body -->
-            </div>
         </div>
 
 
