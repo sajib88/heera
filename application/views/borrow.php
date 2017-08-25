@@ -17,7 +17,7 @@
                         <div col-md-6>                                   
                             <div class="container col-md-6">
                                 <div class="login-wrap">
-                                <div class="">Personal Deatails</div>
+                                <div class="">Personal Details</div>
                                     <div class="ptop-20"></div>
 
                                         <div class="form-group mb-10">
@@ -61,7 +61,7 @@
                         <div col-md-6>
                             <div class="container col-md-6">
                                 <div class="login-wrap topSpace">
-                                <div class="">Project Deatails</div>
+                                <div class="">Project Details</div>
                                 <div class="ptop-20"></div>
                                 <div class="form-group mb-10">
                                     <label>Purpose of Funding</label>

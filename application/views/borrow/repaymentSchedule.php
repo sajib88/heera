@@ -108,7 +108,6 @@ print_r($allpersonals);die;*/
                                         echo 'No data Found';
                                     } ?>
 
-?>
                                     </tbody>
                                 </table>
                             </div>
