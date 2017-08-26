@@ -89,8 +89,7 @@ print_r($allpersonals);die;*/
                                         }
                                     }else{
                                         echo 'No data Found';
-                                    }
-?>
+                                    } ?>
                                     </tbody>
                                 </table>
                             </div>
