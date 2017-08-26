@@ -51,6 +51,7 @@ print_r($allpersonals);die;*/
                         <h3 class="box-title">Repayment Schedule (<?php if(!empty($repaymentSchedule[0]->projectName)){ echo $repaymentSchedule[0]->projectName;}else{} ?>)</h3>
                     </div>
                     <div class="box-body">
+
                         <?php if(empty($repaymentSchedule)){?>
                         <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i><?php if(!empty($no_data)){ echo $no_data ; }else{}?></div>
                         <?php }else{?>

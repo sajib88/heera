@@ -5,7 +5,7 @@
 
 
                 <h1>Give a Little Change a Lot. </h1>
-                <p>A loan of $1500 helps a member to buy more fertilizer to support<br> her fariming, to get a higher yield</p>
+                <p>A loan of $1500 helps a member to buy more fertilizer to support<br> her farming, to get a higher yield</p>
                 <input type="submit" value="Lend $25" class="btn   btn-yellow">
             </div>
         </div>
@@ -192,7 +192,7 @@
         <!--helpig-->
         <div class="row ptop-20">
             <div class="text-center helpig-hand">
-                <h2>Give a helpig hand. <span>See our causes</span></h2>
+                <h2>Give a helping hand. <span>See our causes</span></h2>
 
             </div>
         </div>
@@ -330,7 +330,7 @@
 
 
                 <h1>Need a helping hand</h1>
-                <h3>Aapply for a Loan and Get funded</h3>
+                <h3>Apply for a Loan and Get funded</h3>
                 <input type="submit" value="Borrow Now" class="btn btn-midum  btn-yellow">
             </div>
         </div>
