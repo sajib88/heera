@@ -322,7 +322,7 @@
                             <h3 class="title">Lenders and Lending Team</h3>
                             <div class="lender-wrapper row">
                                 <?php if(empty($allBackers)){?>
-                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i>No Backers Funded Yet</div>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> No Backers Funded Yet</div>
                                 <?php }else{
                                 foreach ($allBackers as $row) {
                                 ?>
@@ -350,10 +350,11 @@
                                     <h4 class="btn-blue">Project Uploaded</h4>
                                     <p class="start-date"><?php echo date('d M Y', strtotime($projectData['adminApprovalDateTime'])); ?></p>
                                 </div>
+                                <?php if(empty($projectUpdate)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i> No Data Found</div>
+                                <?php }else{?>
                                 <section id="cd-timeline" class="cd-container">
-                                    <?php if(empty($projectUpdate)){?>
-                                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i>No Project Update</div>
-                                    <?php }else{
+                                    <?php
                                     foreach ($projectUpdate as $row) {
                                     ?>
                                     <div class="cd-timeline-block">
@@ -367,9 +368,9 @@
                                             <h4>Project Funded</h4>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
-                                    <?php }
-                                    }?>
+                                    <?php }?>
                                 </section> <!-- cd-timeline -->
+                                    <?php }?>
                             </div><!-- timeline wrapper -->
                         </div>
                     </div>
@@ -395,7 +396,7 @@
                             </p>
                         </div>
                         <div class="entry-single">
-                            <p><span class="heading">Disbursed Date</span> <?php echo $projectData['projectEndDate'];?> </p>
+                            <p><span class="heading">Disbursed Date</span> <?php echo date('m-d-Y', strtotime($projectData['projectEndDate']));?> </p>
                         </div>
                         <div class="entry-single">
                             <p>
