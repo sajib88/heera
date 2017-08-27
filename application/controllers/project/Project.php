@@ -606,11 +606,10 @@ class Project extends CI_Controller {
         exit;
     }
 
-    public function approvedProject(){
+    public function approvedProjectedit(){
         $data = array();
-        $this->load->library('Resizeimg');
-        $postData = $this->input->get();
-        $id = $this->input->get('projectid');
+        $id = $this->uri->segment('4');
+        $postData = $this->input->POST();
         $getprojectsenddate = $this->global_model->get_data('project', array('projectID' => $id));
         $getEnddateproject= $getprojectsenddate['projectEndDate'];
         $getprojectname= $getprojectsenddate['name'];
@@ -655,78 +654,17 @@ class Project extends CI_Controller {
         $save['userID'] = $postData['userID'];
 
 
-        if (isset($_FILES["mainImage"]["name"]) && $_FILES["mainImage"]["name"] != '') {
-            $this->PATH = './assets/file/project';
-            $photo_name = time();
-            if (!file_exists($this->PATH)) {
-                mkdir($this->PATH, 0777, true);
-            }
-            $save['mainImage'] = $this->resizeimg->image_upload('mainImage', $this->PATH, 'size[300,300]', '', $photo_name);
-        }
-        else {
-
-        }
-
-        if (isset($_FILES["photo1"]["name"]) && $_FILES["photo1"]["name"] != '') {
-            $this->PATH = './assets/file/project';
-            $photo_name = time();
-            if (!file_exists($this->PATH)) {
-                mkdir($this->PATH, 0777, true);
-            }
-            $save['photo1'] = $this->resizeimg->image_upload('photo1', $this->PATH, 'size[300,300]', '', $photo_name);
-        }
-        else {
-
-        }
-
-        if (isset($_FILES["photo2"]["name"]) && $_FILES["photo2"]["name"] != '') {
-            $this->PATH = './assets/file/project';
-            $photo_name = time();
-            if (!file_exists($this->PATH)) {
-                mkdir($this->PATH, 0777, true);
-            }
-            $save['photo2'] = $this->resizeimg->image_upload('photo2', $this->PATH, 'size[300,300]', '', $photo_name);
-        }
-        else {
-
-        }
-
-        if (isset($_FILES["photo3"]["name"]) && $_FILES["photo3"]["name"] != '') {
-            $this->PATH = './assets/file/project';
-            $photo_name = time();
-            if (!file_exists($this->PATH)) {
-                mkdir($this->PATH, 0777, true);
-            }
-            $save['photo3'] = $this->resizeimg->image_upload('photo3', $this->PATH, 'size[300,300]', '', $photo_name);
-        }
-        else {
-
-        }
-
-        // print '<pre>';
-        // print_r($save);die;
-
-        if ($ref = $this->global_model->update('project', $save, array('projectID' => $id))) {
-            $this->session->set_flashdata('message', 'Update Your Project info...');
-        }
-
         /////////////////////////////////////////////////////////////////////////////////////
 
 
         if($getEnddateproject != null && $getprojectname!= null && $getpurposeID != null && $getloanTerm != null && $getRepaymentScheduleID !=null && $getneededAmount != null) {
 
+            $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
+            $save['adminApprovalStatus'] = 'Approved';
+            $save['rejectReason'] = 0;
+            $save['statusID'] = 3;
 
-
-
-
-        $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
-        $save['adminApprovalStatus'] = 'Approved';
-        $save['rejectReason'] = 0;
-        $save['statusID'] = 4;
-
-
-
-          $ref = $this->global_model->update('project', $save, array('projectID' => $id));
+            $ref = $this->global_model->update('project', $save, array('projectID' => $id));
         }
         else {
             echo "notfound";
@@ -785,6 +723,104 @@ class Project extends CI_Controller {
 
         exit;
     }
+
+
+    public function viewapprovedProject(){
+        $data = array();
+        $id = $this->uri->segment('4');
+       // $id = $this->input->post('id');
+
+        $getprojectsenddate = $this->global_model->get_data('project', array('projectID' => $id));
+        $getEnddateproject= $getprojectsenddate['projectEndDate'];
+        $getprojectname= $getprojectsenddate['name'];
+        $getpurposeID= $getprojectsenddate['purposeID'];
+        $getloanTerm= $getprojectsenddate['loanTerm'];
+        $getRepaymentScheduleID= $getprojectsenddate['RepaymentScheduleID'];
+        $getneededAmount= $getprojectsenddate['neededAmount'];
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        if(!empty($postData['projectEndDate'])){
+
+            $dbdate = new DateTime($this->input->post['projectEndDate']);
+            $date = $dbdate->format('Y-m-d');
+        }
+        else{
+            $date = null;
+        }
+
+
+
+
+        if($getEnddateproject != null && $getprojectname!= null && $getpurposeID != null && $getloanTerm != null && $getRepaymentScheduleID !=null && $getneededAmount != null) {
+
+            $save['adminApprovalDateTime'] = date('Y-m-d H:i:s');
+            $save['adminApprovalStatus'] = 'Approved';
+            $save['rejectReason'] = 0;
+            $save['statusID'] = 3;
+
+            $ref = $this->global_model->update('project', $save, array('projectID' => $id));
+        }
+        else {
+            echo "notfound";
+            $ref = '';
+        }
+        if($ref){
+
+            // Your project save successfully
+            echo "success";
+            /// get project details
+            $getprojectdata=$data['layoutfull'] = $this->global_model->get_data('project', array('projectID' => $id));
+            /// get project details by user id
+            $getbyprojectid= $getprojectdata['userID'];
+            //// Set temp pass
+            $tmpPass = date('YmdHis');
+            /// get new user id and data
+            $datas = $user_info = $this->global_model->get_data('users', array('id' => $getbyprojectid));
+
+
+
+            if ($user_info['password'] == null){
+
+                $datas['first_name'];
+                $datas['email'];
+                $datas['password'] = $tmpPass;;
+                $datas['confirmation_key'] 	= uniqid();
+
+
+                $update['password'] = md5($tmpPass);
+                $update['confirmation_key'] =  $datas['confirmation_key'];
+
+
+
+                $updateusers = $this->global_model->update('users', $update, array('id' => $getbyprojectid));
+
+                $this->borrower_confirmation_email($datas);
+
+                $datas['status']= "Approved";
+                $datas['email'];
+                $this->project_status_application($datas);
+            }
+            else {
+
+                $datas['status']= "Approved";
+                $datas['email'];
+                $this->project_status_application($datas);
+
+            }
+
+
+        }else{
+            echo "error";
+
+        }
+
+
+        exit;
+    }
+
 
     public function borrower_confirmation_email($datas=array())
     {

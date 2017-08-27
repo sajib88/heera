@@ -546,7 +546,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label> Comments</label>
-                                        <textarea required name="comments" class="form-control"></textarea>
+                                        <textarea  name="comments" class="form-control"></textarea>
                                     </div>
                                 </div>
 
@@ -681,26 +681,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
-<script type="application/javascript">
 
-    $('.commentsform').validate({
-        rules: {
-            comments: {
-                required:true
-
-            }
-        },
-        messages:{
-            comments: {
-                required: "Comments Text is Required",
-            }
-        }
-    });
-
-
-
-
-</script>
 <script type="application/javascript">
 
 
@@ -713,9 +694,7 @@
                 required:true
             },
 
-            userID:{
-                required:true
-            },
+
             shortDescription:{
                 required:true
             },
@@ -889,9 +868,10 @@
                     var base_url = '<?php echo base_url() ?>';
                     var id = sendpid;
                     $.ajax({
-                        type: 'GET',
+                        type: 'POST',
                         data: $('#classifiedform').serialize(),
-                        url: base_url + "project/project/approvedProject/", //this file has the calculator function code
+
+                        url: base_url + "project/project/approvedProjectedit/"+id, //this file has the calculator function code
                         //data: id,
                         success: function (msg) {
 
@@ -986,7 +966,7 @@
                 var id = sendpid;
                 $.ajax({
                     type: 'POST',
-                    data: $('#classifiedform').serialize(),
+                    data: $('.commentsform').serialize(),
                     url: base_url + "project/project/sendcomments/", //this file has the calculator function code
                     //data: id,
                     success: function (msg) {

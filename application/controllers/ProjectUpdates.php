@@ -50,7 +50,7 @@ class ProjectUpdates extends CI_Controller {
 
 
                 $save['statusID'] = 4;
-                //$this->global_model->update('project', $save, array('neededAmount' => $need));
+                $this->global_model->update('project', $save, array('neededAmount' => $need));
 
             }
 
@@ -61,7 +61,7 @@ class ProjectUpdates extends CI_Controller {
                 if($projectEnddate<$todays){
                     echo "go to reject";
                     $save['statusID'] = 8;
-                    //$this->global_model->update('project', $save, array('neededAmount' => $need));
+                    $this->global_model->update('project', $save, array('neededAmount' => $need));
 
                 }
 
