@@ -891,5 +891,17 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function updateLog($id=''){
+        $this->db->select('f.fundedDateTime');
+        $this->db->from('project_fund_history as f');
+        $this->db->where('f.projectID', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
 }
 

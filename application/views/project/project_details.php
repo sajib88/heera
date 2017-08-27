@@ -348,9 +348,14 @@
                             <div class="timeline-wrapper">
                                 <div class="entry-head">
                                     <h4 class="btn-blue">Project Uploaded</h4>
-                                    <p class="start-date">12 Feb 2017</p>
+                                    <p class="start-date"><?php echo date('d M Y', strtotime($projectData['adminApprovalDateTime'])); ?></p>
                                 </div>
                                 <section id="cd-timeline" class="cd-container">
+                                    <?php if(empty($projectUpdate)){?>
+                                        <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i>No Project Update</div>
+                                    <?php }else{
+                                    foreach ($projectUpdate as $row) {
+                                    ?>
                                     <div class="cd-timeline-block">
                                         <div class="cd-timeline-img">
                                             <span></span>
@@ -358,36 +363,12 @@
 
                                         <div class="cd-timeline-content">
                                             <p class="meta">Update:</p>
-                                            <p class="cd-date">21st April 2017</sp>
+                                            <p class="cd-date"><?= date('d M Y', strtotime($row->fundedDateTime));?></sp>
                                             <h4>Project Funded</h4>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
-
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img">
-                                            <span></span>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p class="meta">Update:</p>
-                                            <p class="cd-date">24st April 2017</sp>
-                                            <h4>Project Funded</h4>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img">
-                                            <span></span>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p class="meta">Update:</p>
-                                            <p class="cd-date">30st April 2017</sp>
-                                            <h4>Project Funded</h4>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-
-
+                                    <?php }
+                                    }?>
                                 </section> <!-- cd-timeline -->
                             </div><!-- timeline wrapper -->
                         </div>

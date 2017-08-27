@@ -83,6 +83,10 @@ class Home extends CI_Controller {
                 $backer->totalProject = $this->global_model->fundedProjectCount($backer->fundedBy);
             }
         }
+        $data['projectUpdate'] = $this->global_model->updateLog($id);
+
+        //print_r($data['projectUpdate']);die;
+
         $data['allBackers'] = $allBackers;
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
