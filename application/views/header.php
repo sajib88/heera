@@ -440,8 +440,8 @@
                   </a>
                 </li>
 
-                <li class="treeview <?php if($this->uri->segment(3)=="repaymentList"){echo "active";}?>">
-                    <a href="<?php echo base_url('borrowers/Borrowers/repaymentList'); ?>" >
+                <li class="treeview <?php if($this->uri->segment(1)=="repaymentprocess"){echo "active";}?>">
+                    <a href="<?php echo base_url('repaymentprocess'); ?>" >
                         <i class="fa fa-list"></i>
                         <span>Repayment List</span>
                     </a>

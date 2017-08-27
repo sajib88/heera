@@ -450,7 +450,7 @@
                 var id=sendpid;
                 $.ajax({
                     type: 'GET',
-                    url: base_url + "project/project/approvedProject/"+id, //this file has the calculator function code
+                    url: base_url + "project/project/viewapprovedProject/"+id, //this file has the calculator function code
                     //data: id,
                     success: function(msg) {
 
