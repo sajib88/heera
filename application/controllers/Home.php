@@ -77,6 +77,13 @@ class Home extends CI_Controller {
         $data['totallander'] = $this->global_model->count_row_funded('project_fund_history', array('projectID' => $id));
        /// $data['joins'] = $this->global_model->get_data_join('project', 'project_fund_history', 'projectID', 'project.projectID = project_fund_history.projectID', true);
 
+        $allBackers = $this->global_model->allBackers($id);
+        if(!empty($allBackers)) {
+            foreach ($allBackers as $backer) {
+                $backer->totalProject = $this->global_model->fundedProjectCount($backer->fundedBy);
+            }
+        }
+        $data['allBackers'] = $allBackers;
         $loginId = $this->session->userdata('login_id');
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $totalamount = $data['user_info']['inAmount'];

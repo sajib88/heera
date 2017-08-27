@@ -862,6 +862,34 @@ class Global_model extends CI_Model {
         }
     }
 
+    public function allBackers($id=''){
+        $this->db->select('f.projectID, f.fundedBy, u.first_name, u.profilepicture');
+        $this->db->from('project_fund_history as f');
+        $this->db->join('users as u', 'u.id = f.fundedBy');
+        $this->db->where('f.projectID', $id);
+        $this->db->group_by('f.projectID');
+        $this->db->group_by('f.fundedBy');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function fundedProjectCount($id=''){
+        $this->db->select('COUNT(f.projectID)as totalProject');
+        $this->db->from('project_fund_history as f');
+        $this->db->where('f.fundedBy', $id);
+        $this->db->group_by('f.fundedBy');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->result();
+            return $result[0]->totalProject;
+        } else {
+            return false;
+        }
+    }
 
 }
 

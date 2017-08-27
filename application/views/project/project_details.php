@@ -321,35 +321,27 @@
                         <div role="tabpanel" class="tab-pane" id="tab3">
                             <h3 class="title">Lenders and Lending Team</h3>
                             <div class="lender-wrapper row">
+                                <?php if(empty($allBackers)){?>
+                                    <div class="alert alert-danger text-center text-bold"><i class="icon fa fa-info"></i>No Backers Funded Yet</div>
+                                <?php }else{
+                                foreach ($allBackers as $row) {
+                                ?>
                                 <div class="lender-widget col-md-4">
                                     <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
+                                        <?php if(!empty($row->profilepicture)){?>
+                                        <img src="<?php echo base_url('assets/file/'.$row->profilepicture); ?>" alt="" class="img-responsive">
+                                        <?php }else{?>
+                                        <img src="<?php echo base_url('assets/user-demo.jpg'); ?>" alt="" class="img-responsive">
+                                        <?php }?>
                                         <div class="entry-content">
-                                            <h4 class="title">Nick Yulman</h4>
-                                            <p>Funded 6 projects.</p>
+                                            <h4 class="title"><?php echo $row->first_name; ?></h4>
+                                            <p>Funded <?php echo $row->totalProject; ?> projects.</p>
                                         </div>
                                     </div>
-                                </div><!--lender widget-->
-
-                                <div class="lender-widget col-md-4">
-                                    <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
-                                        <div class="entry-content">
-                                            <h4 class="title">Olivia Rohan</h4>
-                                            <p>Funded 21 projects.</p>
-                                        </div>
-                                    </div>
-                                </div><!--lender widget-->
-
-                                <div class="lender-widget col-md-4">
-                                    <div class="inner-item">
-                                        <img src="<?php echo base_url(); ?>comp/img/lender1.png" alt="" class="img-responsive">
-                                        <div class="entry-content">
-                                            <h4 class="title">Sarvam Bodhi</h4>
-                                            <p>Funded 6 projects.</p>
-                                        </div>
-                                    </div>
-                                </div><!--lender widget-->
+                                </div>
+                                <?php }
+                                }?>
+                                <!--lender widget-->
                             </div><!--lender wrapper-->
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab4">
