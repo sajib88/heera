@@ -3,11 +3,11 @@
 <link href="<?php echo base_url('backend/no_more_table.css');?>" rel="stylesheet">
 
 <form id="myForm"  method="post"  action="#">
-    <div id="foo"></div>
+    <div id="foo"></div><?php //print_r($repaymentData);?>
     <input type="hidden" value="<?php echo $repaymentData[0]->projectID; ?>" name="projectsID">
     <input type="hidden" value="<?php echo $repaymentData[0]->borrowerId; ?>" name="borrower_ID">
     <input type="hidden" value="<?php echo $repaymentData[0]->repaymentScheduleID; ?>" name="repaymentScheduleID">
-
+    <input type="hidden" value="<?php echo $repaymentData[0]->repaidAmount; ?>" name="repaidAmount">
 
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +21,7 @@
 
                         </li>
                         <li class="list-group-item">
-                            <b>Total Repaid Amount : </b><?php echo $repaymentData[0]->repaidAmount; ?>
+                            <b>Total Repaid Amount : </b><?php echo ($repaymentData[0]->dueAmount != null && $repaymentData[0]->dueAmount != '0.00')?$repaymentData[0]->dueAmount : $repaymentData[0]->repaidAmount; ?>
                         </li>
 
                         <li class="list-group-item">
@@ -111,7 +111,7 @@
 
 
             $.ajax({
-                url:base_url + "borrowers/borrowers/finalrepayment/",
+                url:base_url + "repaymentprocess/finalrepayment/",
                 type: 'POST',
                 data: $("#myForm").serialize(),
                 success: function (msg) {

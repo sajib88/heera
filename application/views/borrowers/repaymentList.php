@@ -71,7 +71,7 @@
                                                     <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                     <td data-title="Make Payment" class="numeric text-center">
-                                                        <?php if($row->repaidStatus == 'Pending') {?>
+                                                        <?php if($row->repaidStatus == 'Unpaid') {?>
                                                             <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                         <?php } else {?>
 
@@ -133,7 +133,7 @@
                                                         <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                         <td data-title="Make Payment" class="numeric text-center">
-                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                            <?php if($row->repaidStatus == 'Unpaid') {?>
                                                                 <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                             <?php } else {?>
 
@@ -195,7 +195,7 @@
                                                         <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                         <td data-title="Make Payment" class="numeric text-center">
-                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                            <?php if($row->repaidStatus == 'Unpaid') {?>
                                                                 <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                             <?php } else {?>
 
@@ -257,7 +257,7 @@
                                                         <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                         <td data-title="Make Payment" class="numeric text-center">
-                                                            <?php if($row->repaidStatus == 'Pending') {?>
+                                                            <?php if($row->repaidStatus == 'Unpaid') {?>
                                                                 <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                             <?php } else {?>
 
