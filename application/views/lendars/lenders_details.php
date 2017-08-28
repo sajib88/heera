@@ -214,7 +214,7 @@
                 </div>
                   <div class="row">
                       <div class="col-md-6 col-md-offset-3">
-                          <a  href="<?php echo base_url('fund/Fund/adminrefund'); ?>/<?php echo $lendarDetails['id']; ?>"class="btn btn-block btn-warning"> Refund </a>
+                          <a data-toggle="modal" href="#lenderRefund" data-id="<?php echo $lendarDetails['id']; ?>" class="btn btn-block btn-warning lenderRefundDetails"> Refund </a>
                       </div>
                   </div>
               </div>
@@ -343,6 +343,23 @@
     <!-- nav-tabs-custom -->
 </div>
 
+<div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1"  id="lenderRefund" class="modal fade">
+
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"> <i class="fa  fa-child"></i> Refund</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="refundToLender"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <script type="text/javascript">
     $(document).ready(function(){
         //var personaltable = document.getElementById("js_personal_table");
@@ -380,6 +397,24 @@
 
     }
 
+</script>
+
+<script>
+    $('.lenderRefundDetails').click(function(){
+        $('#loadingState').show();
+        var base_url = '<?php echo base_url() ?>';
+        var id=$(this).data('id');
+        $.ajax({
+            type: 'POST',
+            url: base_url + "repaymentprocess/lenderRefundDetails/"+id,
+            data: id,
+            datatype: "json",
+            success: function(data){
+                $('#refundToLender').html(data);
+                $('#loadingState').hide();
+            }
+        });
+    });
 </script>
 
 <script>

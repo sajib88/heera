@@ -210,4 +210,29 @@ echo $this->db->last_query();
 
     }
 
+
+    public function lenderRefundDetails($id){
+        $data = array();
+        $data['projects'] = $this->Repayment_model->all_refund_project($id);
+        echo $this->load->view('lendars/lenderRefund', $data, TRUE);
+        exit;
+    }
+
+    public function lenderRefund(){
+        $data = array();
+        $loginId = $this->session->userdata('login_id');
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+
+        if($this->input->post()){
+            $postData['projectID'] = $this->input->post('projectID');
+            $postData['repaidAmount'] = $this->input->post('repaidAmount');
+            $postData['lenderID'] = $this->input->post('lenderID');
+            echo json_encode($postData);
+            echo 'success';
+        }else{
+            echo 'error';
+        }
+
+    }
+
 }

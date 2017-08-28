@@ -51,6 +51,24 @@ class Repayment_model extends CI_Model {
         }
     }
 
+    public function all_refund_project($id){
+        $this->db->select('p.name, p.projectID, p.statusID, f.fundedBy as lenderID');
+        $this->db->from('project as p');
+        $this->db->join('users as u', 'u.id=p.userID');
+        $this->db->join('project_fund_history as f', 'f.projectID=p.projectID', 'left');
+        $this->db->where('f.fundedBy', $id);
+        $this->db->where('p.statusID =', '4');
+        $this->db->group_by('p.projectID');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        //return $query;
+    }
+
 }
 
 ?>
