@@ -22,10 +22,10 @@
                     <div class="nav-tabs-custom">
 
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#pastDue" data-toggle="tab" aria-expanded="true">Past Due</a></li>
-                            <li class=""><a href="#due" data-toggle="tab" aria-expanded="false">Due</a></li>
-                            <li class=""><a href="#current" data-toggle="tab" aria-expanded="false">Current</a></li>
-                            <li class=""><a href="#all" data-toggle="tab" aria-expanded="false">All</a></li>
+                            <li class="active"><a class="tabaction" data-tabdata='<?php echo 'past'; ?>'  href="#pastDue" data-toggle="tab" aria-expanded="true">Past Due</a></li>
+                            <li class=""><a class="tabaction" data-tabdata='<?php echo 'due'; ?>' href="#due" data-toggle="tab" aria-expanded="false">Due</a></li>
+                            <li class=""><a class="tabaction" data-tabdata='<?php echo 'current'; ?>' href="#current" data-toggle="tab" aria-expanded="false">Current</a></li>
+                            <li class=""><a class="tabaction" data-tabdata='<?php echo 'all'; ?>' href="#all" data-toggle="tab" aria-expanded="false">All</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -373,6 +373,27 @@
         });
 
     });
+
+
+    $(".tabaction").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var tabdata = $(this).data('tabdata');
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + "repaymentprocess/getrepaymentlist", //this file has the calculator function code
+            data: 'selectedTab='+tabdata,
+            success:function(data){
+              $(this).html(data);
+               // $('#showview').html(data);
+             //   $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
+
 
 </script>
 

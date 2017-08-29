@@ -189,4 +189,56 @@ class Repaymentprocess extends CI_Controller {
 
     }
 
+
+    function getrepaymentlist() {
+        $data = array();
+
+       $selectedTab = $this->input->post('selectedTab');
+
+        $loginId = $this->session->userdata('login_id');
+        $allRepaymentList = $this->Repayment_model->repaymentList();
+
+        $pastDueArr = array();
+        $dueArr = array();
+        $currentArr =  array();
+        $today = strtotime(date('Y-m-d', time()));
+        $next3rdDay = strtotime(date('Y-m-d', strtotime('+3 day', $today)));
+        //echo $schedualeDateTime = strtotime('2017-08-24');
+
+        foreach ($allRepaymentList as $list){
+            $schedualeDateTime = strtotime($list->schedualeDateTime);
+            if($schedualeDateTime < $today && $selectedTab == 'past'){
+                $pastDueArr[] = $list;
+            }elseif($schedualeDateTime >= $today  && $schedualeDateTime <= $next3rdDay && $list->repaidStatus == 'Unpaid' && $selectedTab == 'due'){
+                $dueArr[] = $list;
+            }elseif($today == $schedualeDateTime && $list->repaidStatus == 'Paid'  && $selectedTab == 'current'){
+                $currentArr[] = $list;
+            }
+        }
+
+        if($selectedTab == 'current'){
+            $data['dataArr'] = $currentArr;
+        }elseif($selectedTab == 'past'){
+            $data['pastDueArr'] = $pastDueArr;
+        }elseif($selectedTab == 'due'){
+            $data['dueArr'] = $dueArr;
+        }else{
+            $data['dueArr'] = $allRepaymentList;
+        }
+
+        //$data['allRepaymentList'] = $allRepaymentList;
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+        //$this->load->view('header', $data);
+        echo $this->load->view('borrowers/ajax/repaymentList', $data, true);
+        exit;
+        //$this->load->view('footer');
+
+
+
+    }
+
+
+
 }
