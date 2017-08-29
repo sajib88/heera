@@ -18,6 +18,8 @@ class Repaymentprocess extends CI_Controller {
         $loginId = $this->session->userdata('login_id');
         $allRepaymentList = $this->Repayment_model->repaymentList();
 
+
+
         $pastDueArr = array();
         $dueArr = array();
         $currentArr =  array();
@@ -26,7 +28,20 @@ class Repaymentprocess extends CI_Controller {
         //echo $schedualeDateTime = strtotime('2017-08-24');
 
         foreach ($allRepaymentList as $list){
+
+            /// total funded
+            $totalfunded = $this->global_model->total_sum('project_fund_history', array('projectID' => $list->projectID));
+            $totalfunded = (!empty($totalfunded))? $totalfunded:'0';
+
+            $projectRepaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('projectsID' => $list->projectID), 'amount');
+            $projectRepaidAmount = (!empty($projectRepaidAmount))? $projectRepaidAmount:'0';
+
+            $loanbalane = floatval($totalfunded - $projectRepaidAmount);
+
+            $list->loanbalance = $loanbalane;
+
             $schedualeDateTime = strtotime($list->schedualeDateTime);
+
             if($schedualeDateTime < $today){
                 $pastDueArr[] = $list;
             }elseif($schedualeDateTime >= $today  && $schedualeDateTime <= $next3rdDay && $list->repaidStatus == 'Unpaid'){
@@ -42,6 +57,10 @@ class Repaymentprocess extends CI_Controller {
         $data['currentArr'] = $currentArr;
 
         $data['allRepaymentList'] = $allRepaymentList;
+
+
+
+
 
         $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
         $data['login_id'] = $loginId;
@@ -192,6 +211,8 @@ class Repaymentprocess extends CI_Controller {
 
     function getrepaymentlist() {
         $data = array();
+        $data['page_title'] = 'Repayment List';
+        $data['no_data'] = 'Data not found.';
 
        $selectedTab = $this->input->post('selectedTab');
 
@@ -206,8 +227,21 @@ class Repaymentprocess extends CI_Controller {
         //echo $schedualeDateTime = strtotime('2017-08-24');
 
         foreach ($allRepaymentList as $list){
+
+
+            $totalfunded = $this->global_model->total_sum('project_fund_history', array('projectID' => $list->projectID));
+            $totalfunded = (!empty($totalfunded))? $totalfunded:'0';
+
+            $projectRepaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('projectsID' => $list->projectID), 'amount');
+            $projectRepaidAmount = (!empty($projectRepaidAmount))? $projectRepaidAmount:'0';
+
+            $loanbalane = floatval($totalfunded - $projectRepaidAmount);
+
+            $list->loanbalance = $loanbalane;
+
+
             $schedualeDateTime = strtotime($list->schedualeDateTime);
-            if($schedualeDateTime < $today && $selectedTab == 'past'){
+            if($schedualeDateTime < $today && $selectedTab == 'pastDue'){
                 $pastDueArr[] = $list;
             }elseif($schedualeDateTime >= $today  && $schedualeDateTime <= $next3rdDay && $list->repaidStatus == 'Unpaid' && $selectedTab == 'due'){
                 $dueArr[] = $list;
@@ -218,7 +252,7 @@ class Repaymentprocess extends CI_Controller {
 
         if($selectedTab == 'current'){
             $data['dataArr'] = $currentArr;
-        }elseif($selectedTab == 'past'){
+        }elseif($selectedTab == 'pastDue'){
             $data['pastDueArr'] = $pastDueArr;
         }elseif($selectedTab == 'due'){
             $data['dueArr'] = $dueArr;

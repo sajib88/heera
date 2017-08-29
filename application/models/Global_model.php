@@ -760,15 +760,16 @@ class Global_model extends CI_Model {
     }
 
     public function repaymentList(){
-        $this->db->select('p.projectID, p.name as projectName, u.first_name as borrowerName, r.*, u2.first_name as processBy');
+        $this->db->select('p.projectID, p.name as projectName, brh.amount,brh.projectsID, u.first_name as borrowerName, r.*, u2.first_name as processBy');
         $this->db->from('project_repaid_history as r');
         $this->db->join('project as p', 'r.projectID=p.projectID', 'left');
         $this->db->join('users as u', 'u.id=r.repaidBy', 'left');
         $this->db->join('users as u2', 'u2.id=r.paymentProcessBy', 'left');
+        $this->db->join('borrower_repaid_history as brh', 'brh.projectsID = p.projectID', 'left');
+        $this->db->select_sum('brh.amount');
         $this->db->where('p.isScheduleCreated', 1);
-        //$this->db->group_by('p.projectID');
         $query = $this->db->get();
-        //echo "<pre>"; print_r($query->result());echo "</pre>";
+        echo "<pre>"; print_r($query->result());echo "</pre>";
 
         if ($query->num_rows() > 0) {
             return $query->result();

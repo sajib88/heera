@@ -30,7 +30,7 @@
                         <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
                         <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
                         <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
-                        <td data-title="Loan balance" class="numeric"><span>$ <?php if(!empty($row->dueAmount)){echo $row->dueAmount;}else{echo '0.00';} ?></span></td>
+                        <td data-title="Loan balance" class="numeric"><span>$<?php echo $row->loanbalance; ?></span></td>
                         <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
                         <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
                         <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
