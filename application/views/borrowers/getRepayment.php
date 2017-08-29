@@ -7,7 +7,7 @@
     <input type="hidden" value="<?php echo $repaymentData[0]->projectID; ?>" name="projectsID">
     <input type="hidden" value="<?php echo $repaymentData[0]->borrowerId; ?>" name="borrower_ID">
     <input type="hidden" value="<?php echo $repaymentData[0]->repaymentScheduleID; ?>" name="repaymentScheduleID">
-    <input type="hidden" value="<?php echo $repaymentData[0]->repaidAmount; ?>" name="repaidAmount">
+    <input type="hidden" value="<?php echo ($repaymentData[0]->dueAmount != null && $repaymentData[0]->dueAmount != '0.00')?$repaymentData[0]->dueAmount : $repaymentData[0]->repaidAmount;  ?>" name="repaidAmount">
 
     <div class="row">
         <div class="col-md-12">
@@ -116,14 +116,19 @@
                 data: $("#myForm").serialize(),
                 success: function (msg) {
 
-                    if (msg == 'success') {
+                    if(msg == 'success') {
                         // show success meessage
-                        var msg = "<div class='alert alert-success'>Repayment Successfully.  </div>";
+                        var msg = "<div class='alert alert-success'>Your Repaid Successfully.  </div>";
                         $('#foo').html(msg);
                     }
+                    else if(msg == 'condition'){
+                        var conmsg = "<div class='alert alert-warning'>Actual Repaid amonut shuld be equal or less then calculated repaid amount</div>";
+                        $('#foo').html(conmsg);
+
+                    }
                     else {
-                        var msg = "<div class='alert alert-danger'>Repayment Error </div>";
-                        $('#foo').html(msg);
+                        var errmsg = "<div class='alert alert-danger'>Repayment Error  </div>";
+                        $('#foo').html(errmsg);
                     }
                 },
 

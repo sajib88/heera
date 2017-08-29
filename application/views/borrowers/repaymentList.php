@@ -35,7 +35,7 @@
                                 <?php }else{?>
                                 <div id="no-more-tables">
 
-                                    <table class="table table table-striped table-bordered dataTable no-footer" id="js_personal_table">
+                                    <table class="table table table-striped table-bordered dataTable no-footer " id="js_personal_table">
                                         <thead>
                                         <tr>
                                             <th class="numeric">#</th>
@@ -71,7 +71,7 @@
                                                     <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                     <td data-title="Make Payment" class="numeric text-center">
-                                                        <?php if($row->repaidStatus == 'Unpaid') {?>
+                                                        <?php  if($row->repaidStatus == 'Unpaid' || $row->repaidStatus == 'Due') {?>
                                                             <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                         <?php } else {?>
 
@@ -133,7 +133,7 @@
                                                         <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                         <td data-title="Make Payment" class="numeric text-center">
-                                                            <?php if($row->repaidStatus == 'Unpaid') {?>
+                                                            <?php  if($row->repaidStatus == 'Unpaid' || $row->repaidStatus == 'Due') {?>
                                                                 <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                             <?php } else {?>
 
@@ -248,7 +248,7 @@
                                                         <td data-title="Borrower Name" class="numeric"><span class="label"> <?php echo $row->borrowerName; ?> </span></td>
                                                         <td data-title="Payment Date" class="numeric"><span class="label"> <?php echo date('m-d-Y',strtotime($row->schedualeDateTime)); ?> </span></td>
                                                         <td data-title="Payment amount>" class="numeric"><span>$<?php echo $row->repaidAmount; ?></span></td>
-                                                        <td data-title="Loan balance" class="numeric"><span>$<?php echo '0.00'; ?></span></td>
+                                                        <td data-title="Loan balance" class="numeric"><span>$ <?php if(!empty($row->dueAmount)){echo $row->dueAmount;}else{echo '0.00';} ?></span></td>
                                                         <td data-title="Status" class="numeric"><span class="label"> <?php echo $row->repaidStatus; ?> </span></td>
                                                         <!--                                                <td data-title="--><?php //echo 'Payment Process By'; ?><!--"-->
                                                         <!--                                                    class="numeric"><span class="label"> --><?php //echo $row->processBy; ?><!-- </span></td>-->
@@ -257,7 +257,7 @@
                                                         <td data-title="View" class="numeric"> <a  class="btn btn-block btn-info"   href="<?php echo base_url('project/Project/detail/'); ?>/<?=$row->projectID?>" > View </a></td>
 
                                                         <td data-title="Make Payment" class="numeric text-center">
-                                                            <?php if($row->repaidStatus == 'Unpaid') {?>
+                                                            <?php if($row->repaidStatus == 'Unpaid' || $row->repaidStatus == 'Due')  {?>
                                                                 <a class="makepaymentAct btn btn-block btn-success"  data-scheduleid='<?=$row->repaymentScheduleID?>' href="javascript:" > Make payment </a>
                                                             <?php } else {?>
 
@@ -321,23 +321,20 @@
 <script rel="stylesheet" href="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css"></script>
 <script type="text/javascript" src="<?php echo base_url();?>backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 
+
+
 <script type="text/javascript">
-    $(document).ready(function(){
-        var personaltable = document.getElementById("js_personal_table");
-        $(personaltable).dataTable({
+
+        $('.dataTable').DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
-            "ordering": true,
-            "info": true,
             "autoWidth": false,
-            "columnDefs": [ {
-                "targets": 4,
-                "orderable": false
-            } ]
+            "lengthMenu": [[12, 25, 50, -1], [12, 25, 50, "All"]]
+
         });
-    });
 </script>
+
 
 <script type="application/javascript">
 

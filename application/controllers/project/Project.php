@@ -342,7 +342,7 @@ class Project extends CI_Controller {
             foreach ($projectData as $proData){
                 $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $proData->projectID));
                 $proData->fundedAmount = (!empty($fundedAmount))? $fundedAmount:'0';
-                $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $proData->projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+                $repaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('projectsID' => $proData->projectID), 'amount');
                 $proData->repaidAmount = (!empty($repaidAmount))? $repaidAmount:'0';
 
                 // calculate repaid %
@@ -1018,7 +1018,7 @@ class Project extends CI_Controller {
                             // Dont touch this veriable 
                             $totalDaysInyear = 365;
 
-                            $days = ($totalDaysInyear * $numberOfYear) / $repaymentScheduleValue;
+                            $days = round(($totalDaysInyear * $numberOfYear) / $repaymentScheduleValue);
 
                             $repaidAmount = number_format(($totalFundedAmount / $days), 2, '.', '');
 
@@ -1069,7 +1069,7 @@ class Project extends CI_Controller {
     public function ajaxrepayment($projectID){
         $data = array();
         ini_set('display_errors',1);
-        $repaidAmount = $this->global_model->total_sum('project_repaid_history', array('projectID' => $projectID, 'repaidStatus' => 'Done'), 'repaidAmount');
+        $repaidAmount = $this->global_model->total_sum('borrower_repaid_history', array('projectsID' => $projectID), 'amount');
         $data['totalRepaidAmount'] = (!empty($repaidAmount))? $repaidAmount:'0';
 
         $fundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectID));
@@ -1081,7 +1081,7 @@ class Project extends CI_Controller {
 
         $data['repaymentSchedule'] =   $repaymentSchedule;
 
-        $data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $projectID, 'repaidStatus' => 'Done'));
+        //$data['fundcollecttion']  = $this->global_model->get('project_repaid_history', array('projectID' => $projectID, 'repaidStatus' => 'Done'));
 
         echo $this->load->view('project/ajaxpayment', $data, TRUE);
         exit;

@@ -58,7 +58,7 @@
                                     $TotalLoanBalance = floatval($TotalLoanBalance-$amountPaid);
                                 }
 
-                                $paymentDate = (!empty($row->repaidDateTime)) ?date('m-d-Y',strtotime($row->repaidDateTime)):'';
+                                $paymentDate = (!empty($row->dateTime)) ?date('m-d-Y',strtotime($row->dateTime)):'';
 
                                  ?>
                                     <tr>

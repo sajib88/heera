@@ -82,7 +82,7 @@ class Repaymentprocess extends CI_Controller {
             $actualRepaidAmount =  $this->input->post('actualRepaidAmount');
 
 
-            if(!empty($projectid)) {
+            if(!empty($projectID)) {
 
                 $allLanders = $this->global_model->get_landerby_project_id($projectID);
                 $totalFundedAmount = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectID));
@@ -102,7 +102,8 @@ class Repaymentprocess extends CI_Controller {
                         //$lendersData->individualRepaidAmount = $individualRepaidAmount;
 
                         // Insert into borrower repaid history table
-                        $saveLenderFund['projectsID'] = $projectid;
+                        $saveLenderFund['projectsID'] = $projectID;
+                        $saveLenderFund['repaymentScheduleID'] = $repaymentScheduleID;
                         $saveLenderFund['lenderID'] = $lendersData->id;
                         $saveLenderFund['dateTime'] = date('Y-m-d H:i:s');
                         $saveLenderFund['amount'] = $individualRepaidAmount;
@@ -124,89 +125,42 @@ class Repaymentprocess extends CI_Controller {
                         //$updateamount['inAmount'] = $individualRepaidAmount;
                         $currentCreditAmount = $lendersData->currentCreditAmount;
                         $credit['inAmount'] = floatval($currentCreditAmount + $individualRepaidAmount);
-                        $this->global_model->update('users', $credit, array('id' => $lendersData->id));
+                       $success = $this->global_model->update('users', $credit, array('id' => $lendersData->id));
                     }
-                }else{
-                    echo "Actual Repaid amonut shuld be equal or less then calculated repaid amount";
+                    //// END FOR Loop ---
+
+                }
+                else{
+                   echo"condition";
+                    exit;
                 }
 
-                // Update Repaiment schedule status to paid or unpaid
-                $scheduldStatus = ($actualRepaidAmount < $repaidAmount)?'Due':'Paid';
+                if(isset($success) && !empty($success)) {
 
-                $updateArr['repaidStatus'] = $scheduldStatus;
-                $updateArr['dueAmount'] = floatval($repaidAmount-$actualRepaidAmount);
+                    // Update Repaiment schedule status to paid or unpaid
+                    $scheduldStatus = ($actualRepaidAmount < $repaidAmount) ? 'Due' : 'Paid';
 
-                $ref = $this->global_model->update('repayment_schedules', $updateArr, array('repaymentScheduleID' => $repaymentScheduleID));
-echo $this->db->last_query();
-                /*$data['alllandersdata'] = $allLanders;
+                    $updateArr['repaidStatus'] = $scheduldStatus;
+                    $updateArr['dueAmount'] = floatval($repaidAmount - $actualRepaidAmount);
 
-                $postData = $this->input->post();
-
-                // insert borrow repaid Transaction
-                foreach ($postData['lenderID'] as $key => $lenderID) {
-
-                    // Insert into borrower repaid history table
-                    $saveLenderFund['projectsID'] = $projectid;
-                    $saveLenderFund['lenderID'] = $postData['lenderID'][$key];
-                    $saveLenderFund['dateTime'] = date('Y-m-d H:i:s');
-                    $saveLenderFund['amount'] = $postData['amount'][$key];
-                    $saveLenderFund['process_by_ID'] = $loginId;
-                    $saveLenderFund['borrower_ID'] = $borrower_ID;
-                    $this->db->insert('borrower_repaid_history', $saveLenderFund);
-
-                    // Insert into transation history table
-                    $save['inAmount'] = $postData['amount'][$key];
-                    $save['outAmount'] = 0;
-                    $save['transactionReason'] = 'repayments';
-                    $save['userID'] = $postData['lenderID'][$key];
-                    $save['transactionDateTime'] = date('Y-m-d H:i:s');
-                    $save['transactionStatus'] = 'done';
-
-                    $this->db->insert('lander_transaction_history', $save);
-
-                    // get lender old credit amount
-
-                    //$lenderOldCredit
-                    // update lender credit with new amount
-
-                    $updateamount['inAmount'] = $postData['amount'][$key];
-                    $currentCreditAmount = $postData['currentCreditAmount'][$key];
-
-                    $credit['inAmount']  =  floatval($currentCreditAmount+$postData['amount'][$key]);
-
-                    $this->global_model->update('users', $credit, array('id' => $postData['lenderID'][$key]));
+                    $ref = $this->global_model->update('repayment_schedules', $updateArr, array('repaymentScheduleID' => $repaymentScheduleID));
                 }
 
-
-                /////// Update satus - done
-                $status['repaidStatus'] = 'Done';
-                $status['paymentProcessBy'] = $loginId;
-                $status['paymentProcessTime'] = date('Y-m-d H:i:s');
-
-
-
-                $this->global_model->update('project_repaid_history', $status, array('repaymentScheduleID' => $repaymentScheduleID));
-
-                $statusschedule['repaidStatus'] = 'Done';
-                $ref = $this->global_model->update('repayment_schedules', $statusschedule, array('repaymentScheduleID' => $repaymentScheduleID));*/
-
-                if( $ref ){
+                if(isset($ref) && !empty($ref)){
                     // add flash data
                     // Your project save successfully
                     echo "success";
-                    $this->session->set_flashdata('message', 'Repayment Successfully');
                     exit;
+
                 }else{
                     echo "error";
-                    // project status not saved. Please try again.
-                    $this->session->set_flashdata('error', 'Repayment Error.');
+                    exit;
+
                 }
             }
         }
 
-        $this->load->view('guest_head', $data);
-        $this->load->view('project/thankyou',$data);
-        $this->load->view('guest_footer');
+       exit;
 
     }
 
