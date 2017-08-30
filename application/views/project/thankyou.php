@@ -18,8 +18,13 @@
         <div class="row">
 
         <div class="jumbotron text-xs-center">
+            <?php if($success == 'success'){?>
             <h1 class="display-3">Thank You!</h1>
-            <p class="lead"><strong>You are successfully fund this project. </strong> More projects funding Please go back to homepage</p>
+            <p class="lead"><strong>You are successfully fund this project. </strong></p>
+            <?php }else{?>
+                <h1 class="display-3">Something going Wrong!</h1>
+                <p class="lead"><strong>You don't have sufficient amount to fund to all selected project. Please check your credit and then try again.</strong></p>
+            <?php }?>
             <hr>
 
             <p class="lead">

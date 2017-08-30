@@ -57,3 +57,66 @@
         </table>
     </div>
 <?php }?>
+
+
+
+<script type="application/javascript">
+
+    $(".makepaymentAct").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var fundedprojectID = $(this).data('scheduleid');
+
+        $.ajax({
+            type: 'GET',
+            url: base_url + "repaymentprocess/getRepayment/"+fundedprojectID, //this file has the calculator function code
+            //data: id,
+            success:function(data){
+                $('#showview').html(data);
+                $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
+
+    $(".defaulted").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var projectid = $(this).data('projectid');
+
+        $.ajax({
+            type: 'GET',
+            url: base_url + "borrowers/borrowers/defaulted/"+projectid, //this file has the calculator function code
+            //data: id,
+            success:function(data){
+                $('#viewdefaulteddata').html(data);
+                $('#viewdefaulted').modal('show');
+
+            }
+        });
+
+    });
+
+
+    $(".tabaction").click(function(e) {
+
+        var base_url = '<?php echo base_url() ?>';
+        var tabdata = $(this).data('tabdata');
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + "repaymentprocess/getrepaymentlist", //this file has the calculator function code
+            data: 'selectedTab='+tabdata,
+            success:function(data){
+                $('#'+tabdata).html(data);
+                // $('#showview').html(data);
+                //   $('#viewModal').modal('show');
+
+            }
+        });
+
+    });
+
+
+</script>

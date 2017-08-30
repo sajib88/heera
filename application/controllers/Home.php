@@ -214,11 +214,11 @@ class Home extends CI_Controller {
 
 
         $myLend = $this->session->userdata('deliverdata');          #will return the whole array
-
+        
 
         if (!empty($myLend)) {
             foreach ($myLend as $projectID => $selectedAmount) {
-                $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));;
+                $projectDeatils[$projectID] = $this->global_model->get('project', array('projectID' => $projectID));
                 $projectDeatils[$projectID]['lendAmount'] = $selectedAmount;
             }
             $data['selectedProjects'] = $projectDeatils;
@@ -248,6 +248,7 @@ class Home extends CI_Controller {
         $currentCreditAmount = $data['user_info']['inAmount'];
         $totalPaidAmound = $this->input->post('paytotal');
 
+
         if($this->input->post()){
             if($totalPaidAmound < $currentCreditAmount) {
                 $postData = $this->input->post();
@@ -265,17 +266,26 @@ class Home extends CI_Controller {
                     $saveLenderFund['transactionDateTime'] = date('Y-m-d H:i:s');
 
                     $this->db->insert('lander_transaction_history', $saveLenderFund);
-                }
 
 
-                // inset project fund history
-                foreach ($postData['projectid'] as $key => $projectID) {
+
                     $pro['projectID '] = $projectID;
                     $pro['fundedAmount'] = $postData['outAmount'][$key];
                     $pro['fundedBy'] = $loginId;
                     $pro['fundedDateTime'] = date('Y-m-d H:i:s');
 
                     $this->global_model->insert('project_fund_history', $pro);
+
+                    ///// Get project id From Loop
+                    $projectData = $this->global_model->get('project', array('projectID ' => $projectID));
+
+                    //// Total funded amount loop
+                    $totalfunded = $this->global_model->total_sum('project_fund_history', array('projectID' => $projectID));
+                   // $fundedsubtotal = $totalPaidAmound + $totalfunded;
+                    if($totalfunded >= $projectData[0]->minimumAmount){
+                        $save['statusID'] = 4;
+                        $this->global_model->update('project', $save, array('projectID' => $projectID));
+                    }
                 }
 
                 $credit['inAmount']  = $currentCreditAmount - $totalPaidAmound;
@@ -283,10 +293,12 @@ class Home extends CI_Controller {
                 if($updateRef) {
 
                     unset($_SESSION['deliverdata'][$projectID]);
-                    $this->session->set_flashdata('message', 'You  fund this project ');
+                    //$this->session->set_flashdata('message', 'You fund this project ');
+                    $data['success'] = 'success';
                 }
             }else{
-                echo "Not sufficient fund";
+                $data['error'] = 'noFund';
+               // echo "Not sufficient fund";
             }
         }
 
