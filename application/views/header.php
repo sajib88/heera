@@ -370,6 +370,7 @@
                   <a href="#" >
                     <i class="fa fa-tasks"></i>
                     <span>Projects <?php if(!empty($count)){ echo '('.$count.')';}else{}?></span>
+                      <i class="fa fa-angle-left pull-right"></i>
                   </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(3)==""){echo "active";}?>">
@@ -431,10 +432,18 @@
                   </a>
                 </li>
 
+                <li class="treeview <?php if($this->uri->segment(3)=="repaymentList"){echo "active";}?>">
+                    <a href="<?php echo base_url('borrowers/Borrowers/repaymentList'); ?>" >
+                        <i class="fa fa-list"></i>
+                        <span>Repayment List</span>
+                    </a>
+                </li>
+
                 <li class="treeview <?php if($this->uri->segment(3)=="index"){echo "active";}?>">
                     <a href="#">
                       <i class="fa fa-cog"></i>
                       <span>Settings</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li class="<?php if($this->uri->segment(3)=="index"){echo "active";}?>">

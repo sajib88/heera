@@ -63,5 +63,21 @@ class Borrowers extends CI_Controller {
         exit;
     }
 
+    public function repaymentList(){
+        $data = array();
+        $data['page_title'] = 'Repayment List';
+        $data['no_data'] = 'Any Repayment Not Found.';
+        $loginId = $this->session->userdata('login_id');
+        $data['allRepaymentList'] = $this->global_model->repaymentList();
+
+        //print_r($data['allRepaymentList']);die;
+
+        $data['user_info'] = $this->global_model->get_data('users', array('id' => $loginId));
+        $data['login_id'] = $loginId;
+        $this->load->view('header', $data);
+        $this->load->view('borrowers/repaymentList', $data);
+        $this->load->view('footer');
+    }
+
 }
 

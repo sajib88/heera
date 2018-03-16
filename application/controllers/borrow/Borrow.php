@@ -51,7 +51,7 @@ class Borrow extends CI_Controller {
         $data['no_data'] = 'No Repayment Schedule.';
         
         $loginId = $this->session->userdata('login_id');
-        
+
         $data['repaymentSchedule'] = $this->global_model->borrower_repayment_schedule($loginId);
        // print_r($ref);die;
 //        echo $ref[0]->projectID;
@@ -89,6 +89,31 @@ class Borrow extends CI_Controller {
         $this->load->view('header', $data);
         $this->load->view('borrow/projectFunding', $data);
         $this->load->view('footer');
+    }
+
+    public function borrowerRepayment($project_id, $repaid_amount, $repayment_date, $repaymentStatus, $repaymentScheduleID)
+    {
+        $loginId = $this->session->userdata('login_id');
+        $projectData['projectID'] = $project_id;
+        $projectData['repaidAmount'] = $repaid_amount;
+        $projectData['repaidBy'] = $loginId;
+        $projectData['repaidDateTime'] = $repayment_date;
+        $projectData['repaidStatus'] = 'Pending';
+        $projectData['paymentProcessBy'] = Null;
+        $projectData['paymentProcessTime'] = Null;
+
+        $repaymentData['repaymentStatus'] = $repaymentStatus;
+        //$repaymentStatus['repaymentScheduleID'] = $repaymentScheduleID;
+
+        if($this->global_model->insert('project_repaid_history', $projectData)){
+            $this->global_model->update('repayment_schedules', $repaymentData, array('repaymentScheduleID' => $repaymentScheduleID));
+            $this->session->set_flashdata('message', 'Your Repayment is Pending. Please wait some time to make it done.');
+            redirect(base_url('borrow/repaymentShchedule'));
+        }else{
+            $this->session->set_flashdata('message', 'Something went wrong. Please try again.');
+            redirect(base_url('borrow/repaymentShchedule'));
+        }
+
     }
     
 
