@@ -378,7 +378,7 @@ class Global_model extends CI_Model {
         }
     }
 
-    public function get_profile_search_data($table, $where, $data, $limit = FALSE, $order_by = FALSE) {
+    public function get_profile_search_data($table, $where, $data=array(), $limit = FALSE, $order_by = FALSE) {
         $this->db->select('*')->from($table);
 
         if (!empty($data['name'])) {
